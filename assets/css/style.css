@@ -288,8 +288,7 @@ body {
   min-height: 80vh;
 }
 .question-card {
-  padding: 2rem;
-
+  padding: 2rem 20rem;
   width: 100%; /* Use 100% width to fit max-width of container */
   max-width: 1500px; /* Keep max-width for consistency */
   position: absolute; /* Use absolute positioning for transitions */
@@ -1615,10 +1614,6 @@ img {
 
   .hero-section {
     padding: 3rem 2rem;
-  }
-
-  .question-card {
-    padding: 2.5rem;
   }
 
   .question-title {
