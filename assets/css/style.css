@@ -398,7 +398,6 @@ body {
 
 .option-label {
   display: block;
-  background: var(--muted);
   border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem 1.5rem;
@@ -413,6 +412,7 @@ body {
 .option-label:hover {
   border-color: var(--primary);
   color: #000;
+  background: var(--muted);
 }
 
 .option-label input[type="radio"] {
@@ -454,7 +454,7 @@ body {
 .navigation-controls {
   /* This container is now just a wrapper, its styling will be minimal */
   display: flex;
-  gap: 10px; /* Ensure gap is applied here too if needed, but individual buttons will have their own styling */
+  gap: 20px; /* Ensure gap is applied here too if needed, but individual buttons will have their own styling */
 }
 
 .nav-btn {
@@ -476,7 +476,7 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Consistent shadow */
 }
 .nav-btn > p {
-  margin-right: 3rem;
+  margin-right: 6rem;
   color: #1f262e;
   font-weight: 400;
 }
