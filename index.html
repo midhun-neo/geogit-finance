@@ -1,932 +1,1216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geojit SIP Club - Investment Platform</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-    <!-- Header -->
-    <header class="header">
-        
+<!-- Header -->
+<header class="header">
+
+    <div class="logo">
+        <div class="logo-icon">G</div>
+        <span class="logo-text">GEOJIT</span>
+        <span class="logo-sub">INVESTMENT SERVICES LTD</span>
+    </div>
+
+    <div class="sip-badge">SIP CLUB</div>
+</header>
+
+<!-- Progress Tracker Section -->
+<section class="progress-tracker-section">
+    <div class="progress-tracker-container">
+        <div class="progress-card active" id="progress-profile">
+            <p class="progress-card-title">Profile</p>
+
+            <div class="progress-card-icon">
+                👤
+                <div class="completion-icon">✔</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-profile-bar"></div>
+            </div>
+        </div>
+        <div class="progress-card" id="progress-financial">
+            <p class="progress-card-title">Financial Health</p>
+
+            <div class="progress-card-icon">
+                📊
+                <div class="completion-icon">✔</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-financial-bar"></div>
+            </div>
+        </div>
+        <div class="progress-card" id="progress-risk">
+            <p class="progress-card-title">Risk Profile</p>
+
+            <div class="progress-card-icon">
+                ⚠️
+                <div class="completion-icon">✔</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-risk-bar"></div>
+            </div>
+        </div>
+        <div class="progress-card" id="progress-summary">
+            <p class="progress-card-title">Summary</p>
+
+            <div class="progress-card-icon">
+                📝
+                <div class="completion-icon">✔</div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-summary-bar"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="custom-alert" id="validation-alert"></div>
+        <!-- Questionnaire Cards -->
+        <div class="question-card active" id="question-0">
+            <h2 class="question-title">👋 Hi there! What’s your name?</h2>
+            <div class="form-group">
+                <label for="user-name" class="form-label">Your Name</label>
+                <input class="form-input" type="text" id="user-name" placeholder="Type your name here">
+            </div>
+            <div class="navigation-buttons">
+                <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-1">
+            <h2 class="question-title">📧 What’s your email and phone number?</h2>
+            <div class="form-group">
+                <label for="contact-email" class="form-label">Your Email Address</label>
+                <input class="form-input" type="email" id="contact-email" placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+                <label for="contact-phone" class="form-label">Your Mobile Number</label>
+                <input class="form-input" type="tel" id="contact-phone" placeholder="+91 00000 00000">
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-2">
+            <h2 class="question-title">✅ Before we begin, please confirm:</h2>
+            <p class="question-subtitle">
+                I understand this survey gives only an indication of my financial health and risk profile.<br>
+                I agree to be contacted by a Geojit expert. My data is safe and secure.
+            </p>
+            <div class="form-group">
+                <label class="option-label">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span>I agree</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-3">
+            <h2 class="question-title">📅 What’s your age group?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="Under 25" data-score="0">
+                    <span>Under 25</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="25–34" data-score="1">
+                    <span>25–34</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="35–44" data-score="2">
+                    <span>35–44</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="45–54" data-score="2">
+                    <span>45–54</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="55+" data-score="1">
+                    <span>55+</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-4">
+            <h2 class="question-title">🚻 How do you identify yourself?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="gender" value="Male" data-score="0">
+                    <span>Male</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="gender" value="Female" data-score="0">
+                    <span>Female</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="gender" value="Non-binary" data-score="0">
+                    <span>Non-binary</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="gender" value="Prefer not to say" data-score="0">
+                    <span>Prefer not to say</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-5">
+            <h2 class="question-title">💼 What do you do for a living?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="occupation" value="Salaried" data-score="0">
+                    <span>Salaried</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="occupation" value="Self-employed" data-score="0">
+                    <span>Self-employed</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="occupation" value="Student" data-score="0">
+                    <span>Student</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="occupation" value="Retired" data-score="0">
+                    <span>Retired</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="occupation" value="Other" data-score="0">
+                    <span>Other</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-6">
+            <h2 class="question-title">💍 Are you married or single?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="marital-status" value="Single" data-score="0">
+                    <span>Single</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="marital-status" value="Married" data-score="0">
+                    <span>Married</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="marital-status" value="Prefer not to say" data-score="0">
+                    <span>Prefer not to say</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Health Check Questions -->
+        <div class="question-card" id="question-7">
+            <h2 class="question-title">📊 Do you usually keep track of your monthly income and expenses?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q1-financial-health" value="Yes" data-score="2">
+                    <span>Yes</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q1-financial-health" value="No" data-score="0">
+                    <span>No</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-8">
+            <h2 class="question-title">💰 Roughly what portion of your income do you manage to save every month?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q2-financial-health" value="<10%" data-score="0">
+                    <span>
+                        <10%< /span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q2-financial-health" value="10–20%" data-score="1">
+                    <span>10–20%</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q2-financial-health" value="20–30%" data-score="2">
+                    <span>20–30%</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q2-financial-health" value="30%+" data-score="3">
+                    <span>30%+</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-9">
+            <h2 class="question-title">🔖 If life throws a surprise (like a medical bill), do you have savings to manage
+                it?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q3-financial-health" value="Yes" data-score="3">
+                    <span>Yes</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q3-financial-health" value="No" data-score="0">
+                    <span>No</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-10">
+            <h2 class="question-title">📉 Do you have active life or health insurance policies?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q4-financial-health" value="Yes" data-score="2">
+                    <span>Yes</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q4-financial-health" value="No" data-score="0">
+                    <span>No</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-11">
+            <h2 class="question-title">🎯 Do you invest money specifically for your life goals (like education, home,
+                etc.)?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q5-financial-health" value="Yes" data-score="2">
+                    <span>Yes</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q5-financial-health" value="No" data-score="0">
+                    <span>No</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-12">
+            <h2 class="question-title">🔄 How often do you review or adjust your investments?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q6-financial-health" value="Frequently" data-score="2">
+                    <span>Frequently</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6-financial-health" value="Rarely" data-score="1">
+                    <span>Rarely</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6-financial-health" value="Never" data-score="0">
+                    <span>Never</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-13">
+            <h2 class="question-title">💳 How often do you borrow money or rely on credit cards to cover monthly
+                expenses?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q7-financial-health" value="Often – I rely heavily on credit"
+                        data-score="0">
+                    <span>Often – I rely heavily on credit</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q7-financial-health" value="Sometimes – I use credit occasionally"
+                        data-score="1">
+                    <span>Sometimes – I use credit occasionally</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q7-financial-health" value="Rarely – Only in emergencies" data-score="2">
+                    <span>Rarely – Only in emergencies</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q7-financial-health" value="Never – I manage expenses without credit"
+                        data-score="3">
+                    <span>Never – I manage expenses without credit</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-14">
+            <h2 class="question-title">📈 Do you track your net worth (assets – liabilities) regularly?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q8-financial-health" value="Yes, at least once a year" data-score="3">
+                    <span>Yes</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q8-financial-health" value="Occasionally" data-score="1">
+                    <span>Occasionally</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q8-financial-health" value="No, never calculated it" data-score="0">
+                    <span>No, never calculated it</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Profiling Questions -->
+        <div class="question-card" id="question-15">
+            <h2 class="question-title">😨 If your investment drops 10%, what’s your first reaction?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q1-risk-profile" value="Sell and exit" data-score="0">
+                    <span>Sell and exit</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q1-risk-profile" value="Wait patiently" data-score="1">
+                    <span>Wait patiently</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q1-risk-profile" value="Invest more while it’s low" data-score="2">
+                    <span>Invest more while it’s low</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-16">
+            <h2 class="question-title">⏳ How long are you comfortable keeping your money invested?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q2-risk-profile" value="Less than 1 year" data-score="0">
+                    <span>Less than 1 year</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q2-risk-profile" value="1–3 years" data-score="1">
+                    <span>1–3 years</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q2-risk-profile" value="3+ years" data-score="2">
+                    <span>3+ years</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-17">
+            <h2 class="question-title">📚 How would you describe your understanding of investments?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q3-risk-profile" value="Beginner" data-score="0">
+                    <span>Beginner</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q3-risk-profile" value="Intermediate" data-score="1">
+                    <span>Intermediate</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q3-risk-profile" value="Advanced" data-score="2">
+                    <span>Advanced</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-18">
+            <h2 class="question-title">🎢 What’s your comfort level with ups and downs in your investments?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q4-risk-profile" value="I get nervous" data-score="0">
+                    <span>I get nervous</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q4-risk-profile" value="I'm okay with some fluctuations" data-score="1">
+                    <span>I'm okay with some fluctuations</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q4-risk-profile" value="I’m comfortable with volatility" data-score="2">
+                    <span>I’m comfortable with volatility</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-19">
+            <h2 class="question-title">📈 If your investment grows by 20% quickly, what would you do?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q5-risk-profile" value="Sell to book profit" data-score="0">
+                    <span>Sell to book profit</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q5-risk-profile" value="Hold and watch" data-score="1">
+                    <span>Hold and watch</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q5-risk-profile" value="Invest more expecting further gains"
+                        data-score="2">
+                    <span>Invest more expecting further gains</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-20">
+            <h2 class="question-title">🎯 What’s your main reason for investing?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="q6-risk-profile" value="To grow wealth long-term" data-score="2">
+                    <span>To grow wealth long-term</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6-risk-profile" value="To protect capital" data-score="0">
+                    <span>To protect capital</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6-risk-profile" value="To generate regular income" data-score="1">
+                    <span>To generate regular income</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combined Community, Newsletter, Masterclass -->
+        <div class="question-card" id="question-21">
+            <h2 class="question-title">Stay Connected with Geojit!</h2>
+            <p class="question-subtitle">Select the options you're interested in:</p>
+            <div class="form-group">
+                <label class="option-label">
+                    <input type="checkbox" id="join-community">
+                    <span>Join our FundsGenie Community for exclusive updates and offers.</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="option-label">
+                    <input type="checkbox" id="newsletter-subscription">
+                    <span>Receive a 3-month Geojit Insights subscription and monthly newsletter.</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="option-label">
+                    <input type="checkbox" id="masterclass-interest">
+                    <span>I'm interested in attending your upcoming Financial Masterclass sessions.</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                  <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p>Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="question-card" id="results-card">
+            <h2 class="question-title">Your Financial Profile Summary</h2>
+            <div class="score-display">
+                <h3>Financial Health Score: <span id="financial-health-score"></span></h3>
+                <p class="interpretation" id="financial-health-interpretation"></p>
+            </div>
+            <div class="score-display">
+                <h3>Risk Profile Score: <span id="risk-profile-score"></span></h3>
+                <p class="interpretation" id="risk-profile-interpretation"></p>
+            </div>
+            <div class="navigation-buttons">
+                <button class="nav-btn primary" onclick="resetQuiz()">Start Over</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
         <div class="logo">
             <div class="logo-icon">G</div>
             <span class="logo-text">GEOJIT</span>
             <span class="logo-sub">INVESTMENT SERVICES LTD</span>
         </div>
-        
-        <div class="sip-badge">SIP CLUB</div>
-    </header>
 
-    <!-- Progress Tracker Section -->
-    <section class="progress-tracker-section">
-        <div class="progress-tracker-container">
-            <div class="progress-card active" id="progress-profile">
-                <div class="progress-card-icon">
-                    👤
-                    <div class="completion-icon">✔</div>
-                </div>
-                <p class="progress-card-title">Profile</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar-fill" id="progress-profile-bar"></div>
-                </div>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Registered Office</h4>
+                <address>
+                    34/659, Civil Line Road,<br>
+                    Padivattom, Kochi-682024,<br>
+                    Kerala, India
+                </address>
             </div>
-            <div class="progress-card" id="progress-financial">
-                <div class="progress-card-icon">
-                    📊
-                    <div class="completion-icon">✔</div>
-                </div>
-                <p class="progress-card-title">Financial Health</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar-fill" id="progress-financial-bar"></div>
-                </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Phone: +91 484-2901000</p>
+                <p>www.geojit.com</p>
             </div>
-            <div class="progress-card" id="progress-risk">
-                <div class="progress-card-icon">
-                    ⚠️
-                    <div class="completion-icon">✔</div>
-                </div>
-                <p class="progress-card-title">Risk Profile</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar-fill" id="progress-risk-bar"></div>
-                </div>
-            </div>
-            <div class="progress-card" id="progress-summary">
-                <div class="progress-card-icon">
-                    📝
-                    <div class="completion-icon">✔</div>
-                </div>
-                <p class="progress-card-title">Summary</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar-fill" id="progress-summary-bar"></div>
-                </div>
+
+            <div class="footer-section">
+                <h4>For investor queries</h4>
+                <p>customer@geojit.com</p>
             </div>
         </div>
-    </section>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-container">
-            <div class="custom-alert" id="validation-alert"></div>
-            <!-- Questionnaire Cards -->
-            <div class="question-card active" id="question-0">
-                <h2 class="question-title">👋 Hi there! What’s your name?</h2>
-                <div class="form-group">
-                    <label for="user-name" class="form-label">Your Name</label>
-                    <input class="form-input" type="text" id="user-name" placeholder="Type your name here">
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
+        <div class="footer-bottom">
+            <div class="disclaimer">
+                <h5>Disclaimer</h5>
+                <p>Mutual Fund investments are subject to market risks, read all scheme related documents carefully. The
+                    NAV of the scheme may go up or down depending upon the factors and forces affecting securities
+                    market. Geojit Financial Services Ltd. does not guarantee returns nor capital protection. Past
+                    performance may or may not be sustained in future. Please read all related documents carefully
+                    before investing.</p>
             </div>
 
-            <div class="question-card" id="question-1">
-                <h2 class="question-title">📧 What’s your email and phone number?</h2>
-                <div class="form-group">
-                    <label for="contact-email" class="form-label">Your Email Address</label>
-                    <input class="form-input" type="email" id="contact-email" placeholder="your.email@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="contact-phone" class="form-label">Your Mobile Number</label>
-                    <input class="form-input" type="tel" id="contact-phone" placeholder="+91 00000 00000">
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
+            <div class="disclaimer">
+                <h5>Disclosure</h5>
+                <p>These are not Exchange traded products and the Member is just acting as distributor. All disputes in
+                    respect to the distribution activity would not have access to Exchange investor redressal or
+                    Arbitration mechanisms.</p>
             </div>
 
-            <div class="question-card" id="question-2">
-                <h2 class="question-title">✅ Before we begin, please confirm:</h2>
-                <p class="question-subtitle">
-                    I understand this survey gives only an indication of my financial health and risk profile.<br>
-                    I agree to be contacted by a Geojit expert. My data is safe and secure.
-                </p>
-                <div class="form-group">
-                    <label class="option-label">
-                        <input type="checkbox" id="consent-checkbox">
-                        <span>I agree</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-3">
-                <h2 class="question-title">📅 What’s your age group?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="age-group" value="Under 25" data-score="0">
-                        <span>Under 25</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="age-group" value="25–34" data-score="1">
-                        <span>25–34</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="age-group" value="35–44" data-score="2">
-                        <span>35–44</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="age-group" value="45–54" data-score="2">
-                        <span>45–54</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="age-group" value="55+" data-score="1">
-                        <span>55+</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-4">
-                <h2 class="question-title">🚻 How do you identify yourself?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="gender" value="Male" data-score="0">
-                        <span>Male</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="gender" value="Female" data-score="0">
-                        <span>Female</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="gender" value="Non-binary" data-score="0">
-                        <span>Non-binary</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="gender" value="Prefer not to say" data-score="0">
-                        <span>Prefer not to say</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-5">
-                <h2 class="question-title">💼 What do you do for a living?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="occupation" value="Salaried" data-score="0">
-                        <span>Salaried</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="occupation" value="Self-employed" data-score="0">
-                        <span>Self-employed</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="occupation" value="Student" data-score="0">
-                        <span>Student</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="occupation" value="Retired" data-score="0">
-                        <span>Retired</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="occupation" value="Other" data-score="0">
-                        <span>Other</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-6">
-                <h2 class="question-title">💍 Are you married or single?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="marital-status" value="Single" data-score="0">
-                        <span>Single</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="marital-status" value="Married" data-score="0">
-                        <span>Married</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="marital-status" value="Prefer not to say" data-score="0">
-                        <span>Prefer not to say</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Financial Health Check Questions -->
-            <div class="question-card" id="question-7">
-                <h2 class="question-title">📊 Do you usually keep track of your monthly income and expenses?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q1-financial-health" value="Yes" data-score="2">
-                        <span>Yes</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q1-financial-health" value="No" data-score="0">
-                        <span>No</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-8">
-                <h2 class="question-title">💰 Roughly what portion of your income do you manage to save every month?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q2-financial-health" value="<10%" data-score="0">
-                        <span><10%</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q2-financial-health" value="10–20%" data-score="1">
-                        <span>10–20%</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q2-financial-health" value="20–30%" data-score="2">
-                        <span>20–30%</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q2-financial-health" value="30%+" data-score="3">
-                        <span>30%+</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-9">
-                <h2 class="question-title">🔖 If life throws a surprise (like a medical bill), do you have savings to manage it?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q3-financial-health" value="Yes" data-score="3">
-                        <span>Yes</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q3-financial-health" value="No" data-score="0">
-                        <span>No</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-10">
-                <h2 class="question-title">📉 Do you have active life or health insurance policies?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q4-financial-health" value="Yes" data-score="2">
-                        <span>Yes</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q4-financial-health" value="No" data-score="0">
-                        <span>No</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-11">
-                <h2 class="question-title">🎯 Do you invest money specifically for your life goals (like education, home, etc.)?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q5-financial-health" value="Yes" data-score="2">
-                        <span>Yes</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q5-financial-health" value="No" data-score="0">
-                        <span>No</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-12">
-                <h2 class="question-title">🔄 How often do you review or adjust your investments?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q6-financial-health" value="Frequently" data-score="2">
-                        <span>Frequently</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6-financial-health" value="Rarely" data-score="1">
-                        <span>Rarely</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6-financial-health" value="Never" data-score="0">
-                        <span>Never</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-13">
-                <h2 class="question-title">💳 How often do you borrow money or rely on credit cards to cover monthly expenses?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q7-financial-health" value="Often – I rely heavily on credit" data-score="0">
-                        <span>Often – I rely heavily on credit</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q7-financial-health" value="Sometimes – I use credit occasionally" data-score="1">
-                        <span>Sometimes – I use credit occasionally</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q7-financial-health" value="Rarely – Only in emergencies" data-score="2">
-                        <span>Rarely – Only in emergencies</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q7-financial-health" value="Never – I manage expenses without credit" data-score="3">
-                        <span>Never – I manage expenses without credit</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-14">
-                <h2 class="question-title">📈 Do you track your net worth (assets – liabilities) regularly?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q8-financial-health" value="Yes, at least once a year" data-score="3">
-                        <span>Yes</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q8-financial-health" value="Occasionally" data-score="1">
-                        <span>Occasionally</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q8-financial-health" value="No, never calculated it" data-score="0">
-                        <span>No, never calculated it</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Risk Profiling Questions -->
-            <div class="question-card" id="question-15">
-                <h2 class="question-title">😨 If your investment drops 10%, what’s your first reaction?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q1-risk-profile" value="Sell and exit" data-score="0">
-                        <span>Sell and exit</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q1-risk-profile" value="Wait patiently" data-score="1">
-                        <span>Wait patiently</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q1-risk-profile" value="Invest more while it’s low" data-score="2">
-                        <span>Invest more while it’s low</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-16">
-                <h2 class="question-title">⏳ How long are you comfortable keeping your money invested?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q2-risk-profile" value="Less than 1 year" data-score="0">
-                        <span>Less than 1 year</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q2-risk-profile" value="1–3 years" data-score="1">
-                        <span>1–3 years</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q2-risk-profile" value="3+ years" data-score="2">
-                        <span>3+ years</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-17">
-                <h2 class="question-title">📚 How would you describe your understanding of investments?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q3-risk-profile" value="Beginner" data-score="0">
-                        <span>Beginner</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q3-risk-profile" value="Intermediate" data-score="1">
-                        <span>Intermediate</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q3-risk-profile" value="Advanced" data-score="2">
-                        <span>Advanced</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-18">
-                <h2 class="question-title">🎢 What’s your comfort level with ups and downs in your investments?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q4-risk-profile" value="I get nervous" data-score="0">
-                        <span>I get nervous</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q4-risk-profile" value="I'm okay with some fluctuations" data-score="1">
-                        <span>I'm okay with some fluctuations</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q4-risk-profile" value="I’m comfortable with volatility" data-score="2">
-                        <span>I’m comfortable with volatility</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-19">
-                <h2 class="question-title">📈 If your investment grows by 20% quickly, what would you do?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q5-risk-profile" value="Sell to book profit" data-score="0">
-                        <span>Sell to book profit</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q5-risk-profile" value="Hold and watch" data-score="1">
-                        <span>Hold and watch</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q5-risk-profile" value="Invest more expecting further gains" data-score="2">
-                        <span>Invest more expecting further gains</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card" id="question-20">
-                <h2 class="question-title">🎯 What’s your main reason for investing?</h2>
-                <div class="options-grid">
-                    <label class="option-label">
-                        <input type="radio" name="q6-risk-profile" value="To grow wealth long-term" data-score="2">
-                        <span>To grow wealth long-term</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6-risk-profile" value="To protect capital" data-score="0">
-                        <span>To protect capital</span>
-                    </label>
-                    <label class="option-label">
-                        <input type="radio" name="q6-risk-profile" value="To generate regular income" data-score="1">
-                        <span>To generate regular income</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Combined Community, Newsletter, Masterclass -->
-            <div class="question-card" id="question-21">
-                <h2 class="question-title">Stay Connected with Geojit!</h2>
-                <p class="question-subtitle">Select the options you're interested in:</p>
-                <div class="form-group">
-                    <label class="option-label">
-                        <input type="checkbox" id="join-community">
-                        <span>Join our FundsGenie Community for exclusive updates and offers.</span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="option-label">
-                        <input type="checkbox" id="newsletter-subscription">
-                        <span>Receive a 3-month Geojit Insights subscription and monthly newsletter.</span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="option-label">
-                        <input type="checkbox" id="masterclass-interest">
-                        <span>I'm interested in attending your upcoming Financial Masterclass sessions.</span>
-                    </label>
-                </div>
-                <div class="navigation-buttons">
-                    <div class="navigation-controls">
-                        <button class="nav-btn prev" onclick="prevQuestion()">&#x2303;</button>
-                        <button class="nav-btn next" onclick="nextQuestion()">&#x2304;</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Results Card -->
-            <div class="question-card" id="results-card">
-                <h2 class="question-title">Your Financial Profile Summary</h2>
-                <div class="score-display">
-                    <h3>Financial Health Score: <span id="financial-health-score"></span></h3>
-                    <p class="interpretation" id="financial-health-interpretation"></p>
-                </div>
-                <div class="score-display">
-                    <h3>Risk Profile Score: <span id="risk-profile-score"></span></h3>
-                    <p class="interpretation" id="risk-profile-interpretation"></p>
-                </div>
-                <div class="navigation-buttons">
-                    <button class="nav-btn primary" onclick="resetQuiz()">Start Over</button>
-                </div>
+            <div class="footer-credits">
+                <p>Geojit Financial Services Ltd. AMFI registered Mutual Fund Distributor ARN : 0098</p>
+                <p>Design by Neointeraction Design</p>
             </div>
         </div>
-    </section>
+    </div>
+</footer>
 
+<script>
+    let currentQuestionIndex = 0;
+    const questionCards = document.querySelectorAll('.question-card');
+    const progressCards = document.querySelectorAll('.progress-card');
+    let financialHealthScore = 0;
+    let riskProfileScore = 0;
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="logo">
-                <div class="logo-icon">G</div>
-                <span class="logo-text">GEOJIT</span>
-                <span class="logo-sub">INVESTMENT SERVICES LTD</span>
-            </div>
-            
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Registered Office</h4>
-                    <address>
-                        34/659, Civil Line Road,<br>
-                        Padivattom, Kochi-682024,<br>
-                        Kerala, India
-                    </address>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Phone: +91 484-2901000</p>
-                    <p>www.geojit.com</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>For investor queries</h4>
-                    <p>customer@geojit.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <div class="disclaimer">
-                    <h5>Disclaimer</h5>
-                    <p>Mutual Fund investments are subject to market risks, read all scheme related documents carefully. The NAV of the scheme may go up or down depending upon the factors and forces affecting securities market. Geojit Financial Services Ltd. does not guarantee returns nor capital protection. Past performance may or may not be sustained in future. Please read all related documents carefully before investing.</p>
-                </div>
-                
-                <div class="disclaimer">
-                    <h5>Disclosure</h5>
-                    <p>These are not Exchange traded products and the Member is just acting as distributor. All disputes in respect to the distribution activity would not have access to Exchange investor redressal or Arbitration mechanisms.</p>
-                </div>
-                
-                <div class="footer-credits">
-                    <p>Geojit Financial Services Ltd. AMFI registered Mutual Fund Distributor ARN : 0098</p>
-                    <p>Design by Neointeraction Design</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    // Adjusted indices for financial health and risk profile questions
+    const financialHealthQuestions = [7, 8, 9, 10, 11, 12, 13, 14];
+    const riskProfileQuestions = [15, 16, 17, 18, 19, 20];
 
-    <script>
-        let currentQuestionIndex = 0;
-        const questionCards = document.querySelectorAll('.question-card');
-        const progressCards = document.querySelectorAll('.progress-card');
-        let financialHealthScore = 0;
-        let riskProfileScore = 0;
+    function showQuestion(index, direction = 'next') {
+        const oldActiveCard = document.querySelector('.question-card.active');
+        const newActiveCard = questionCards[index];
+        const animationDuration = 300;
 
-        // Adjusted indices for financial health and risk profile questions
-        const financialHealthQuestions = [7, 8, 9, 10, 11, 12, 13, 14];
-        const riskProfileQuestions = [15, 16, 17, 18, 19, 20];
-
-        function showQuestion(index, direction = 'next') {
-            const oldActiveCard = document.querySelector('.question-card.active');
-            const newActiveCard = questionCards[index];
-            const animationDuration = 300;
-
-            if (oldActiveCard && oldActiveCard !== newActiveCard) {
-                oldActiveCard.classList.remove('slide-in-next', 'slide-in-prev');
-                if (direction === 'next') {
-                    oldActiveCard.classList.add('slide-out-next');
-                } else {
-                    oldActiveCard.classList.add('slide-out-prev');
-                }
-
-                setTimeout(() => {
-                    oldActiveCard.classList.remove('active', 'slide-out-next', 'slide-out-prev');
-                    activateNewCard();
-                }, animationDuration);
+        if (oldActiveCard && oldActiveCard !== newActiveCard) {
+            oldActiveCard.classList.remove('slide-in-next', 'slide-in-prev');
+            if (direction === 'next') {
+                oldActiveCard.classList.add('slide-out-next');
             } else {
+                oldActiveCard.classList.add('slide-out-prev');
+            }
+
+            setTimeout(() => {
+                oldActiveCard.classList.remove('active', 'slide-out-next', 'slide-out-prev');
                 activateNewCard();
-            }
-
-            function activateNewCard() {
-                currentQuestionIndex = index;
-
-                if (newActiveCard) {
-                    newActiveCard.classList.remove('slide-in-next', 'slide-in-prev', 'slide-out-next', 'slide-out-prev');
-                    newActiveCard.classList.add('active');
-                    setTimeout(() => {
-                        if (direction === 'next') {
-                            newActiveCard.classList.add('slide-in-next');
-                        } else {
-                            newActiveCard.classList.add('slide-in-prev');
-                        }
-                    }, 10);
-                }
-                updateProgressTracker(index);
-            }
+            }, animationDuration);
+        } else {
+            activateNewCard();
         }
 
-        const sectionQuestionCounts = [7, 8, 6, 2];
-        const sectionStartIndices = [0, 7, 15, 21];
+        function activateNewCard() {
+            currentQuestionIndex = index;
 
-        function updateProgressTracker(index) {
-            progressCards.forEach((card, i) => {
-                card.classList.remove('active');
-                const progressBar = card.querySelector('.progress-bar-fill');
-                if (progressBar) {
-                    progressBar.style.width = '0%';
-                }
-            });
-
-            let currentSectionIndex = -1;
-            if (index >= 0 && index <= 6) {
-                currentSectionIndex = 0;
-            } else if (index >= 7 && index <= 14) {
-                currentSectionIndex = 1;
-            } else if (index >= 15 && index <= 20) {
-                currentSectionIndex = 2;
-            } else if (index >= 21 && index <= 22) {
-                currentSectionIndex = 3;
-            } else if (index === 22) {
-                currentSectionIndex = 3;
+            if (newActiveCard) {
+                newActiveCard.classList.remove('slide-in-next', 'slide-in-prev', 'slide-out-next', 'slide-out-prev');
+                newActiveCard.classList.add('active');
+                setTimeout(() => {
+                    if (direction === 'next') {
+                        newActiveCard.classList.add('slide-in-next');
+                    } else {
+                        newActiveCard.classList.add('slide-in-prev');
+                    }
+                }, 10);
             }
+            updateProgressTracker(index);
+        }
+    }
 
-            if (currentSectionIndex !== -1) {
-                progressCards[currentSectionIndex].classList.add('active');
+    const sectionQuestionCounts = [7, 8, 6, 2];
+    const sectionStartIndices = [0, 7, 15, 21];
+
+    function updateProgressTracker(index) {
+        progressCards.forEach((card, i) => {
+            card.classList.remove('active');
+            const progressBar = card.querySelector('.progress-bar-fill');
+            if (progressBar) {
+                progressBar.style.width = '0%';
             }
+        });
 
-            for (let i = 0; i < progressCards.length; i++) {
-                const sectionStartIndex = sectionStartIndices[i];
-                const totalQuestionsInSection = sectionQuestionCounts[i];
-                const progressBar = progressCards[i].querySelector('.progress-bar-fill');
-                let questionsAnsweredInSection = 0;
+        let currentSectionIndex = -1;
+        if (index >= 0 && index <= 6) {
+            currentSectionIndex = 0;
+        } else if (index >= 7 && index <= 14) {
+            currentSectionIndex = 1;
+        } else if (index >= 15 && index <= 20) {
+            currentSectionIndex = 2;
+        } else if (index >= 21 && index <= 22) {
+            currentSectionIndex = 3;
+        } else if (index === 22) {
+            currentSectionIndex = 3;
+        }
 
-                for (let q = sectionStartIndex; q < sectionStartIndex + totalQuestionsInSection; q++) {
-                    const questionCard = document.getElementById(`question-${q}`);
-                    if (questionCard) {
-                        if (q === 0) {
-                            if (document.getElementById('user-name').value) {
-                                questionsAnsweredInSection++;
-                            }
-                        } else if (q === 1) {
-                            if (document.getElementById('contact-email').value && document.getElementById('contact-phone').value) {
-                                questionsAnsweredInSection++;
-                            }
-                        } else if (q === 2) {
-                            if (document.getElementById('consent-checkbox').checked) {
-                                questionsAnsweredInSection++;
-                            }
-                        } else if (q >= 3 && q <= 20) {
-                            if (questionCard.querySelector('input[type="radio"]:checked')) {
-                                questionsAnsweredInSection++;
-                            }
-                        } else if (q === 21) {
+        if (currentSectionIndex !== -1) {
+            progressCards[currentSectionIndex].classList.add('active');
+        }
+
+        for (let i = 0; i < progressCards.length; i++) {
+            const sectionStartIndex = sectionStartIndices[i];
+            const totalQuestionsInSection = sectionQuestionCounts[i];
+            const progressBar = progressCards[i].querySelector('.progress-bar-fill');
+            let questionsAnsweredInSection = 0;
+
+            for (let q = sectionStartIndex; q < sectionStartIndex + totalQuestionsInSection; q++) {
+                const questionCard = document.getElementById(`question-${q}`);
+                if (questionCard) {
+                    if (q === 0) {
+                        if (document.getElementById('user-name').value) {
                             questionsAnsweredInSection++;
                         }
+                    } else if (q === 1) {
+                        if (document.getElementById('contact-email').value && document.getElementById('contact-phone').value) {
+                            questionsAnsweredInSection++;
+                        }
+                    } else if (q === 2) {
+                        if (document.getElementById('consent-checkbox').checked) {
+                            questionsAnsweredInSection++;
+                        }
+                    } else if (q >= 3 && q <= 20) {
+                        if (questionCard.querySelector('input[type="radio"]:checked')) {
+                            questionsAnsweredInSection++;
+                        }
+                    } else if (q === 21) {
+                        questionsAnsweredInSection++;
                     }
                 }
-
-                const progress = (questionsAnsweredInSection / totalQuestionsInSection) * 100;
-                if (progressBar) {
-                    progressBar.style.width = `${progress}%`;
-                }
-
-                if (questionsAnsweredInSection === totalQuestionsInSection) {
-                    progressCards[i].classList.add('completed');
-                } else {
-                    progressCards[i].classList.remove('completed');
-                }
-            }
-        }
-
-        function calculateScores() {
-            financialHealthScore = 0;
-            riskProfileScore = 0;
-
-            financialHealthQuestions.forEach(qIndex => {
-                const questionCard = document.getElementById(`question-${qIndex}`);
-                const selectedOption = questionCard.querySelector('input[type="radio"]:checked');
-                if (selectedOption) {
-                    financialHealthScore += parseInt(selectedOption.dataset.score);
-                }
-            });
-
-            riskProfileQuestions.forEach(qIndex => {
-                const questionCard = document.getElementById(`question-${qIndex}`);
-                const selectedOption = questionCard.querySelector('input[type="radio"]:checked');
-                if (selectedOption) {
-                    riskProfileScore += parseInt(selectedOption.dataset.score);
-                }
-            });
-        }
-
-        function getFinancialHealthInterpretation(score) {
-            if (score >= 12) return '🟢 On Track – Great job! Continue with your healthy financial habits.';
-            if (score >= 7) return '🟡 Moderate – You’re on the right path. Let’s refine and commit to goals.';
-            return '⚠️ Needs Improvement – Let’s work on better saving and planning habits.';
-        }
-
-        function getRiskProfileInterpretation(score) {
-            if (score >= 9) return 'High Risk – You’re comfortable with volatility and long-term growth.';
-            if (score >= 5) return 'Moderate Risk – You’re open to some risk for better returns.';
-            return 'Low Risk – You prefer safety and stability.';
-        }
-
-        function displayResults() {
-            calculateScores();
-            document.getElementById('financial-health-score').textContent = financialHealthScore;
-            document.getElementById('financial-health-interpretation').textContent = getFinancialHealthInterpretation(financialHealthScore);
-            document.getElementById('risk-profile-score').textContent = riskProfileScore;
-            document.getElementById('risk-profile-interpretation').textContent = getRiskProfileInterpretation(riskProfileScore);
-            showQuestion(questionCards.length - 1);
-        }
-
-        function showAlert(message) {
-            const alertBox = document.getElementById('validation-alert');
-            alertBox.textContent = message;
-            alertBox.classList.add('show');
-            const currentCard = questionCards[currentQuestionIndex];
-            currentCard.classList.add('shiver');
-            setTimeout(() => {
-                alertBox.classList.remove('show');
-                currentCard.classList.remove('shiver');
-            }, 1500);
-        }
-
-        function nextQuestion() {
-            if (currentQuestionIndex === 0) {
-                const userName = document.getElementById('user-name').value;
-                if (!userName) {
-                    showAlert('Please enter your name to proceed.');
-                    return;
-                }
-            } else if (currentQuestionIndex === 1) {
-                const userEmail = document.getElementById('contact-email').value;
-                const userPhone = document.getElementById('contact-phone').value;
-                if (!userEmail || !userPhone) {
-                    showAlert('Please enter both your email and phone number to proceed.');
-                    return;
-                }
-            } else if (currentQuestionIndex === 2) {
-                const consentChecked = document.getElementById('consent-checkbox').checked;
-                if (!consentChecked) {
-                    showAlert('Please agree to the terms to proceed.');
-                    return;
-                }
-            } else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
-                const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
-                const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
-                if (!selectedOption) {
-                    showAlert('Please select an option to proceed.');
-                    return;
-                }
-            } else if (currentQuestionIndex === 21) {
             }
 
-            if (currentQuestionIndex < questionCards.length - 1) {
-                currentQuestionIndex++;
-                if (currentQuestionIndex === questionCards.length - 1) {
-                    displayResults();
-                } else {
-                    showQuestion(currentQuestionIndex);
-                }
+            const progress = (questionsAnsweredInSection / totalQuestionsInSection) * 100;
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+
+            if (questionsAnsweredInSection === totalQuestionsInSection) {
+                progressCards[i].classList.add('completed');
+            } else {
+                progressCards[i].classList.remove('completed');
             }
         }
+    }
 
-        function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                showQuestion(currentQuestionIndex, 'prev');
+    function calculateScores() {
+        financialHealthScore = 0;
+        riskProfileScore = 0;
+
+        financialHealthQuestions.forEach(qIndex => {
+            const questionCard = document.getElementById(`question-${qIndex}`);
+            const selectedOption = questionCard.querySelector('input[type="radio"]:checked');
+            if (selectedOption) {
+                financialHealthScore += parseInt(selectedOption.dataset.score);
+            }
+        });
+
+        riskProfileQuestions.forEach(qIndex => {
+            const questionCard = document.getElementById(`question-${qIndex}`);
+            const selectedOption = questionCard.querySelector('input[type="radio"]:checked');
+            if (selectedOption) {
+                riskProfileScore += parseInt(selectedOption.dataset.score);
+            }
+        });
+    }
+
+    function getFinancialHealthInterpretation(score) {
+        if (score >= 12) return '🟢 On Track – Great job! Continue with your healthy financial habits.';
+        if (score >= 7) return '🟡 Moderate – You’re on the right path. Let’s refine and commit to goals.';
+        return '⚠️ Needs Improvement – Let’s work on better saving and planning habits.';
+    }
+
+    function getRiskProfileInterpretation(score) {
+        if (score >= 9) return 'High Risk – You’re comfortable with volatility and long-term growth.';
+        if (score >= 5) return 'Moderate Risk – You’re open to some risk for better returns.';
+        return 'Low Risk – You prefer safety and stability.';
+    }
+
+    function displayResults() {
+        calculateScores();
+        document.getElementById('financial-health-score').textContent = financialHealthScore;
+        document.getElementById('financial-health-interpretation').textContent = getFinancialHealthInterpretation(financialHealthScore);
+        document.getElementById('risk-profile-score').textContent = riskProfileScore;
+        document.getElementById('risk-profile-interpretation').textContent = getRiskProfileInterpretation(riskProfileScore);
+        showQuestion(questionCards.length - 1);
+    }
+
+    function showAlert(message) {
+        const alertBox = document.getElementById('validation-alert');
+        alertBox.textContent = message;
+        alertBox.classList.add('show');
+        const currentCard = questionCards[currentQuestionIndex];
+        currentCard.classList.add('shiver');
+        setTimeout(() => {
+            alertBox.classList.remove('show');
+            currentCard.classList.remove('shiver');
+        }, 1500);
+    }
+
+    function nextQuestion() {
+        if (currentQuestionIndex === 0) {
+            const userName = document.getElementById('user-name').value;
+            if (!userName) {
+                showAlert('Please enter your name to proceed.');
+                return;
+            }
+        } else if (currentQuestionIndex === 1) {
+            const userEmail = document.getElementById('contact-email').value;
+            const userPhone = document.getElementById('contact-phone').value;
+            if (!userEmail || !userPhone) {
+                showAlert('Please enter both your email and phone number to proceed.');
+                return;
+            }
+        } else if (currentQuestionIndex === 2) {
+            const consentChecked = document.getElementById('consent-checkbox').checked;
+            if (!consentChecked) {
+                showAlert('Please agree to the terms to proceed.');
+                return;
+            }
+        } else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
+            const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
+            const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
+            if (!selectedOption) {
+                showAlert('Please select an option to proceed.');
+                return;
+            }
+        } else if (currentQuestionIndex === 21) {
+        }
+
+        if (currentQuestionIndex < questionCards.length - 1) {
+            currentQuestionIndex++;
+            if (currentQuestionIndex === questionCards.length - 1) {
+                displayResults();
+            } else {
+                showQuestion(currentQuestionIndex);
             }
         }
+    }
 
-        function resetQuiz() {
-            currentQuestionIndex = 0;
-            financialHealthScore = 0;
-            riskProfileScore = 0;
-            document.getElementById('user-name').value = '';
-            document.getElementById('contact-email').value = '';
-            document.getElementById('contact-phone').value = '';
-            document.getElementById('consent-checkbox').checked = false;
-            document.getElementById('join-community').checked = false;
-            document.getElementById('newsletter-subscription').checked = false;
-            document.getElementById('masterclass-interest').checked = false;
-
-
-            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.checked = false;
-            });
-            showQuestion(currentQuestionIndex);
+    function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showQuestion(currentQuestionIndex, 'prev');
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            showQuestion(currentQuestionIndex);
+    function resetQuiz() {
+        currentQuestionIndex = 0;
+        financialHealthScore = 0;
+        riskProfileScore = 0;
+        document.getElementById('user-name').value = '';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-phone').value = '';
+        document.getElementById('consent-checkbox').checked = false;
+        document.getElementById('join-community').checked = false;
+        document.getElementById('newsletter-subscription').checked = false;
+        document.getElementById('masterclass-interest').checked = false;
 
-            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const name = this.name;
-                    document.querySelectorAll(`input[name="${name}"]`).forEach(otherRadio => {
-                        otherRadio.closest('.option-label').classList.remove('is-selected');
-                    });
-                    this.closest('.option-label').classList.add('is-selected');
-                    if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
-                        setTimeout(() => {
-                            nextQuestion();
-                        }, 1000); // Wait for 1 second
-                    }
+
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.checked = false;
+        });
+        showQuestion(currentQuestionIndex);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showQuestion(currentQuestionIndex);
+
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const name = this.name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(otherRadio => {
+                    otherRadio.closest('.option-label').classList.remove('is-selected');
                 });
+                this.closest('.option-label').classList.add('is-selected');
+                if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
+                    setTimeout(() => {
+                        nextQuestion();
+                    }, 1000); // Wait for 1 second
+                }
             });
+        });
     });
 </script>
 </body>
+
 </html>
