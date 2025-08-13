@@ -399,7 +399,7 @@ body {
 .option-label {
   display: block;
   background: var(--muted);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem 1.5rem;
   cursor: pointer;
@@ -411,9 +411,8 @@ body {
 }
 
 .option-label:hover {
-  background: var(--accent);
   border-color: var(--primary);
-  color: var(--primary-foreground);
+  color: #000;
 }
 
 .option-label input[type="radio"] {
@@ -421,11 +420,12 @@ body {
 }
 
 .option-label.is-selected {
-  background: var(--primary);
+  background: #d3f6f5;
   border-color: var(--primary);
-  color: var(--primary-foreground);
-  box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4); /* Increased shadow intensity */
-  transform: translateY(-2px); /* Slight lift */
+  color: #017670;
+  /* box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);  */
+  /* transform: translateY(-2px);  */
+  position: relative;
 }
 
 .option-label.is-selected::after {
