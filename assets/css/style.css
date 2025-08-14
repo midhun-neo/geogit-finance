@@ -391,7 +391,8 @@ body {
 }
 
 .options-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
@@ -409,12 +410,19 @@ body {
   font-weight: 500;
   color: var(--foreground);
   min-width: 20rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .option-label:hover {
   border-color: var(--primary);
   color: #000;
   background: var(--muted);
+}
+
+.option-label input[type="checkbox"] {
+  width: 20px;
+  cursor: pointer;
 }
 
 .option-label input[type="radio"] {
@@ -1626,11 +1634,6 @@ img {
 
   .hero-section {
     padding: 3rem 2rem;
-  }
-
-  .options-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
   }
 
   .option-label {
