@@ -383,9 +383,10 @@ body {
 
 .question-subtitle {
   font-size: 20px;
-  color: var(--muted-foreground);
+  color: var(--black);
   margin-bottom: 2.5rem;
   text-align: center;
+  margin-top: -1rem;
 }
 
 .options-grid {
@@ -408,19 +409,35 @@ body {
   font-weight: 500;
   color: var(--foreground);
   min-width: 20rem;
+}
+
+.option-label.checkbox {
+  padding: 0;
+  border: none;
+  background-color: unset;
+  margin-bottom: 1rem;
   display: flex;
   gap: 1rem;
+}
+
+.option-label.checkbox:hover {
+  background: none !important;
+}
+
+.option-label input[type="checkbox"] {
+  width: 20px;
+  cursor: pointer;
+}
+
+.option-label input[type="checkbox"]:checked {
+  accent-color: var(--Primary) !important;
+  background: var(--Primary);
 }
 
 .option-label:hover {
   border-color: var(--primary);
   color: #000;
   background: var(--muted);
-}
-
-.option-label input[type="checkbox"] {
-  width: 20px;
-  cursor: pointer;
 }
 
 .option-label input[type="radio"] {
@@ -1505,6 +1522,13 @@ img {
   .option-label {
     font-size: 14px;
     min-width: 75vw !important;
+  }
+
+  .option-label.checkbox {
+    align-items: flex-start;
+  }
+  .option-label.checkbox input[type="checkbox"] {
+    margin-top: 5px;
   }
 
   .navigation-buttons {

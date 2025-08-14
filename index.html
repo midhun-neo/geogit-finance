@@ -102,10 +102,11 @@
         <div class="custom-alert" id="validation-alert"></div>
         <!-- Questionnaire Cards -->
         <div class="question-card active" id="question-0">
-            <h2 class="question-title">👋 Hi there! What’s your name?</h2>
+            <h2 class="question-title">Hi there! What's your name?</h2>
+            <p class="question-subtitle">Let's make this personal - we'd love to know what to call you!</p>
             <div class="form-group">
-                <label for="user-name" class="form-label">Your Name</label>
-                <input class="form-input" type="text" id="user-name" placeholder="Type your name here">
+                <!-- <label for="user-name" class="form-label">Your Name</label> -->
+                <input class="form-input" type="text" id="user-name" placeholder="Type your answer here">
             </div>
             <div class="navigation-buttons">
                 <div class="navigation-controls">
@@ -130,15 +131,16 @@
 
         <div class="question-card" id="question-1">
 
-            <h2 class="question-title">📧 What’s your email and phone number?</h2>
-            <div class="form-group">
-                <label for="contact-email" class="form-label">Your Email Address</label>
-                <input class="form-input" type="email" id="contact-email" placeholder="your.email@example.com">
+            <h2 class="question-title">Can we have your Contact details?</h2>
+             <div class="form-group">
+                <label for="contact-phone" class="form-label">Mobile No.</label>
+                <input class="form-input" type="tel" id="contact-phone" placeholder="Enter Mobile No.">
             </div>
             <div class="form-group">
-                <label for="contact-phone" class="form-label">Your Mobile Number</label>
-                <input class="form-input" type="tel" id="contact-phone" placeholder="+91 00000 00000">
+                <label for="contact-email" class="form-label">Email ID</label>
+                <input class="form-input" type="email" id="contact-email" placeholder="Enter Email ID">
             </div>
+           
             <div class="navigation-buttons">
                 <div class="navigation-controls">
                     <button class="nav-btn prev" onclick="prevQuestion()">
@@ -161,17 +163,24 @@
 
 
         <div class="question-card" id="question-2">
-            <h2 class="question-title">✅ Before we begin, please confirm:</h2>
+            <h2 class="question-title">Let's Begin:</h2>
             <p class="question-subtitle">
-                I understand this survey gives only an indication of my financial health and risk profile.<br>
-                I agree to be contacted by a Geojit expert. My data is safe and secure.
+                Before we start this exciting journey together, we need your consent for a few important things.
             </p>
-            <div class="form-group">
-                <label class="option-label">
+            <hr style="border-width: 1px; border-color: rgba(0, 0, 0, 0.2); width: 100%; margin-bottom: 2rem;" />
+            <div style="width: 100%; text-align: left; font-size: 18px;">
+            <p style="font-weight: bold; margin-bottom: 1rem; color: black;">Before we begin, please confirm:</p>
+              <label class="option-label checkbox">
                     <input type="checkbox" id="consent-checkbox">
-                    <span>I agree</span>
+                    <span>I understand this survey gives only an indication of my financial health and risk profile.</span>
                 </label>
-            </div>
+                  <label class="option-label checkbox">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span>I agree to be contacted by a Geojit expert. My data is safe and secure.</span>
+                </label>
+                </div>
+
+         
             <div class="navigation-buttons">
                 <div class="navigation-controls">
                     <button class="nav-btn prev" onclick="prevQuestion()">
@@ -193,7 +202,7 @@
         </div>
 
         <div class="question-card" id="question-3">
-            <h2 class="question-title">📅 What’s your age group?</h2>
+            <h2 class="question-title">What’s your age group?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="age-group" value="Under 25" data-score="0">
@@ -237,7 +246,7 @@
         </div>
 
         <div class="question-card" id="question-4">
-            <h2 class="question-title">🚻 How do you identify yourself?</h2>
+            <h2 class="question-title">How do you identify yourself?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="gender" value="Male" data-score="0">
@@ -277,7 +286,7 @@
         </div>
 
         <div class="question-card" id="question-5">
-            <h2 class="question-title">💼 What do you do for a living?</h2>
+            <h2 class="question-title">What do you do for a living?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="occupation" value="Salaried" data-score="0">
@@ -321,7 +330,7 @@
         </div>
 
         <div class="question-card" id="question-6">
-            <h2 class="question-title">💍 Are you married or single?</h2>
+            <h2 class="question-title">Are you married or single?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="marital-status" value="Single" data-score="0">
@@ -358,7 +367,7 @@
 
         <!-- Financial Health Check Questions -->
         <div class="question-card" id="question-7">
-            <h2 class="question-title">📊 Do you usually keep track of your monthly income and expenses?</h2>
+            <h2 class="question-title">Do you usually keep track of your monthly income and expenses?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q1-financial-health" value="Yes" data-score="2">
@@ -390,7 +399,7 @@
         </div>
 
         <div class="question-card" id="question-8">
-            <h2 class="question-title">💰 Roughly what portion of your income do you manage to save every month?</h2>
+            <h2 class="question-title">Roughly what portion of your income do you manage to save every month?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q2-financial-health" value="<10%" data-score="0">
@@ -430,7 +439,7 @@
         </div>
 
         <div class="question-card" id="question-9">
-            <h2 class="question-title">🔖 If life throws a surprise (like a medical bill), do you have savings to manage
+            <h2 class="question-title">If life throws a surprise (like a medical bill), do you have savings to manage
                 it?</h2>
             <div class="options-grid">
                 <label class="option-label">
@@ -463,7 +472,7 @@
         </div>
 
         <div class="question-card" id="question-10">
-            <h2 class="question-title">📉 Do you have active life or health insurance policies?</h2>
+            <h2 class="question-title">Do you have active life or health insurance policies?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q4-financial-health" value="Yes" data-score="2">
@@ -495,7 +504,7 @@
         </div>
 
         <div class="question-card" id="question-11">
-            <h2 class="question-title">🎯 Do you invest money specifically for your life goals (like education, home,
+            <h2 class="question-title">Do you invest money specifically for your life goals (like education, home,
                 etc.)?</h2>
             <div class="options-grid">
                 <label class="option-label">
@@ -528,7 +537,7 @@
         </div>
 
         <div class="question-card" id="question-12">
-            <h2 class="question-title">🔄 How often do you review or adjust your investments?</h2>
+            <h2 class="question-title">How often do you review or adjust your investments?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q6-financial-health" value="Frequently" data-score="2">
@@ -564,7 +573,7 @@
         </div>
 
         <div class="question-card" id="question-13">
-            <h2 class="question-title">💳 How often do you borrow money or rely on credit cards to cover monthly
+            <h2 class="question-title">How often do you borrow money or rely on credit cards to cover monthly
                 expenses?</h2>
             <div class="options-grid">
                 <label class="option-label">
@@ -608,7 +617,7 @@
         </div>
 
         <div class="question-card" id="question-14">
-            <h2 class="question-title">📈 Do you track your net worth (assets – liabilities) regularly?</h2>
+            <h2 class="question-title">Do you track your net worth (assets – liabilities) regularly?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q8-financial-health" value="Yes, at least once a year" data-score="3">
@@ -645,7 +654,7 @@
 
         <!-- Risk Profiling Questions -->
         <div class="question-card" id="question-15">
-            <h2 class="question-title">😨 If your investment drops 10%, what’s your first reaction?</h2>
+            <h2 class="question-title">If your investment drops 10%, what’s your first reaction?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q1-risk-profile" value="Sell and exit" data-score="0">
@@ -681,7 +690,7 @@
         </div>
 
         <div class="question-card" id="question-16">
-            <h2 class="question-title">⏳ How long are you comfortable keeping your money invested?</h2>
+            <h2 class="question-title">How long are you comfortable keeping your money invested?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q2-risk-profile" value="Less than 1 year" data-score="0">
@@ -717,7 +726,7 @@
         </div>
 
         <div class="question-card" id="question-17">
-            <h2 class="question-title">📚 How would you describe your understanding of investments?</h2>
+            <h2 class="question-title">How would you describe your understanding of investments?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q3-risk-profile" value="Beginner" data-score="0">
@@ -753,7 +762,7 @@
         </div>
 
         <div class="question-card" id="question-18">
-            <h2 class="question-title">🎢 What’s your comfort level with ups and downs in your investments?</h2>
+            <h2 class="question-title">What’s your comfort level with ups and downs in your investments?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q4-risk-profile" value="I get nervous" data-score="0">
@@ -789,7 +798,7 @@
         </div>
 
         <div class="question-card" id="question-19">
-            <h2 class="question-title">📈 If your investment grows by 20% quickly, what would you do?</h2>
+            <h2 class="question-title">If your investment grows by 20% quickly, what would you do?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q5-risk-profile" value="Sell to book profit" data-score="0">
@@ -826,7 +835,7 @@
         </div>
 
         <div class="question-card" id="question-20">
-            <h2 class="question-title">🎯 What’s your main reason for investing?</h2>
+            <h2 class="question-title">What’s your main reason for investing?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q6-risk-profile" value="To grow wealth long-term" data-score="2">
@@ -863,26 +872,23 @@
 
         <!-- Combined Community, Newsletter, Masterclass -->
         <div class="question-card" id="question-21">
-            <h2 class="question-title">Stay Connected with Geojit!</h2>
-            <p class="question-subtitle">Select the options you're interested in:</p>
-            <div class="form-group">
-                <label class="option-label">
-                    <input type="checkbox" id="join-community">
-                    <span>Join our FundsGenie Community for exclusive updates and offers.</span>
+            <!-- <h2 class="question-title">Stay Connected with Geojit!</h2>
+            <p class="question-subtitle">Select the options you're interested in:</p> -->
+         <div style="width: 100%; text-align: left; font-size: 18px;">
+              <label class="option-label checkbox">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span>Would you like to join our FundsGenie Community for exclusive updates and offers?</span>
                 </label>
-            </div>
-            <div class="form-group">
-                <label class="option-label">
-                    <input type="checkbox" id="newsletter-subscription">
-                    <span>Receive a 3-month Geojit Insights subscription and monthly newsletter.</span>
+                  <label class="option-label checkbox">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span>We’ll send you a 3-month Geojit Insights subscription and monthly newsletter. 
+Would you like that?</span>
                 </label>
-            </div>
-            <div class="form-group">
-                <label class="option-label">
-                    <input type="checkbox" id="masterclass-interest">
-                    <span>I'm interested in attending your upcoming Financial Masterclass sessions.</span>
+                 <label class="option-label checkbox">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span>Are you interested in attending our upcoming Financial Masterclass sessions?</span>
                 </label>
-            </div>
+                </div>
             <div class="navigation-buttons">
                 <div class="navigation-controls">
                     <button class="nav-btn prev" onclick="prevQuestion()">
