@@ -925,12 +925,44 @@ body {
 
 /* Mobile-first approach */
 @media (max-width: 1200px) {
+  .question-card {
+    max-width: 100%;
+    padding: 2rem 5rem;
+  }
+
+  .question-container {
+    margin: 0 20px;
+  }
+
+  .progress-tracker-container {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    padding: 0;
+    width: 90%;
+    top: 8rem;
+  }
+
+  .progress-card {
+    flex: 1; /* Allow cards to grow/shrink */
+    min-width: fit-content;
+  }
+
+  .header,
   .intro-section,
   .faq-section,
   .about-section,
   .footer {
     padding-left: 60px;
     padding-right: 60px;
+  }
+
+  .about-section .about-content {
+    flex-direction: column;
+    gap: 32px;
   }
 
   .features-grid {
@@ -1456,12 +1488,12 @@ img {
   }
 
   .progress-tracker-container {
-    flex-direction: row; /* Changed to row for mobile */
-    justify-content: space-around; /* Distribute items evenly */
-    gap: 0.5rem; /* Reduced gap */
-    flex-wrap: nowrap; /* Prevent wrapping to keep them in one row */
-    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
-    padding-bottom: 0.5rem; /* Add some padding for scrollbar if needed */
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
     padding: 0;
     width: 90%;
     top: 8rem;
