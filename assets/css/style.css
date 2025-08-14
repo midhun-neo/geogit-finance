@@ -40,8 +40,6 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 120px;
-
-  background: rgba(240, 251, 255, 0.8);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
