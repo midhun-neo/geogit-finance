@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geojit SIP Club - Investment Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Overpass:wght@600;700&display=swap"
+        rel="stylesheet">
+    
+    <!-- Language Switcher Styles -->
+    <style>
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .language-dropdown {
+            background: #fff;
+            border: 2px solid #017670;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #017670;
+            cursor: pointer;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        
+        .language-dropdown:hover {
+            background: #f8f9fa;
+        }
+        
+        .language-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 2px solid #017670;
+            border-radius: 8px;
+            margin-top: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .language-options.show {
+            display: block;
+        }
+        
+        .language-option {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+            font-size: 14px;
+        }
+        
+        .language-option:last-child {
+            border-bottom: none;
+        }
+        
+        .language-option:hover {
+            background: #f8f9fa;
+        }
+        
+        .language-option.selected {
+            background: #017670;
+            color: white;
+        }
+        
+        .dropdown-arrow {
+            transition: transform 0.2s;
+        }
+        
+        .dropdown-arrow.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Header styles to accommodate language switcher */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .language-dropdown {
+                padding: 6px 12px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-left">
+        <div class="logo">
+            <div class="logo-icon">
+                <img src="assets/images/logo.svg" alt="logo" />
+            </div>
+        </div>
+        <div class="sip-badge" data-en="Finhealth logo" data-hi="फिनहेल्थ लोगो" data-ta="ஃபின்ஹெல்த் லோகோ" data-te="ఫిన్‌హెల్త్ లోగో" data-bn="ফিনহেলথ লোগো" data-gu="ફિનહેલ્થ લોગો" data-kn="ಫಿನ್‌ಹೆಲ್ತ್ ಲೋಗೋ" data-ml="ഫിൻഹെൽത്ത് ലോഗോ" data-mr="फिनहेल्थ लोगो" data-pa="ਫਿਨਹੈਲਥ ਲੋਗੋ">Finhealth logo</div>
+    </div>
+    
+    <div class="language-switcher">
+        <div class="language-dropdown" onclick="toggleLanguageDropdown()">
+            <span id="current-language">English</span>
+            <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path d="M1 1L6 6L11 1" stroke="#017670" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="language-options" id="language-options">
+            <div class="language-option selected" onclick="changeLanguage('en')">English</div>
+            <div class="language-option" onclick="changeLanguage('hi')">हिंदी (Hindi)</div>
+            <div class="language-option" onclick="changeLanguage('ta')">தமிழ் (Tamil)</div>
+            <div class="language-option" onclick="changeLanguage('te')">తెలుగు (Telugu)</div>
+            <div class="language-option" onclick="changeLanguage('bn')">বাংলা (Bengali)</div>
+            <div class="language-option" onclick="changeLanguage('gu')">ગુજરાતી (Gujarati)</div>
+            <div class="language-option" onclick="changeLanguage('kn')">ಕನ್ನಡ (Kannada)</div>
+            <div class="language-option" onclick="changeLanguage('ml')">മലയാളം (Malayalam)</div>
+            <div class="language-option" onclick="changeLanguage('mr')">मराठी (Marathi)</div>
+            <div class="language-option" onclick="changeLanguage('pa')">ਪੰਜਾਬੀ (Punjabi)</div>
+        </div>
+    </div>
+</header>
+
+<!-- Progress Tracker Section -->
+<section class="progress-tracker-section">
+    <div class="progress-tracker-container">
+        <div class="progress-card active" id="progress-profile">
+            <p class="progress-card-title" data-en="Profile" data-hi="प्रोफ़ाइल" data-ta="சுயவிவரம்" data-te="ప్రొఫైల్" data-bn="প্রোফাইল" data-gu="પ્રોફાઇલ" data-kn="ಪ್ರೊಫೈಲ್" data-ml="പ്രൊഫൈൽ" data-mr="प्रोफाइल" data-pa="ਪ੍ਰੋਫਾਈਲ">Profile</p>
+
+            <div class="progress-card-icon">
+                <img class="step-icon" src="./assets/images/profile-active.svg" alt="profile">
+                <div class="completion-icon">
+                    <img src="./assets/images/icon-check-white.svg" style="transform: scale(1.25);" />
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-profile-bar"></div>
+            </div>
+        </div>
+        <div class="progress-card" id="progress-financial">
+            <p class="progress-card-title" data-en="Financial Health" data-hi="वित्तीय स्वास्थ्य" data-ta="நிதி ஆரோக்கியம்" data-te="ఆర్థిక ఆరోగ్యం" data-bn="আর্থিক স্বাস্থ্য" data-gu="નાણાકીય સ્વાસ્થ્ય" data-kn="ಆರ್ಥಿಕ ಆರೋಗ್ಯ" data-ml="സാമ്പത്തിക ആരോഗ്യം" data-mr="आर्थिक आरोग्य" data-pa="ਵਿੱਤੀ ਸਿਹਤ">Financial Health</p>
+
+            <div class="progress-card-icon">
+                <img class="step-icon" src="./assets/images/financial-health.svg" alt="financial">
+                <div class="completion-icon">
+                    <img src="./assets/images/icon-check-white.svg" style="transform: scale(1.25);" />
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-financial-bar"></div>
+            </div>
+        </div>
+        <div class="progress-card" id="progress-risk">
+            <p class="progress-card-title" data-en="Risk Profile" data-hi="जोखिम प्रोफ़ाइल" data-ta="இடர் சுயவிவரம்" data-te="రిస్క్ ప్రొఫైల్" data-bn="ঝুঁকি প্রোফাইল" data-gu="જોખમ પ્રોફાઇલ" data-kn="ಅಪಾಯದ ಪ್ರೊಫೈಲ್" data-ml="റിസ്ക് പ്രൊഫൈൽ" data-mr="जोखीम प्रोफाइल" data-pa="ਜੋਖਮ ਪ੍ਰੋਫਾਈਲ">Risk Profile</p>
+
+            <div class="progress-card-icon">
+                <img class="step-icon" src="./assets/images/risk-profile.svg" alt="risk">
+                <div class="completion-icon"> 
+                    <img src="./assets/images/icon-check-white.svg" style="transform: scale(1.25);" />
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-risk-bar"></div>
+            </div>
+        </div>
+        <div class="progress-card" id="progress-summary">
+            <p class="progress-card-title" data-en="Summary" data-hi="सारांश" data-ta="சுருக்கம்" data-te="సారాంశం" data-bn="সারসংক্ষেপ" data-gu="સારાંશ" data-kn="ಸಾರಾಂಶ" data-ml="സംഗ്രഹം" data-mr="सारांश" data-pa="ਸਾਰ">Summary</p>
+
+            <div class="progress-card-icon">
+                <img class="step-icon" src="./assets/images/summary.svg" alt="summary">
+                <div class="completion-icon">
+                    <img src="./assets/images/icon-check-white.svg" style="transform: scale(1.25);" />
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-summary-bar"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="custom-alert" id="validation-alert"></div>
+        <!-- Questionnaire Cards -->
+        <div class="question-card active" id="question-0">
+            <h2 class="question-title" data-en="Hi there! What's your name?" data-hi="नमस्ते! आपका नाम क्या है?" data-ta="வணக்கம்! உங்கள் பெயர் என்ன?" data-te="హలో! మీ పేరు ఏమిటి?" data-bn="হ্যালো! আপনার নাম কি?" data-gu="નમસ્તે! તમારું નામ શું છે?" data-kn="ನಮಸ್ಕಾರ! ನಿಮ್ಮ ಹೆಸರೇನು?" data-ml="ഹലോ! നിങ്ങളുടെ പേര് എന്താണ്?" data-mr="नमस्कार! तुमचे नाव काय?" data-pa="ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਤੁਹਾਡਾ ਨਾਮ ਕੀ ਹੈ?">Hi there! What's your name?</h2>
+            <p class="question-subtitle" data-en="Let's make this personal - we'd love to know what to call you!" data-hi="आइए इसे व्यक्तिगत बनाते हैं - हम जानना चाहते हैं कि आपको क्या कहकर बुलाएं!" data-ta="இதை தனிப்பட்டதாக மாற்றுவோம் - உங்களை எப்படி அழைக்க வேண்டும் என்று தெரிந்து கொள்ள விரும்புகிறோம்!" data-te="దీన్ని వ్యక్తిగతంగా చేద్దాం - మిమ్మల్ని ఎలా పిలవాలో తెలుసుకోవాలని అనుకుంటున్నాము!" data-bn="এটি ব্যক্তিগত করে তুলি - আমরা জানতে চাই আপনাকে কী বলে ডাকব!" data-gu="આને વ્યક્તિગત બનાવીએ - અમે જાણવા માંગીએ છીએ કે તમને શું કહીને બોલાવવું!" data-kn="ಇದನ್ನು ವೈಯಕ್ತಿಕವಾಗಿ ಮಾಡೋಣ - ನಿಮ್ಮನ್ನು ಏನು ಎಂದು ಕರೆಯಬೇಕು ಎಂದು ತಿಳಿಯಲು ಬಯಸುತ್ತೇವೆ!" data-ml="ഇത് വ്യക്തിപരമാക്കാം - നിങ്ങളെ എന്ത് വിളിക്കണമെന്ന് അറിയാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു!" data-mr="याला वैयक्तिक बनवूया - तुम्हाला काय म्हणून हाक मारायची हे आम्हाला जाणून घ्यायचे आहे!" data-pa="ਆਓ ਇਸਨੂੰ ਨਿੱਜੀ ਬਣਾਈਏ - ਅਸੀਂ ਜਾਣਨਾ ਚਾਹੁੰਦੇ ਹਾਂ ਕਿ ਤੁਹਾਨੂੰ ਕੀ ਕਹਿ ਕੇ ਬੁਲਾਇਆ ਜਾਵੇ!">Let's make this personal - we'd love to know what to call you!</p>
+            <div class="form-group">
+                <input class="form-input" type="text" id="user-name" placeholder="Type your answer here" data-placeholder-en="Type your answer here" data-placeholder-hi="यहाँ अपना उत्तर लिखें" data-placeholder-ta="உங்கள் பதிலை இங்கே टाइप் செய்க" data-placeholder-te="మీ సమాధానాన్ని ఇక్కడ టైప్ చేయండి" data-placeholder-bn="এখানে আপনার উত্তর টাইপ করুন" data-placeholder-gu="અહીં તમારો જવાબ ટાઇપ કરો" data-placeholder-kn="ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ" data-placeholder-ml="നിങ്ങളുടെ ഉത്തരം ഇവിടെ ടൈപ്പ് ചെയ്യുക" data-placeholder-mr="तुमचे उत्तर येथे टाइप करा" data-placeholder-pa="ਆਪਣਾ ਜਵਾਬ ਇੱਥੇ ਟਾਈਪ ਕਰੋ">
+            </div>
+            <div class="navigation-buttons">
+                <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p data-en="Next" data-hi="आगे" data-ta="அடுத்து" data-te="తరువాత" data-bn="পরবর্তী" data-gu="આગળ" data-kn="ಮುಂದೆ" data-ml="അടുത്തത്" data-mr="पुढे" data-pa="ਅਗਲਾ">Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="question-container"></div>
+
+        <div class="question-card" id="question-1">
+            <h2 class="question-title" data-en="Can we have your Contact details?" data-hi="क्या हमें आपकी संपर्क जानकारी मिल सकती है?" data-ta="உங்கள் தொடர்பு விவரங்களைப் பெற முடியுமா?" data-te="మీ సంప్రదింపు వివరాలు దొరుకుతాయా?" data-bn="আমরা কি আপনার যোগাযোগের বিবরণ পেতে পারি?" data-gu="શું અમને તમારી સંપર્ક વિગતો મળી શકે છે?" data-kn="ನಿಮ್ಮ ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ನಾವು ಪಡೆಯಬಹುದೇ?" data-ml="നിങ്ങളുടെ ബന്ധപ്പെടാനുള്ള വിശദാംശങ്ങൾ ഞങ്ങൾക്ക് ലഭിക്കുമോ?" data-mr="आम्हाला तुमचे संपर्क तपशील मिळू शकतील का?" data-pa="ਕੀ ਸਾਨੂੰ ਤੁਹਾਡੇ ਸੰਪਰਕ ਦੇ ਵੇਰਵੇ ਮਿਲ ਸਕਦੇ ਹਨ?">Can we have your Contact details?</h2>
+            <div class="form-group">
+                <label for="contact-phone" class="form-label" data-en="Mobile No." data-hi="मोबाइल नंबर" data-ta="மொபைல் எண்" data-te="మొబైల్ నెంబర్" data-bn="মোবাইল নম্বর" data-gu="મોબાઇલ નંબર" data-kn="ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" data-ml="മൊബൈൽ നമ്പർ" data-mr="मोबाइल नंबर" data-pa="ਮੋਬਾਈਲ ਨੰਬਰ">Mobile No.</label>
+                <input class="form-input" type="tel" id="contact-phone" placeholder="Enter Mobile No." data-placeholder-en="Enter Mobile No." data-placeholder-hi="मोबाइल नंबर दर्ज करें" data-placeholder-ta="மொபைல் எண்ணை உள்ளிடவும்" data-placeholder-te="మొబైల్ నెంబర్ ఎంటర్ చేయండి" data-placeholder-bn="মোবাইল নম্বর লিখুন" data-placeholder-gu="મોબાઇલ નંબર દાખલ કરો" data-placeholder-kn="ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ" data-placeholder-ml="മൊബൈൽ നമ്പർ നൽകുക" data-placeholder-mr="मोबाइल नंबर प्रविष्ट करा" data-placeholder-pa="ਮੋਬਾਈਲ ਨੰਬਰ ਦਾਖਲ ਕਰੋ">
+            </div>
+            <div class="form-group">
+                <label for="contact-email" class="form-label" data-en="Email ID" data-hi="ईमेल आईडी" data-ta="மின்னஞ்சல் ஐடி" data-te="ఇమెయిల్ ఐడి" data-bn="ইমেইল আইডি" data-gu="ઇમેઇલ આઇડી" data-kn="ಇಮೇಲ್ ಐಡಿ" data-ml="ഇമെയിൽ ഐഡി" data-mr="ईमेल आयडी" data-pa="ਈਮੇਲ ਆਈਡੀ">Email ID</label>
+                <input class="form-input" type="email" id="contact-email" placeholder="Enter Email ID" data-placeholder-en="Enter Email ID" data-placeholder-hi="ईमेल आईडी दर्ज करें" data-placeholder-ta="மின்னஞ்சல் ஐடியை உள்ளிடவும்" data-placeholder-te="ఇమెయిల్ ఐడి ఎంటర్ చేయండి" data-placeholder-bn="ইমেইল আইডি লিখুন" data-placeholder-gu="ઇમેઇલ આઇડી દાખલ કરો" data-placeholder-kn="ಇಮೇಲ್ ಐಡಿಯನ್ನು ನಮೂದಿಸಿ" data-placeholder-ml="ഇമെയിൽ ഐഡി നൽകുക" data-placeholder-mr="ईमेल आयडी प्रविष्ट करा" data-placeholder-pa="ਈਮੇਲ ਆਈਡੀ ਦਾਖਲ ਕਰੋ">
+            </div>
+
+            <div class="navigation-buttons">
+                <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p data-en="Next" data-hi="आगे" data-ta="அடுத்து" data-te="తరువాత" data-bn="পরবর্তী" data-gu="આગળ" data-kn="ಮುಂದೆ" data-ml="അടുത്തത്" data-mr="पुढे" data-pa="ਅਗਲਾ">Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-card" id="question-2">
+            <h2 class="question-title" data-en="Let's Begin:" data-hi="चलिए शुरू करते हैं:" data-ta="ஆரம்பிக்கலாம்:" data-te="మొదలుపెట్టండి:" data-bn="চলুন শুরু করি:" data-gu="ચાલો શરૂ કરીએ:" data-kn="ಆರಂಭಿಸೋಣ:" data-ml="തുടങ്ങാം:" data-mr="चला सुरुवात करूया:" data-pa="ਚਲੋ ਸ਼ੁਰੂ ਕਰਦੇ ਹਾਂ:">Let's Begin:</h2>
+            <p class="question-subtitle" data-en="Before we start this exciting journey together, we need your consent for a few important things." data-hi="इस रोमांचक यात्रा को शुरू करने से पहले, हमें कुछ महत्वपूर्ण बातों के लिए आपकी सहमति चाहिए।" data-ta="இந்த அற்புதமான பயணத்தைத் தொடங்குவதற்கு முன், சில முக்கியமான விஷயங்களுக்கு உங்கள் ஒப்புதல் தேவை।" data-te="ఈ ఉత్సాహకరమైన ప్రయాణాన్ని ప్రారంభించడానికి ముందు, కొన్ని ముఖ్యమైన విషయాలకు మీ అనుమతি అవసరం।" data-bn="এই উত্তেজনাপূর্ণ যাত্রা শুরু করার আগে, কিছু গুরুত্বপূর্ণ বিষয়ের জন্য আমাদের আপনার সম্মতি প্রয়োজন।" data-gu="આ ઉત્સાહજનક પ્રવાસ શરૂ કરતા પહેલા, અમને કેટલીક મહત્વપૂર્ણ બાબતો માટે તમારી સંમતિની જરૂર છે।" data-kn="ಈ ರೋಮಾಂಚಕ ಪ್ರಯಾಣವನ್ನು ಪ್ರಾರಂಭಿಸುವ ಮೊದಲು, ಕೆಲವು ಪ್ರಮುಖ ವಿಷಯಗಳಿಗೆ ನಿಮ್ಮ ಸಮ್ಮತಿ ಅಗತ್ಯವಿದೆ।" data-ml="ഈ ആവേശകരമായ യാത്ര ആരംഭിക്കുന്നതിന് മുമ്പ്, ചില പ്രധാനപ്പെട്ട കാര്യങ്ങൾക്ക് നിങ്ങളുടെ സമഥതി ആവശ്യമാണ്।" data-mr="हा रोमांचक प्रवास सुरू करण्यापूर्वी, आम्हाला काही महत्वाच्या गोष्टींसाठी तुमची संमती हवी." data-pa="ਇਸ ਦਿਲਚਸਪ ਸਫ਼ਰ ਨੂੰ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਸਾਨੂੰ ਕੁਝ ਮਹੱਤਵਪੂਰਨ ਗੱਲਾਂ ਲਈ ਤੁਹਾਡੀ ਮਨਜ਼ੂਰੀ ਚਾਹੀਦੀ ਹੈ।">Before we start this exciting journey together, we need your consent for a few important things.</p>
+            <hr style="border-width: 1px; border-color: rgba(0, 0, 0, 0.2); width: 100%; margin-bottom: 2rem;" />
+            <div style="width: 100%; text-align: left; font-size: 18px;">
+                <p style="font-weight: bold; margin-bottom: 1rem; color: black;" data-en="Before we begin, please confirm:" data-hi="शुरू करने से पहले, कृपया पुष्टि करें:" data-ta="தொடங்குவதற்கு முன், தயவுசெய்து உறுதிப்படுத்துங்கள்:" data-te="మొదలుపెట్టడానికి ముందు, దయచేసి నిర్ధారించండి:" data-bn="শুরু করার আগে, অনুগ্রহ করে নিশ্চিত করুন:" data-gu="શરૂ કરતા પહેલા, કૃપા કરીને પુષ્ટિ કરો:" data-kn="ಪ್ರಾರಂಭಿಸುವ ಮೊದಲು, ದಯವಿಟ್ಟು ದೃಢೀಕರಿಸಿ:" data-ml="ആരംഭിക്കുന്നതിന് മുമ്പ്, ദയവായി സ്ഥിരീകരിക്കുക:" data-mr="सुरुवात करण्यापूर्वी, कृपया पुष्टी करा:" data-pa="ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ:">Before we begin, please confirm:</p>
+                <label class="option-label checkbox">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span data-en="I understand this survey gives only an indication of my financial health and risk profile." data-hi="मैं समझता हूं कि यह सर्वेक्षण केवल मेरे वित्तीय स्वास्थ्य और जोखिम प्रोफ़ाइल का संकेत देता है।" data-ta="இந்த கணக்கெடுப்பு எனது நிதி ஆரோக்கியம் மற்றும் இடர் சுயவிவரத்தின் குறிப்பை மட்டுமே தருகிறது என்று புரிந்துகொள்கிறேன்।" data-te="ఈ సర్వే నా ఆర్థిక ఆరోగ్యం మరియు రిస్క్ ప్రొఫైల్ యొక్క సూచనను మాత్రమే ఇస్తుందని నేను అర్థం చేసుకున్నాను।" data-bn="আমি বুঝতে পারছি যে এই সমীক্ষা শুধুমাত্র আমার আর্থিক স্বাস্থ্য এবং ঝুঁকি প্রোফাইলের একটি ইঙ্গিত দেয়।" data-gu="હું સમજું છું કે આ સર્વે માત્ર મારી નાણાકીય તબિયત અને જોખમ પ્રોફાઇલનું સંકેત આપે છે।" data-kn="ಈ ಸಮೀಕ್ಷೆಯು ನನ್ನ ಆರ್ಥಿಕ ಆರೋಗ್ಯ ಮತ್ತು ಅಪಾಯದ ಪ್ರೊಫೈಲ್‌ನ ಸೂಚನೆಯನ್ನು ಮಾತ್ರ ನೀಡುತ್ತದೆ ಎಂದು ನಾನು ಅರ್ಥಮಾಡಿಕೊಂಡಿದ್ದೇನೆ।" data-ml="ഈ സർവ്വേ എന്റെ സാമ്പത്തിക ആരോഗ്യത്തിന്റെയും റിസ്ക് പ്രൊഫൈലിന്റെയും ഒരു സൂചന മാത്രമാണ് നൽകുന്നത് എന്ന് ഞാൻ മനസ്സിലാക്കുന്നു।" data-mr="मला समजले आहे की हे सर्वेक्षण केवळ माझ्या आर्थिक आरोग्याचे आणि जोखीम प्रोफाइलचे संकेत देते." data-pa="ਮੈਂ ਸਮਝਦਾ ਹਾਂ ਕਿ ਇਹ ਸਰਵੇਖਣ ਸਿਰਫ ਮੇਰੀ ਵਿੱਤੀ ਸਿਹਤ ਅਤੇ ਜੋਖਮ ਪ੍ਰੋਫਾਈਲ ਦਾ ਸੰਕੇਤ ਦਿੰਦਾ ਹੈ।">I understand this survey gives only an indication of my financial health and risk profile.</span>
+                </label>
+                <label class="option-label checkbox">
+                    <input type="checkbox" id="consent-checkbox">
+                    <span data-en="I agree to be contacted by a Geojit expert. My data is safe and secure." data-hi="मैं Geojit विशेषज्ञ द्वारा संपर्क किए जाने से सहमत हूं। मेरा डेटा सुरक्षित है।" data-ta="Geojit நிபுணரால் தொடர்பு கொள்ளப்படுவதற்கு ஒப்புக்கொள்கிறேன். என் தரவு பாதுகாப்பானது।" data-te="Geojit నిపుణుడు ద్వారా సంప్రదించబడడానికి నేను అంగీకరిస్తున్నాను। నా డేటా సురక్షితంగా ఉంది।" data-bn="আমি Geojit বিশেষজ্ঞ দ্বারা যোগাযোগ করতে সম্মত। আমার ডেটা নিরাপদ ও সুরক্ষিত।" data-gu="હું Geojit નિષ્ણાત દ્વારા સંપર્ક કરવામાં આવવા માટે સંમત છું. મારો ડેટા સુરક્ષિત છે." data-kn="Geojit ತಜ್ಞರಿಂದ ಸಂಪರ್ಕಿಸಲ್ಪಡಲು ನಾನು ಒಪ್ಪುತ್ತೇನೆ. ನನ್ನ ಡೇಟಾ ಸುರಕ್ಷಿತವಾಗಿದೆ." data-ml="Geojit വിദഗ്ധനിൽ നിന്ന് ബന്ധപ്പെടാൻ ഞാൻ സമ്മതിക്കുന്നു. എന്റെ ഡാറ്റ സുരക്ഷിതമാണ്." data-mr="मी Geojit तज्ञाकडून संपर्क साधण्यास सहमत आहे. माझा डेटा सुरक्षित आहे." data-pa="ਮੈਂ Geojit ਮਾਹਿਰ ਦੁਆਰਾ ਸੰਪਰਕ ਕੀਤੇ ਜਾਣ ਲਈ ਸਹਿਮਤ ਹਾਂ। ਮੇਰਾ ਡੇਟਾ ਸੁਰੱਖਿਅਤ ਹੈ।">I agree to be contacted by a Geojit expert. My data is safe and secure.</span>
+                </label>
+            </div>
+
+            <div class="navigation-buttons">
+                <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p data-en="Next" data-hi="आगे" data-ta="அடுத்து" data-te="తరువాత" data-bn="পরবর্তী" data-gu="આગળ" data-kn="ಮುಂದೆ" data-ml="അടുത്തത്" data-mr="पुढे" data-pa="ਅਗਲਾ">Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue with more questions... -->
+        <div class="question-card" id="question-3">
+            <h2 class="question-title" data-en="What's your age group?" data-hi="आपका आयु वर्ग क्या है?" data-ta="உங்கள் வயது வரம்பு என்ன?" data-te="మీ వయస్సు గుంపు ఏది?" data-bn="আপনার বয়স গ্রুপ কি?" data-gu="તમારું વય જૂથ શું છે?" data-kn="ನಿಮ್ಮ ವಯಸ್ಸಿನ ಗುಂಪು ಯಾವುದು?" data-ml="നിങ്ങളുടെ പ്രായ വിഭാഗം എന്താണ്?" data-mr="तुमचा वयोगट काय आहे?" data-pa="ਤੁਹਾਡਾ ਉਮਰ ਸਮੂਹ ਕੀ ਹੈ?">What's your age group?</h2>
+            <div class="options-grid">
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="Under 25" data-score="0">
+                    <span data-en="Under 25" data-hi="25 से कम" data-ta="25 க்கு கீழ்" data-te="25 కంటే తక్కువ" data-bn="25 এর নিচে" data-gu="25 થી ઓછું" data-kn="25 ಕ್ಕಿಂತ ಕಡಿಮೆ" data-ml="25 ന് താഴെ" data-mr="25 पेक्षा कमी" data-pa="25 ਤੋਂ ਘੱਟ">Under 25</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="25–34" data-score="1">
+                    <span data-en="25–34" data-hi="25–34" data-ta="25–34" data-te="25–34" data-bn="25–34" data-gu="25–34" data-kn="25–34" data-ml="25–34" data-mr="25–34" data-pa="25–34">25–34</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="35–44" data-score="2">
+                    <span data-en="35–44" data-hi="35–44" data-ta="35–44" data-te="35–44" data-bn="35–44" data-gu="35–44" data-kn="35–44" data-ml="35–44" data-mr="35–44" data-pa="35–44">35–44</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="45–54" data-score="2">
+                    <span data-en="45–54" data-hi="45–54" data-ta="45–54" data-te="45–54" data-bn="45–54" data-gu="45–54" data-kn="45–54" data-ml="45–54" data-mr="45–54" data-pa="45–54">45–54</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="age-group" value="55+" data-score="1">
+                    <span data-en="55+" data-hi="55+" data-ta="55+" data-te="55+" data-bn="55+" data-gu="55+" data-kn="55+" data-ml="55+" data-mr="55+" data-pa="55+">55+</span>
+                </label>
+            </div>
+            <div class="navigation-buttons">
+                <div class="navigation-controls">
+                    <button class="nav-btn prev" onclick="prevQuestion()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 4 L6 8 L10 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button class="nav-btn next" onclick="nextQuestion()">
+                        <p data-en="Next" data-hi="आगे" data-ta="அடுத்து" data-te="తరువాత" data-bn="পরবর্তী" data-gu="આગળ" data-kn="ಮುಂದೆ" data-ml="അടുത്തത്" data-mr="पुढे" data-pa="ਅਗਲਾ">Next</p>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="question-card" id="results-card">
+            <img src="./assets/images/summary-check.svg" alt="summary check" style="margin-bottom: 1rem;" />
+            <h2 class="question-title" style="margin-bottom: 1rem;" data-en="All Done!" data-hi="सब पूरा हो गया!" data-ta="அனைத்தும் முடிந்தது!" data-te="అన్నీ పూర్తయ్యాయి!" data-bn="সব শেষ!" data-gu="બધું પૂર્ણ!" data-kn="ಎಲ್ಲವೂ ಮುಗಿದಿದೆ!" data-ml="എല്ലാം പൂർത്തിയായി!" data-mr="सगळं झालं!" data-pa="ਸਭ ਕੁਝ ਹੋ ਗਿਆ!">All Done!</h2>
+            <p data-en="Your personalized financial roadmap is ready!" data-hi="आपका व्यक्तिगत वित्तीय रोडमैप तैयार है!" data-ta="உங்கள் தனிப்பயனாக்கப்பட்ட நிதி வழிகாட்டுதல் தயார்!" data-te="మీ వ్యక్తిగత ఆర్థిక రోడ్‌మ్యాప్ సిద్ధంగా ఉంది!" data-bn="আপনার ব্যক্তিগত আর্থিক রোডম্যাপ প্রস্তুত!" data-gu="તમારો વ્યક્તિગત નાણાકીય રોડમેપ તૈયાર છે!" data-kn="ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಆರ್ಥಿಕ ರೋಡ್‌ಮ್ಯಾಪ್ ಸಿದ್ಧವಾಗಿದೆ!" data-ml="നിങ്ങളുടെ വ്യക്തിഗത സാമ്പത്തിക റോഡ്മാപ്പ് തയ്യാറാണ്!" data-mr="तुमचा वैयक्तिक आर्थिक रोडमॅप तयार आहे!" data-pa="ਤੁਹਾਡਾ ਨਿੱਜੀ ਵਿੱਤੀ ਰੋਡਮੈਪ ਤਿਆਰ ਹੈ!">Your personalized financial roadmap is ready!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Intro Section -->
+<section class="intro-section">
+    <div class="intro-subtitle" data-en="Your Personal Financial Health Check" data-hi="आपका व्यक्तिगत वित्तीय स्वास्थ्य जांच" data-ta="உங்கள் தனிப்பட்ட நிதி ஆரோக்கிய சோதனை" data-te="మీ వ్యక్తిగత ఆర్థిక ఆరోగ్య తనిఖీ" data-bn="আপনার ব্যক্তিগত আর্থিক স্বাস্থ্য পরীক্ষা" data-gu="તમારી વ્યક્તિગત નાણાકીય આરોગ્ય તપાસ" data-kn="ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಆರ್ಥಿಕ ಆರೋಗ್ಯ ಪರೀಕ್ಷೆ" data-ml="നിങ്ങളുടെ വ്യക്തിഗത സാമ്പത്തിക ആരോഗ്യ പരിശോധന" data-mr="तुमची वैयक्तिक आर्थिक आरोग्य तपासणी" data-pa="ਤੁਹਾਡੀ ਨਿੱਜੀ ਵਿੱਤੀ ਸਿਹਤ ਦੀ ਜਾਂਚ">Your Personal Financial Health Check</div>
+    <h1 class="intro-title" data-en="Geojit FinHealth" data-hi="Geojit FinHealth" data-ta="Geojit FinHealth" data-te="Geojit FinHealth" data-bn="Geojit FinHealth" data-gu="Geojit FinHealth" data-kn="Geojit FinHealth" data-ml="Geojit FinHealth" data-mr="Geojit FinHealth" data-pa="Geojit FinHealth">Geojit FinHealth</h1>
+    <p class="intro-description" data-en="Geojit FinHealth is a simple, interactive tool designed to help you assess your financial well-being and investment readiness in just a few minutes." data-hi="Geojit FinHealth एक सरल, इंटरैक्टिव टूल है जो कुछ ही मिनटों में आपकी वित्तीय भलाई और निवेश तत्परता का आकलन करने में मदद करने के लिए डिज़ाइन किया गया है।" data-ta="Geojit FinHealth என்பது உங்கள் நிதி நலன் மற்றும் முதலீட்டு தயார்நிலையை சில நிமிடங்களில் மதிப்பீடு செய்ய உதவும் எளிய, ஊடாடும் கருவியாகும்।" data-te="Geojit FinHealth అనేది మీ ఆర్థిక క్షేమాన్ని మరియు పెట్టుబడి సంసిద్ధతను కేవలం కొన్ని నిమిషాల్లో అంచనా వేయడంలో సహాయపడే సరళమైన, ఇంటరాక్టివ్ సాధనం।" data-bn="Geojit FinHealth একটি সহজ, ইন্টারঅ্যাক্টিভ টুল যা মাত্র কয়েক মিনিটেই আপনার আর্থিক সুস্থতা এবং বিনিয়োগ প্রস্তুতি মূল্যায়নে সাহায্য করার জন্য ডিজাইন করা হয়েছে।" data-gu="Geojit FinHealth એ એક સરળ, ઇન્ટરએક્ટિવ ટૂલ છે જે માત્ર થોડીક મિનિટોમાં તમારી નાણાકીય સ્વાસ્થ্ય અને રોકાણની તૈયારીનું મૂલ્યાંકન કરવામાં મદદ કરવા માટે ડિઝાઇન કરવામાં આવ્યું છે।" data-kn="Geojit FinHealth ಕೇವಲ ಕೆಲವು ನಿಮಿಷಗಳಲ್ಲಿ ನಿಮ್ಮ ಆರ್ಥಿಕ ಯೋಗಕ್ಷೇಮ ಮತ್ತು ಹೂಡಿಕೆ ಸಿದ್ಧತೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಲು ಸಹಾಯ ಮಾಡಲು ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಸರಳ, ಸಂವಾದಾತ್ಮಕ ಸಾಧನವಾಗಿದೆ।" data-ml="Geojit FinHealth നിങ്ങളുടെ സാമ്പത്തിക ക്ഷേമവും നിക്ഷേപ തയ്യാറെടുപ്പും വെറും കുറച്ച് മിനിറ്റുകളിൽ വിലയിരുത്താൻ സഹായിക്കുന്ന ലളിതവും ഇന്ററാക്ടീവുമായ ഒരു ഉപകരണമാണ്।" data-mr="Geojit FinHealth हे एक साधे, परस्परसंवादी साधन आहे जे तुमच्या आर्थिक कल्याणाचे आणि गुंतवणुकीच्या तयारीचे मूल्यांकन करण्यासाठी फक्त काही मिनिटांत मदत करण्यासाठी डिझाइन केले आहे।" data-pa="Geojit FinHealth ਇੱਕ ਸਰਲ, ਇੰਟਰਐਕਟਿਵ ਟੂਲ ਹੈ ਜੋ ਤੁਹਾਡੀ ਵਿੱਤੀ ਭਲਾਈ ਅਤੇ ਨਿਵੇਸ਼ ਦੀ ਤਿਆਰੀ ਦਾ ਸਿਰਫ਼ ਕੁਝ ਮਿੰਟਾਂ ਵਿੱਚ ਮੁਲਾਂਕਣ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਡਿਜ਼ਾਇਨ ਕੀਤਾ ਗਿਆ ਹੈ।">Geojit FinHealth is a simple, interactive tool designed to help you assess your financial well-being and investment readiness in just a few minutes.</p>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M32.8174 8.18945L26.8076 11.4922C26.5889 11.6123 26.3432 11.6758 26.0938 11.6758H16.1172C9.00174 11.6758 3.21289 17.4641 3.21289 24.5791C3.21304 28.9959 5.43967 33.0601 9.16797 35.4492C9.593 35.7216 9.85051 36.1915 9.85059 36.6963V41.0352H14.6338L14.6348 40.7852L14.6357 38.9629C14.6362 38.145 15.2992 37.4824 16.1172 37.4824H28.1533C28.5473 37.4824 28.9253 37.639 29.2031 37.918C29.4464 38.1621 29.5953 38.4822 29.6279 38.8223L29.6348 38.9697L29.6279 40.7842L29.627 41.0352H33.9463V36.9883C33.9463 36.4633 34.2242 35.9771 34.6768 35.7109C37.8994 33.8174 40.1434 30.6353 40.8311 26.9805C40.9628 26.28 41.5746 25.7725 42.2871 25.7725H44.7871V21.2764H41.7217C41.0937 21.2764 40.5333 20.8805 40.3242 20.2881C39.2194 17.1548 36.9754 14.5937 34.0059 13.0791C33.5111 12.8267 33.1989 12.3191 33.1973 11.7637L33.1885 8.40723L33.1875 7.98633L32.8174 8.18945ZM6.8877 37.4824L6.78418 37.4082C2.67494 34.4213 0.250141 29.6936 0.25 24.5791C0.25 15.8308 7.36846 8.71266 16.1172 8.71289H25.7139L25.7705 8.68164L33.9482 4.1875H33.9492C34.4071 3.93566 34.9642 3.94328 35.415 4.20898C35.8653 4.47443 36.1422 4.95844 36.1436 5.48145L36.1572 10.7383L36.1582 10.8799L36.2793 10.9521C39.1184 12.6437 41.3392 15.152 42.668 18.165L42.7334 18.3135H46.2686C47.0866 18.3135 47.7499 18.9769 47.75 19.7949V27.2539C47.75 28.072 47.0867 28.7354 46.2686 28.7354H43.4668L43.416 28.917C42.3975 32.5085 40.1339 35.6347 37.0195 37.7354L36.9092 37.8096V42.5166C36.9092 43.3347 36.2459 43.998 35.4277 43.998H28.1406C27.7468 43.998 27.3687 43.8416 27.0908 43.5625C26.8129 43.2836 26.6579 42.9055 26.6592 42.5117L26.666 40.6963L26.667 40.4453H17.5977V40.6953L17.5967 42.5176C17.5963 43.3354 16.933 43.9979 16.1152 43.998H8.36914C7.55101 43.998 6.8877 43.3347 6.8877 42.5166V37.4824Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+                <path
+                    d="M16.083 14.5234H25.165C25.9832 14.5234 26.6465 15.1867 26.6465 16.0049C26.6465 16.823 25.9832 17.4863 25.165 17.4863H16.083C15.2649 17.4863 14.6016 16.823 14.6016 16.0049C14.6016 15.1867 15.2649 14.5234 16.083 14.5234Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+            </svg>
+            <p class="feature-text" data-en="Understand how healthy your current savings, insurance, and investment habits are." data-hi="समझें कि आपकी वर्तमान बचत, बीमा, और निवेश की आदतें कितनी स्वस्थ हैं।" data-ta="உங்கள் தற்போதைய சேமிப்பு, காப்பீடு மற்றும் முதலீட்டு பழக்கங்கள் எவ்வளவு ஆரோக்கியமானவை என்பதைப் புரிந்து கொள்ளுங்கள்।" data-te="మీ ప్రస్తుత పొదుపు, భీమా మరియు పెట్టుబడి అలవాట్లు ఎంత ఆరోగ్యకరమైనవో అర్థం చేసుకోండి।" data-bn="আপনার বর্তমান সঞ্চয়, বীমা এবং বিনিয়োগের অভ্যাসগুলি কতটা স্বাস্থ্যকর তা বুঝুন।" data-gu="તમારી વર્તમાન બચત, વીમો અને રોકાણની આદતો કેટલી તંદુરસ્ત છે તે સમજો।" data-kn="ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಉಳಿತಾಯ, ವಿಮೆ ಮತ್ತು ಹೂಡಿಕೆ ಅಭ್ಯಾಸಗಳು ಎಷ್ಟು ಆರೋಗ್ಯಕರವಾಗಿವೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ।" data-ml="നിങ്ങളുടെ നിലവിലെ സമ്പാദ്യം, ഇൻഷുറൻസ്, നിക്ഷേപ ശീലങ്ങൾ എത്രമാത്രം ആരോഗ്യകരമാണെന്ന് മനസ്സിലാക്കുക।" data-mr="तुमच्या सध्याच्या बचत, विमा आणि गुंतवणुकीच्या सवयी किती निरोगी आहेत हे समजून घ्या।" data-pa="ਸਮਝੋ ਕਿ ਤੁਹਾਡੀਆਂ ਮੌਜੂਦਾ ਬਚਤ, ਬੀਮਾ ਅਤੇ ਨਿਵੇਸ਼ ਦੀਆਂ ਆਦਤਾਂ ਕਿੰਨੀਆਂ ਸਿਹਤਮੰਦ ਹਨ।">Understand how healthy your current savings, insurance, and investment habits are.</p>
+        </div>
+
+        <div class="feature-card">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_lock)">
+                    <path
+                        d="M24 2.34961C29.3267 2.34961 33.6504 6.6733 33.6504 12V16.3496H36C38.0067 16.3496 39.6504 17.9933 39.6504 20V40C39.6504 42.0067 38.0067 43.6504 36 43.6504H12C9.9933 43.6504 8.34961 42.0067 8.34961 40V20C8.34961 17.9933 9.9933 16.3496 12 16.3496H30.3496V12C30.3496 8.4867 27.5133 5.65039 24 5.65039C20.604 5.65039 17.841 8.30043 17.6602 11.6504H14.3584C14.5427 6.48545 18.7904 2.34961 24 2.34961ZM11.6504 40.3496H36.3496V19.6504H11.6504V40.3496ZM24 26.3496C26.0067 26.3496 27.6504 27.9933 27.6504 30C27.6504 32.0067 26.0067 33.6504 24 33.6504C21.9933 33.6504 20.3496 32.0067 20.3496 30C20.3496 27.9933 21.9933 26.3496 24 26.3496Z"
+                        fill="#000308" stroke="white" stroke-width="0.7" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_lock">
+                        <rect width="48" height="48" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
+            <p class="feature-text" data-en="Discover your personal risk profile." data-hi="अपनी व्यक्तिगत जोखिम प्रोफ़ाइल खोजें।" data-ta="உங்கள் தனிப்பட்ட இடர் சுயவிவரத்தைக் கண்டறியுங்கள்।" data-te="మీ వ్యక్తిగత రిస్క్ ప్రొఫైల్‌ను కనుగొనండి।" data-bn="আপনার ব্যক্তিগত ঝুঁকি প্রোফাইল আবিষ্কার করুন।" data-gu="તમારી વ્યક્તિગત જોખમ પ્રોફાઇલ શોધો।" data-kn="ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಅಪಾಯದ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಅನ್ವೇಷಿಸಿ।" data-ml="നിങ്ങളുടെ വ്യക്തിഗത റിസ്ക് പ്രൊഫൈൽ കണ്ടെത്തുക।" data-mr="तुमची वैयक्तिक जोखीम प्रोफाइल शोधा।" data-pa="ਆਪਣਾ ਨਿੱਜੀ ਜੋਖਮ ਪ੍ਰੋਫਾਈਲ ਲੱਭੋ।">Discover your personal risk profile.</p>
+        </div>
+
+        <div class="feature-card">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M35.7305 13.2422H32.082C31.7118 13.2422 31.4375 12.9547 31.4375 12.7129V9.09277L35.7305 13.2422Z"
+                    stroke="white" stroke-width="0.5" />
+                <path
+                    d="M27.6562 6.5791V12.7051C27.6562 15.0973 29.6447 17.0253 32.082 17.0254H38.4863V40.8887C38.4863 41.2121 38.2726 41.4756 37.9893 41.4756H10.1758C10.0194 41.4756 9.85482 41.4044 9.72754 41.2852C9.59935 41.1649 9.53125 41.0176 9.53125 40.8887V7.10156C9.53135 6.81439 9.81146 6.53169 10.1338 6.53125L27.6562 6.5791ZM14.7783 29.5703C13.7378 29.5704 12.8877 30.4214 12.8877 31.4619C12.8879 32.5023 13.7379 33.3525 14.7783 33.3525H33.2393C34.2796 33.3524 35.1297 32.5023 35.1299 31.4619C35.1299 30.4214 34.2798 29.5704 33.2393 29.5703H14.7783ZM14.7783 23.0068C13.7379 23.0069 12.8879 23.857 12.8877 24.8975C12.8877 25.938 13.7378 26.789 14.7783 26.7891H29.1367C30.1773 26.789 31.0273 25.938 31.0273 24.8975C31.0272 23.857 30.1772 23.0069 29.1367 23.0068H14.7783ZM14.6963 16.4434C13.6557 16.4434 12.8057 17.2934 12.8057 18.334C12.8057 19.3745 13.6557 20.2246 14.6963 20.2246H24.2139C25.2545 20.2246 26.1045 19.3746 26.1045 18.334C26.1045 17.2934 25.2544 16.4434 24.2139 16.4434H14.6963Z"
+                    stroke="white" stroke-width="0.5" />
+                <path
+                    d="M10.1348 3.25L28.9395 3.29883H28.9404C29.7289 3.29883 30.4954 3.61015 31.0557 4.15527V4.15625L41.041 13.8213C41.5063 14.2719 41.7686 14.9032 41.7686 15.6025V40.8809C41.7686 43.0208 40.0704 44.75 37.9902 44.75H10.1758C8.04607 44.7498 6.25013 42.9713 6.25 40.8896V7.10254C6.25 5.04436 7.88343 3.35813 9.93555 3.25488L10.1348 3.25ZM30.9385 12.7061C30.9385 13.2913 31.4997 13.7441 32.083 13.7441H36.9678L36.5234 13.3145L31.3623 8.3252L30.9385 7.91602V12.7061ZM28.1562 6.08203L27.9072 6.08105L10.1357 6.03223H10.1348C9.55512 6.03246 9.03223 6.52043 9.03223 7.10254V40.8809C9.03223 41.182 9.18136 41.4541 9.38672 41.6455C9.59246 41.8372 9.87459 41.9677 10.1758 41.9678H37.9902C38.6422 41.9678 38.9873 41.3779 38.9873 40.8809V16.5254H32.083C29.9097 16.5254 28.1562 14.8021 28.1562 12.7061V6.08203Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+                <path
+                    d="M14.7812 23.5078H29.1396C29.904 23.5078 30.5311 24.1341 30.5312 24.8984C30.5312 25.6629 29.9041 26.29 29.1396 26.29H14.7812C14.0169 26.2899 13.3906 25.6628 13.3906 24.8984C13.3908 24.1342 14.0171 23.508 14.7812 23.5078Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+                <path
+                    d="M14.6953 16.9453H24.2129C24.9772 16.9453 25.6043 17.5716 25.6045 18.3359C25.6045 19.1004 24.9773 19.7275 24.2129 19.7275H14.6953C13.931 19.7274 13.3047 19.1003 13.3047 18.3359C13.3049 17.5717 13.9311 16.9455 14.6953 16.9453Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+                <path
+                    d="M14.7812 30.0703H33.2422C34.0065 30.0703 34.6326 30.6966 34.6328 31.4609C34.6328 32.2254 34.0066 32.8525 33.2422 32.8525H14.7812C14.0169 32.8524 13.3906 32.2253 13.3906 31.4609C13.3908 30.6967 14.0171 30.0705 14.7812 30.0703Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+            </svg>
+            <p class="feature-text" data-en="Get a quick summary of your financial strengths and areas to improve." data-hi="अपनी वित्तीय शक्तियों और सुधार के क्षेत्रों का त्वरित सारांश प्राप्त करें।" data-ta="உங்கள் நிதி பலங்கள் மற்றும் மேம்படுத்த வேண்டிய பகுதிகளின் விரைவான சுருக்கத்தைப் பெறுங்கள்।" data-te="మీ ఆర్థిక బలాలు మరియు మెరుగుపరచాల్సిన ప్రాంతాల శీఘ్ర సారాంశాన్ని పొందండి।" data-bn="আপনার আর্থিক শক্তি এবং উন্নতির ক্ষেত্রগুলির একটি দ্রুত সারসংক্ষেপ পান।" data-gu="તમારી નાણાકીય શક્તિઓ અને સુધારવાના ક્ષેત્રોનો ઝડપી સારાંશ મેળવો।" data-kn="ನಿಮ್ಮ ಆರ್ಥಿಕ ಸಾಮರ್ಥ್ಯಗಳು ಮತ್ತು ಸುಧಾರಿಸಬೇಕಾದ ಕ್ಷೇತ್ರಗಳ ತ್ವರಿತ ಸಾರಾಂಶವನ್ನು ಪಡೆಯಿರಿ।" data-ml="നിങ്ങളുടെ സാമ്പത്തിക ശക്തികളുടെയും മെച്ചപ്പെടുത്തേണ്ട മേഖലകളുടെയും ദ്രുത സംഗ്രഹം നേടുക।" data-mr="तुमच्या आर्थिक शक्ती आणि सुधारण्याच्या क्षेत्रांचा द्रुत सारांश मिळवा।" data-pa="ਆਪਣੀਆਂ ਵਿੱਤੀ ਤਾਕਤਾਂ ਅਤੇ ਸੁਧਾਰ ਦੇ ਖੇਤਰਾਂ ਦਾ ਤੇਜ਼ ਸੰਖੇਪ ਪ੍ਰਾਪਤ ਕਰੋ।">Get a quick summary of your financial strengths and areas to improve.</p>
+        </div>
+
+        <div class="feature-card">
+            <svg class="feature-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M20.749 40.501C20.749 40.9651 20.9336 41.4101 21.2617 41.7383C21.5899 42.0665 22.0349 42.251 22.499 42.251H25.499C25.9631 42.2509 26.4082 42.0664 26.7363 41.7383C27.0644 41.4101 27.249 40.965 27.249 40.501V38.751H20.749V40.501ZM24.125 13.248C22.0485 13.2223 20.0149 13.8432 18.3076 15.0254C16.6003 16.2077 15.3031 17.8928 14.5967 19.8457C13.8904 21.7985 13.8094 23.923 14.3652 25.9238C14.9211 27.9247 16.0868 29.7031 17.6992 31.0117L17.7012 31.0137C19.283 32.2607 20.3414 34.0544 20.668 36.042L20.7021 36.251H22.749V29.751H20.999C20.6675 29.751 20.3497 29.6192 20.1152 29.3848C19.8809 29.1504 19.749 28.8325 19.749 28.501C19.7491 28.1696 19.8809 27.8515 20.1152 27.6172C20.3496 27.3829 20.6676 27.251 20.999 27.251H26.999C27.3304 27.251 27.6484 27.3829 27.8828 27.6172C28.1172 27.8515 28.2489 28.1696 28.249 28.501C28.249 28.8324 28.1171 29.1504 27.8828 29.3848C27.6484 29.6191 27.3305 29.7509 26.999 29.751H25.249V36.251H27.3086L27.3379 36.0352C27.6006 34.1156 28.5922 32.3703 30.1074 31.1631L30.1084 31.1641C31.7527 29.8958 32.9611 28.1477 33.5664 26.1611C34.1716 24.1747 34.1431 22.0488 33.4854 20.0791C32.8275 18.1095 31.5729 16.3931 29.8955 15.1689C28.2182 13.9449 26.2013 13.2739 24.125 13.248ZM18.249 37.1104C18.2254 36.3027 18.0216 35.5101 17.6533 34.791C17.3311 34.1618 16.8896 33.6026 16.3545 33.1436L16.1201 32.9531C14.8232 31.9051 13.7491 30.6081 12.9609 29.1387C12.1719 27.6675 11.6852 26.0529 11.5303 24.3906C11.3754 22.7284 11.555 21.0516 12.0586 19.46C12.5622 17.8682 13.3799 16.3928 14.4629 15.1221C15.5458 13.8515 16.8725 12.8111 18.3643 12.0615C19.856 11.3119 21.4826 10.8684 23.1484 10.7578C24.8143 10.6472 26.4857 10.8721 28.0635 11.418C29.6064 11.9518 31.0289 12.7828 32.252 13.8633V13.8652L32.3359 13.9395C33.7019 15.1631 34.7816 16.6726 35.499 18.3604C36.2165 20.0481 36.5541 21.8733 36.4873 23.7061C36.4205 25.5387 35.9507 27.3339 35.1123 28.9648C34.2739 30.5958 33.0872 32.0227 31.6357 33.1436L31.6299 33.1484C31.0269 33.6448 30.5435 34.2716 30.2178 34.9814C29.9327 35.6027 29.7748 36.2739 29.751 36.9551L29.749 37.2422V40.501C29.749 41.6281 29.3009 42.7098 28.5039 43.5068C27.7069 44.3037 26.626 44.7509 25.499 44.751H22.499C21.3719 44.751 20.2902 44.3039 19.4932 43.5068C18.6962 42.7098 18.249 41.6281 18.249 40.501V37.1104Z"
+                    fill="#000308" stroke="white" stroke-width="0.5" />
+            </svg>
+            <p class="feature-text" data-en="Receive Geojit's expert-backed recommendations tailored to your goals." data-hi="अपने लक्ष्यों के अनुकूल Geojit की विशेषज्ञ-समर्थित सिफारिशें प्राप्त करें।" data-ta="உங்கள் இலக்குகளுக்கு ஏற்ப Geojit இன் நிபுணர் ஆதரவு பரிந்துரைகளைப் பெறுங்கள்।" data-te="మీ లక్ష్యాలకు అనుకూలంగా Geojit యొక్క నిపుణుల మద్దతు ఉన్న సిఫార్సులను పొందండి।" data-bn="আপনার লক্ষ্যের সাথে মানানসই Geojit এর বিশেষজ্ঞ-সমর্থিত সুপারিশগুলি পান।" data-gu="તમારા લક્ષ્યો માટે અનુકૂળ Geojit ની નિષ્ણાત-સમર્થિત ભલામણો પ્રાપ્ત કરો।" data-kn="ನಿಮ್ಮ ಗುರಿಗಳಿಗೆ ಅನುಗುಣವಾಗಿ Geojit ನ ತಜ್ಞರ ಬೆಂಬಲಿತ ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ।" data-ml="നിങ്ങളുടെ ലക്ഷ്യങ്ങൾക്കനുയോജ്യമായ Geojit ന്റെ വിദഗ്ധ പിന്തുണയുള്ള ശുപാർശകൾ നേടുക।" data-mr="तुमच्या ध्येयांनुसार Geojit च्या तज्ञ-समर्थित शिफारशी मिळवा।" data-pa="ਆਪਣੇ ਟੀਚਿਆਂ ਅਨੁਸਾਰ Geojit ਦੀਆਂ ਮਾਹਿਰ-ਸਮਰਥਿਤ ਸਿਫਾਰਿਸ਼ਾਂ ਪ੍ਰਾਪਤ ਕਰੋ।">Receive Geojit's expert-backed recommendations tailored to your goals.</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="faq-subtitle" data-en="Have questions? We are here to help." data-hi="कोई सवाल है? हम मदद के लिए यहाँ हैं।" data-ta="கேள்விகள் உள்ளதா? உதவ நாங்கள் இங்கே இருக்கிறோம்।" data-te="ప్రశ్నలు ఉన్నాయా? మేము సహాయానికి ఇక్కడ ఉన్నాము।" data-bn="প্রশ্ন আছে? আমরা সাহায্যের জন্য এখানে আছি।" data-gu="પ્રશ્નો છે? અમે મદદ માટે અહીં છીએ।" data-kn="ಪ್ರಶ್ನೆಗಳಿವೆಯೇ? ನಾವು ಸಹಾಯಕ್ಕಾಗಿ ಇಲ್ಲಿದ್ದೇವೆ।" data-ml="ചോദ്യങ്ങളുണ്ടോ? സഹായത്തിനായി ഞങ്ങൾ ഇവിടെയുണ്ട്।" data-mr="प्रश्न आहेत? आम्ही मदतीसाठी येथे आहोत।" data-pa="ਸਵਾਲ ਹਨ? ਅਸੀਂ ਮਦਦ ਲਈ ਇੱਥੇ ਹਾਂ।">Have questions? We are here to help.</div>
+    <h2 class="faq-title" data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले प्रश्न" data-ta="அடிக்கடி கேட்கப்படும் கேள்விகள்" data-te="తరచుగా అడిగే ప్రశ్నలు" data-bn="প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী" data-gu="વારંવાર પૂછાતા પ્રશ્નો" data-kn="ಆಗಾಗ್ಗೆ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು" data-ml="പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ" data-mr="वारंवार विचारले जाणारे प्रश्न" data-pa="ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <h3 data-en="1. What is Geojit FinHealth?" data-hi="1. Geojit FinHealth क्या है?" data-ta="1. Geojit FinHealth என்றால் என்ன?" data-te="1. Geojit FinHealth అంటే ఏమిటి?" data-bn="1. Geojit FinHealth কি?" data-gu="1. Geojit FinHealth શું છે?" data-kn="1. Geojit FinHealth ಅಂದರೇನು?" data-ml="1. Geojit FinHealth എന്താണ്?" data-mr="1. Geojit FinHealth म्हणजे काय?" data-pa="1. Geojit FinHealth ਕੀ ਹੈ?">1. What is Geojit FinHealth?</h3>
+                <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 6V18" stroke="#000308" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M18 12H6" stroke="#000308" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="faq-answer hidden" data-en="Anyone who wants to understand their financial health can use this tool. It's designed for individuals at all stages of their financial journey." data-hi="कोई भी जो अपनी वित्तीय स्वास्थ्य को समझना चाहता है, वह इस टूल का उपयोग कर सकता है। यह उनकी वित्तीय यात्रा के सभी चरणों में व्यक्तियों के लिए डिज़ाइन किया गया है।" data-ta="தங்கள் நிதி ஆரோக்கியத்தை புரிந்து கொள்ள விரும்பும் எவரும் இந்த கருவியைப் பயன்படுத்தலாம். இது அவர்களின் நிதிப் பயணத்தின் அனைத்து நிலைகளிலும் உள்ள தனிநபர்களுக்காக வடிவமைக்கப்பட்டுள்ளது।" data-te="తమ ఆర్థిక ఆరోగ్యాన్ని అర్థం చేసుకోవాలని అనుకునే ఎవరైనా ఈ టూల్‌ని ఉపయోగించవచ్చు. ఇది వారి ఆర్థిక ప్రయాణంలోని అన్ని దశలలో ఉన్న వ్యక్తుల కోసం రూపొందించబడింది।" data-bn="যে কেউ তাদের আর্থিক স্বাস্থ্য বুঝতে চান তারা এই টুলটি ব্যবহার করতে পারেন। এটি তাদের আর্থিক যাত্রার সব পর্যায়ের ব্যক্তিদের জন্য ডিজাইন করা হয়েছে।" data-gu="જે કોઈ પણ તેમની નાણાકીય સ્વાસ્થ્ય સમજવા માંગે છે તે આ ટૂલનો ઉપયોગ કરી શકે છે. તે તેમની નાણાકીય મુસાફરીના તમામ તબક્કામાં વ્યક્તિઓ માટે ડિઝાઇન કરવામાં આવ્યું છે।" data-kn="ತಮ್ಮ ಆರ್ಥಿಕ ಆರೋಗ್ಯವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವ ಯಾರಾದರೂ ಈ ಸಾಧನವನ್ನು ಬಳಸಬಹುದು. ಇದು ತಮ್ಮ ಆರ್ಥಿಕ ಪ್ರಯಾಣದ ಎಲ್ಲಾ ಹಂತಗಳಲ್ಲಿರುವ ವ್ಯಕ್ತಿಗಳಿಗಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ।" data-ml="തങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യം മനസ്സിലാക്കാൻ ആഗ്രഹിക്കുന്ന ആർക്കും ഈ ഉപകരണം ഉപയോഗിക്കാം. അവരുടെ സാമ്പത്തിക യാത്രയുടെ എല്ലാ ഘട്ടങ്ങളിലും ഉള്ള വ്യക്തികൾക്കായി ഇത് രൂപകൽപ്പന ചെയ്തിട്ടുള്ളതാണ്।" data-mr="ज्याला त्यांचे आर्थिक आरोग्य समजून घ्यायचे आहे त्या कोणत्याही व्यक्तीला हे साधन वापरता येते. ते त्यांच्या आर्थिक प्रवासाच्या सर्व टप्प्यांतील व्यक्तींसाठी डिझाइन केले आहे।" data-pa="ਜੋ ਕੋਈ ਵੀ ਆਪਣੀ ਵਿੱਤੀ ਸਿਹਤ ਨੂੰ ਸਮਝਣਾ ਚਾਹੁੰਦਾ ਹੈ ਉਹ ਇਸ ਟੂਲ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦਾ ਹੈ। ਇਹ ਉਨ੍ਹਾਂ ਦੇ ਵਿੱਤੀ ਸਫ਼ਰ ਦੇ ਸਾਰੇ ਪੜਾਵਾਂ ਵਿੱਚ ਵਿਅਕਤੀਆਂ ਲਈ ਤਿਆਰ ਕੀਤਾ ਗਿਆ ਹੈ।">
+                Anyone who wants to understand their financial health can use this tool. It's designed for individuals
+                at all stages of their financial journey.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <img src="https://api.builder.io/api/v1/image/assets/TEMP/015a168bcab2d4477b9aa0a6413a924456d6bb3f?width=386"
+        alt="Geojit Logo" class="footer-logo">
+
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4 data-en="Registered Office" data-hi="पंजीकृत कार्यालय" data-ta="பதிவு அலுவலகம்" data-te="రిజిస్టర్డ్ ఆఫీస్" data-bn="নিবন্ধিত অফিস" data-gu="નોંધાયેલ ઓફિસ" data-kn="ನೋಂದಾಯಿತ ಕಚೇರಿ" data-ml="രജിസ്റ്റർഡ് ഓഫീസ്" data-mr="नोंदणीकृत कार्यालय" data-pa="ਰਜਿਸਟਰਡ ਦਫ਼ਤਰ">Registered Office</h4>
+            <p data-en="34/659, Civil Line Road,<br>Padivattom, Kochi-682024,<br>Kerala, India" data-hi="34/659, सिविल लाइन रोड,<br>पदिवट्टम, कोची-682024,<br>केरल, भारत" data-ta="34/659, சிவில் லைன் சாலை,<br>படிவட்டம், கொச்சி-682024,<br>கேரளா, இந்தியா" data-te="34/659, సివిల్ లైన్ రోడ్,<br>పడివట్టం, కొచ్చి-682024,<br>కేరళ, భారతదేశం" data-bn="34/659, সিভিল লাইন রোড,<br>পাদিভাট্টম, কোচি-682024,<br>কেরালা, ভারত" data-gu="34/659, સિવિલ લાઇન રોડ,<br>પાદિવટ્ટમ, કોચી-682024,<br>કેરળ, ભારત" data-kn="34/659, ಸಿವಿಲ್ ಲೈನ್ ರೋಡ್,<br>ಪಡಿವಟ್ಟಂ, ಕೋಚಿ-682024,<br>ಕೇರಳ, ಭಾರತ" data-ml="34/659, സിവിൽ ലൈൻ റോഡ്,<br>പാടിവട്ടം, കൊച്ചി-682024,<br>കേരളം, ഇന്ത്യ" data-mr="34/659, सिव्हिल लाइन रोड,<br>पडिवट्टम, कोची-682024,<br>केरळ, भारत" data-pa="34/659, ਸਿਵਿਲ ਲਾਈਨ ਰੋਡ,<br>ਪਡੀਵਟਮ, ਕੋਚੀ-682024,<br>ਕੇਰਲਾ, ਭਾਰਤ">34/659, Civil Line Road,<br>Padivattom, Kochi-682024,<br>Kerala, India</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-en="Contact" data-hi="संपर्क" data-ta="தொடர்பு" data-te="సంప్రదింపు" data-bn="যোগাযোগ" data-gu="સંપર્ક" data-kn="ಸಂಪರ್ಕ" data-ml="ബന്ധപ്പെടുക" data-mr="संपर्क" data-pa="ਸੰਪਰਕ">Contact</h4>
+            <p data-en="Phone: +91 484-2901000<br>www.geojit.com" data-hi="फोन: +91 484-2901000<br>www.geojit.com" data-ta="தொலைபேசி: +91 484-2901000<br>www.geojit.com" data-te="ఫోన్: +91 484-2901000<br>www.geojit.com" data-bn="ফোন: +91 484-2901000<br>www.geojit.com" data-gu="ફોન: +91 484-2901000<br>www.geojit.com" data-kn="ಫೋನ್: +91 484-2901000<br>www.geojit.com" data-ml="ഫോൺ: +91 484-2901000<br>www.geojit.com" data-mr="फोन: +91 484-2901000<br>www.geojit.com" data-pa="ਫ਼ੋਨ: +91 484-2901000<br>www.geojit.com">Phone: +91 484-2901000<br>www.geojit.com</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-en="For investor queries" data-hi="निवेशक प्रश्नों के लिए" data-ta="முதலீட்டாளர் கேள்விகளுக்கு" data-te="పెట్టుబడిదారుల ప్రశ్నలకు" data-bn="বিনিয়োগকারীদের প্রশ্নের জন্য" data-gu="રોકાણકર્તાઓના પ્રશ્નો માટે" data-kn="ಹೂಡಿಕೆದಾರರ ಪ್ರಶ್ನೆಗಳಿಗಾಗಿ" data-ml="നിക്ഷേപകരുടെ ചോദ്യങ്ങൾക്ക്" data-mr="गुंतवणूकदारांच्या प्रश्नांसाठी" data-pa="ਨਿਵੇਸ਼ਕਾਂ ਦੇ ਪ੍ਰਸ਼ਨਾਂ ਲਈ">For investor queries</h4>
+            <p>customercare@geojit.com</p>
+        </div>
+    </div>
+
+    <div class="disclaimer-section">
+        <h4 class="disclaimer-title" data-en="Disclaimer" data-hi="अस्वीकरण" data-ta="மறுப்பு" data-te="నిరాకరణ" data-bn="দায়বদ্ধতা অস্বীকার" data-gu="અસ્વીકરણ" data-kn="ನಿರಾಕರಣೆ" data-ml="നിരാകരണം" data-mr="नकारणे" data-pa="ਇਨਕਾਰ">Disclaimer</h4>
+        <p class="disclaimer-text" data-en="Investment in securities market are subject to market risks, read all the related documents carefully before investing." data-hi="प्रतिभूति बाजार में निवेश बाजार जोखिमों के अधीन है, निवेश करने से पहले सभी संबंधित दस्तावेजों को ध्यान से पढ़ें।" data-ta="பத்திரங்கள் சந்தையில் முதலீடு சந்தை அபாயங்களுக்கு உட்பட்டது, முதலீடு செய்வதற்கு முன் அனைத்து தொடர்புடைய ஆவணங்களையும் கவனமாக படிக்கவும்।" data-te="సిక్యూరిటీల మార్కెట్‌లో పెట్టుబడి మార్కెట్ రిస్క్‌లకు లోబడి ఉంటుంది, పెట్టుబడి పెట్టడానికి ముందు అన్ని సంబంధిత పత్రాలను జాగ్రత్తగా చదవండి।" data-bn="সিকিউরিটিজ বাজারে বিনিয়োগ বাজারের ঝুঁকির অধীন, বিনিয়োগের আগে সব সংশ্লিষ্ট নথি সাবধানে পড়ুন।" data-gu="સિક્યુરિટીઝ બજારમાં રોકાણ બજારના જોખમોને આધીન છે, રોકાણ કરતા પહેલા તમામ સંબંધિત દસ્તાવેજો કાળજીપૂર્વક વાંચો।" data-kn="ಸೆಕ್ಯುರಿಟೀಸ್ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಹೂಡಿಕೆಯು ಮಾರುಕಟ್ಟೆ ಅಪಾಯಗಳಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತದೆ, ಹೂಡಿಕೆ ಮಾಡುವ ಮೊದಲು ಎಲ್ಲಾ ಸಂಬಂಧಿತ ದಾಖಲೆಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಓದಿ।" data-ml="സെക്യൂരിറ്റീസ് മാർക്കറ്റിലെ നിക്ഷേപം മാർക്കറ്റ് അപകടസാധ്യതകൾക്ക് വിധേയമാണ്, നിക്ഷേപിക്കുന്നതിന് മുമ്പ് എല്ലാ അനുബന്ധ രേഖകളും ശ്രദ്ധാപൂർവം വായിക്കുക।" data-mr="सिक्युरिटीज मार्केटमध्ये गुंतवणूक बाजार जोखमींच्या अधीन आहे, गुंतवणूक करण्यापूर्वी सर्व संबंधित कागदपत्रे काळजीपूर्वक वाचा।" data-pa="ਸਿਕਿਉਰਿਟੀਜ਼ ਮਾਰਕਿਟ ਵਿੱਚ ਨਿਵੇਸ਼ ਮਾਰਕਿਟ ਜੋਖਮਾਂ ਦੇ ਅਧੀਨ ਹੈ, ਨਿਵੇਸ਼ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਾਰੇ ਸੰਬੰਧਿਤ ਦਸਤਾਵੇਜ਼ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ।">Investment in securities market are subject to market risks, read all the related documents carefully before investing.</p>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="footer-legal" data-en="Geojit Financial Services Ltd, AMFI-registered Mutual Fund Distributor, ARN : 0098" data-hi="Geojit Financial Services Ltd, AMFI-पंजीकृत म्यूचुअल फंड वितरक, ARN : 0098" data-ta="Geojit Financial Services Ltd, AMFI-பதிவு செய்யப்பட்ட மியூச்சுவல் ஃபண்ட் விநியோகஸ்தர், ARN : 0098" data-te="Geojit Financial Services Ltd, AMFI-నమోదిత మ్యూచువల్ ఫండ్ డిస్ట్రిబ్యూటర్, ARN : 0098" data-bn="Geojit Financial Services Ltd, AMFI-নিবন্ধিত মিউচুয়াল ফান্ড ডিস্ট্রিবিউটর, ARN : 0098" data-gu="Geojit Financial Services Ltd, AMFI-નોંધાયેલ મ્યુચ્યુઅલ ફંડ ડિસ્ટ્રિબ્યુટર, ARN : 0098" data-kn="Geojit Financial Services Ltd, AMFI-ನೋಂದಾಯಿತ ಮ್ಯೂಚುವಲ್ ಫಂಡ್ ವಿತರಕ, ARN : 0098" data-ml="Geojit Financial Services Ltd, AMFI-രജിസ്റ്റർഡ് മ്യൂച്വൽ ഫണ്ട് ഡിസ്ട്രിബ്യൂട്ടർ, ARN : 0098" data-mr="Geojit Financial Services Ltd, AMFI-नोंदणीकृत म्युच्युअल फंड वितरक, ARN : 0098" data-pa="Geojit Financial Services Ltd, AMFI-ਰਜਿਸਟਰਡ ਮਿਉਚੁਅਲ ਫੰਡ ਡਿਸਟ੍ਰਿਬਿਉਟਰ, ARN : 0098">Geojit Financial Services Ltd, AMFI-registered Mutual Fund Distributor, ARN : 0098</p>
+        <p class="footer-credit" data-en="Design by Neointeraction Design" data-hi="Design by Neointeraction Design" data-ta="Design by Neointeraction Design" data-te="Design by Neointeraction Design" data-bn="Design by Neointeraction Design" data-gu="Design by Neointeraction Design" data-kn="Design by Neointeraction Design" data-ml="Design by Neointeraction Design" data-mr="Design by Neointeraction Design" data-pa="Design by Neointeraction Design">Design by Neointeraction Design</p>
+    </div>
+</footer>
+
+<!-- Language Translation Script -->
+<script>
+    let currentLanguage = 'en';
+    
+    const languageNames = {
+        'en': 'English',
+        'hi': 'हिंदी',
+        'ta': 'தமிழ்',
+        'te': 'తెలుగు',
+        'bn': 'বাংলা',
+        'gu': 'ગુજરાતી',
+        'kn': 'ಕನ್ನಡ',
+        'ml': 'മലയാളം',
+        'mr': 'मराठी',
+        'pa': 'ਪੰਜਾਬੀ'
+    };
+
+    function toggleLanguageDropdown() {
+        const dropdown = document.getElementById('language-options');
+        const arrow = document.querySelector('.dropdown-arrow');
+        
+        dropdown.classList.toggle('show');
+        arrow.classList.toggle('rotated');
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function closeDropdown(e) {
+            if (!e.target.closest('.language-switcher')) {
+                dropdown.classList.remove('show');
+                arrow.classList.remove('rotated');
+                document.removeEventListener('click', closeDropdown);
+            }
+        });
+    }
+
+    function changeLanguage(langCode) {
+        if (langCode === currentLanguage) return;
+        
+        currentLanguage = langCode;
+        
+        // Update current language display
+        document.getElementById('current-language').textContent = languageNames[langCode];
+        
+        // Update selected option in dropdown
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.classList.remove('selected');
+            if (option.getAttribute('onclick').includes(langCode)) {
+                option.classList.add('selected');
+            }
+        });
+        
+        // Close dropdown
+        document.getElementById('language-options').classList.remove('show');
+        document.querySelector('.dropdown-arrow').classList.remove('rotated');
+        
+        // Update all translatable elements
+        updatePageLanguage(langCode);
+        
+        // Store language preference
+        localStorage.setItem('selectedLanguage', langCode);
+    }
+
+    function updatePageLanguage(langCode) {
+        // Update all elements with data attributes for the selected language
+        document.querySelectorAll('[data-' + langCode + ']').forEach(element => {
+            const translation = element.getAttribute('data-' + langCode);
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+        
+        // Update placeholders
+        document.querySelectorAll('[data-placeholder-' + langCode + ']').forEach(element => {
+            const placeholder = element.getAttribute('data-placeholder-' + langCode);
+            if (placeholder) {
+                element.placeholder = placeholder;
+            }
+        });
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = langCode;
+    }
+
+    // Initialize language on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check for saved language preference
+        const savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage && languageNames[savedLanguage]) {
+            changeLanguage(savedLanguage);
+        }
+    });
+
+    // Rest of the existing JavaScript code...
+    let currentQuestionIndex = 0;
+    const questionCards = document.querySelectorAll('.question-card');
+    const progressCards = document.querySelectorAll('.progress-card');
+    let financialHealthScore = 0;
+    let riskProfileScore = 0;
+
+    // Existing questionnaire functionality...
+    const financialHealthQuestions = [7, 8, 9, 10, 11, 12, 13, 14];
+    const riskProfileQuestions = [15, 16, 17, 18, 19, 20];
+
+    function showQuestion(index, direction = 'next') {
+        const oldActiveCard = document.querySelector('.question-card.active');
+        const newActiveCard = questionCards[index];
+        const animationDuration = 300;
+
+        if (oldActiveCard && oldActiveCard !== newActiveCard) {
+            oldActiveCard.classList.remove('slide-in-next', 'slide-in-prev');
+            if (direction === 'next') {
+                oldActiveCard.classList.add('slide-out-next');
+            } else {
+                oldActiveCard.classList.add('slide-out-prev');
+            }
+
+            setTimeout(() => {
+                oldActiveCard.classList.remove('active', 'slide-out-next', 'slide-out-prev');
+                activateNewCard();
+            }, animationDuration);
+        } else {
+            activateNewCard();
+        }
+
+        function activateNewCard() {
+            currentQuestionIndex = index;
+
+            if (newActiveCard) {
+                newActiveCard.classList.remove('slide-in-next', 'slide-in-prev', 'slide-out-next', 'slide-out-prev');
+                newActiveCard.classList.add('active');
+                setTimeout(() => {
+                    if (direction === 'next') {
+                        newActiveCard.classList.add('slide-in-next');
+                    } else {
+                        newActiveCard.classList.add('slide-in-prev');
+                    }
+                }, 10);
+            }
+            updateProgressTracker(index);
+        }
+    }
+
+    function nextQuestion() {
+        if (currentQuestionIndex === 0) {
+            const userName = document.getElementById('user-name').value;
+            if (!userName) {
+                showAlert('Please enter your name to proceed.');
+                return;
+            }
+        }
+        
+        if (currentQuestionIndex < questionCards.length - 1) {
+            currentQuestionIndex++;
+            showQuestion(currentQuestionIndex);
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showQuestion(currentQuestionIndex, 'prev');
+        }
+    }
+
+    function showAlert(message) {
+        // Simple alert implementation
+        alert(message);
+    }
+
+    function updateProgressTracker(index) {
+        // Simple progress tracking implementation
+        progressCards.forEach((card, i) => {
+            card.classList.remove('active');
+            if (i <= Math.floor(index / 7)) {
+                card.classList.add('active');
+            }
+        });
+    }
+
+    function toggleFaq(element) {
+        const answer = element.nextElementSibling;
+        answer.classList.toggle('hidden');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        if (questionCards.length > 0) {
+            showQuestion(0);
+        }
+    });
+</script>
+
+</body>
+</html>

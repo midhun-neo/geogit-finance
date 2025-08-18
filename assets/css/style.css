@@ -1784,3 +1784,715 @@ img {
     margin-top: 1.5rem;
   }
 }
+
+/* Feedback Button for Results Card */
+.feedback-btn {
+  background: #017670;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-btn:hover {
+  background: #015a56;
+}
+
+/* Feedback Card Container */
+#feedback-card {
+  display: none;
+  min-height: auto !important; /* Remove fixed height */
+  height: auto !important;
+  padding: 2rem 4rem !important; /* Adjust padding */
+  max-height: 90vh; /* Maximum height to prevent overflow */
+  overflow-y: auto; /* Allow scrolling if content is too tall */
+  top: 10px !important; /* Position from top instead of center */
+  transform: translate(-50%, 0) !important; /* Only center horizontally */
+}
+
+#feedback-card.active {
+  display: block;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.feedback-container {
+  border-radius: 12px;
+  width: 100%;
+  position: relative;
+  background: var(--card);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-content-wrapper {
+  padding: 2rem 10rem;
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0 16px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 24px;
+}
+
+.feedback-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000308;
+  margin: 0;
+}
+
+.feedback-back {
+  background: #f5f5f5;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s ease;
+  display: none;
+}
+
+.feedback-back:hover {
+  background: #e5e5e5;
+}
+
+.feedback-content {
+  padding: 0;
+}
+
+/* Report Summary */
+.report-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.summary-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #000308;
+}
+
+.summary-header p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.download-btn {
+  background: #017670;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.share-btn {
+  background: #f5f5f5;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  border: 1px solid #017670;
+}
+
+/* Risk Gauges */
+.risk-gauges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.gauge-container {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  position: relative;
+}
+
+.gauge-container h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #000308;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.gauge-container h4 img {
+  width: 2rem;
+}
+
+.gauge-wrapper {
+  position: relative;
+}
+
+.gauge {
+  width: 120px;
+  height: 60px;
+  position: relative;
+  margin: 0 auto 8px;
+}
+
+.gauge-fill {
+  width: 120px;
+  height: 60px;
+  border: 8px solid #e5e5e5;
+  border-bottom: none;
+  border-radius: 120px 120px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.gauge-fill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50 0%, #ffc107 50%, #f44336 100%);
+  border-radius: 120px 120px 0 0;
+}
+
+.gauge-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #333;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.gauge-needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 40px;
+  background: #333;
+  transform-origin: bottom center;
+  transform: translate(-50%, -100%) rotate(0deg);
+  transition: transform 1s ease;
+}
+
+.gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+  font-weight: bold;
+}
+
+.risk-badge,
+.health-badge {
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.risk-badge {
+  background-color: #eab93f;
+  color: #856404;
+}
+
+.health-badge {
+  background-color: #ee9a42;
+  color: #721c24;
+}
+
+/* Financial Snapshot */
+.financial-snapshot {
+  margin-bottom: 24px;
+}
+
+.financial-snapshot h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #000308;
+}
+
+.snapshot-items {
+  display: flex;
+  gap: 10px;
+}
+
+.snapshot-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 1rem;
+  flex: 1;
+}
+
+.snapshot-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.snapshot-dot.blue {
+  background: #007bff;
+}
+
+.snapshot-dot.orange {
+  background: #ffa500;
+}
+.snapshot-result {
+  display: block;
+  color: #000;
+  font-weight: 600;
+}
+/* Recommendations */
+.recommendations {
+  background: #d3f6f5;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.recommendations-content {
+  flex: 1;
+}
+
+.recommendations h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--Primary);
+}
+
+.recommendations p {
+  font-size: 16px;
+  color: var(--Primary);
+  margin: 0 0 12px 0;
+}
+
+.recommendations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.recommendations li {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.recommendations li::before {
+  content: "•";
+  color: #000;
+  position: absolute;
+  left: 0;
+}
+
+.assessment-again-btn {
+  border: 1px solid #017670 !important;
+  background-color: transparent;
+  color: #017670;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.recommendations-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recommendations-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Rating Section */
+.rating-section {
+  margin-bottom: 24px;
+  padding: 24px 16px;
+  border-radius: 8px;
+  border-top: 1px solid #e6e6e6;
+}
+
+.rating-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #000308;
+  text-align: center;
+}
+
+.rating-section > p {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.star {
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.star.active,
+.star:hover {
+  opacity: 1;
+}
+
+.feedback-input label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.feedback-input textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.feedback-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.feedback-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.feedback-checkbox input[type="checkbox"]:checked {
+  accent-color: var(--Primary) !important;
+  background: var(--Primary);
+}
+
+.feedback-checkbox label {
+  font-size: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.submit-feedback {
+  border: 1px solid #017670 !important;
+  background-color: transparent;
+  color: #017670;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  float: right;
+}
+
+/* Next Steps */
+.next-steps {
+  background: #017670;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.next-steps .next-steps-text h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.next-steps .next-steps-text p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.expert-session-btn {
+  background: white;
+  color: #017670;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Additional badge styles for different states */
+.health-badge.good-health {
+  background: #d4edda;
+  color: #155724;
+}
+
+.health-badge.moderate-health {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.health-badge.poor-health {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.risk-badge.high-risk {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.risk-badge.moderate-risk {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.risk-badge.low-risk {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* CSS overrides ONLY when feedback screen is open */
+.feedback-mode .hero-section {
+  min-height: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+.feedback-mode .hero-container {
+  min-height: auto !important;
+  height: auto !important;
+  align-items: flex-start !important;
+  padding-top: 1rem !important;
+}
+
+.feedback-mode .progress-tracker-section {
+  display: none !important;
+}
+
+/* Ensure feedback content has proper spacing */
+.feedback-mode .feedback-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Adjust feedback content spacing */
+.feedback-content > * {
+  margin-bottom: 20px;
+}
+
+.feedback-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .hero-container {
+    /* padding: 0; */
+  }
+
+  .summary-header {
+    text-align: center;
+  }
+  .summary-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  .snapshot-items {
+    display: block;
+  }
+  .snapshot-items .snapshot-item {
+    margin-bottom: 1rem;
+  }
+  .feedback-content-wrapper {
+    padding: 2rem 2rem;
+  }
+
+  .feedback-header {
+    padding: 16px 0 12px;
+    margin-bottom: 16px;
+  }
+
+  .feedback-title {
+    font-size: 20px;
+  }
+
+  .report-summary {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .risk-gauges {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .gauge {
+    width: 100px;
+    height: 50px;
+  }
+
+  .gauge-fill {
+    width: 100px;
+    height: 50px;
+    border-width: 6px;
+  }
+
+  .gauge-needle {
+    height: 30px;
+  }
+
+  .recommendations {
+    flex-direction: column;
+    /* text-align: center; */
+  }
+
+  .recommendations-icon {
+    align-self: center;
+  }
+
+  .rating-section {
+    padding: 0;
+  }
+  .feedback-checkbox {
+    align-items: flex-start;
+  }
+  .submit-feedback {
+    margin: 0 auto;
+  }
+
+  .next-steps {
+    flex-direction: column;
+  }
+  .next-steps .next-steps-text {
+    margin-bottom: 1rem;
+  }
+
+  #feedback-card {
+    padding: 1rem !important;
+    max-height: 95vh;
+    top: 5px !important;
+  }
+
+  #feedback-card.active {
+    padding: 1.5rem !important;
+    margin: 0 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-header {
+    padding: 12px 0 8px;
+    margin-bottom: 12px;
+  }
+
+  .feedback-title {
+    font-size: 18px;
+  }
+
+  .gauge {
+    width: 80px;
+    height: 40px;
+  }
+
+  .gauge-fill {
+    width: 80px;
+    height: 40px;
+    border-width: 4px;
+  }
+
+  .gauge-needle {
+    height: 25px;
+  }
+
+  #feedback-card {
+    padding: 0.5rem !important;
+    margin: 0 10px;
+    width: calc(100% - 20px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  #feedback-card.active {
+    padding: 1rem !important;
+    margin: 0 0.5rem !important;
+  }
+}
