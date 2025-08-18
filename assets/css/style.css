@@ -1890,14 +1890,14 @@ img {
   width: 100%;
 }
 .summary-header h3 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   margin: 0 0 4px 0;
   color: #000308;
 }
 
 .summary-header p {
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
   margin: 0;
 }
@@ -1944,7 +1944,7 @@ img {
 }
 
 .gauge-container h4 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0 0 12px 0;
   color: #000308;
@@ -2071,8 +2071,8 @@ img {
 }
 
 .snapshot-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 5px;
@@ -2177,7 +2177,7 @@ img {
 }
 
 .rating-section h3 {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 600;
   margin: 0 0 4px 0;
   color: #000308;
@@ -2185,7 +2185,7 @@ img {
 }
 
 .rating-section > p {
-  font-size: 14px;
+  font-size: 16px;
   color: #666;
   margin: 0 0 16px 0;
   text-align: center;
@@ -2280,13 +2280,13 @@ img {
 }
 
 .next-steps .next-steps-text h3 {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .next-steps .next-steps-text p {
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.9;
 }
 
