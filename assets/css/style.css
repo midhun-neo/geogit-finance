@@ -2094,6 +2094,7 @@ img {
   padding: 16px;
   margin-bottom: 24px;
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 
@@ -2151,8 +2152,8 @@ img {
 
 .recommendations-icon {
   flex-shrink: 0;
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
