@@ -1886,7 +1886,9 @@ img {
   padding-bottom: 16px;
   border-bottom: 1px solid #e5e5e5;
 }
-
+.summary-header {
+  width: 100%;
+}
 .summary-header h3 {
   font-size: 18px;
   font-weight: 600;
