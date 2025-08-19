@@ -42,6 +42,12 @@ body {
   padding: 1rem 120px;
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #ffffff;
 }
 
 .back-arrow {
@@ -51,12 +57,6 @@ body {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo-icon {
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -64,6 +64,11 @@ body {
   color: var(--primary-foreground);
   font-weight: bold;
   font-size: 14px;
+}
+
+.logo img {
+  width: 10rem;
+  height: 2.5rem;
 }
 
 .logo-text {
@@ -484,7 +489,7 @@ body {
 .navigation-buttons {
   display: flex;
   justify-content: center; /* Center the button group */
-  margin-top: 2rem;
+  margin-top: 5rem;
   gap: 20px; /* Gap between the two buttons */
 }
 
@@ -977,17 +982,17 @@ body {
 
 @media (max-width: 768px) {
   .header {
-    padding: 0 20px;
+    /* padding: 0 20px;
     height: auto;
     min-height: 80px;
     flex-direction: column;
-    gap: 16px;
+    gap: 16px; */
   }
 
-  .logo {
+  /* .logo {
     width: 150px;
     height: 36px;
-  }
+  } */
 
   .logo-text {
     font-size: 18px;
@@ -1167,10 +1172,10 @@ body {
 }
 
 @media (max-width: 480px) {
-  .header {
+  /* .header {
     padding: 0 16px;
     min-height: 70px;
-  }
+  } */
 
   .intro-title {
     font-size: 28px;
@@ -1470,13 +1475,11 @@ img {
   }
 
   .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.75rem;
+    padding: 1rem 2rem;
   }
 
-  .logo {
-    margin-bottom: 0.5rem;
+  .logo img {
+    width: 8rem;
   }
 
   .logo-sub {
@@ -1701,11 +1704,6 @@ img {
 
   .option-label {
     font-size: 18px;
-  }
-
-  .navigation-buttons {
-    flex-direction: row;
-    margin-top: 3rem;
   }
 
   .dreams-title {
