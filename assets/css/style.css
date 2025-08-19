@@ -125,8 +125,35 @@ body {
   /* border-color: var(--primary); */
   box-shadow: 0 4px 15px rgba(20, 184, 166, 0.15);
   color: var(--foreground);
+
+  border: none;
+  position: relative;
+}
+/* Create gradient border using pseudo-element */
+.progress-card.active::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #4b31aa, #313daa, #1d8c88, #1d698c);
+  border-radius: 10px;
+  z-index: -1;
 }
 
+/* Ensure the card content is above the gradient border */
+.progress-card.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #d3f6f5;
+  border-radius: 8px;
+  z-index: -1;
+}
 .progress-card-icon {
   width: 48px;
   height: 48px;
@@ -161,6 +188,19 @@ body {
   background: var(--primary);
   border-radius: 2px;
   transition: width 0.3s ease-in-out;
+}
+
+/* Enhanced progress bar for active card */
+.progress-card.active .progress-bar-fill {
+  background: linear-gradient(90deg, #4b31aa, #22d3ee);
+  box-shadow: 0 2px 4px rgba(20, 184, 166, 0.3);
+}
+
+/* Make progress bar more prominent when active */
+.progress-card.active .progress-bar-container {
+  background: rgba(255, 255, 255, 0.5);
+  height: 8px; /* Slightly thicker */
+  border-radius: 4px;
 }
 
 .completion-icon {
@@ -540,6 +580,19 @@ body {
 .nav-btn.next:hover {
   background-color: rgba(20, 184, 166, 0.9);
 }
+.nav-btn.next {
+  border: 2px solid transparent;
+}
+
+.nav-btn.next:hover {
+  border: 2px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, #4b31aa, #313daa, #1d8c88, #1d698c) border-box;
+}
+
+.nav-btn.next:hover > p {
+  color: var(--Primary);
+}
 
 .score-display {
   text-align: center;
@@ -711,8 +764,12 @@ body {
   flex-direction: column;
   padding: 24px 20px;
   border-radius: 16px;
-  border: 1px solid rgba(1, 118, 112, 0.65);
-  background: #fff;
+  /* border: 1px solid rgba(1, 118, 112, 0.65); */
+  border: 2px solid transparent;
+
+  /* background: #fff; */
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, #4b31aa, #313daa, #1d8c88, #1d698c) border-box;
   height: 236px;
 }
 
@@ -2254,37 +2311,6 @@ img {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-}
-
-/* Additional badge styles for different states */
-.health-badge.good-health {
-  background: #d4edda;
-  color: #155724;
-}
-
-.health-badge.moderate-health {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.health-badge.poor-health {
-  background: #f8d7da;
-  color: #721c24;
-}
-
-.risk-badge.high-risk {
-  background: #f8d7da;
-  color: #721c24;
-}
-
-.risk-badge.moderate-risk {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.risk-badge.low-risk {
-  background: #d4edda;
-  color: #155724;
 }
 
 /* CSS overrides ONLY when feedback screen is open */

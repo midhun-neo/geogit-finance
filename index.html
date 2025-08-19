@@ -1031,8 +1031,8 @@
                         <div class="recommendations">
                             <div class="recommendations-content">
                                 <h3>Recommendations by Geojit</h3>
-                                <p>It's never too late to start building healthy money habits</p>
-                                <ul>
+                                <p id="recommendation-summary">It's never too late to start building healthy money habits</p>
+                                <ul id="recommendation-list">
                                     <li>Building an emergency fund</li>
                                     <li>Creating a habit of tracking income and expenses</li>
                                     <li>Setting aside 10% and health insurance in place</li>
@@ -1925,6 +1925,61 @@
             }]
         });
     }
+
+    function updateRecommendations() {
+    const recommendationSummary = document.getElementById('recommendation-summary');
+    const recommendationList = document.getElementById('recommendation-list');
+    
+    let summary = '';
+    let recommendations = [];
+    
+    // Financial Health Recommendations
+    if (financialHealthScore >= 12) {
+        summary = "Excellent! You're doing a great job managing your finances.";
+        recommendations = [
+            'Optimize your existing investments for better returns',
+            'Diversify further with expert guidance',
+            'Explore wealth-building and tax-efficiency strategies'
+        ];
+    } else if (financialHealthScore >= 7) {
+        summary = "You're on the right path! Some healthy habits developed.";
+        recommendations = [
+            'Prioritizing goal-based investments',
+            'Reviewing your portfolio regularly',
+            'Enhancing your insurance and savings buffers'
+        ];
+    } else {
+        summary = "Your financial health needs attention. Let's start building healthy money habits.";
+        recommendations = [
+            'Building an emergency fund',
+            'Creating a habit of tracking income and expenses',
+            'Setting basic life and health insurance in place'
+        ];
+    }
+    
+    // Add Risk Profile specific recommendations
+    if (riskProfileScore >= 9) {
+        recommendations.push('SIPs in equity mutual funds aligned with your long-term goals');
+        recommendations.push('Staying disciplined during market ups and downs');
+    } else if (riskProfileScore >= 5) {
+        recommendations.push('Balanced Advantage Funds or Hybrid Equity Funds');
+        recommendations.push('Mixing equity with safer investments for stability');
+    } else {
+        recommendations.push('Low-risk options like debt mutual funds');
+        recommendations.push('Ensuring liquidity through short-duration funds');
+    }
+    
+    // Update the content
+    if (recommendationSummary) {
+        recommendationSummary.textContent = summary;
+    }
+    
+    if (recommendationList) {
+        recommendationList.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
+    }
+}
+
+
     // Modified showFeedbackReport function
     function showFeedbackReport() {
         calculateScores();
@@ -1978,50 +2033,53 @@
     }
 
 
-    function updateFeedbackContent() {
-        // Create both gauge charts
-        updateRiskGauge();
-        updateHealthGauge();
+function updateFeedbackContent() {
+    // Create both gauge charts
+    updateRiskGauge();
+    updateHealthGauge();
 
-        // Update Risk Badge
-        const riskBadge = document.getElementById('risk-badge');
-        const riskText = document.getElementById('risk-text');
-        if (riskProfileScore >= 9) {
-            riskBadge.textContent = 'High Risk';
-            riskBadge.className = 'risk-badge high-risk';
-            riskText.textContent = 'High risk tolerance';
-        } else if (riskProfileScore >= 5) {
-            riskBadge.textContent = 'Moderate Risk';
-            riskBadge.className = 'risk-badge moderate-risk';
-            riskText.textContent = 'Open to some risk';
-        } else {
-            riskBadge.textContent = 'Low Risk';
-            riskBadge.className = 'risk-badge low-risk';
-            riskText.textContent = 'Prefer safety and stability';
-        }
+    // Update Risk Badge
+    const riskBadge = document.getElementById('risk-badge');
+    const riskText = document.getElementById('risk-text');
+   if (riskProfileScore >= 9) {
+    riskBadge.textContent = 'High Risk';
+    riskBadge.className = 'risk-badge high-risk';
+    riskText.textContent = 'Comfortable with volatility and long-term investments';
+} else if (riskProfileScore >= 5) {
+    riskBadge.textContent = 'Moderate Risk';
+    riskBadge.className = 'risk-badge moderate-risk';
+    riskText.textContent = 'Open to some risk in exchange for better returns';
+} else {
+    riskBadge.textContent = 'Low Risk';
+    riskBadge.className = 'risk-badge low-risk';
+    riskText.textContent = 'Prefer safety and stability';
+}
 
-        // Update Health Badge
-        const healthBadge = document.getElementById('health-badge');
-        const weakArea = document.getElementById('weak-area');
-        const actionNeeded = document.getElementById('action-needed');
+    // Update Health Badge - UPDATED TO MATCH DOCUMENT
+    const healthBadge = document.getElementById('health-badge');
+    const weakArea = document.getElementById('weak-area');
+    const actionNeeded = document.getElementById('action-needed');
 
-        if (financialHealthScore >= 12) {
-            healthBadge.textContent = 'On Track';
-            healthBadge.className = 'health-badge good-health';
-            weakArea.textContent = 'Continue current practices';
-            actionNeeded.textContent = 'Maintain healthy habits';
-        } else if (financialHealthScore >= 7) {
-            healthBadge.textContent = 'Moderate';
-            healthBadge.className = 'health-badge moderate-health';
-            weakArea.textContent = 'Some areas need attention';
-            actionNeeded.textContent = 'Improve saving consistency';
-        } else {
-            healthBadge.textContent = 'Needs Improvement';
-            healthBadge.className = 'health-badge poor-health';
-            weakArea.textContent = 'Not saving regularly / Lack emergency fund';
-            actionNeeded.textContent = 'Improve insurance coverage';
-        }
+    if (financialHealthScore >= 12) {
+        healthBadge.textContent = 'On Track';
+        healthBadge.className = 'health-badge good-health';
+        weakArea.textContent = 'Excellent financial management';
+        actionNeeded.textContent = 'Optimize existing investments for better returns';
+    } else if (financialHealthScore >= 7) {
+        healthBadge.textContent = 'Moderate';
+        healthBadge.className = 'health-badge moderate-health';
+        weakArea.textContent = 'Some healthy habits developed';
+        actionNeeded.textContent = 'Prioritize goal-based investments';
+    } else {
+        healthBadge.textContent = 'Needs Improvement';
+        healthBadge.className = 'health-badge poor-health';
+        weakArea.textContent = 'Not saving regularly / Lack emergency fund';
+        actionNeeded.textContent = 'Build emergency fund and track expenses';
     }
+
+     // ADD THIS LINE at the end:
+    updateRecommendations();
+}
     // Star rating functionality
     function setRating(rating) {
         currentRating = rating;
