@@ -10,18 +10,27 @@
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Overpass:wght@600;700&display=swap"
         rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
 <!-- Header -->
 <header class="header">
 
     <div class="logo">
-        <div class="logo-icon">
-            <img src="assets/images/logo.svg" alt="logo" />
-        </div>
+        <img src="assets/images/logo.svg" alt="logo" />
     </div>
 
-    <div class="sip-badge">Finhealth logo</div>
+    <div class="logo">
+        <img src="./assets/images/geojit-finhealth.svg" alt="geojit-finhealth" />
+
+    </div>
+
+
+
 </header>
+<div style="padding: 3rem; background-color: #f6f4f1;"></div>
+
 
 <!-- Progress Tracker Section -->
 <section class="progress-tracker-section">
@@ -931,10 +940,145 @@
         <div class="question-card" id="results-card">
             <img src="./assets/images/summary-check.svg" alt="summary check" style="margin-bottom: 1rem;" />
             <h2 class="question-title" style="margin-bottom: 1rem;">All Done!</h2>
-
             <p>Your personalized financial roadmap is ready!</p>
 
+            <!-- Add this button -->
+            <button class="feedback-btn" onclick="showFeedbackReport()">
+                See my Finhealth Report
+            </button>
+        </div>
 
+        <!-- Feedback Report UI -->
+        <div class="question-card" id="feedback-card">
+
+            <div class="feedback-container">
+                <div class="feedback-content-wrapper">
+
+                    <div class="feedback-header">
+                        <h2 class="feedback-title">Financial Health Report</h2>
+                        <button class="feedback-back" onclick="goBackToResults()">← Back</button>
+                    </div>
+
+                    <div class="feedback-content">
+                        <div class="report-summary">
+                            <div class="summary-header">
+                                <h3>Report Summary</h3>
+                                <p>Here's Your personalized financial roadmap</p>
+                            </div>
+                            <div class="summary-actions">
+                                <button class="download-btn">Download Report</button>
+                                <button class="share-btn">
+                                    <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
+                                </button>
+                                <button class="share-btn">
+                                    <img src="./assets/images/share.svg" alt="share" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="risk-gauges">
+                            <div class="gauge-container">
+                                <h4>
+                                    <img src="./assets/images/risk-profile.svg" alt="risk profile" /> Risk Profile
+                                </h4>
+                                <div class="gauge-wrapper">
+                                    <canvas id="riskGaugeChart" width="200" height="120"></canvas>
+                                    <div class="gauge-labels">
+                                        <span>Low</span>
+                                        <span>High</span>
+                                    </div>
+                                </div>
+
+
+                                <div class="risk-badge" id="risk-badge">Moderate Risk</div>
+                            </div>
+
+                            <div class="gauge-container">
+                                <h4><img src="./assets/images/financial-health.svg" alt="financial health" /> Financial
+                                    Health</h4>
+                                <div class="gauge-wrapper">
+                                    <canvas id="healthGaugeChart" width="200" height="120"></canvas>
+                                    <div class="gauge-labels">
+                                        <span>Low</span>
+                                        <span>High</span>
+                                    </div>
+                                </div>
+                                <div class="health-badge" id="health-badge">Needs Improvement</div>
+                            </div>
+                        </div>
+
+                        <div class="financial-snapshot">
+                            <h3>Your Financial Health Snapshot</h3>
+                            <div class="snapshot-items">
+                                <div class="snapshot-item">
+                                    <div class="snapshot-dot blue"></div>
+                                    <span>Risk Preference: <span class="snapshot-result" id="risk-text">Open to some
+                                            risk</span></span>
+                                </div>
+                                <div class="snapshot-item">
+                                    <div class="snapshot-dot orange"></div>
+                                    <span>Weak Area: <span class="snapshot-result" id="weak-area">Not saving regularly /
+                                            Lack emergency fund</span></span>
+                                </div>
+                                <div class="snapshot-item">
+                                    <div class="snapshot-dot orange"></div>
+                                    <span>Action Needed: <span class="snapshot-result" id="action-needed">Improve
+                                            insurance coverage</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recommendations">
+                            <div class="recommendations-content">
+                                <h3>Recommendations by Geojit</h3>
+                                <p>It's never too late to start building healthy money habits</p>
+                                <ul>
+                                    <li>Building an emergency fund</li>
+                                    <li>Creating a habit of tracking income and expenses</li>
+                                    <li>Setting aside 10% and health insurance in place</li>
+                                </ul>
+                            </div>
+
+                            <div class="recommendations-icon">
+                                <img src="./assets/images/expert-icon.svg" alt="Expert" />
+                            </div>
+                        </div>
+
+                        <button class="assessment-again-btn">Take Assessment Again</button>
+
+
+                        <div class="rating-section">
+                            <h3>Rate your experience</h3>
+                            <p>How's your overall experience today?</p>
+                            <div class="rating-stars">
+                                <span class="star" onclick="setRating(1)">⭐</span>
+                                <span class="star" onclick="setRating(2)">⭐</span>
+                                <span class="star" onclick="setRating(3)">⭐</span>
+                                <span class="star" onclick="setRating(4)">⭐</span>
+                                <span class="star" onclick="setRating(5)">⭐</span>
+                            </div>
+                            <div class="feedback-input">
+                                <label>Describe your Issue</label>
+                                <textarea placeholder="Tell us about your experience"></textarea>
+                                <div class="feedback-checkbox">
+                                    <input type="checkbox" id="feedback-contact">
+                                    <label for="feedback-contact">I would like to be contacted about my Issue</label>
+                                </div>
+                                <button class="submit-feedback">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="next-steps">
+                    <div class="next-steps-text">
+                        <h3>What's Next?</h3>
+                        <p>Let our experts create a personalized investment roadmap just for you.</p>
+                    </div>
+                    <button class="expert-session-btn">Request an Expert Session</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -1622,6 +1766,297 @@
     }
 
 
+
+    // Global variables for ratings
+    let currentRating = 0;
+
+    // Add this variable at the top of your script section
+    let riskChart = null;
+    // Add this variable at the top with the others
+    let healthChart = null;
+
+    // Function to create Financial Health Chart
+    function updateHealthGauge() {
+        const ctx = document.getElementById('healthGaugeChart');
+        if (!ctx) return;
+
+        // Destroy existing chart if it exists
+        if (healthChart) {
+            healthChart.destroy();
+        }
+
+        // Calculate needle position based on health score
+        const healthPercentage = (financialHealthScore / 18) * 100;
+        const targetAngle = (healthPercentage / 100) * 60 - 30; // Convert to gauge angle
+
+        const data = {
+            labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
+            datasets: [{
+                data: [16.67, 16.67, 16.67, 16.67, 16.67, 16.67],
+                backgroundColor: ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'],
+                borderWidth: 6,
+                borderColor: '#fff',
+                cutout: '70%',
+                circumference: 180,
+                rotation: 270
+            }]
+        };
+
+        healthChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 0 // This fixes the animation issue!
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }
+                }
+            },
+            plugins: [{
+                id: 'needle',
+                afterDatasetDraw(chart, args, options) {
+                    const { ctx, chartArea: { width, height } } = chart;
+                    ctx.save();
+
+                    const angle = (270 + targetAngle) * (Math.PI / 180);
+                    const cx = width / 2;
+                    const cy = height * 0.78;
+                    const needleLength = height * 0.45;
+
+                    const needleX = cx + Math.cos(angle) * needleLength;
+                    const needleY = cy + Math.sin(angle) * needleLength;
+
+                    // Draw needle line
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy);
+                    ctx.lineTo(needleX, needleY);
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = '#000';
+                    ctx.lineCap = 'round';
+                    ctx.stroke();
+
+                    // Draw needle center circle
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#000';
+                    ctx.fill();
+
+                    ctx.restore();
+                }
+            }]
+        });
+    }
+
+    function updateRiskGauge() {
+        const ctx = document.getElementById('riskGaugeChart');
+        if (!ctx) return;
+
+        // Destroy existing chart if it exists
+        if (riskChart) {
+            riskChart.destroy();
+        }
+
+        // Calculate needle position based on risk score
+        const riskPercentage = (riskProfileScore / 12) * 100;
+        const targetAngle = (riskPercentage / 100) * 60 - 30;
+
+        const data = {
+            labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
+            datasets: [{
+                data: [16.67, 16.67, 16.67, 16.67, 16.67, 16.67],
+                backgroundColor: ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'],
+                borderWidth: 6,
+                borderColor: '#fff',
+                cutout: '70%',
+                circumference: 180,
+                rotation: 270
+            }]
+        };
+
+        riskChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 0 // ADD THIS TO FIX ANIMATION
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }
+                }
+            },
+            plugins: [{
+                id: 'needle',
+                afterDatasetDraw(chart, args, options) {
+                    const { ctx, chartArea: { width, height } } = chart;
+                    ctx.save();
+
+                    const angle = (270 + targetAngle) * (Math.PI / 180);
+                    const cx = width / 2;
+                    const cy = height * 0.78;
+                    const needleLength = height * 0.45;
+
+                    const needleX = cx + Math.cos(angle) * needleLength;
+                    const needleY = cy + Math.sin(angle) * needleLength;
+
+                    // Draw needle line
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy);
+                    ctx.lineTo(needleX, needleY);
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = '#000';
+                    ctx.lineCap = 'round';
+                    ctx.stroke();
+
+                    // Draw needle center circle
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#000';
+                    ctx.fill();
+
+                    ctx.restore();
+                }
+            }]
+        });
+    }
+    // Modified showFeedbackReport function
+    function showFeedbackReport() {
+        calculateScores();
+        updateFeedbackContent();
+
+        // Hide the results card and show the feedback card
+        const resultsCard = document.getElementById('results-card');
+        const feedbackCard = document.getElementById('feedback-card');
+        const questionContainer = document.querySelector(".question-container")
+
+
+
+        resultsCard.classList.remove('active');
+        feedbackCard.classList.add('active');
+        questionContainer.style.display = "none"
+
+        // Add feedback mode class to body
+        document.body.classList.add('feedback-mode');
+
+        // Scroll to top smoothly
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        // Update current question index to feedback card
+        const feedbackCardIndex = Array.from(questionCards).indexOf(feedbackCard);
+        currentQuestionIndex = feedbackCardIndex;
+    }
+
+    // Modified goBackToResults function
+    function goBackToResults() {
+        const resultsCard = document.getElementById('results-card');
+        const feedbackCard = document.getElementById('feedback-card');
+        const questionContainer = document.querySelector(".question-container")
+
+
+        feedbackCard.classList.remove('active');
+        resultsCard.classList.add('active');
+        questionContainer.style.display = "unset"
+
+        // Remove feedback mode class
+        document.body.classList.remove('feedback-mode');
+
+        // Update current question index back to results card
+        const resultsCardIndex = Array.from(questionCards).indexOf(resultsCard);
+        currentQuestionIndex = resultsCardIndex;
+
+        // Update progress tracker
+        updateProgressTracker(resultsCardIndex);
+    }
+
+
+    function updateFeedbackContent() {
+        // Create both gauge charts
+        updateRiskGauge();
+        updateHealthGauge();
+
+        // Update Risk Badge
+        const riskBadge = document.getElementById('risk-badge');
+        const riskText = document.getElementById('risk-text');
+        if (riskProfileScore >= 9) {
+            riskBadge.textContent = 'High Risk';
+            riskBadge.className = 'risk-badge high-risk';
+            riskText.textContent = 'High risk tolerance';
+        } else if (riskProfileScore >= 5) {
+            riskBadge.textContent = 'Moderate Risk';
+            riskBadge.className = 'risk-badge moderate-risk';
+            riskText.textContent = 'Open to some risk';
+        } else {
+            riskBadge.textContent = 'Low Risk';
+            riskBadge.className = 'risk-badge low-risk';
+            riskText.textContent = 'Prefer safety and stability';
+        }
+
+        // Update Health Badge
+        const healthBadge = document.getElementById('health-badge');
+        const weakArea = document.getElementById('weak-area');
+        const actionNeeded = document.getElementById('action-needed');
+
+        if (financialHealthScore >= 12) {
+            healthBadge.textContent = 'On Track';
+            healthBadge.className = 'health-badge good-health';
+            weakArea.textContent = 'Continue current practices';
+            actionNeeded.textContent = 'Maintain healthy habits';
+        } else if (financialHealthScore >= 7) {
+            healthBadge.textContent = 'Moderate';
+            healthBadge.className = 'health-badge moderate-health';
+            weakArea.textContent = 'Some areas need attention';
+            actionNeeded.textContent = 'Improve saving consistency';
+        } else {
+            healthBadge.textContent = 'Needs Improvement';
+            healthBadge.className = 'health-badge poor-health';
+            weakArea.textContent = 'Not saving regularly / Lack emergency fund';
+            actionNeeded.textContent = 'Improve insurance coverage';
+        }
+    }
+    // Star rating functionality
+    function setRating(rating) {
+        currentRating = rating;
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Re-select question cards to include the feedback card
+        questionCards = document.querySelectorAll('.question-card');
+
+        showQuestion(currentQuestionIndex);
+
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const name = this.name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(otherRadio => {
+                    otherRadio.closest('.option-label').classList.remove('is-selected');
+                });
+                this.closest('.option-label').classList.add('is-selected');
+                if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
+                    setTimeout(() => {
+                        nextQuestion();
+                    }, 1000);
+                }
+            });
+        });
+    });
 
 
 
