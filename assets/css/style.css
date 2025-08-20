@@ -203,6 +203,19 @@ body {
   border-radius: 4px;
 }
 
+/* Enhanced progress bar for completed card - same as active */
+.progress-card.completed .progress-bar-fill {
+  background: linear-gradient(90deg, #4b31aa, #1d8c88);
+  box-shadow: 0 2px 4px rgba(20, 184, 166, 0.3);
+}
+
+/* Make progress bar more prominent when completed - same as active */
+.progress-card.completed .progress-bar-container {
+  background: rgba(255, 255, 255, 0.5);
+  height: 8px; /* Slightly thicker */
+  border-radius: 4px;
+}
+
 .completion-icon {
   position: absolute;
   top: 0;
