@@ -202,7 +202,7 @@
                         profile.</span>
                 </label>
                 <label class="option-label checkbox">
-                    <input type="checkbox" id="consent-checkbox">
+                    <input type="checkbox" id="consent-checkbox-2">
                     <span>I agree to be contacted by a Geojit expert. My data is safe and secure.</span>
                 </label>
             </div>
@@ -903,16 +903,16 @@
             <p class="question-subtitle">Select the options you're interested in:</p> -->
             <div style="width: 100%; text-align: left; font-size: 18px;">
                 <label class="option-label checkbox">
-                    <input type="checkbox" id="consent-checkbox">
+                    <input type="checkbox" id="community-checkbox">
                     <span>Would you like to join our FundsGenie Community for exclusive updates and offers?</span>
                 </label>
                 <label class="option-label checkbox">
-                    <input type="checkbox" id="consent-checkbox">
+                    <input type="checkbox" id="newsletter-checkbox">
                     <span>We’ll send you a 3-month Geojit Insights subscription and monthly newsletter.
                         Would you like that?</span>
                 </label>
                 <label class="option-label checkbox">
-                    <input type="checkbox" id="consent-checkbox">
+                    <input type="checkbox" id="masterclass-checkbox">
                     <span>Are you interested in attending our upcoming Financial Masterclass sessions?</span>
                 </label>
             </div>
@@ -963,7 +963,7 @@
                         <div class="report-summary">
                             <div class="summary-header">
                                 <h3>Report Summary</h3>
-                                <p>Here's Your personalized financial roadmap</p>
+                                <!-- <p>Here's Your personalized financial roadmap</p> -->
                             </div>
                             <div class="summary-actions">
                                 <button class="download-btn">Download Report</button>
@@ -1031,7 +1031,8 @@
                         <div class="recommendations">
                             <div class="recommendations-content">
                                 <h3>Recommendations by Geojit</h3>
-                                <p id="recommendation-summary">It's never too late to start building healthy money habits</p>
+                                <p id="recommendation-summary">It's never too late to start building healthy money
+                                    habits</p>
                                 <ul id="recommendation-list">
                                     <li>Building an emergency fund</li>
                                     <li>Creating a habit of tracking income and expenses</li>
@@ -1044,27 +1045,30 @@
                             </div>
                         </div>
 
-                        <button class="assessment-again-btn">Take Assessment Again</button>
+                        <button class="assessment-again-btn" onclick="resetAssessment()">Take Assessment Again</button>
 
 
                         <div class="rating-section">
                             <h3>Rate your experience</h3>
                             <p>How's your overall experience today?</p>
                             <div class="rating-stars">
-                                <span class="star" onclick="setRating(1)">⭐</span>
-                                <span class="star" onclick="setRating(2)">⭐</span>
-                                <span class="star" onclick="setRating(3)">⭐</span>
-                                <span class="star" onclick="setRating(4)">⭐</span>
-                                <span class="star" onclick="setRating(5)">⭐</span>
+                                <span class="star" onclick="setRating(1)">★</span>
+                                <span class="star" onclick="setRating(2)">★</span>
+                                <span class="star" onclick="setRating(3)">★</span>
+                                <span class="star" onclick="setRating(4)">★</span>
+                                <span class="star" onclick="setRating(5)">★</span>
                             </div>
                             <div class="feedback-input">
                                 <label>Describe your Issue</label>
                                 <textarea placeholder="Tell us about your experience"></textarea>
-                                <div class="feedback-checkbox">
-                                    <input type="checkbox" id="feedback-contact">
-                                    <label for="feedback-contact">I would like to be contacted about my Issue</label>
+                                <div class="feedback-actions">
+                                    <div class="feedback-checkbox">
+                                        <input type="checkbox" id="feedback-contact">
+                                        <label for="feedback-contact">I would like to be contacted about my
+                                            Issue</label>
+                                    </div>
+                                    <button class="submit-feedback">Submit</button>
                                 </div>
-                                <button class="submit-feedback">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -1460,6 +1464,8 @@
     // Replace the existing updateProgressTracker function with this fixed version
 
     function updateProgressTracker(index) {
+
+
         progressCards.forEach((card, i) => {
             card.classList.remove('active');
             const progressBar = card.querySelector('.progress-bar-fill');
@@ -1501,7 +1507,9 @@
                             questionsAnsweredInSection++;
                         }
                     } else if (q === 2) {
-                        if (document.getElementById('consent-checkbox').checked) {
+                        const consent1 = document.getElementById('consent-checkbox').checked;
+                        const consent2 = document.getElementById('consent-checkbox-2').checked;
+                        if (consent1 && consent2) {
                             questionsAnsweredInSection++;
                         }
                     } else if (q >= 3 && q <= 20) {
@@ -1628,26 +1636,52 @@
     }
 
     function nextQuestion() {
+
         if (currentQuestionIndex === 0) {
-            const userName = document.getElementById('user-name').value;
+            const userName = document.getElementById('user-name').value.trim();
             if (!userName) {
                 showAlert('Please enter your name to proceed.');
                 return;
             }
+            if (userName.length < 2) {
+                showAlert('Please enter a valid name (at least 2 characters).');
+                return;
+            }
         } else if (currentQuestionIndex === 1) {
-            const userEmail = document.getElementById('contact-email').value;
-            const userPhone = document.getElementById('contact-phone').value;
+            const userEmail = document.getElementById('contact-email').value.trim();
+            const userPhone = document.getElementById('contact-phone').value.trim();
+
             if (!userEmail || !userPhone) {
                 showAlert('Please enter both your email and phone number to proceed.');
                 return;
             }
-        } else if (currentQuestionIndex === 2) {
-            const consentChecked = document.getElementById('consent-checkbox').checked;
-            if (!consentChecked) {
-                showAlert('Please agree to the terms to proceed.');
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(userEmail)) {
+                showAlert('Please enter a valid email address.');
                 return;
             }
-        } else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
+
+            // Phone validation (10 digits)
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(userPhone)) {
+                showAlert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+        } else if (currentQuestionIndex === 2) {
+            const consent1 = document.getElementById('consent-checkbox').checked;
+            const consent2 = document.getElementById('consent-checkbox-2').checked;
+
+            if (!consent1 || !consent2) {
+                showAlert('Please agree to both terms to proceed.');
+                return;
+            }
+        }
+
+
+   else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
             const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
             const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
             if (!selectedOption) {
@@ -1785,9 +1819,11 @@
             healthChart.destroy();
         }
 
-        // Calculate needle position based on health score
+        // Calculate needle position based on health score - CORRECT MAX: 18
         const healthPercentage = (financialHealthScore / 18) * 100;
-        const targetAngle = (healthPercentage / 100) * 60 - 30; // Convert to gauge angle
+        const targetAngle = (healthPercentage / 100) * 60 - 30;
+
+        console.log('Health Gauge - Score:', financialHealthScore, '/ 18, Percentage:', healthPercentage, 'Angle:', targetAngle);
 
         const data = {
             labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
@@ -1809,7 +1845,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 0 // This fixes the animation issue!
+                    duration: 0
                 },
                 plugins: {
                     legend: { display: false },
@@ -1850,7 +1886,6 @@
             }]
         });
     }
-
     function updateRiskGauge() {
         const ctx = document.getElementById('riskGaugeChart');
         if (!ctx) return;
@@ -1926,59 +1961,98 @@
         });
     }
 
-    function updateRecommendations() {
-    const recommendationSummary = document.getElementById('recommendation-summary');
-    const recommendationList = document.getElementById('recommendation-list');
-    
-    let summary = '';
-    let recommendations = [];
-    
-    // Financial Health Recommendations
-    if (financialHealthScore >= 12) {
-        summary = "Excellent! You're doing a great job managing your finances.";
-        recommendations = [
-            'Optimize your existing investments for better returns',
-            'Diversify further with expert guidance',
-            'Explore wealth-building and tax-efficiency strategies'
-        ];
-    } else if (financialHealthScore >= 7) {
-        summary = "You're on the right path! Some healthy habits developed.";
-        recommendations = [
-            'Prioritizing goal-based investments',
-            'Reviewing your portfolio regularly',
-            'Enhancing your insurance and savings buffers'
-        ];
-    } else {
-        summary = "Your financial health needs attention. Let's start building healthy money habits.";
-        recommendations = [
-            'Building an emergency fund',
-            'Creating a habit of tracking income and expenses',
-            'Setting basic life and health insurance in place'
-        ];
-    }
-    
-    // Add Risk Profile specific recommendations
-    if (riskProfileScore >= 9) {
-        recommendations.push('SIPs in equity mutual funds aligned with your long-term goals');
-        recommendations.push('Staying disciplined during market ups and downs');
-    } else if (riskProfileScore >= 5) {
-        recommendations.push('Balanced Advantage Funds or Hybrid Equity Funds');
-        recommendations.push('Mixing equity with safer investments for stability');
-    } else {
-        recommendations.push('Low-risk options like debt mutual funds');
-        recommendations.push('Ensuring liquidity through short-duration funds');
-    }
-    
-    // Update the content
-    if (recommendationSummary) {
-        recommendationSummary.textContent = summary;
-    }
-    
-    if (recommendationList) {
-        recommendationList.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
-    }
-}
+    // CORRECTED: Color mapping that matches the actual chart segments
+    function getColorFromScore(percentage) {
+        // The chart starts at 270 degrees and goes 180 degrees (semicircle)
+        // Left side (low) = cyan, middle = green/yellow, right side (high) = red
 
+        // Chart colors in order from LEFT to RIGHT:
+        const colors = ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'];
+        //              cyan      green     lime       amber     orange    red
+
+        if (percentage < 16.67) return colors[0]; // cyan (leftmost)
+        if (percentage < 33.33) return colors[1]; // green
+        if (percentage < 50.00) return colors[2]; // light green/lime  
+        if (percentage < 66.67) return colors[3]; // amber/yellow
+        if (percentage < 83.33) return colors[4]; // orange
+        return colors[5]; // red (rightmost)
+    }
+
+    function getTextColorFromScore(percentage) {
+        // Use black text for all colors except red
+        if (percentage >= 83.33) return '#fff'; // white text for red background
+        return '#000'; // black text for all other colors
+    }
+
+    function debugChartColors(score, maxScore, label) {
+        const percentage = (score / maxScore) * 100;
+        const color = getColorFromScore(percentage);
+        const angle = (percentage / 100) * 60 - 30; // Chart angle calculation
+
+        console.log(`${label}:`, {
+            score: score,
+            maxScore: maxScore,
+            percentage: percentage.toFixed(2) + '%',
+            color: color,
+            needleAngle: angle.toFixed(2) + '°'
+        });
+
+        return { percentage, color, angle };
+    }
+
+
+    function updateRecommendations() {
+        const recommendationSummary = document.getElementById('recommendation-summary');
+        const recommendationList = document.getElementById('recommendation-list');
+
+        let summary = '';
+        let recommendations = [];
+
+        // Financial Health Recommendations - EXACT text from your document
+        if (financialHealthScore >= 12) { // 12-18: On Track
+            summary = "Excellent! You're doing a great job managing your finances. You have a clear understanding of your money, plan for the future, and protect what you've built.";
+            recommendations = [
+                'Optimize your existing investments for better returns',
+                'Diversify further with expert guidance',
+                'Explore wealth-building and tax-efficiency strategies'
+            ];
+        } else if (financialHealthScore >= 7) { // 7-11: Moderate
+            summary = "You're on the right path! You've developed some healthy financial habits, but there's room for improvement in planning, protection, or investment consistency.";
+            recommendations = [
+                'Prioritizing goal-based investments',
+                'Reviewing your portfolio regularly',
+                'Enhancing your insurance and savings buffers'
+            ];
+        } else { // 0-6: Needs Improvement
+            summary = "Your financial health needs attention. It looks like you're either not saving regularly, lack a safety net, or are underinsured. Don't worry – it's never too late to start building healthy money habits.";
+            recommendations = [
+                'Building an emergency fund',
+                'Creating a habit of tracking income and expenses',
+                'Setting basic life and health insurance in place'
+            ];
+        }
+
+        // Add Risk Profile specific recommendations - EXACT text from your document
+        if (riskProfileScore >= 9) { // 9-12: High Risk
+            recommendations.push('SIPs in equity mutual funds aligned with your long-term goals');
+            recommendations.push('Staying disciplined during market ups and downs');
+        } else if (riskProfileScore >= 5) { // 5-8: Moderate Risk
+            recommendations.push('Balanced Advantage Funds or Hybrid Equity Funds');
+            recommendations.push('Mixing equity with safer investments for stability');
+        } else { // 0-4: Low Risk
+            recommendations.push('Low-risk options like debt mutual funds or conservative hybrid funds');
+            recommendations.push('Ensuring liquidity through short-duration funds');
+        }
+
+        // Update the content
+        if (recommendationSummary) {
+            recommendationSummary.textContent = summary;
+        }
+
+        if (recommendationList) {
+            recommendationList.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
+        }
+    }
 
     // Modified showFeedbackReport function
     function showFeedbackReport() {
@@ -2033,53 +2107,79 @@
     }
 
 
-function updateFeedbackContent() {
-    // Create both gauge charts
-    updateRiskGauge();
-    updateHealthGauge();
+    function updateFeedbackContent() {
+        // Create both gauge charts
+        updateRiskGauge();
+        updateHealthGauge();
 
-    // Update Risk Badge
-    const riskBadge = document.getElementById('risk-badge');
-    const riskText = document.getElementById('risk-text');
-   if (riskProfileScore >= 9) {
-    riskBadge.textContent = 'High Risk';
-    riskBadge.className = 'risk-badge high-risk';
-    riskText.textContent = 'Comfortable with volatility and long-term investments';
-} else if (riskProfileScore >= 5) {
-    riskBadge.textContent = 'Moderate Risk';
-    riskBadge.className = 'risk-badge moderate-risk';
-    riskText.textContent = 'Open to some risk in exchange for better returns';
-} else {
-    riskBadge.textContent = 'Low Risk';
-    riskBadge.className = 'risk-badge low-risk';
-    riskText.textContent = 'Prefer safety and stability';
-}
+        // Calculate percentages
+        const riskPercentage = (riskProfileScore / 12) * 100;
+        const healthPercentage = (financialHealthScore / 18) * 100;
 
-    // Update Health Badge - UPDATED TO MATCH DOCUMENT
-    const healthBadge = document.getElementById('health-badge');
-    const weakArea = document.getElementById('weak-area');
-    const actionNeeded = document.getElementById('action-needed');
+        // DEBUG: Check what we're getting
+        console.log('=== CHART DEBUG ===');
+        const riskDebug = debugChartColors(riskProfileScore, 12, 'Risk Profile');
+        const healthDebug = debugChartColors(financialHealthScore, 18, 'Financial Health');
+        console.log('==================');
 
-    if (financialHealthScore >= 12) {
-        healthBadge.textContent = 'On Track';
-        healthBadge.className = 'health-badge good-health';
-        weakArea.textContent = 'Excellent financial management';
-        actionNeeded.textContent = 'Optimize existing investments for better returns';
-    } else if (financialHealthScore >= 7) {
-        healthBadge.textContent = 'Moderate';
-        healthBadge.className = 'health-badge moderate-health';
-        weakArea.textContent = 'Some healthy habits developed';
-        actionNeeded.textContent = 'Prioritize goal-based investments';
-    } else {
-        healthBadge.textContent = 'Needs Improvement';
-        healthBadge.className = 'health-badge poor-health';
-        weakArea.textContent = 'Not saving regularly / Lack emergency fund';
-        actionNeeded.textContent = 'Build emergency fund and track expenses';
+        // Get colors using corrected mapping
+        const riskBgColor = getColorFromScore(riskPercentage);
+        const healthBgColor = getColorFromScore(healthPercentage);
+        const riskTextColor = getTextColorFromScore(riskPercentage);
+        const healthTextColor = getTextColorFromScore(healthPercentage);
+
+        // Update Risk Badge
+        const riskBadge = document.getElementById('risk-badge');
+        const riskText = document.getElementById('risk-text');
+
+        if (riskProfileScore >= 9) {
+            riskBadge.textContent = 'High Risk';
+            riskText.textContent = 'Comfortable with volatility and long-term investments';
+        } else if (riskProfileScore >= 5) {
+            riskBadge.textContent = 'Moderate Risk';
+            riskText.textContent = 'Open to some risk in exchange for better returns';
+        } else {
+            riskBadge.textContent = 'Low Risk';
+            riskText.textContent = 'Prefer safety and stability';
+        }
+
+        // Apply colors
+        riskBadge.style.backgroundColor = riskBgColor;
+        riskBadge.style.color = riskTextColor;
+        riskBadge.className = 'risk-badge'; // Reset class
+
+        // Update Health Badge
+        const healthBadge = document.getElementById('health-badge');
+        const weakArea = document.getElementById('weak-area');
+        const actionNeeded = document.getElementById('action-needed');
+
+        if (financialHealthScore >= 12) {
+            healthBadge.textContent = 'On Track';
+            weakArea.textContent = 'Excellent financial management';
+            actionNeeded.textContent = 'Optimize existing investments for better returns';
+        } else if (financialHealthScore >= 7) {
+            healthBadge.textContent = 'Moderate';
+            weakArea.textContent = 'Some healthy habits developed';
+            actionNeeded.textContent = 'Prioritize goal-based investments';
+        } else {
+            healthBadge.textContent = 'Needs Improvement';
+            weakArea.textContent = 'Not saving regularly / Lack emergency fund';
+            actionNeeded.textContent = 'Build emergency fund and track expenses';
+        }
+
+        // Apply colors
+        healthBadge.style.backgroundColor = healthBgColor;
+        healthBadge.style.color = healthTextColor;
+        healthBadge.className = 'health-badge'; // Reset class
+
+        // Log final colors for verification
+        console.log('Final Badge Colors:');
+        console.log('Risk Badge:', riskBgColor, 'Text:', riskTextColor);
+        console.log('Health Badge:', healthBgColor, 'Text:', healthTextColor);
+
+        // Update recommendations
+        updateRecommendations();
     }
-
-     // ADD THIS LINE at the end:
-    updateRecommendations();
-}
     // Star rating functionality
     function setRating(rating) {
         currentRating = rating;
@@ -2091,6 +2191,78 @@ function updateFeedbackContent() {
                 star.classList.remove('active');
             }
         });
+    }
+
+    function resetAssessment() {
+        // Reset all variables
+        currentQuestionIndex = 0;
+        financialHealthScore = 0;
+        riskProfileScore = 0;
+        currentRating = 0;
+
+        // Clear all form inputs
+        document.getElementById('user-name').value = '';
+        document.getElementById('contact-email').value = '';
+        document.getElementById('contact-phone').value = '';
+
+        // Reset all checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        // Reset all radio buttons and remove selected styling
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.checked = false;
+            radio.closest('.option-label').classList.remove('is-selected');
+        });
+
+        // Reset rating stars
+        document.querySelectorAll('.star').forEach(star => {
+            star.classList.remove('active');
+        });
+
+        // Clear feedback textarea
+        const feedbackTextarea = document.querySelector('.feedback-input textarea');
+        if (feedbackTextarea) {
+            feedbackTextarea.value = '';
+        }
+
+        // Reset feedback checkbox
+        const feedbackContactCheckbox = document.getElementById('feedback-contact');
+        if (feedbackContactCheckbox) {
+            feedbackContactCheckbox.checked = false;
+        }
+
+        // Hide feedback card and show question cards
+        const feedbackCard = document.getElementById('feedback-card');
+        const resultsCard = document.getElementById('results-card');
+        const questionContainer = document.querySelector('.question-container');
+
+        if (feedbackCard) {
+            feedbackCard.classList.remove('active');
+        }
+
+        if (resultsCard) {
+            resultsCard.classList.remove('active');
+        }
+
+        if (questionContainer) {
+            questionContainer.style.display = "unset";
+        }
+
+        // Remove feedback mode from body
+        document.body.classList.remove('feedback-mode');
+
+        // Reset to first question
+        showQuestion(0);
+
+        // Scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        console.log('Assessment reset successfully');
     }
 
 

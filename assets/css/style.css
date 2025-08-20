@@ -1556,6 +1556,9 @@ img {
     padding-bottom: 0.5rem;
     width: 90%;
     top: 8rem;
+    display: none;
+    /* position: sticky;
+    top: 5rem; */
   }
 
   .progress-card {
@@ -1592,6 +1595,9 @@ img {
     font-size: 20px;
   }
 
+  .hero-container {
+    align-items: flex-start;
+  }
   .hero-section {
     padding: 1rem;
   }
