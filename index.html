@@ -1828,7 +1828,7 @@
         const data = {
             labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
             datasets: [{
-                data: [16.67, 16.67, 16.67, 16.67, 16.67, 16.67],
+                data:[19.44, 19.44, 13.89, 13.89, 16.67, 16.67],
                 backgroundColor: ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'],
                 borderWidth: 6,
                 borderColor: '#fff',
@@ -1902,8 +1902,8 @@
         const data = {
             labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
             datasets: [{
-                data: [16.67, 16.67, 16.67, 16.67, 16.67, 16.67],
-                backgroundColor: ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'],
+               data: [41.67, 33.33, 25], // 0-4 (5 scores), 5-8 (4 scores), 9-12 (4 scores)
+backgroundColor: ['#22d3ee', '#f59e0b', '#ef4444'], // cyan, amber, red
                 borderWidth: 6,
                 borderColor: '#fff',
                 cutout: '70%',
@@ -1962,21 +1962,18 @@
     }
 
     // CORRECTED: Color mapping that matches the actual chart segments
-    function getColorFromScore(percentage) {
-        // The chart starts at 270 degrees and goes 180 degrees (semicircle)
-        // Left side (low) = cyan, middle = green/yellow, right side (high) = red
-
-        // Chart colors in order from LEFT to RIGHT:
-        const colors = ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'];
-        //              cyan      green     lime       amber     orange    red
-
-        if (percentage < 16.67) return colors[0]; // cyan (leftmost)
-        if (percentage < 33.33) return colors[1]; // green
-        if (percentage < 50.00) return colors[2]; // light green/lime  
-        if (percentage < 66.67) return colors[3]; // amber/yellow
-        if (percentage < 83.33) return colors[4]; // orange
-        return colors[5]; // red (rightmost)
+function getColorFromScore(percentage) {
+    const colors = ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'];
+    
+    // Map based on score ranges: 0-6 (38.89%), 7-11 (27.78%), 12-18 (33.33%)
+    if (percentage <= 38.89) { // 0-6 scores (Needs Improvement)
+        return percentage <= 19.44 ? colors[0] : colors[1]; // First 2 segments (cyan/green)
+    } else if (percentage <= 66.67) { // 7-11 scores (Moderate) 
+        return percentage <= 52.78 ? colors[2] : colors[3]; // Middle 2 segments (lime/amber)
+    } else { // 12-18 scores (On Track)
+        return percentage <= 83.33 ? colors[4] : colors[5]; // Last 2 segments (orange/red)
     }
+}
 
     function getTextColorFromScore(percentage) {
         // Use black text for all colors except red
@@ -1984,21 +1981,45 @@
         return '#000'; // black text for all other colors
     }
 
-    function debugChartColors(score, maxScore, label) {
-        const percentage = (score / maxScore) * 100;
-        const color = getColorFromScore(percentage);
-        const angle = (percentage / 100) * 60 - 30; // Chart angle calculation
+    function getRiskColorFromScore(percentage) {
+    const colors = ['#22d3ee', '#f59e0b', '#ef4444']; // cyan, amber, red
+    if (percentage <= 41.67) return colors[0]; // 0-4 scores (Low Risk)
+    if (percentage <= 75) return colors[1]; // 5-8 scores (Moderate Risk)
+    return colors[2]; // 9-12 scores (High Risk)
+}
 
-        console.log(`${label}:`, {
-            score: score,
-            maxScore: maxScore,
-            percentage: percentage.toFixed(2) + '%',
-            color: color,
-            needleAngle: angle.toFixed(2) + '°'
-        });
+function getRiskTextColorFromScore(percentage) {
+    if (percentage > 75) return '#fff'; // white text for red background
+    return '#000'; // black text for cyan and amber
+}
 
-        return { percentage, color, angle };
+function debugChartColors(score, maxScore, label) {
+    const percentage = (score / maxScore) * 100;
+    const color = label.includes('Risk') ? getRiskColorFromScore(percentage) : getColorFromScore(percentage);
+    const angle = (percentage / 100) * 60 - 30;
+
+    let range = '';
+    if (label.includes('Risk')) {
+        if (score <= 4) range = 'Low Risk (0-4)';
+        else if (score <= 8) range = 'Moderate Risk (5-8)';
+        else range = 'High Risk (9-12)';
+    } else {
+        if (score <= 6) range = 'Needs Improvement (0-6)';
+        else if (score <= 11) range = 'Moderate (7-11)';
+        else range = 'On Track (12-18)';
     }
+
+    console.log(`${label}:`, {
+        score: score,
+        maxScore: maxScore,
+        percentage: percentage.toFixed(2) + '%',
+        range: range,
+        color: color,
+        needleAngle: angle.toFixed(2) + '°'
+    });
+
+    return { percentage, color, angle };
+}
 
 
     function updateRecommendations() {
@@ -2123,9 +2144,9 @@
         console.log('==================');
 
         // Get colors using corrected mapping
-        const riskBgColor = getColorFromScore(riskPercentage);
+        const riskBgColor = getRiskColorFromScore(riskPercentage);
         const healthBgColor = getColorFromScore(healthPercentage);
-        const riskTextColor = getTextColorFromScore(riskPercentage);
+        const riskTextColor = getRiskTextColorFromScore(riskPercentage);
         const healthTextColor = getTextColorFromScore(healthPercentage);
 
         // Update Risk Badge
