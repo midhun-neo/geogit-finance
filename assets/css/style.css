@@ -192,7 +192,7 @@ body {
 
 /* Enhanced progress bar for active card */
 .progress-card.active .progress-bar-fill {
-  background: linear-gradient(90deg, #4b31aa, #22d3ee);
+  background: linear-gradient(90deg, #4b31aa, #1d8c88);
   box-shadow: 0 2px 4px rgba(20, 184, 166, 0.3);
 }
 
@@ -1624,6 +1624,10 @@ img {
     min-width: 75vw !important;
   }
 
+  .submit-feedback {
+    margin: 0 auto;
+  }
+
   .option-label.checkbox {
     align-items: flex-start;
   }
@@ -1900,7 +1904,7 @@ img {
   justify-content: center;
   align-items: center;
   padding: 24px 0 16px;
-  border-bottom: 1px solid #e5e5e5;
+  /* border-bottom: 1px solid #e5e5e5; */
   margin-bottom: 24px;
 }
 
@@ -1931,6 +1935,15 @@ img {
   padding: 0;
 }
 
+.feedback-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 /* Report Summary */
 .report-summary {
   display: flex;
@@ -1938,7 +1951,7 @@ img {
   align-items: flex-start;
   margin-bottom: 24px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e5e5e5;
+  /* border-bottom: 1px solid #e5e5e5; */
 }
 .summary-header {
   width: 100%;
@@ -2202,7 +2215,7 @@ img {
   text-align: center;
 }
 
-.rating-stars {
+/* .rating-stars {
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -2219,6 +2232,53 @@ img {
 .star.active,
 .star:hover {
   opacity: 1;
+} */
+
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 10px;
+}
+
+.star {
+  font-size: 32px;
+  cursor: pointer;
+  color: #e0e0e0;
+  transition: all 0.2s ease;
+  user-select: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.star:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+  text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.3);
+}
+
+.star.active {
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.4);
+}
+
+/* Interactive hover effect */
+.rating-stars:not(.rated) .star:hover,
+.rating-stars:not(.rated) .star:hover ~ .star {
+  color: #e0e0e0;
+}
+
+.rating-stars:not(.rated) .star:hover {
+  color: #ffd700;
+}
+
+/* Show preview of rating on hover */
+.rating-stars .star:nth-child(1):hover,
+.rating-stars .star:nth-child(2):hover ~ .star:nth-child(1),
+.rating-stars .star:nth-child(3):hover ~ .star:nth-child(-n + 2),
+.rating-stars .star:nth-child(4):hover ~ .star:nth-child(-n + 3),
+.rating-stars .star:nth-child(5):hover ~ .star:nth-child(-n + 4) {
+  color: #ffd700;
 }
 
 .feedback-input label {
@@ -2246,7 +2306,6 @@ img {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
 }
 
 .feedback-checkbox input[type="checkbox"] {
@@ -2418,9 +2477,6 @@ img {
   }
   .feedback-checkbox {
     align-items: flex-start;
-  }
-  .submit-feedback {
-    margin: 0 auto;
   }
 
   .next-steps {

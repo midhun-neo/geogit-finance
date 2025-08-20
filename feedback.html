@@ -963,7 +963,7 @@
                         <div class="report-summary">
                             <div class="summary-header">
                                 <h3>Report Summary</h3>
-                                <p>Here's Your personalized financial roadmap</p>
+                                <!-- <p>Here's Your personalized financial roadmap</p> -->
                             </div>
                             <div class="summary-actions">
                                 <button class="download-btn">Download Report</button>
@@ -1044,27 +1044,29 @@
                             </div>
                         </div>
 
-                        <button class="assessment-again-btn">Take Assessment Again</button>
+                        <button class="assessment-again-btn" onclick="resetAssessment()">Take Assessment Again</button>
 
 
                         <div class="rating-section">
                             <h3>Rate your experience</h3>
                             <p>How's your overall experience today?</p>
                             <div class="rating-stars">
-                                <span class="star" onclick="setRating(1)">⭐</span>
-                                <span class="star" onclick="setRating(2)">⭐</span>
-                                <span class="star" onclick="setRating(3)">⭐</span>
-                                <span class="star" onclick="setRating(4)">⭐</span>
-                                <span class="star" onclick="setRating(5)">⭐</span>
-                            </div>
+    <span class="star" onclick="setRating(1)">★</span>
+    <span class="star" onclick="setRating(2)">★</span>
+    <span class="star" onclick="setRating(3)">★</span>
+    <span class="star" onclick="setRating(4)">★</span>
+    <span class="star" onclick="setRating(5)">★</span>
+</div>
                             <div class="feedback-input">
                                 <label>Describe your Issue</label>
                                 <textarea placeholder="Tell us about your experience"></textarea>
+                                <div class="feedback-actions">
                                 <div class="feedback-checkbox">
                                     <input type="checkbox" id="feedback-contact">
                                     <label for="feedback-contact">I would like to be contacted about my Issue</label>
                                 </div>
                                 <button class="submit-feedback">Submit</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2147,17 +2149,89 @@ function updateFeedbackContent() {
     updateRecommendations();
 }
 // Star rating functionality
-    function setRating(rating) {
-        currentRating = rating;
-        const stars = document.querySelectorAll('.star');
-        stars.forEach((star, index) => {
-            if (index < rating) {
-                star.classList.add('active');
-            } else {
-                star.classList.remove('active');
-            }
-        });
+function setRating(rating) {
+    currentRating = rating;
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+}
+
+function resetAssessment() {
+    // Reset all variables
+    currentQuestionIndex = 0;
+    financialHealthScore = 0;
+    riskProfileScore = 0;
+    currentRating = 0;
+    
+    // Clear all form inputs
+    document.getElementById('user-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-phone').value = '';
+    
+    // Reset all checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    // Reset all radio buttons and remove selected styling
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.checked = false;
+        radio.closest('.option-label').classList.remove('is-selected');
+    });
+    
+    // Reset rating stars
+    document.querySelectorAll('.star').forEach(star => {
+        star.classList.remove('active');
+    });
+    
+    // Clear feedback textarea
+    const feedbackTextarea = document.querySelector('.feedback-input textarea');
+    if (feedbackTextarea) {
+        feedbackTextarea.value = '';
     }
+    
+    // Reset feedback checkbox
+    const feedbackContactCheckbox = document.getElementById('feedback-contact');
+    if (feedbackContactCheckbox) {
+        feedbackContactCheckbox.checked = false;
+    }
+    
+    // Hide feedback card and show question cards
+    const feedbackCard = document.getElementById('feedback-card');
+    const resultsCard = document.getElementById('results-card');
+    const questionContainer = document.querySelector('.question-container');
+    
+    if (feedbackCard) {
+        feedbackCard.classList.remove('active');
+    }
+    
+    if (resultsCard) {
+        resultsCard.classList.remove('active');
+    }
+    
+    if (questionContainer) {
+        questionContainer.style.display = "unset";
+    }
+    
+    // Remove feedback mode from body
+    document.body.classList.remove('feedback-mode');
+    
+    // Reset to first question
+    showQuestion(0);
+    
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    
+    console.log('Assessment reset successfully');
+}
 
 
     document.addEventListener('DOMContentLoaded', () => {
