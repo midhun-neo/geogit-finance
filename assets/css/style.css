@@ -2363,10 +2363,14 @@ img {
   background: #017670;
   color: white;
   padding: 20px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .next-steps .next-steps-text h3 {
