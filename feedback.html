@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geojit SIP Club - Investment Platform</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Overpass:wght@600;700&display=swap"
         rel="stylesheet">
@@ -960,94 +960,128 @@
                     </div>
 
                     <div class="feedback-content">
-                        <div class="report-summary">
-                            <div class="summary-header">
-                                <h3>Report Summary</h3>
-                                <!-- <p>Here's Your personalized financial roadmap</p> -->
+                        <!-- New Report Header -->
+                        <div class="report-header">
+                            <div class="report-title-section">
+                                <h2 class="report-title">
+                                    <span class="user-name" id="report-user-name">Mathew's</span> Financial Health
+                                    Report
+                                </h2>
                             </div>
-                            <div class="summary-actions">
+                            <div class="report-actions">
                                 <button class="download-btn">Download Report</button>
-                                <button class="share-btn">
+                                <button class="share-btn whatsapp">
                                     <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
                                 </button>
-                                <button class="share-btn">
+                                <button class="share-btn general">
                                     <img src="./assets/images/share.svg" alt="share" />
                                 </button>
                             </div>
                         </div>
 
-                        <div class="risk-gauges">
-                            <div class="gauge-container">
-                                <h4>
-                                    <img src="./assets/images/risk-profile.svg" alt="risk profile" /> Risk Profile
-                                </h4>
-                                <div class="gauge-wrapper">
-                                    <canvas id="riskGaugeChart" width="200" height="120"></canvas>
-                                    <div class="gauge-labels">
-                                        <span>Low</span>
-                                        <span>High</span>
+                        <!-- New Cards Layout -->
+                        <div class="report-cards-container">
+                            <!-- Risk Profile Card -->
+                            <div class="report-card risk-card">
+                                <div class="report-card-left">
+                                    <div class="card-header">
+                                        <img src="./assets/images/risk-profile.svg" alt="risk profile"
+                                            class="card-icon" />
+                                        <h3>Risk Profile</h3>
+                                    </div>
+
+                                    <div class="gauge-section">
+                                        <div class="gauge-wrapper">
+                                            <canvas id="riskGaugeChart" width="200" height="120"></canvas>
+                                        </div>
+
                                     </div>
                                 </div>
-
-
-                                <div class="risk-badge" id="risk-badge">Moderate Risk</div>
+                                <div class="report-card-right">
+                                    <div class="gauge-info">
+                                        <div class="risk-badge" id="risk-badge">Moderate Risk</div>
+                                    </div>
+                                    <p class="risk-description" id="risk-description">
+                                        You're open to some risk in exchange for better returns.
+                                        A balanced investment approach can work well for you.
+                                    </p>
+                                    <div class="recommendations-section">
+                                        <div class="recommendations-header">
+                                            <img src="./assets/images/expert-icon.svg" alt="Expert"
+                                                class="expert-icon" />
+                                            <span>Recommendations by Geojit</span>
+                                        </div>
+                                        <ul class="recommendations-list" id="risk-recommendations">
+                                            <li>Balanced Advantage Funds or Hybrid Equity Funds</li>
+                                            <li>Mixing equity with safer investments for stability</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="gauge-container">
-                                <h4><img src="./assets/images/financial-health.svg" alt="financial health" /> Financial
-                                    Health</h4>
-                                <div class="gauge-wrapper">
-                                    <canvas id="healthGaugeChart" width="200" height="120"></canvas>
-                                    <div class="gauge-labels">
-                                        <span>Low</span>
-                                        <span>High</span>
+                            <!-- Financial Health Card (NOW MATCHING THE STRUCTURE) -->
+                            <div class="report-card health-card">
+                                <div class="report-card-left">
+                                    <div class="card-header">
+                                        <img src="./assets/images/financial-health.svg" alt="financial health"
+                                            class="card-icon" />
+                                        <h3>Financial Health</h3>
+                                    </div>
+
+                                    <div class="gauge-section">
+                                        <div class="gauge-wrapper">
+                                            <canvas id="healthGaugeChart" width="200" height="120"></canvas>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="health-badge" id="health-badge">Needs Improvement</div>
+                                <div class="report-card-right">
+                                    <div class="gauge-info">
+                                        <div class="health-badge" id="health-badge">Needs Improvement</div>
+                                    </div>
+                                    <p class="health-description" id="health-description">
+                                        Your financial health needs attention. It looks like you're either
+                                        not saving regularly, lack a safety net or are under insured.
+                                    </p>
+                                    <div class="recommendations-section">
+                                        <div class="recommendations-header">
+                                            <img src="./assets/images/expert-icon.svg" alt="Expert"
+                                                class="expert-icon" />
+                                            <span>Recommendations by Geojit</span>
+                                        </div>
+                                        <ul class="recommendations-list" id="health-recommendations">
+                                            <li>Building an emergency fund</li>
+                                            <li>Creating a habit of tracking income and expenses</li>
+                                            <li>Setting basic life and health insurance in place</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="financial-snapshot">
+                        <!-- Financial Health Snapshot -->
+                        <div class="snapshot-section">
                             <h3>Your Financial Health Snapshot</h3>
-                            <div class="snapshot-items">
-                                <div class="snapshot-item">
-                                    <div class="snapshot-dot blue"></div>
-                                    <span>Risk Preference: <span class="snapshot-result" id="risk-text">Open to some
-                                            risk</span></span>
+                            <div class="snapshot-cards">
+                                <div class="snapshot-card">
+                                    <div class="snapshot-label">Risk Preference</div>
+                                    <div class="snapshot-value" id="snapshot-risk">Open to some risk</div>
                                 </div>
-                                <div class="snapshot-item">
-                                    <div class="snapshot-dot orange"></div>
-                                    <span>Weak Area: <span class="snapshot-result" id="weak-area">Not saving regularly /
-                                            Lack emergency fund</span></span>
+                                <div class="snapshot-card">
+                                    <div class="snapshot-label">Weak Area</div>
+                                    <div class="snapshot-value" id="snapshot-weak">Not saving regularly / Lack of safety
+                                        net</div>
                                 </div>
-                                <div class="snapshot-item">
-                                    <div class="snapshot-dot orange"></div>
-                                    <span>Action Needed: <span class="snapshot-result" id="action-needed">Improve
-                                            insurance coverage</span></span>
+                                <div class="snapshot-card">
+                                    <div class="snapshot-label">Action Needed</div>
+                                    <div class="snapshot-value" id="snapshot-action">Improve insurance coverage</div>
                                 </div>
                             </div>
+                            <button class="take-assessment-btn" onclick="resetAssessment()">Take Assessment
+                                Again</button>
                         </div>
 
-                        <div class="recommendations">
-                            <div class="recommendations-content">
-                                <h3>Recommendations by Geojit</h3>
-                                <p id="recommendation-summary">It's never too late to start building healthy money
-                                    habits</p>
-                                <ul id="recommendation-list">
-                                    <li>Building an emergency fund</li>
-                                    <li>Creating a habit of tracking income and expenses</li>
-                                    <li>Setting aside 10% and health insurance in place</li>
-                                </ul>
-                            </div>
-
-                            <div class="recommendations-icon">
-                                <img src="./assets/images/expert-icon.svg" alt="Expert" />
-                            </div>
-                        </div>
-
-                        <button class="assessment-again-btn" onclick="resetAssessment()">Take Assessment Again</button>
-
-
+                        <!-- EXISTING: Rating Section -->
                         <div class="rating-section">
                             <h3>Rate your experience</h3>
                             <p>How's your overall experience today?</p>
@@ -1681,7 +1715,7 @@
         }
 
 
-   else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
+        else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
             const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
             const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
             if (!selectedOption) {
@@ -1819,66 +1853,102 @@
             healthChart.destroy();
         }
 
-        // Calculate needle position based on health score - CORRECT MAX: 18
+        // Calculate percentage based on health score
         const healthPercentage = (financialHealthScore / 18) * 100;
-        const targetAngle = (healthPercentage / 100) * 60 - 30;
-
-        console.log('Health Gauge - Score:', financialHealthScore, '/ 18, Percentage:', healthPercentage, 'Angle:', targetAngle);
 
         const data = {
-            labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
-            datasets: [{
-                data: [16.67, 16.67, 16.67, 16.67, 16.67, 16.67],
-                backgroundColor: ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'],
-                borderWidth: 6,
-                borderColor: '#fff',
-                cutout: '70%',
-                circumference: 180,
-                rotation: 270
-            }]
+            labels: ['Financial Health'],
+            datasets: [
+                {
+                    label: 'Needs Attention',
+                    data: [38.89],
+                    backgroundColor: '#ff6b35',
+                    borderWidth: 0,
+                    barPercentage: 0.4,
+                    barPercentage: 0.25,
+                    categoryPercentage: 0.8
+                },
+                {
+                    label: 'Moderate',
+                    data: [27.78],
+                    backgroundColor: '#ffa500',
+                    borderWidth: 0,
+                    barPercentage: 0.25,
+                    categoryPercentage: 0.8
+                },
+                {
+                    label: 'On Track',
+                    data: [33.33],
+                    backgroundColor: '#4ade80',
+                    borderWidth: 0,
+                    barPercentage: 0.25,
+                    categoryPercentage: 0.8
+                }
+            ]
         };
 
         healthChart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'bar',
             data: data,
             options: {
+                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
-                animation: {
-                    duration: 0
+                animation: { duration: 0 },
+                scales: {
+                    x: {
+                        stacked: true,
+                        display: false,
+                        max: 100,
+                        beginAtZero: true
+                    },
+                    y: {
+                        stacked: true,
+                        display: false
+                    }
                 },
                 plugins: {
-                    legend: { display: false },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            font: { size: 11 },
+                            boxWidth: 10,
+                            boxHeight: 10,
+                            color: '#666',
+                            padding: 12
+                        }
+                    },
                     tooltip: { enabled: false }
+                },
+                layout: {
+                    padding: {
+                        left: 5,
+                        right: 5,
+                        bottom: 5,
+                        top: 5
+                    }
                 }
             },
             plugins: [{
                 id: 'needle',
-                afterDatasetDraw(chart, args, options) {
-                    const { ctx, chartArea: { width, height } } = chart;
+                afterDatasetsDraw(chart) {
+                    const { ctx, chartArea: { left, right, top, bottom } } = chart;
+
+                    const needleX = left + (healthPercentage / 100) * (right - left);
+                    const barCenter = (top + bottom) / 2;
+
                     ctx.save();
 
-                    const angle = (270 + targetAngle) * (Math.PI / 180);
-                    const cx = width / 2;
-                    const cy = height * 0.78;
-                    const needleLength = height * 0.45;
-
-                    const needleX = cx + Math.cos(angle) * needleLength;
-                    const needleY = cy + Math.sin(angle) * needleLength;
-
-                    // Draw needle line
-                    ctx.beginPath();
-                    ctx.moveTo(cx, cy);
-                    ctx.lineTo(needleX, needleY);
-                    ctx.lineWidth = 4;
-                    ctx.strokeStyle = '#000';
-                    ctx.lineCap = 'round';
-                    ctx.stroke();
-
-                    // Draw needle center circle
-                    ctx.beginPath();
-                    ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+                    // Draw needle triangle
                     ctx.fillStyle = '#000';
+                    ctx.beginPath();
+                    ctx.moveTo(needleX, barCenter - 8);
+                    ctx.lineTo(needleX - 6, barCenter - 15);
+                    ctx.lineTo(needleX + 6, barCenter - 15);
+                    ctx.closePath();
                     ctx.fill();
 
                     ctx.restore();
@@ -1900,10 +1970,10 @@
         const targetAngle = (riskPercentage / 100) * 60 - 30;
 
         const data = {
-            labels: ['Low', 'Low-Mid', 'Mid', 'Moderate', 'Moderate-High', 'High'],
+            labels: ['Low Risk', 'Mid Risk', 'High Risk'],
             datasets: [{
-                data: [16.67, 16.67, 16.67, 16.67, 16.67, 16.67],
-                backgroundColor: ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'],
+                data: [41.67, 33.33, 25], // 0-4 (5 scores), 5-8 (4 scores), 9-12 (4 scores)
+                backgroundColor: ['#22d3ee', '#f59e0b', '#ef4444'], // cyan, amber, red
                 borderWidth: 6,
                 borderColor: '#fff',
                 cutout: '70%',
@@ -1922,7 +1992,17 @@
                     duration: 0 // ADD THIS TO FIX ANIMATION
                 },
                 plugins: {
-                    legend: { display: false },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            font: { size: 11 },
+                            color: '#666',
+                            padding: 12
+                        }
+                    },
                     tooltip: { enabled: false }
                 }
             },
@@ -1963,19 +2043,16 @@
 
     // CORRECTED: Color mapping that matches the actual chart segments
     function getColorFromScore(percentage) {
-        // The chart starts at 270 degrees and goes 180 degrees (semicircle)
-        // Left side (low) = cyan, middle = green/yellow, right side (high) = red
-
-        // Chart colors in order from LEFT to RIGHT:
         const colors = ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'];
-        //              cyan      green     lime       amber     orange    red
 
-        if (percentage < 16.67) return colors[0]; // cyan (leftmost)
-        if (percentage < 33.33) return colors[1]; // green
-        if (percentage < 50.00) return colors[2]; // light green/lime  
-        if (percentage < 66.67) return colors[3]; // amber/yellow
-        if (percentage < 83.33) return colors[4]; // orange
-        return colors[5]; // red (rightmost)
+        // Map based on score ranges: 0-6 (38.89%), 7-11 (27.78%), 12-18 (33.33%)
+        if (percentage <= 38.89) { // 0-6 scores (Needs Improvement)
+            return percentage <= 19.44 ? colors[0] : colors[1]; // First 2 segments (cyan/green)
+        } else if (percentage <= 66.67) { // 7-11 scores (Moderate) 
+            return percentage <= 52.78 ? colors[2] : colors[3]; // Middle 2 segments (lime/amber)
+        } else { // 12-18 scores (On Track)
+            return percentage <= 83.33 ? colors[4] : colors[5]; // Last 2 segments (orange/red)
+        }
     }
 
     function getTextColorFromScore(percentage) {
@@ -1984,15 +2061,39 @@
         return '#000'; // black text for all other colors
     }
 
+    function getRiskColorFromScore(percentage) {
+        const colors = ['#22d3ee', '#f59e0b', '#ef4444']; // cyan, amber, red
+        if (percentage <= 41.67) return colors[0]; // 0-4 scores (Low Risk)
+        if (percentage <= 75) return colors[1]; // 5-8 scores (Moderate Risk)
+        return colors[2]; // 9-12 scores (High Risk)
+    }
+
+    function getRiskTextColorFromScore(percentage) {
+        if (percentage > 75) return '#fff'; // white text for red background
+        return '#000'; // black text for cyan and amber
+    }
+
     function debugChartColors(score, maxScore, label) {
         const percentage = (score / maxScore) * 100;
-        const color = getColorFromScore(percentage);
-        const angle = (percentage / 100) * 60 - 30; // Chart angle calculation
+        const color = label.includes('Risk') ? getRiskColorFromScore(percentage) : getColorFromScore(percentage);
+        const angle = (percentage / 100) * 60 - 30;
+
+        let range = '';
+        if (label.includes('Risk')) {
+            if (score <= 4) range = 'Low Risk (0-4)';
+            else if (score <= 8) range = 'Moderate Risk (5-8)';
+            else range = 'High Risk (9-12)';
+        } else {
+            if (score <= 6) range = 'Needs Improvement (0-6)';
+            else if (score <= 11) range = 'Moderate (7-11)';
+            else range = 'On Track (12-18)';
+        }
 
         console.log(`${label}:`, {
             score: score,
             maxScore: maxScore,
             percentage: percentage.toFixed(2) + '%',
+            range: range,
             color: color,
             needleAngle: angle.toFixed(2) + '°'
         });
@@ -2108,6 +2209,10 @@
 
 
     function updateFeedbackContent() {
+        // Set user name in report title
+        const userName = document.getElementById('user-name').value || 'Your';
+        document.getElementById('report-user-name').textContent = userName + "'s";
+
         // Create both gauge charts
         updateRiskGauge();
         updateHealthGauge();
@@ -2116,69 +2221,74 @@
         const riskPercentage = (riskProfileScore / 12) * 100;
         const healthPercentage = (financialHealthScore / 18) * 100;
 
-        // DEBUG: Check what we're getting
-        console.log('=== CHART DEBUG ===');
-        const riskDebug = debugChartColors(riskProfileScore, 12, 'Risk Profile');
-        const healthDebug = debugChartColors(financialHealthScore, 18, 'Financial Health');
-        console.log('==================');
-
-        // Get colors using corrected mapping
-        const riskBgColor = getColorFromScore(riskPercentage);
-        const healthBgColor = getColorFromScore(healthPercentage);
-        const riskTextColor = getTextColorFromScore(riskPercentage);
-        const healthTextColor = getTextColorFromScore(healthPercentage);
-
-        // Update Risk Badge
+        // Update Risk Profile Content
         const riskBadge = document.getElementById('risk-badge');
-        const riskText = document.getElementById('risk-text');
+        const riskDescription = document.getElementById('risk-description');
+        const riskRecommendations = document.getElementById('risk-recommendations');
 
         if (riskProfileScore >= 9) {
             riskBadge.textContent = 'High Risk';
-            riskText.textContent = 'Comfortable with volatility and long-term investments';
+            riskDescription.textContent = 'You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.';
+            riskRecommendations.innerHTML = `
+            <li>SIPs in equity mutual funds aligned with your long-term goals</li>
+            <li>Staying disciplined during market ups and downs</li>
+        `;
         } else if (riskProfileScore >= 5) {
             riskBadge.textContent = 'Moderate Risk';
-            riskText.textContent = 'Open to some risk in exchange for better returns';
+            riskDescription.textContent = 'You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.';
+            riskRecommendations.innerHTML = `
+            <li>Balanced Advantage Funds or Hybrid Equity Funds</li>
+            <li>Mixing equity with safer investments for stability</li>
+        `;
         } else {
             riskBadge.textContent = 'Low Risk';
-            riskText.textContent = 'Prefer safety and stability';
+            riskDescription.textContent = 'You prefer safety and stability in your investments. Conservative approaches suit your risk appetite.';
+            riskRecommendations.innerHTML = `
+            <li>Low-risk options like debt mutual funds or conservative hybrid funds</li>
+            <li>Ensuring liquidity through short-duration funds</li>
+        `;
         }
 
-        // Apply colors
-        riskBadge.style.backgroundColor = riskBgColor;
-        riskBadge.style.color = riskTextColor;
-        riskBadge.className = 'risk-badge'; // Reset class
-
-        // Update Health Badge
+        // Update Financial Health Content
         const healthBadge = document.getElementById('health-badge');
-        const weakArea = document.getElementById('weak-area');
-        const actionNeeded = document.getElementById('action-needed');
+        const healthDescription = document.getElementById('health-description');
+        const healthRecommendations = document.getElementById('health-recommendations');
 
         if (financialHealthScore >= 12) {
             healthBadge.textContent = 'On Track';
-            weakArea.textContent = 'Excellent financial management';
-            actionNeeded.textContent = 'Optimize existing investments for better returns';
+            healthDescription.textContent = 'Excellent! You\'re doing a great job managing your finances. You have a clear understanding of your money and plan for the future.';
+            healthRecommendations.innerHTML = `
+            <li>Optimize your existing investments for better returns</li>
+            <li>Diversify further with expert guidance</li>
+            <li>Explore wealth-building and tax-efficiency strategies</li>
+        `;
         } else if (financialHealthScore >= 7) {
             healthBadge.textContent = 'Moderate';
-            weakArea.textContent = 'Some healthy habits developed';
-            actionNeeded.textContent = 'Prioritize goal-based investments';
+            healthDescription.textContent = 'You\'re on the right path! You\'ve developed some healthy financial habits, but there\'s room for improvement.';
+            healthRecommendations.innerHTML = `
+            <li>Prioritizing goal-based investments</li>
+            <li>Reviewing your portfolio regularly</li>
+            <li>Enhancing your insurance and savings buffers</li>
+        `;
         } else {
             healthBadge.textContent = 'Needs Improvement';
-            weakArea.textContent = 'Not saving regularly / Lack emergency fund';
-            actionNeeded.textContent = 'Build emergency fund and track expenses';
+            healthDescription.textContent = 'Your financial health needs attention. It looks like you\'re either not saving regularly, lack a safety net or are under insured.';
+            healthRecommendations.innerHTML = `
+            <li>Building an emergency fund</li>
+            <li>Creating a habit of tracking income and expenses</li>
+            <li>Setting basic life and health insurance in place</li>
+        `;
         }
 
-        // Apply colors
-        healthBadge.style.backgroundColor = healthBgColor;
-        healthBadge.style.color = healthTextColor;
-        healthBadge.className = 'health-badge'; // Reset class
+        // Update snapshot values
+        document.getElementById('snapshot-risk').textContent = riskBadge.textContent === 'High Risk' ? 'Comfortable with volatility' :
+            riskBadge.textContent === 'Moderate Risk' ? 'Open to some risk' : 'Prefer safety and stability';
 
-        // Log final colors for verification
-        console.log('Final Badge Colors:');
-        console.log('Risk Badge:', riskBgColor, 'Text:', riskTextColor);
-        console.log('Health Badge:', healthBgColor, 'Text:', healthTextColor);
+        document.getElementById('snapshot-weak').textContent = financialHealthScore < 7 ? 'Not saving regularly / Lack of safety net' :
+            financialHealthScore < 12 ? 'Some healthy habits developed' : 'Excellent financial management';
 
-        // Update recommendations
-        updateRecommendations();
+        document.getElementById('snapshot-action').textContent = financialHealthScore < 7 ? 'Improve insurance coverage' :
+            financialHealthScore < 12 ? 'Prioritize goal-based investments' : 'Optimize existing investments';
     }
     // Star rating functionality
     function setRating(rating) {
@@ -2264,6 +2374,7 @@
 
         console.log('Assessment reset successfully');
     }
+
 
 
     document.addEventListener('DOMContentLoaded', () => {
