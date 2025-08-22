@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-key="appTitle">Geojit SIP Club - Investment Platform</title>
+    <title data-key="appTitle">Geojit SIP Club - Investment Platform</title>
     <link rel="stylesheet" href="assets/css/style2.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Overpass:wght@600;700&display=swap"
@@ -21,7 +21,7 @@
         <img src="assets/images/logo.svg" alt="logo" />
     </div>
 
-    
+
     <div class="logo">
         <img src="./assets/images/geojit-finhealth.svg" alt="geojit-finhealth" />
 
@@ -45,7 +45,7 @@
 <section class="progress-tracker-section">
     <div class="progress-tracker-container">
         <div class="progress-card active" id="progress-profile">
-<p class="progress-card-title" data-key="progressProfileTitle">Profile</p>
+            <p class="progress-card-title" data-key="progressProfileTitle">Profile</p>
 
             <div class="progress-card-icon">
                 <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="progress-card" id="progress-financial">
-<p class="progress-card-title" data-key="progressFinancialTitle">Financial Health</p>
+            <p class="progress-card-title" data-key="progressFinancialTitle">Financial Health</p>
 
             <div class="progress-card-icon">
                 <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="progress-card" id="progress-risk">
-<p class="progress-card-title" data-key="progressRiskTitle">Risk Profile</p>
+            <p class="progress-card-title" data-key="progressRiskTitle">Risk Profile</p>
 
             <div class="progress-card-icon">
                 <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="progress-card" id="progress-summary">
-<p class="progress-card-title" data-key="progressSummaryTitle">Summary</p>
+            <p class="progress-card-title" data-key="progressSummaryTitle">Summary</p>
 
             <div class="progress-card-icon">
                 <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
@@ -137,11 +137,13 @@
         <div class="custom-alert" id="validation-alert"></div>
         <!-- Questionnaire Cards -->
         <div class="question-card active" id="question-0">
-<h2 class="question-title" data-key="question0Title">Hi there! What's your name?</h2>
-<p class="question-subtitle" data-key="question0Subtitle">Let's make this personal - we'd love to know what to call you!</p>
+            <h2 class="question-title" data-key="question0Title">Hi there! What's your name?</h2>
+            <p class="question-subtitle" data-key="question0Subtitle">Let's make this personal - we'd love to know what
+                to call you!</p>
             <div class="form-group">
                 <!-- <label for="user-name" class="form-label">Your Name</label> -->
-<input class="form-input" type="text" id="user-name" data-key="question0InputPlaceholder" placeholder="Type your answer here">
+                <input class="form-input" type="text" id="user-name" data-key="question0InputPlaceholder"
+                    placeholder="Type your answer here">
             </div>
             <div class="navigation-buttons">
                 <div class="navigation-controls">
@@ -153,7 +155,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -166,14 +169,16 @@
 
         <div class="question-card" id="question-1">
 
-<h2 class="question-title" data-key="question1Title">Can we have your Contact details?</h2>
+            <h2 class="question-title" data-key="question1Title">Can we have your Contact details?</h2>
             <div class="form-group">
-<label for="contact-phone" class="form-label" data-key="question1MobileLabel">Mobile No.</label>
-<input class="form-input" type="tel" id="contact-phone" data-key="question1MobilePlaceholder" placeholder="Enter Mobile No.">
+                <label for="contact-phone" class="form-label" data-key="question1MobileLabel">Mobile No.</label>
+                <input class="form-input" type="tel" id="contact-phone" data-key="question1MobilePlaceholder"
+                    placeholder="Enter Mobile No.">
             </div>
             <div class="form-group">
-<label for="contact-email" class="form-label" data-key="question1EmailLabel">Email ID</label>
-<input class="form-input" type="email" id="contact-email" data-key="question1EmailPlaceholder" placeholder="Enter Email ID">
+                <label for="contact-email" class="form-label" data-key="question1EmailLabel">Email ID</label>
+                <input class="form-input" type="email" id="contact-email" data-key="question1EmailPlaceholder"
+                    placeholder="Enter Email ID">
             </div>
 
             <div class="navigation-buttons">
@@ -186,7 +191,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -198,20 +204,23 @@
 
 
         <div class="question-card" id="question-2">
-<h2 class="question-title" data-key="question2Title">Let's Begin:</h2>
-          <p class="question-subtitle" data-key="question2Subtitle">Before we start this exciting journey together, we need your consent for a few important things.</p>
+            <h2 class="question-title" data-key="question2Title">Let's Begin:</h2>
+            <p class="question-subtitle" data-key="question2Subtitle">Before we start this exciting journey together, we
+                need your consent for a few important things.</p>
 
             <hr style="border-width: 1px; border-color: rgba(0, 0, 0, 0.2); width: 100%; margin-bottom: 2rem;" />
             <div style="width: 100%; text-align: left; font-size: 18px;">
                 <p style="font-weight: bold; margin-bottom: 1rem; color: black;">Before we begin, please confirm:</p>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="consent-checkbox">
-                <span data-key="question2Consent1">I understand this survey gives only an indication of my financial health and risk profile.</span>
+                    <span data-key="question2Consent1">I understand this survey gives only an indication of my financial
+                        health and risk profile.</span>
 
                 </label>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="consent-checkbox-2">
-<span data-key="question2Consent2">I agree to be contacted by a Geojit expert. My data is safe and secure.</span>
+                    <span data-key="question2Consent2">I agree to be contacted by a Geojit expert. My data is safe and
+                        secure.</span>
                 </label>
             </div>
 
@@ -226,7 +235,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -237,27 +247,27 @@
         </div>
 
         <div class="question-card" id="question-3">
-<h2 class="question-title" data-key="question3Title">What's your age group?</h2>
+            <h2 class="question-title" data-key="question3Title">What's your age group?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="age-group" value="Under 25" data-score="0">
-<span data-key="ageGroupUnder25">Under 25</span>
+                    <span data-key="ageGroupUnder25">Under 25</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="age-group" value="25–34" data-score="1">
-<span data-key="ageGroup25_34">25–34</span>
+                    <span data-key="ageGroup25_34">25–34</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="age-group" value="35–44" data-score="2">
-<span data-key="ageGroup35_44">35–44</span>
+                    <span data-key="ageGroup35_44">35–44</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="age-group" value="45–54" data-score="2">
-<span data-key="ageGroup45_54">45–54</span>
+                    <span data-key="ageGroup45_54">45–54</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="age-group" value="55+" data-score="1">
-<span data-key="ageGroup55Plus">55+</span>
+                    <span data-key="ageGroup55Plus">55+</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -270,7 +280,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -281,23 +292,23 @@
         </div>
 
         <div class="question-card" id="question-4">
-<h2 class="question-title" data-key="question4Title">How do you identify yourself?</h2>
+            <h2 class="question-title" data-key="question4Title">How do you identify yourself?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="gender" value="Male" data-score="0">
-<span data-key="genderMale">Male</span>
+                    <span data-key="genderMale">Male</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="gender" value="Female" data-score="0">
-<span data-key="genderFemale">Female</span>
+                    <span data-key="genderFemale">Female</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="gender" value="Non-binary" data-score="0">
-<span data-key="genderNonBinary">Non-binary</span>
+                    <span data-key="genderNonBinary">Non-binary</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="gender" value="Prefer not to say" data-score="0">
-<span data-key="genderPreferNotToSay">Prefer not to say</span>
+                    <span data-key="genderPreferNotToSay">Prefer not to say</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -310,7 +321,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -321,27 +333,27 @@
         </div>
 
         <div class="question-card" id="question-5">
-<h2 class="question-title" data-key="question5Title">What do you do for a living?</h2>
+            <h2 class="question-title" data-key="question5Title">What do you do for a living?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="occupation" value="Salaried" data-score="0">
-<span data-key="occupationSalaried">Salaried</span>
+                    <span data-key="occupationSalaried">Salaried</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="occupation" value="Self-employed" data-score="0">
-<span data-key="occupationSelfEmployed">Self-employed</span>
+                    <span data-key="occupationSelfEmployed">Self-employed</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="occupation" value="Student" data-score="0">
-<span data-key="occupationStudent">Student</span>
+                    <span data-key="occupationStudent">Student</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="occupation" value="Retired" data-score="0">
-<span data-key="occupationRetired">Retired</span>
+                    <span data-key="occupationRetired">Retired</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="occupation" value="Other" data-score="0">
-<span data-key="occupationOther">Other</span>
+                    <span data-key="occupationOther">Other</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -354,7 +366,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -365,19 +378,19 @@
         </div>
 
         <div class="question-card" id="question-6">
-<h2 class="question-title" data-key="question6Title">Are you married or single?</h2>
+            <h2 class="question-title" data-key="question6Title">Are you married or single?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="marital-status" value="Single" data-score="0">
-<span data-key="maritalStatusSingle">Single</span>
+                    <span data-key="maritalStatusSingle">Single</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="marital-status" value="Married" data-score="0">
-<span data-key="maritalStatusMarried">Married</span>
+                    <span data-key="maritalStatusMarried">Married</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="marital-status" value="Prefer not to say" data-score="0">
-<span data-key="maritalStatusPreferNotToSay">Prefer not to say</span>
+                    <span data-key="maritalStatusPreferNotToSay">Prefer not to say</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -390,7 +403,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -402,15 +416,16 @@
 
         <!-- Financial Health Check Questions -->
         <div class="question-card" id="question-7">
-<h2 class="question-title" data-key="question7Title">Do you usually keep track of your monthly income and expenses?</h2>
+            <h2 class="question-title" data-key="question7Title">Do you usually keep track of your monthly income and
+                expenses?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q1-financial-health" value="Yes" data-score="2">
-<span data-key="yes">Yes</span>
+                    <span data-key="yes">Yes</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q1-financial-health" value="No" data-score="0">
-<span data-key="no">No</span>
+                    <span data-key="no">No</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -423,7 +438,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -434,7 +450,8 @@
         </div>
 
         <div class="question-card" id="question-8">
-<h2 class="question-title" data-key="question8Title">Roughly what portion of your income do you manage to save every month?</h2>
+            <h2 class="question-title" data-key="question8Title">Roughly what portion of your income do you manage to
+                save every month?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q2-financial-health" value="<10%" data-score="0">
@@ -463,7 +480,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -474,7 +492,8 @@
         </div>
 
         <div class="question-card" id="question-9">
-        <h2 class="question-title" data-key="question9Title">If life throws a surprise (like a medical bill), do you have savings to manage it?</h2>
+            <h2 class="question-title" data-key="question9Title">If life throws a surprise (like a medical bill), do you
+                have savings to manage it?</h2>
 
             <div class="options-grid">
                 <label class="option-label">
@@ -496,7 +515,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -507,7 +527,8 @@
         </div>
 
         <div class="question-card" id="question-10">
-<h2 class="question-title" data-key="question10Title">Do you have active life or health insurance policies?</h2>
+            <h2 class="question-title" data-key="question10Title">Do you have active life or health insurance policies?
+            </h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q4-financial-health" value="Yes" data-score="2">
@@ -528,7 +549,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -539,8 +561,9 @@
         </div>
 
         <div class="question-card" id="question-11">
-<h2 class="question-title" data-key="question11Title">Do you invest money specifically for your life goals (like education, home, etc.)?</h2>
-                etc.)?</h2>
+            <h2 class="question-title" data-key="question11Title">Do you invest money specifically for your life goals
+                (like education, home, etc.)?</h2>
+            etc.)?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q5-financial-health" value="Yes" data-score="2">
@@ -561,7 +584,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -572,19 +596,20 @@
         </div>
 
         <div class="question-card" id="question-12">
-            <h2 class="question-title">How often do you review or adjust your investments?</h2>
+            <h2 class="question-title" data-key="question12Title">How often do you review or adjust your investments?
+            </h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q6-financial-health" value="Frequently" data-score="2">
-<span data-key="frequently">Frequently</span>
+                    <span data-key="frequently">Frequently</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q6-financial-health" value="Rarely" data-score="1">
-<span data-key="rarely">Rarely</span>
+                    <span data-key="rarely">Rarely</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q6-financial-health" value="Never" data-score="0">
-<span data-key="never">Never</span>
+                    <span data-key="never">Never</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -597,7 +622,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -608,27 +634,28 @@
         </div>
 
         <div class="question-card" id="question-13">
-       <h2 class="question-title" data-key="question13Title">How often do you borrow money or rely on credit cards to cover monthly expenses?</h2>
+            <h2 class="question-title" data-key="question13Title">How often do you borrow money or rely on credit cards
+                to cover monthly expenses?</h2>
 
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q7-financial-health" value="Often – I rely heavily on credit"
                         data-score="0">
-<span data-key="relyHeavilyOnCredit">Often – I rely heavily on credit</span>
+                    <span data-key="relyHeavilyOnCredit">Often – I rely heavily on credit</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q7-financial-health" value="Sometimes – I use credit occasionally"
                         data-score="1">
-<span data-key="useCreditOccasionally">Sometimes – I use credit occasionally</span>
+                    <span data-key="useCreditOccasionally">Sometimes – I use credit occasionally</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q7-financial-health" value="Rarely – Only in emergencies" data-score="2">
-<span data-key="onlyInEmergencies">Rarely – Only in emergencies</span>
+                    <span data-key="onlyInEmergencies">Rarely – Only in emergencies</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q7-financial-health" value="Never – I manage expenses without credit"
                         data-score="3">
-<span data-key="manageWithoutCredit">Never – I manage expenses without credit</span>
+                    <span data-key="manageWithoutCredit">Never – I manage expenses without credit</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -641,7 +668,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -652,19 +680,20 @@
         </div>
 
         <div class="question-card" id="question-14">
-<h2 class="question-title" data-key="question14Title">Do you track your net worth (assets – liabilities) regularly?</h2>
+            <h2 class="question-title" data-key="question14Title">Do you track your net worth (assets – liabilities)
+                regularly?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q8-financial-health" value="Yes, at least once a year" data-score="3">
-<span data-key="yesAtLeastOnceAYear">Yes, at least once a year</span>
+                    <span data-key="yesAtLeastOnceAYear">Yes, at least once a year</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q8-financial-health" value="Occasionally" data-score="1">
-<span data-key="occasionally">Occasionally</span>
+                    <span data-key="occasionally">Occasionally</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q8-financial-health" value="No, never calculated it" data-score="0">
-<span data-key="noNeverCalculatedIt">No, never calculated it</span>
+                    <span data-key="noNeverCalculatedIt">No, never calculated it</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -677,7 +706,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -689,19 +719,20 @@
 
         <!-- Risk Profiling Questions -->
         <div class="question-card" id="question-15">
-            <h2 class="question-title">If your investment drops 10%, what’s your first reaction?</h2>
+            <h2 class="question-title" data-key="question15Title">If your investment drops 10%, what's your first
+                reaction?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q1-risk-profile" value="Sell and exit" data-score="0">
-                    <span>Sell and exit</span>
+                    <span data-key="sellAndExit">Sell and exit</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q1-risk-profile" value="Wait patiently" data-score="1">
-                    <span>Wait patiently</span>
+                    <span data-key="waitPatiently">Wait patiently</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q1-risk-profile" value="Invest more while it’s low" data-score="2">
-                    <span>Invest more while it’s low</span>
+                    <span data-key="investMoreWhileLow">Invest more while it's low</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -714,7 +745,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -725,19 +757,20 @@
         </div>
 
         <div class="question-card" id="question-16">
-            <h2 class="question-title">How long are you comfortable keeping your money invested?</h2>
+            <h2 class="question-title" data-key="question16Title">How long are you comfortable keeping your money
+                invested?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q2-risk-profile" value="Less than 1 year" data-score="0">
-                    <span>Less than 1 year</span>
+                    <span data-key="lessThan1Year">Less than 1 year</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q2-risk-profile" value="1–3 years" data-score="1">
-                    <span>1–3 years</span>
+                    <span data-key="1_3Years">1–3 years</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q2-risk-profile" value="3+ years" data-score="2">
-                    <span>3+ years</span>
+                    <span data-key="3PlusYears">3+ years</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -750,7 +783,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -761,19 +795,20 @@
         </div>
 
         <div class="question-card" id="question-17">
-            <h2 class="question-title">How would you describe your understanding of investments?</h2>
+            <h2 class="question-title" data-key="question17Title">How would you describe your understanding of
+                investments?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q3-risk-profile" value="Beginner" data-score="0">
-                    <span>Beginner</span>
+                    <span data-key="beginner">Beginner</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q3-risk-profile" value="Intermediate" data-score="1">
-                    <span>Intermediate</span>
+                    <span data-key="intermediate">Intermediate</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q3-risk-profile" value="Advanced" data-score="2">
-                    <span>Advanced</span>
+                    <span data-key="advanced">Advanced</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -786,7 +821,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -797,19 +833,20 @@
         </div>
 
         <div class="question-card" id="question-18">
-            <h2 class="question-title">What’s your comfort level with ups and downs in your investments?</h2>
+            <h2 class="question-title" data-key="question18Title">What's your comfort level with ups and downs in your
+                investments?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q4-risk-profile" value="I get nervous" data-score="0">
-                    <span>I get nervous</span>
+                    <span data-key="getNervous">I get nervous</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q4-risk-profile" value="I'm okay with some fluctuations" data-score="1">
-                    <span>I'm okay with some fluctuations</span>
+                    <span data-key="okayWithFluctuations">I'm okay with some fluctuations</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q4-risk-profile" value="I’m comfortable with volatility" data-score="2">
-                    <span>I’m comfortable with volatility</span>
+                    <span data-key="comfortableWithVolatility">I'm comfortable with volatility</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -822,7 +859,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -833,20 +871,21 @@
         </div>
 
         <div class="question-card" id="question-19">
-            <h2 class="question-title">If your investment grows by 20% quickly, what would you do?</h2>
+            <h2 class="question-title" data-key="question19Title">If your investment grows by 20% quickly, what would
+                you do?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q5-risk-profile" value="Sell to book profit" data-score="0">
-                    <span>Sell to book profit</span>
+                    <span data-key="sellToBookProfit">Sell to book profit</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q5-risk-profile" value="Hold and watch" data-score="1">
-                    <span>Hold and watch</span>
+                    <span data-key="holdAndWatch">Hold and watch</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q5-risk-profile" value="Invest more expecting further gains"
                         data-score="2">
-                    <span>Invest more expecting further gains</span>
+                    <span data-key="investMoreExpectingGains">Invest more expecting further gains</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -859,7 +898,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -870,19 +910,19 @@
         </div>
 
         <div class="question-card" id="question-20">
-            <h2 class="question-title">What’s your main reason for investing?</h2>
+            <h2 class="question-title" data-key="question20Title">What's your main reason for investing?</h2>
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q6-risk-profile" value="To grow wealth long-term" data-score="2">
-                    <span>To grow wealth long-term</span>
+                    <span data-key="growWealthLongTerm">To grow wealth long-term</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q6-risk-profile" value="To protect capital" data-score="0">
-                    <span>To protect capital</span>
+                    <span data-key="protectCapital">To protect capital</span>
                 </label>
                 <label class="option-label">
                     <input type="radio" name="q6-risk-profile" value="To generate regular income" data-score="1">
-                    <span>To generate regular income</span>
+                    <span data-key="generateRegularIncome">To generate regular income</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -895,7 +935,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -912,16 +953,19 @@
             <div style="width: 100%; text-align: left; font-size: 18px;">
                 <label class="option-label checkbox">
                     <input type="checkbox" id="community-checkbox">
-                    <span>Would you like to join our FundsGenie Community for exclusive updates and offers?</span>
+                    <span data-key="question21Community">Would you like to join our FundsGenie Community for exclusive
+                        updates and offers?</span>
                 </label>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="newsletter-checkbox">
-                    <span>We’ll send you a 3-month Geojit Insights subscription and monthly newsletter.
-                        Would you like that?</span>
+                    <span data-key="question21Newsletter">We'll send you a 3-month Geojit Insights subscription and
+                        monthly newsletter. Would you like that?</span>
+
                 </label>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="masterclass-checkbox">
-                    <span>Are you interested in attending our upcoming Financial Masterclass sessions?</span>
+                    <span data-key="question21Masterclass">Are you interested in attending our upcoming Financial
+                        Masterclass sessions?</span>
                 </label>
             </div>
             <div class="navigation-buttons">
@@ -934,7 +978,8 @@
                     </button>
 
                     <button class="nav-btn next" onclick="nextQuestion()">
-                        <p>Next</p>
+                        <p data-key="nextButton">Next</p>
+
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -947,13 +992,13 @@
         <!-- Results Card -->
         <div class="question-card" id="results-card">
             <img src="./assets/images/summary-check.svg" alt="summary check" style="margin-bottom: 1rem;" />
-            <h2 class="question-title" style="margin-bottom: 1rem;">All Done!</h2>
-            <p>Your personalized financial roadmap is ready!</p>
+            <h2 class="question-title" data-key="resultsCardTitle" style="margin-bottom: 1rem;">All Done!</h2>
+            <p data-key="resultsCardSubtitle">Your personalized financial roadmap is ready!</p>
 
             <!-- Add this button -->
-            <button class="feedback-btn" onclick="showFeedbackReport()">
-                See my Finhealth Report
-            </button>
+            <button class="feedback-btn" data-key="seeFinhealthReportButton" onclick="showFeedbackReport()">See my
+                Finhealth Report</button>
+
         </div>
 
         <!-- Feedback Report UI -->
@@ -1131,10 +1176,11 @@
 
 <!-- Intro Section -->
 <section class="intro-section">
-    <div class="intro-subtitle">Your Personal Financial Health Check</div>
-    <h1 class="intro-title">Geojit FinHealth</h1>
-    <p class="intro-description">Geojit FinHealth is a simple, interactive tool designed to help you assess your
-        financial well-being and investment readiness in just a few minutes.</p>
+    <div class="intro-subtitle" data-key="introSubtitle">Your Personal Financial Health Check</div>
+    <h1 class="intro-title" data-key="introTitle">Geojit FinHealth</h1>
+    <p class="intro-description" data-key="introDescription">Geojit FinHealth is a simple, interactive tool designed to
+        help you assess your financial well-being and investment readiness in just a few minutes.</p>
+
 
     <div class="features-grid">
         <div class="feature-card">
@@ -1147,7 +1193,8 @@
                     d="M16.083 14.5234H25.165C25.9832 14.5234 26.6465 15.1867 26.6465 16.0049C26.6465 16.823 25.9832 17.4863 25.165 17.4863H16.083C15.2649 17.4863 14.6016 16.823 14.6016 16.0049C14.6016 15.1867 15.2649 14.5234 16.083 14.5234Z"
                     fill="#000308" stroke="white" stroke-width="0.5" />
             </svg>
-            <p class="feature-text">Understand how healthy your current savings, insurance, and investment habits are.
+            <p class="feature-text" data-key="feature1Text">Understand how healthy your current savings, insurance, and
+                investment habits are.</p>
             </p>
         </div>
 
@@ -1165,7 +1212,7 @@
                     </clipPath>
                 </defs>
             </svg>
-            <p class="feature-text">Discover your personal risk profile.</p>
+            <p class="feature-text" data-key="feature2Text">Discover your personal risk profile.</p>
         </div>
 
         <div class="feature-card">
@@ -1190,7 +1237,8 @@
                     d="M14.7812 30.0703H33.2422C34.0065 30.0703 34.6326 30.6966 34.6328 31.4609C34.6328 32.2254 34.0066 32.8525 33.2422 32.8525H14.7812C14.0169 32.8524 13.3906 32.2253 13.3906 31.4609C13.3908 30.6967 14.0171 30.0705 14.7812 30.0703Z"
                     fill="#000308" stroke="white" stroke-width="0.5" />
             </svg>
-            <p class="feature-text">Get a quick summary of your financial strengths and areas to improve.</p>
+            <p class="feature-text" data-key="feature3Text">Get a quick summary of your financial strengths and areas to
+                improve.</p>
         </div>
 
         <div class="feature-card">
@@ -1215,7 +1263,8 @@
                     d="M20.749 40.501C20.749 40.9651 20.9336 41.4101 21.2617 41.7383C21.5899 42.0665 22.0349 42.251 22.499 42.251H25.499C25.9631 42.2509 26.4082 42.0664 26.7363 41.7383C27.0644 41.4101 27.249 40.965 27.249 40.501V38.751H20.749V40.501ZM24.125 13.248C22.0485 13.2223 20.0149 13.8432 18.3076 15.0254C16.6003 16.2077 15.3031 17.8928 14.5967 19.8457C13.8904 21.7985 13.8094 23.923 14.3652 25.9238C14.9211 27.9247 16.0868 29.7031 17.6992 31.0117L17.7012 31.0137C19.283 32.2607 20.3414 34.0544 20.668 36.042L20.7021 36.251H22.749V29.751H20.999C20.6675 29.751 20.3497 29.6192 20.1152 29.3848C19.8809 29.1504 19.749 28.8325 19.749 28.501C19.7491 28.1696 19.8809 27.8515 20.1152 27.6172C20.3496 27.3829 20.6676 27.251 20.999 27.251H26.999C27.3304 27.251 27.6484 27.3829 27.8828 27.6172C28.1172 27.8515 28.2489 28.1696 28.249 28.501C28.249 28.8324 28.1171 29.1504 27.8828 29.3848C27.6484 29.6191 27.3305 29.7509 26.999 29.751H25.249V36.251H27.3086L27.3379 36.0352C27.6006 34.1156 28.5922 32.3703 30.1074 31.1631L30.1084 31.1641C31.7527 29.8958 32.9611 28.1477 33.5664 26.1611C34.1716 24.1747 34.1431 22.0488 33.4854 20.0791C32.8275 18.1095 31.5729 16.3931 29.8955 15.1689C28.2182 13.9449 26.2013 13.2739 24.125 13.248ZM18.249 37.1104C18.2254 36.3027 18.0216 35.5101 17.6533 34.791C17.3311 34.1618 16.8896 33.6026 16.3545 33.1436L16.1201 32.9531C14.8232 31.9051 13.7491 30.6081 12.9609 29.1387C12.1719 27.6675 11.6852 26.0529 11.5303 24.3906C11.3754 22.7284 11.555 21.0516 12.0586 19.46C12.5622 17.8682 13.3799 16.3928 14.4629 15.1221C15.5458 13.8515 16.8725 12.8111 18.3643 12.0615C19.856 11.3119 21.4826 10.8684 23.1484 10.7578C24.8143 10.6472 26.4857 10.8721 28.0635 11.418C29.6064 11.9518 31.0289 12.7828 32.252 13.8633V13.8652L32.3359 13.9395C33.7019 15.1631 34.7816 16.6726 35.499 18.3604C36.2165 20.0481 36.5541 21.8733 36.4873 23.7061C36.4205 25.5387 35.9507 27.3339 35.1123 28.9648C34.2739 30.5958 33.0872 32.0227 31.6357 33.1436L31.6299 33.1484C31.0269 33.6448 30.5435 34.2716 30.2178 34.9814C29.9327 35.6027 29.7748 36.2739 29.751 36.9551L29.749 37.2422V40.501C29.749 41.6281 29.3009 42.7098 28.5039 43.5068C27.7069 44.3037 26.626 44.7509 25.499 44.751H22.499C21.3719 44.751 20.2902 44.3039 19.4932 43.5068C18.6962 42.7098 18.249 41.6281 18.249 40.501V37.1104Z"
                     fill="#000308" stroke="white" stroke-width="0.5" />
             </svg>
-            <p class="feature-text">Receive Geojit's expert-backed recommendations tailored to your goals.</p>
+            <p class="feature-text" data-key="feature4Text">Receive Geojit's expert-backed recommendations tailored to
+                your goals.</p>
         </div>
     </div>
 
@@ -1224,20 +1273,20 @@
 
 <!-- FAQ Section -->
 <section class="faq-section">
-    <div class="faq-subtitle">Have questions? We are here to help.</div>
-    <h2 class="faq-title">Frequently Asked Questions</h2>
+    <div class="faq-subtitle" data-key="faqSubtitle">Have questions? We are here to help.</div>
+    <h2 class="faq-title" data-key="faqTitle">Frequently Asked Questions</h2>
 
     <div class="faq-list">
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-                <h3>1. What is Geojit FinHealth?</h3>
+                <h3 data-key="faq1Question">1. What is Geojit FinHealth?</h3>
                 <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M18 12H6" stroke="#000308" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
             </div>
-            <div class="faq-answer">
+            <div class="faq-answer" data-key="faq1Answer">
                 Geojit FinHealth is a free, interactive web tool that helps you assess your current financial health and
                 risk appetite. In just a few minutes, it gives you a summary of your saving, investing, and protection
                 habits—along with expert tips to improve.
@@ -1246,7 +1295,7 @@
 
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-                <h3>2. Who can use this tool?</h3>
+                <h3 data-key="faq2Question">2. Who can use this tool?</h3>
                 <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 6V18" stroke="#000308" stroke-width="2" stroke-linecap="round"
@@ -1255,7 +1304,7 @@
                         stroke-linejoin="round" />
                 </svg>
             </div>
-            <div class="faq-answer hidden">
+            <div class="faq-answer hidden" data-key="faq2Answer">
                 Anyone who wants to understand their financial health can use this tool. It's designed for individuals
                 at all stages of their financial journey.
             </div>
@@ -1263,7 +1312,7 @@
 
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-                <h3>3. Do I need to share personal financial details?</h3>
+                <h3 data-key="faq3Question">3. Do I need to share personal financial details?</h3>
                 <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 6V18" stroke="#000308" stroke-width="2" stroke-linecap="round"
@@ -1272,7 +1321,7 @@
                         stroke-linejoin="round" />
                 </svg>
             </div>
-            <div class="faq-answer hidden">
+            <div class="faq-answer hidden" data-key="faq3Answer">
                 No, you don't need to share specific financial details. The tool works with general information about
                 your financial habits and preferences.
             </div>
@@ -1280,7 +1329,7 @@
 
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-                <h3>4. What happens after I complete the checkup?</h3>
+                <h3 data-key="faq4Question">4. What happens after I complete the checkup?</h3>
                 <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 6V18" stroke="#000308" stroke-width="2" stroke-linecap="round"
@@ -1289,7 +1338,7 @@
                         stroke-linejoin="round" />
                 </svg>
             </div>
-            <div class="faq-answer hidden">
+            <div class="faq-answer hidden" data-key="faq4Answer">
                 You'll receive a personalized report with your financial health score and recommendations for
                 improvement based on your responses.
             </div>
@@ -1297,7 +1346,7 @@
 
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-                <h3>5. Is this really free, or are there hidden charges?</h3>
+                <h3 data-key="faq5Question">5. Is this really free, or are there hidden charges?</h3>
                 <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 6V18" stroke="#000308" stroke-width="2" stroke-linecap="round"
@@ -1306,7 +1355,7 @@
                         stroke-linejoin="round" />
                 </svg>
             </div>
-            <div class="faq-answer hidden">
+            <div class="faq-answer hidden" data-key="faq5Answer">
                 Yes, this tool is completely free to use with no hidden charges. It's our way of helping you understand
                 your financial health better.
             </div>
@@ -1316,10 +1365,11 @@
 
 <!-- About Section -->
 <section class="about-section">
-    <h2 class="about-title">About Us</h2>
-    <p class="about-description">We are a leading Indian investment services company with a strong presence in the Gulf
-        Cooperation Council countries. As a pioneer in the industry, we continue to innovate and make the markets
-        accessible to individual investors.</p>
+    <h2 class="about-title" data-key="aboutTitle">About Us</h2>
+    <p class="about-description" data-key="aboutDescription">We are a leading Indian investment services company with a
+        strong presence in the Gulf Cooperation Council countries. As a pioneer in the industry, we continue to innovate
+        and make the markets accessible to individual investors.</p>
+
 
     <div class="about-content">
         <img src="https://api.builder.io/api/v1/image/assets/TEMP/1382596fc04d7724dafc8ce1bdbc58d1e048c478?width=1112"
@@ -1340,7 +1390,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span class="stat-text">38 Years in the Market</span>
+                <span class="stat-text" data-key="stat1Text">38 Years in the Market</span>
             </div>
 
             <div class="stat-item">
@@ -1357,7 +1407,8 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span class="stat-text">508 Branches across India and Gulf Cooperation Council countries</span>
+                <span class="stat-text" data-key="stat2Text">508 Branches across India and Gulf Cooperation Council
+                    countries</span>
             </div>
 
             <div class="stat-item">
@@ -1374,7 +1425,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span class="stat-text">15.51 lakh Customers</span>
+                <span class="stat-text" data-key="stat3Text">15.51 lakh Customers</span>
             </div>
 
             <div class="stat-item">
@@ -1391,10 +1442,10 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span class="stat-text">Rs, 1,11,252 crore Customer Assets</span>
+                <span class="stat-text" data-key="stat4Text">Rs, 1,11,252 crore Customer Assets</span>
             </div>
 
-            <p class="about-date">As of 06/08/2025</p>
+            <p class="about-date" data-key="aboutDate">As of 06/08/2025</p>
         </div>
     </div>
 </section>
@@ -1406,42 +1457,47 @@
 
     <div class="footer-content">
         <div class="footer-section">
-            <h4>Registered Office</h4>
-            <p>34/659, Civil Line Road,<br>Padivattom, Kochi-682024,<br>Kerala, India</p>
+            <h4 data-key="footerRegisteredOffice">Registered Office</h4>
+            <p data-key="footerAddress">34/659, Civil Line Road,<br>Padivattom, Kochi-682024,<br>Kerala, India</p>
+
         </div>
 
         <div class="footer-section">
-            <h4>Contact</h4>
-            <p>Phone: +91 484-2901000</p>
-            <p>www.geojit.com</p>
+            <h4 data-key="footerContact">Contact</h4>
+
+            <p data-key="footerPhone">Phone: +91 484-2901000</p>
+            <p data-key="footerWebsite">www.geojit.com</p>
         </div>
 
         <div class="footer-section">
-            <h4>For investor queries</h4>
-            <p>customercare@geojit.com</p>
+            <h4 data-key="footerInvestorQueries">For investor queries</h4>
+            <p data-key="footerEmail">customercare@geojit.com</p>
         </div>
     </div>
 
     <div class="disclaimer-section">
-        <h4 class="disclaimer-title">Disclaimer</h4>
-        <p class="disclaimer-text">Investment in securities market are subject to market risks, read all the related
-            documents carefully before investing. Geojit Financial Services Limited does not make any representations or
-            warranties about the insurance products, servicing of policy and adjudication of claims and cannot be held
-            liable for the same. This mail contains only an indication of the insurance product. For more details on
-            risk factors, terms, conditions and exclusions, please read the respective policy documents.<br><br>GFSL is
-            a licensed corporate agent with License No. CA0226 issued by IRDAI.</p>
+        <h4 class="disclaimer-title" data-key="disclaimerTitle">Disclaimer</h4>
+        <p class="disclaimer-text" data-key="disclaimerText">Investment in securities market are subject to market
+            risks, read all the related documents carefully before investing. Geojit Financial Services Limited does not
+            make any representations or warranties about the insurance products, servicing of policy and adjudication of
+            claims and cannot be held liable for the same. This mail contains only an indication of the insurance
+            product. For more details on risk factors, terms, conditions and exclusions, please read the respective
+            policy documents.<br><br>GFSL is a licensed corporate agent with License No. CA0226 issued by IRDAI.</p>
+
     </div>
 
     <div class="disclaimer-section">
-        <h4 class="disclaimer-title">Disclosure</h4>
-        <p class="disclaimer-text">These are not Exchange traded products and the Member is just acting as distributor.
-            All disputes with respect to the distribution activity would not have access to Exchange investor redressal
-            or Arbitration mechanism.</p>
+        <h4 class="disclaimer-title" data-key="disclosureTitle">Disclosure</h4>
+        <p class="disclaimer-text" data-key="disclosureText">These are not Exchange traded products and the Member is
+            just acting as distributor. All disputes with respect to the distribution activity would not have access to
+            Exchange investor redressal or Arbitration mechanism.</p>
+
     </div>
 
     <div class="footer-bottom">
-        <p class="footer-legal">Geojit Financial Services Ltd, AMFI-registered Mutual Fund Distributor, ARN : 0098</p>
-        <p class="footer-credit">Design by Neointeraction Design</p>
+        <p class="footer-legal" data-key="footerLegal">Geojit Financial Services Ltd, AMFI-registered Mutual Fund
+            Distributor, ARN : 0098</p>
+        <p class="footer-credit" data-key="footerCredit">Design by Neointeraction Design</p>
     </div>
 </footer>
 
@@ -1450,193 +1506,477 @@
 
 
 <script>
-// Define translations directly
-const translations = {
- en: {
-   appTitle: "Geojit SIP Club - Investment Platform",
-   progressProfileTitle: "Profile",
-   progressFinancialTitle: "Financial Health",
-   progressRiskTitle: "Risk Profile",
-   progressSummaryTitle: "Summary",
-   question0Title: "Hi there! What's your name?",
-   question0Subtitle: "Let's make this personal - we'd love to know what to call you!",
-   question0InputPlaceholder: "Type your answer here",
-   question1Title: "Can we have your Contact details?",
-   question1MobileLabel: "Mobile No.",
-   question1MobilePlaceholder: "Enter Mobile No.",
-   question1EmailLabel: "Email ID",
-   question1EmailPlaceholder: "Enter Email ID",
-   question2Title: "Let's Begin:",
-   question2Subtitle: "Before we start this exciting journey together, we need your consent for a few important things.",
-   question2Consent1: "I understand this survey gives only an indication of my financial health and risk profile.",
-   question2Consent2: "I agree to be contacted by a Geojit expert. My data is safe and secure.",
-   question3Title: "What's your age group?",
-   ageGroupUnder25: "Under 25",
-   ageGroup25_34: "25–34",
-   ageGroup35_44: "35–44",
-   ageGroup45_54: "45–54",
-   ageGroup55Plus: "55+",
-   question4Title: "How do you identify yourself?",
-   genderMale: "Male",
-   genderFemale: "Female",
-   genderNonBinary: "Non-binary",
-   genderPreferNotToSay: "Prefer not to say",
-   question5Title: "What do you do for a living?",
-   occupationSalaried: "Salaried",
-   occupationSelfEmployed: "Self-employed",
-   occupationStudent: "Student",
-   occupationRetired: "Retired",
-   occupationOther: "Other",
-   question6Title: "Are you married or single?",
-   maritalStatusSingle: "Single",
-   maritalStatusMarried: "Married",
-   maritalStatusPreferNotToSay: "Prefer not to say",
-   question7Title: "Do you usually keep track of your monthly income and expenses?",
-   yes: "Yes",
-   no: "No",
-   question8Title: "Roughly what portion of your income do you manage to save every month?",
-   question9Title: "If life throws a surprise (like a medical bill), do you have savings to manage it?",
-   question10Title: "Do you have active life or health insurance policies?",
-   question11Title: "Do you invest money specifically for your life goals (like education, home, etc.)?",
-   frequently: "Frequently",
-   rarely: "Rarely",
-   never: "Never",
-   question13Title: "How often do you borrow money or rely on credit cards to cover monthly expenses?",
-   relyHeavilyOnCredit: "Often – I rely heavily on credit",
-   useCreditOccasionally: "Sometimes – I use credit occasionally",
-   onlyInEmergencies: "Rarely – Only in emergencies",
-   manageWithoutCredit: "Never – I manage expenses without credit",
-   question14Title: "Do you track your net worth (assets – liabilities) regularly?",
-   yesAtLeastOnceAYear: "Yes, at least once a year",
-   occasionally: "Occasionally",
-   noNeverCalculatedIt: "No, never calculated it"
- },
- ml: {
-   appTitle: "ജിയോജിത് എസ്ഐപി ക്ലബ് - നിക്ഷേപ പ്ലാറ്റ്ഫോം",
-   progressProfileTitle: "പ്രൊഫൈൽ",
-   progressFinancialTitle: "സാമ്പത്തിക ആരോഗ്യം",
-   progressRiskTitle: "റിസ്ക് പ്രൊഫൈൽ",
-   progressSummaryTitle: "ചുരുക്കം",
-   question0Title: "ഹായ്! നിങ്ങളുടെ പേരെന്താണ്?",
-   question0Subtitle: "ഇതൊരു വ്യക്തിഗത അനുഭവമാക്കാം - നിങ്ങളെ എങ്ങനെ വിളിക്കണമെന്ന് ഞങ്ങൾ അറിയാൻ ആഗ്രഹിക്കുന്നു!",
-   question0InputPlaceholder: "നിങ്ങളുടെ ഉത്തരം ഇവിടെ ടൈപ്പ് ചെയ്യുക",
-   question1Title: "നിങ്ങളുടെ ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ നൽകാമോ?",
-   question1MobileLabel: "മൊബൈൽ നമ്പർ",
-   question1MobilePlaceholder: "മൊബൈൽ നമ്പർ നൽകുക",
-   question1EmailLabel: "ഇമെയിൽ ഐഡി",
-   question1EmailPlaceholder: "ഇമെയിൽ ഐഡി നൽകുക",
-   question2Title: "തുടങ്ങാം:",
-   question2Subtitle: "ഈ ആവേശകരമായ യാത്ര ഒരുമിച്ച് ആരംഭിക്കുന്നതിന് മുമ്പ്, ചില പ്രധാന കാര്യങ്ങൾക്ക് നിങ്ങളുടെ സമ്മതം ആവശ്യമാണ്.",
-   question2Consent1: "ഈ സർവേ എന്റെ സാമ്പത്തിക ആരോഗ്യത്തെയും റിസ്ക് പ്രൊഫൈലിനെയും കുറിച്ചുള്ള ഒരു സൂചന മാത്രമാണ് നൽകുന്നതെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു.",
-   question2Consent2: "ഒരു ജിയോജിത് വിദഗ്ദ്ധൻ എന്നെ ബന്ധപ്പെടുന്നതിന് ഞാൻ സമ്മതിക്കുന്നു. എന്റെ ഡാറ്റ സുരക്ഷിതമാണ്.",
-   question3Title: "നിങ്ങളുടെ പ്രായപരിധി എത്രയാണ്?",
-   ageGroupUnder25: "25 വയസ്സിൽ താഴെ",
-   ageGroup25_34: "25–34",
-   ageGroup35_44: "35–44",
-   ageGroup45_54: "45–54",
-   ageGroup55Plus: "55+",
-   question4Title: "നിങ്ങൾ എങ്ങനെയാണ് സ്വയം തിരിച്ചറിയുന്നത്?",
-   genderMale: "പുരുഷൻ",
-   genderFemale: "സ്ത്രീ",
-   genderNonBinary: "നോൺ-ബൈനറി",
-   genderPreferNotToSay: "പറയാൻ താൽപ്പര്യമില്ല",
-   question5Title: "നിങ്ങൾ എന്ത് ജോലിയാണ് ചെയ്യുന്നത്?",
-   occupationSalaried: "ശമ്പളമുള്ളവർ",
-   occupationSelfEmployed: "സ്വയം തൊഴിൽ ചെയ്യുന്നവർ",
-   occupationStudent: "വിദ്യാർത്ഥി",
-   occupationRetired: "വിരമിച്ചവർ",
-   occupationOther: "മറ്റുള്ളവ",
-   question6Title: "നിങ്ങൾ വിവാഹിതനാണോ അതോ അവിവാഹിതനാണോ?",
-   maritalStatusSingle: "അവിവാഹിതൻ",
-   maritalStatusMarried: "വിവാഹിതൻ",
-   maritalStatusPreferNotToSay: "പറയാൻ താൽപ്പര്യമില്ല",
-   question7Title: "നിങ്ങൾ സാധാരണയായി നിങ്ങളുടെ പ്രതിമാസ വരുമാനവും ചെലവുകളും ട്രാക്ക് ചെയ്യാറുണ്ടോ?",
-   yes: "അതെ",
-   no: "ഇല്ല",
-   question8Title: "നിങ്ങളുടെ വരുമാനത്തിന്റെ ഏകദേശം എത്ര ഭാഗം എല്ലാ മാസവും ലാഭിക്കാൻ നിങ്ങൾക്ക് കഴിയുന്നു?",
-   question9Title: "ജീവിതത്തിൽ ഒരു അപ്രതീക്ഷിത സംഭവം (മെഡിക്കൽ ബിൽ പോലെ) ഉണ്ടായാൽ, അത് കൈകാര്യം ചെയ്യാൻ നിങ്ങൾക്ക് സമ്പാദ്യമുണ്ടോ?",
-   question10Title: "നിങ്ങൾക്ക് സജീവമായ ലൈഫ് അല്ലെങ്കിൽ ഹെൽത്ത് ഇൻഷുറൻസ് പോളിസികൾ ഉണ്ടോ?",
-   question11Title: "നിങ്ങളുടെ ജീവിത ലക്ഷ്യങ്ങൾക്കായി (വിദ്യാഭ്യാസം, വീട് മുതലായവ) നിങ്ങൾ പണം നിക്ഷേപിക്കാറുണ്ടോ?",
-   frequently: "പതിവായി",
-   rarely: "വളരെ കുറച്ച്",
-   never: "ഒരിക്കലുമില്ല",
-   question13Title: "പ്രതിമാസ ചെലവുകൾക്കായി നിങ്ങൾ എത്ര തവണ പണം കടം വാങ്ങുകയോ ക്രെഡിറ്റ് കാർഡുകളെ ആശ്രയിക്കുകയോ ചെയ്യാറുണ്ട്?",
-   relyHeavilyOnCredit: "പലപ്പോഴും – ഞാൻ ക്രെഡിറ്റിനെ വളരെയധികം ആശ്രയിക്കുന്നു",
-   useCreditOccasionally: "ചിലപ്പോൾ – ഞാൻ ക്രെഡിറ്റ് ഇടയ്ക്കിടെ ഉപയോഗിക്കുന്നു",
-   onlyInEmergencies: "വളരെ കുറച്ച് – അടിയന്തിര സാഹചര്യങ്ങളിൽ മാത്രം",
-   manageWithoutCredit: "ഒരിക്കലുമില്ല – ഞാൻ ക്രെഡിറ്റ് ഇല്ലാതെ ചെലവുകൾ കൈകാര്യം ചെയ്യുന്നു",
-   question14Title: "നിങ്ങളുടെ ആസ്തി (ആസ്തികൾ – ബാധ്യതകൾ) പതിവായി ട്രാക്ക് ചെയ്യാറുണ്ടോ?",
-   yesAtLeastOnceAYear: "അതെ, വർഷത്തിൽ ഒരിക്കലെങ്കിലും",
-   occasionally: "ചിലപ്പോൾ",
-   noNeverCalculatedIt: "ഇല്ല, ഒരിക്കലും കണക്കാക്കിയിട്ടില്ല"
- }
-};
+    // Define translations directly
+    const translations = {
+        en: {
+            appTitle: "Geojit SIP Club - Investment Platform",
+            headerLogoAlt: "logo",
+            geojitFinhealthAlt: "geojit-finhealth",
+            progressProfileTitle: "Profile",
+            progressFinancialTitle: "Financial Health",
+            progressRiskTitle: "Risk Profile",
+            progressSummaryTitle: "Summary",
+            question0Title: "Hi there! What's your name?",
+            question0Subtitle: "Let's make this personal - we'd love to know what to call you!",
+            question0InputPlaceholder: "Type your answer here",
+            nextButton: "Next",
+            question1Title: "Can we have your Contact details?",
+            question1MobileLabel: "Mobile No.",
+            question1MobilePlaceholder: "Enter Mobile No.",
+            question1EmailLabel: "Email ID",
+            question1EmailPlaceholder: "Enter Email ID",
+            question2Title: "Let's Begin:",
+            question2Subtitle: "Before we start this exciting journey together, we need your consent for a few important things.",
+            question2Consent1: "I understand this survey gives only an indication of my financial health and risk profile.",
+            question2Consent2: "I agree to be contacted by a Geojit expert. My data is safe and secure.",
+            question3Title: "What’s your age group?",
+            ageGroupUnder25: "Under 25",
+            ageGroup25_34: "25–34",
+            ageGroup35_44: "35–44",
+            ageGroup45_54: "45–54",
+            ageGroup55Plus: "55+",
+            question4Title: "How do you identify yourself?",
+            genderMale: "Male",
+            genderFemale: "Female",
+            genderNonBinary: "Non-binary",
+            genderPreferNotToSay: "Prefer not to say",
+            question5Title: "What do you do for a living?",
+            occupationSalaried: "Salaried",
+            occupationSelfEmployed: "Self-employed",
+            occupationStudent: "Student",
+            occupationRetired: "Retired",
+            occupationOther: "Other",
+            question6Title: "Are you married or single?",
+            maritalStatusSingle: "Single",
+            maritalStatusMarried: "Married",
+            maritalStatusPreferNotToSay: "Prefer not to say",
+            question7Title: "Do you usually keep track of your monthly income and expenses?",
+            yes: "Yes",
+            no: "No",
+            question8Title: "Roughly what portion of your income do you manage to save every month?",
+            lessThan10Percent: "< 10%",
+            "10_20Percent": "10–20%",
+            "20_30Percent": "20–30%",
+            "30PercentPlus": "30%+",
+            question9Title: "If life throws a surprise (like a medical bill), do you have savings to manage it?",
+            question10Title: "Do you have active life or health insurance policies?",
+            question11Title: "Do you invest money specifically for your life goals (like education, home, etc.)?",
+            question12Title: "How often do you review or adjust your investments?",
+            frequently: "Frequently",
+            rarely: "Rarely",
+            never: "Never",
+            question13Title: "How often do you borrow money or rely on credit cards to cover monthly expenses?",
+            relyHeavilyOnCredit: "Often – I rely heavily on credit",
+            useCreditOccasionally: "Sometimes – I use credit occasionally",
+            onlyInEmergencies: "Rarely – Only in emergencies",
+            manageWithoutCredit: "Never – I manage expenses without credit",
+            question14Title: "Do you track your net worth (assets – liabilities) regularly?",
+            yesAtLeastOnceAYear: "Yes, at least once a year",
+            occasionally: "Occasionally",
+            noNeverCalculatedIt: "No, never calculated it",
+            question15Title: "If your investment drops 10%, what’s your first reaction?",
+            sellAndExit: "Sell and exit",
+            waitPatiently: "Wait patiently",
+            investMoreWhileLow: "Invest more while it’s low",
+            question16Title: "How long are you comfortable keeping your money invested?",
+            lessThan1Year: "Less than 1 year",
+            "1_3Years": "1–3 years",
+            "3PlusYears": "3+ years",
+            question17Title: "How would you describe your understanding of investments?",
+            beginner: "Beginner",
+            intermediate: "Intermediate",
+            advanced: "Advanced",
+            question18Title: "What’s your comfort level with ups and downs in your investments?",
+            getNervous: "I get nervous",
+            okayWithFluctuations: "I'm okay with some fluctuations",
+            comfortableWithVolatility: "I’m comfortable with volatility",
+            question19Title: "If your investment grows by 20% quickly, what would you do?",
+            sellToBookProfit: "Sell to book profit",
+            holdAndWatch: "Hold and watch",
+            investMoreExpectingGains: "Invest more expecting further gains",
+            question20Title: "What’s your main reason for investing?",
+            growWealthLongTerm: "To grow wealth long-term",
+            protectCapital: "To protect capital",
+            generateRegularIncome: "To generate regular income",
+            question21Community: "Would you like to join our FundsGenie Community for exclusive updates and offers?",
+            question21Newsletter:
+                "We’ll send you a 3-month Geojit Insights subscription and monthly newsletter. Would you like that?",
+            question21Masterclass: "Are you interested in attending our upcoming Financial Masterclass sessions?",
+            resultsCardTitle: "All Done!",
+            resultsCardSubtitle: "Your personalized financial roadmap is ready!",
+            seeFinhealthReportButton: "See my Finhealth Report",
+            feedbackReportTitle: "Financial Health Report",
+            backButton: "← Back",
+            reportSummaryTitle: "Report Summary",
+            downloadReportButton: "Download Report",
+            riskProfileLabel: "Risk Profile",
+            financialHealthLabel: "Financial Health",
+            riskLow: "Low",
+            riskHigh: "High",
+            healthLow: "Low",
+            healthHigh: "High",
+            riskBadgeModerate: "Moderate Risk",
+            healthBadgeNeedsImprovement: "Needs Improvement",
+            yourFinancialHealthSnapshot: "Your Financial Health Snapshot",
+            riskPreference: "Risk Preference:",
+            riskTextOpenToSomeRisk: "Open to some risk",
+            weakArea: "Weak Area:",
+            weakAreaNotSaving: "Not saving regularly / Lack emergency fund",
+            actionNeeded: "Action Needed:",
+            actionNeededImproveInsurance: "Improve insurance coverage",
+            recommendationsByGeojit: "Recommendations by Geojit",
+            recommendationSummaryNeedsImprovement:
+                "Your financial health needs attention. It looks like you're either not saving regularly, lack a safety net, or are underinsured. Don't worry – it's never too late to start building healthy money habits.",
+            recommendationListNeedsImprovement1: "Building an emergency fund",
+            recommendationListNeedsImprovement2: "Creating a habit of tracking income and expenses",
+            recommendationListNeedsImprovement3: "Setting basic life and health insurance in place",
+            recommendationSummaryModerate:
+                "You're on the right path! You've developed some healthy financial habits, but there's room for improvement in planning, protection, or investment consistency.",
+            recommendationListModerate1: "Prioritizing goal-based investments",
+            recommendationListModerate2: "Reviewing your portfolio regularly",
+            recommendationListModerate3: "Enhancing your insurance and savings buffers",
+            recommendationSummaryOnTrack:
+                "Excellent! You're doing a great job managing your finances. You have a clear understanding of your money, plan for the future, and protect what you've built.",
+            recommendationListOnTrack1: "Optimize your existing investments for better returns",
+            recommendationListOnTrack2: "Diversify further with expert guidance",
+            recommendationListOnTrack3: "Explore wealth-building and tax-efficiency strategies",
+            recommendationListRiskHigh1: "SIPs in equity mutual funds aligned with your long-term goals",
+            recommendationListRiskHigh2: "Staying disciplined during market ups and downs",
+            recommendationListRiskModerate1: "Balanced Advantage Funds or Hybrid Equity Funds",
+            recommendationListRiskModerate2: "Mixing equity with safer investments for stability",
+            recommendationListRiskLow1: "Low-risk options like debt mutual funds or conservative hybrid funds",
+            recommendationListRiskLow2: "Ensuring liquidity through short-duration funds",
+            takeAssessmentAgainButton: "Take Assessment Again",
+            rateYourExperience: "Rate your experience",
+            howsYourOverallExperience: "How's your overall experience today?",
+            describeYourIssue: "Describe your Issue",
+            tellUsAboutYourExperience: "Tell us about your experience",
+            iWouldLikeToBeContacted: "I would like to be contacted about my Issue",
+            submitButton: "Submit",
+            whatsNext: "What's Next?",
+            expertsCreateRoadmap: "Let our experts create a personalized investment roadmap just for you.",
+            requestExpertSessionButton: "Request an Expert Session",
+            introSubtitle: "Your Personal Financial Health Check",
+            introTitle: "Geojit FinHealth",
+            introDescription:
+                "Geojit FinHealth is a simple, interactive tool designed to help you assess your financial well-being and investment readiness in just a few minutes.",
+            feature1Text: "Understand how healthy your current savings, insurance, and investment habits are.",
+            feature2Text: "Discover your personal risk profile.",
+            feature3Text: "Get a quick summary of your financial strengths and areas to improve.",
+            feature4Text: "Receive Geojit's expert-backed recommendations tailored to your goals.",
+            faqSubtitle: "Have questions? We are here to help.",
+            faqTitle: "Frequently Asked Questions",
+            faq1Question: "1. What is Geojit FinHealth?",
+            faq1Answer:
+                "Geojit FinHealth is a free, interactive web tool that helps you assess your current financial health and risk appetite. In just a few minutes, it gives you a summary of your saving, investing, and protection habits—along with expert tips to improve.",
+            faq2Question: "2. Who can use this tool?",
+            faq2Answer:
+                "Anyone who wants to understand their financial health can use this tool. It's designed for individuals at all stages of their financial journey.",
+            faq3Question: "3. Do I need to share personal financial details?",
+            faq3Answer:
+                "No, you don't need to share specific financial details. The tool works with general information about your financial habits and preferences.",
+            faq4Question: "4. What happens after I complete the checkup?",
+            faq4Answer:
+                "You'll receive a personalized report with your financial health score and recommendations for improvement based on your responses.",
+            faq5Question: "5. Is this really free, or are there hidden charges?",
+            faq5Answer:
+                "Yes, this tool is completely free to use with no hidden charges. It's our way of helping you understand your financial health better.",
+            aboutTitle: "About Us",
+            aboutDescription:
+                "We are a leading Indian investment services company with a strong presence in the Gulf Cooperation Council countries. As a pioneer in the industry, we continue to innovate and make the markets accessible to individual investors.",
+            stat1Text: "38 Years in the Market",
+            stat2Text: "508 Branches across India and Gulf Cooperation Council countries",
+            stat3Text: "15.51 lakh Customers",
+            stat4Text: "Rs, 1,11,252 crore Customer Assets",
+            aboutDate: "As of 06/08/2025",
+            footerRegisteredOffice: "Registered Office",
+            footerAddress: "34/659, Civil Line Road,<br>Padivattom, Kochi-682024,<br>Kerala, India",
+            footerContact: "Contact",
+            footerPhone: "Phone: +91 484-2901000",
+            footerWebsite: "www.geojit.com",
+            footerInvestorQueries: "For investor queries",
+            footerEmail: "customercare@geojit.com",
+            disclaimerTitle: "Disclaimer",
+            disclaimerText:
+                "Investment in securities market are subject to market risks, read all the related documents carefully before investing. Geojit Financial Services Limited does not make any representations or warranties about the insurance products, servicing of policy and adjudication of claims and cannot be held liable for the same. This mail contains only an indication of the insurance product. For more details on risk factors, terms, conditions and exclusions, please read the respective policy documents.<br><br>GFSL is a licensed corporate agent with License No. CA0226 issued by IRDAI.",
+            disclosureTitle: "Disclosure",
+            disclosureText:
+                "These are not Exchange traded products and the Member is just acting as distributor. All disputes with respect to the distribution activity would not have access to Exchange investor redressal or Arbitration mechanism.",
+            footerLegal: "Geojit Financial Services Ltd, AMFI-registered Mutual Fund Distributor, ARN : 0098",
+            footerCredit: "Design by Neointeraction Design",
+        },
+        ml: {
+            appTitle: "ജിയോജിത് എസ്ഐപി ക്ലബ് - നിക്ഷേപ പ്ലാറ്റ്ഫോം",
+            headerLogoAlt: "ലോഗോ",
+            geojitFinhealthAlt: "ജിയോജിത് ഫിൻഹെൽത്ത്",
+            progressProfileTitle: "പ്രൊഫൈൽ",
+            progressFinancialTitle: "സാമ്പത്തിക ആരോഗ്യം",
+            progressRiskTitle: "റിസ്ക് പ്രൊഫൈൽ",
+            progressSummaryTitle: "ചുരുക്കം",
+            question0Title: "ഹായ്! നിങ്ങളുടെ പേരെന്താണ്?",
+            question0Subtitle: "ഇതൊരു വ്യക്തിഗത അനുഭവമാക്കാം - നിങ്ങളെ എങ്ങനെ വിളിക്കണമെന്ന് ഞങ്ങൾ അറിയാൻ ആഗ്രഹിക്കുന്നു!",
+            question0InputPlaceholder: "നിങ്ങളുടെ ഉത്തരം ഇവിടെ ടൈപ്പ് ചെയ്യുക",
+            nextButton: "അടുത്തത്",
+            question1Title: "നിങ്ങളുടെ ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ നൽകാമോ?",
+            question1MobileLabel: "മൊബൈൽ നമ്പർ",
+            question1MobilePlaceholder: "മൊബൈൽ നമ്പർ നൽകുക",
+            question1EmailLabel: "ഇമെയിൽ ഐഡി",
+            question1EmailPlaceholder: "ഇമെയിൽ ഐഡി നൽകുക",
+            question2Title: "തുടങ്ങാം:",
+            question2Subtitle:
+                "ഈ ആവേശകരമായ യാത്ര ഒരുമിച്ച് ആരംഭിക്കുന്നതിന് മുമ്പ്, ചില പ്രധാന കാര്യങ്ങൾക്ക് നിങ്ങളുടെ സമ്മതം ആവശ്യമാണ്.",
+            question2Consent1:
+                "ഈ സർവേ എന്റെ സാമ്പത്തിക ആരോഗ്യത്തെയും റിസ്ക് പ്രൊഫൈലിനെയും കുറിച്ചുള്ള ഒരു സൂചന മാത്രമാണ് നൽകുന്നതെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു.",
+            question2Consent2: "ഒരു ജിയോജിത് വിദഗ്ദ്ധൻ എന്നെ ബന്ധപ്പെടുന്നതിന് ഞാൻ സമ്മതിക്കുന്നു. എന്റെ ഡാറ്റ സുരക്ഷിതമാണ്.",
+            question3Title: "നിങ്ങളുടെ പ്രായപരിധി എത്രയാണ്?",
+            ageGroupUnder25: "25 വയസ്സിൽ താഴെ",
+            ageGroup25_34: "25–34",
+            ageGroup35_44: "35–44",
+            ageGroup45_54: "45–54",
+            ageGroup55Plus: "55+",
+            question4Title: "നിങ്ങൾ എങ്ങനെയാണ് സ്വയം തിരിച്ചറിയുന്നത്?",
+            genderMale: "പുരുഷൻ",
+            genderFemale: "സ്ത്രീ",
+            genderNonBinary: "നോൺ-ബൈനറി",
+            genderPreferNotToSay: "പറയാൻ താൽപ്പര്യമില്ല",
+            question5Title: "നിങ്ങൾ എന്ത് ജോലിയാണ് ചെയ്യുന്നത്?",
+            occupationSalaried: "ശമ്പളമുള്ളവർ",
+            occupationSelfEmployed: "സ്വയം തൊഴിൽ ചെയ്യുന്നവർ",
+            occupationStudent: "വിദ്യാർത്ഥി",
+            occupationRetired: "വിരമിച്ചവർ",
+            occupationOther: "മറ്റുള്ളവ",
+            question6Title: "നിങ്ങൾ വിവാഹിതനാണോ അതോ അവിവാഹിതനാണോ?",
+            maritalStatusSingle: "അവിവാഹിതൻ",
+            maritalStatusMarried: "വിവാഹിതൻ",
+            maritalStatusPreferNotToSay: "പറയാൻ താൽപ്പര്യമില്ല",
+            question7Title: "നിങ്ങൾ സാധാരണയായി നിങ്ങളുടെ പ്രതിമാസ വരുമാനവും ചെലവുകളും ട്രാക്ക് ചെയ്യാറുണ്ടോ?",
+            yes: "അതെ",
+            no: "ഇല്ല",
+            question8Title: "നിങ്ങളുടെ വരുമാനത്തിന്റെ ഏകദേശം എത്ര ഭാഗം എല്ലാ മാസവും ലാഭിക്കാൻ നിങ്ങൾക്ക് കഴിയുന്നു?",
+            lessThan10Percent: "< 10%",
+            "10_20Percent": "10–20%",
+            "20_30Percent": "20–30%",
+            "30PercentPlus": "30%+",
+            question9Title:
+                "ജീവിതത്തിൽ ഒരു അപ്രതീക്ഷിത സംഭവം (മെഡിക്കൽ ബിൽ പോലെ) ഉണ്ടായാൽ, അത് കൈകാര്യം ചെയ്യാൻ നിങ്ങൾക്ക് സമ്പാദ്യമുണ്ടോ?",
+            question10Title: "നിങ്ങൾക്ക് സജീവമായ ലൈഫ് അല്ലെങ്കിൽ ഹെൽത്ത് ഇൻഷുറൻസ് പോളിസികൾ ഉണ്ടോ?",
+            question11Title: "നിങ്ങളുടെ ജീവിത ലക്ഷ്യങ്ങൾക്കായി (വിദ്യാഭ്യാസം, വീട് മുതലായവ) നിങ്ങൾ പണം നിക്ഷേപിക്കാറുണ്ടോ?",
+            question12Title: "നിങ്ങളുടെ നിക്ഷേപങ്ങൾ എത്ര തവണ നിങ്ങൾ അവലോകനം ചെയ്യുകയോ ക്രമീകരിക്കുകയോ ചെയ്യാറുണ്ട്?",
+            frequently: "പതിവായി",
+            rarely: "വളരെ കുറച്ച്",
+            never: "ഒരിക്കലുമില്ല",
+            question13Title:
+                "പ്രതിമാസ ചെലവുകൾക്കായി നിങ്ങൾ എത്ര തവണ പണം കടം വാങ്ങുകയോ ക്രെഡിറ്റ് കാർഡുകളെ ആശ്രയിക്കുകയോ ചെയ്യാറുണ്ട്?",
+            relyHeavilyOnCredit: "പലപ്പോഴും – ഞാൻ ക്രെഡിറ്റിനെ വളരെയധികം ആശ്രയിക്കുന്നു",
+            useCreditOccasionally: "ചിലപ്പോൾ – ഞാൻ ക്രെഡിറ്റ് ഇടയ്ക്കിടെ ഉപയോഗിക്കുന്നു",
+            onlyInEmergencies: "വളരെ കുറച്ച് – അടിയന്തിര സാഹചര്യങ്ങളിൽ മാത്രം",
+            manageWithoutCredit: "ഒരിക്കലുമില്ല – ഞാൻ ക്രെഡിറ്റ് ഇല്ലാതെ ചെലവുകൾ കൈകാര്യം ചെയ്യുന്നു",
+            question14Title: "നിങ്ങളുടെ ആസ്തി (ആസ്തികൾ – ബാധ്യതകൾ) പതിവായി ട്രാക്ക് ചെയ്യാറുണ്ടോ?",
+            yesAtLeastOnceAYear: "അതെ, വർഷത്തിൽ ഒരിക്കലെങ്കിലും",
+            occasionally: "ചിലപ്പോൾ",
+            noNeverCalculatedIt: "ഇല്ല, ഒരിക്കലും കണക്കാക്കിയിട്ടില്ല",
+            question15Title: "നിങ്ങളുടെ നിക്ഷേപം 10% കുറഞ്ഞാൽ, നിങ്ങളുടെ ആദ്യ പ്രതികരണം എന്തായിരിക്കും?",
+            sellAndExit: "വിറ്റ് പുറത്തുകടക്കുക",
+            waitPatiently: "ക്ഷമയോടെ കാത്തിരിക്കുക",
+            investMoreWhileLow: "കുറവായിരിക്കുമ്പോൾ കൂടുതൽ നിക്ഷേപിക്കുക",
+            question16Title: "നിങ്ങളുടെ പണം എത്ര കാലം നിക്ഷേപിക്കാൻ നിങ്ങൾക്ക് സൗകര്യമുണ്ട്?",
+            lessThan1Year: "1 വർഷത്തിൽ താഴെ",
+            "1_3Years": "1–3 വർഷം",
+            "3PlusYears": "3+ വർഷം",
+            question17Title: "നിക്ഷേപങ്ങളെക്കുറിച്ചുള്ള നിങ്ങളുടെ ധാരണ എങ്ങനെയാണ്?",
+            beginner: "തുടക്കക്കാരൻ",
+            intermediate: "ഇന്റർമീഡിയറ്റ്",
+            advanced: "വിദഗ്ദ്ധൻ",
+            question18Title: "നിങ്ങളുടെ നിക്ഷേപങ്ങളിലെ ഉയർച്ച താഴ്ചകളുമായി നിങ്ങൾക്ക് എത്രത്തോളം സൗകര്യമുണ്ട്?",
+            getNervous: "എനിക്ക് പരിഭ്രാന്തി തോന്നും",
+            okayWithFluctuations: "ചില ഏറ്റക്കുറച്ചിലുകൾ എനിക്ക് പ്രശ്നമില്ല",
+            comfortableWithVolatility: "ഞാൻ ചാഞ്ചാട്ടത്തിൽ സുഖകരമാണ്",
+            question19Title: "നിങ്ങളുടെ നിക്ഷേപം 20% വേഗത്തിൽ വളർന്നാൽ, നിങ്ങൾ എന്തുചെയ്യും?",
+            sellToBookProfit: "ലാഭം ബുക്ക് ചെയ്യാൻ വിൽക്കുക",
+            holdAndWatch: "പിടിച്ച് നിരീക്ഷിക്കുക",
+            investMoreExpectingGains: "കൂടുതൽ നേട്ടങ്ങൾ പ്രതീക്ഷിച്ച് കൂടുതൽ നിക്ഷേപിക്കുക",
+            question20Title: "നിക്ഷേപിക്കുന്നതിനുള്ള നിങ്ങളുടെ പ്രധാന കാരണം എന്താണ്?",
+            growWealthLongTerm: "ദീർഘകാലത്തേക്ക് സമ്പത്ത് വളർത്താൻ",
+            protectCapital: "മൂലധനം സംരക്ഷിക്കാൻ",
+            generateRegularIncome: "സ്ഥിര വരുമാനം ഉണ്ടാക്കാൻ",
+            question21Community:
+                "പ്രത്യേക അപ്‌ഡേറ്റുകൾക്കും ഓഫറുകൾക്കുമായി ഞങ്ങളുടെ ഫണ്ട്സ്ജീനി കമ്മ്യൂണിറ്റിയിൽ ചേരാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?",
+            question21Newsletter:
+                "ഞങ്ങൾ നിങ്ങൾക്ക് 3 മാസത്തെ ജിയോജിത് ഇൻസൈറ്റ്സ് സബ്സ്ക്രിപ്ഷനും പ്രതിമാസ വാർത്താക്കുറിപ്പും അയയ്ക്കും. നിങ്ങൾക്ക് അത് വേണോ?",
+            question21Masterclass:
+                "ഞങ്ങളുടെ വരാനിരിക്കുന്ന ഫിനാൻഷ്യൽ മാസ്റ്റർക്ലാസ് സെഷനുകളിൽ പങ്കെടുക്കാൻ നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടോ?",
+            resultsCardTitle: "എല്ലാം കഴിഞ്ഞു!",
+            resultsCardSubtitle: "നിങ്ങളുടെ വ്യക്തിഗത സാമ്പത്തിക റോഡ്മാപ്പ് തയ്യാറാണ്!",
+            seeFinhealthReportButton: "എന്റെ ഫിൻഹെൽത്ത് റിപ്പോർട്ട് കാണുക",
+            feedbackReportTitle: "സാമ്പത്തിക ആരോഗ്യ റിപ്പോർട്ട്",
+            backButton: "← പിന്നോട്ട്",
+            reportSummaryTitle: "റിപ്പോർട്ട് സംഗ്രഹം",
+            downloadReportButton: "റിപ്പോർട്ട് ഡൗൺലോഡ് ചെയ്യുക",
+            riskProfileLabel: "റിസ്ക് പ്രൊഫൈൽ",
+            financialHealthLabel: "സാമ്പത്തിക ആരോഗ്യം",
+            riskLow: "കുറവ്",
+            riskHigh: "കൂടുതൽ",
+            healthLow: "കുറവ്",
+            healthHigh: "കൂടുതൽ",
+            riskBadgeModerate: "മിതമായ റിസ്ക്",
+            healthBadgeNeedsImprovement: "മെച്ചപ്പെടുത്തൽ ആവശ്യമാണ്",
+            yourFinancialHealthSnapshot: "നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യ സ്നാപ്പ്ഷോട്ട്",
+            riskPreference: "റിസ്ക് മുൻഗണന:",
+            riskTextOpenToSomeRisk: "ചില റിസ്കുകൾക്ക് തയ്യാറാണ്",
+            weakArea: "ദുർബലമായ മേഖല:",
+            weakAreaNotSaving: "പതിവായി സമ്പാദിക്കുന്നില്ല / അടിയന്തിര ഫണ്ട് ഇല്ല",
+            actionNeeded: "ആവശ്യമായ നടപടി:",
+            actionNeededImproveInsurance: "ഇൻഷുറൻസ് കവറേജ് മെച്ചപ്പെടുത്തുക",
+            recommendationsByGeojit: "ജിയോജിത്തിന്റെ ശുപാർശകൾ",
+            recommendationSummaryNeedsImprovement:
+                "നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യത്തിന് ശ്രദ്ധ ആവശ്യമാണ്. നിങ്ങൾ പതിവായി സമ്പാദിക്കുന്നില്ല, സുരക്ഷാ വലയം ഇല്ല, അല്ലെങ്കിൽ ഇൻഷുറൻസ് കുറവാണ് എന്ന് തോന്നുന്നു. വിഷമിക്കേണ്ട – ആരോഗ്യകരമായ സാമ്പത്തിക ശീലങ്ങൾ വളർത്താൻ ഒരിക്കലും വൈകില്ല.",
+            recommendationListNeedsImprovement1: "ഒരു അടിയന്തിര ഫണ്ട് നിർമ്മിക്കുക",
+            recommendationListNeedsImprovement2: "വരുമാനവും ചെലവുകളും ട്രാക്ക് ചെയ്യുന്ന ശീലം വളർത്തുക",
+            recommendationListNeedsImprovement3: "അടിസ്ഥാന ലൈഫ്, ഹെൽത്ത് ഇൻഷുറൻസ് ഉറപ്പാക്കുക",
+            recommendationSummaryModerate:
+                "നിങ്ങൾ ശരിയായ പാതയിലാണ്! നിങ്ങൾ ചില ആരോഗ്യകരമായ സാമ്പത്തിക ശീലങ്ങൾ വളർത്തിയിട്ടുണ്ട്, പക്ഷേ ആസൂത്രണം, സംരക്ഷണം, അല്ലെങ്കിൽ നിക്ഷേപ സ്ഥിരത എന്നിവയിൽ മെച്ചപ്പെടുത്തലുകൾക്ക് സാധ്യതയുണ്ട്.",
+            recommendationListModerate1: "ലക്ഷ്യാധിഷ്ഠിത നിക്ഷേപങ്ങൾക്ക് മുൻഗണന നൽകുക",
+            recommendationListModerate2: "നിങ്ങളുടെ പോർട്ട്ഫോളിയോ പതിവായി അവലോകനം ചെയ്യുക",
+            recommendationListModerate3: "നിങ്ങളുടെ ഇൻഷുറൻസും സമ്പാദ്യ ബഫറുകളും മെച്ചപ്പെടുത്തുക",
+            recommendationSummaryOnTrack:
+                "മികച്ചത്! നിങ്ങളുടെ സാമ്പത്തികം മികച്ച രീതിയിൽ കൈകാര്യം ചെയ്യുന്നു. നിങ്ങളുടെ പണത്തെക്കുറിച്ച് നിങ്ങൾക്ക് വ്യക്തമായ ധാരണയുണ്ട്, ഭാവിക്കായി ആസൂത്രണം ചെയ്യുന്നു, നിങ്ങൾ നിർമ്മിച്ചവ സംരക്ഷിക്കുന്നു.",
+            recommendationListOnTrack1: "മികച്ച വരുമാനത്തിനായി നിങ്ങളുടെ നിലവിലുള്ള നിക്ഷേപങ്ങൾ ഒപ്റ്റിമൈസ് ചെയ്യുക",
+            recommendationListOnTrack2: "വിദഗ്ദ്ധരുടെ മാർഗ്ഗനിർദ്ദേശത്തോടെ കൂടുതൽ വൈവിധ്യവൽക്കരിക്കുക",
+            recommendationListOnTrack3: "സമ്പത്ത് വർദ്ധിപ്പിക്കുന്നതിനും നികുതി ലാഭിക്കുന്നതിനുമുള്ള തന്ത്രങ്ങൾ കണ്ടെത്തുക",
+            recommendationListRiskHigh1: "നിങ്ങളുടെ ദീർഘകാല ലക്ഷ്യങ്ങളുമായി യോജിക്കുന്ന ഇക്വിറ്റി മ്യൂച്വൽ ഫണ്ടുകളിലെ SIP-കൾ",
+            recommendationListRiskHigh2: "വിപണിയിലെ ഉയർച്ച താഴ്ചകളിൽ അച്ചടക്കം പാലിക്കുക",
+            recommendationListRiskModerate1: "ബാലൻസ്ഡ് അഡ്വാന്റേജ് ഫണ്ടുകൾ അല്ലെങ്കിൽ ഹൈബ്രിഡ് ഇക്വിറ്റി ഫണ്ടുകൾ",
+            recommendationListRiskModerate2: "സ്ഥിരതയ്ക്കായി ഇക്വിറ്റിയും സുരക്ഷിതമായ നിക്ഷേപങ്ങളും കൂട്ടിക്കലർത്തുക",
+            recommendationListRiskLow1:
+                "ഡെറ്റ് മ്യൂച്വൽ ഫണ്ടുകൾ അല്ലെങ്കിൽ കൺസർവേറ്റീവ് ഹൈബ്രിഡ് ഫണ്ടുകൾ പോലുള്ള കുറഞ്ഞ റിസ്ക് ഓപ്ഷനുകൾ",
+            recommendationListRiskLow2: "ഹ്രസ്വകാല ഫണ്ടുകളിലൂടെ ലിക്വിഡിറ്റി ഉറപ്പാക്കുക",
+            takeAssessmentAgainButton: "അസസ്മെന്റ് വീണ്ടും എടുക്കുക",
+            rateYourExperience: "നിങ്ങളുടെ അനുഭവം വിലയിരുത്തുക",
+            howsYourOverallExperience: "ഇന്നത്തെ നിങ്ങളുടെ മൊത്തത്തിലുള്ള അനുഭവം എങ്ങനെയായിരുന്നു?",
+            describeYourIssue: "നിങ്ങളുടെ പ്രശ്നം വിവരിക്കുക",
+            tellUsAboutYourExperience: "നിങ്ങളുടെ അനുഭവത്തെക്കുറിച്ച് ഞങ്ങളോട് പറയുക",
+            iWouldLikeToBeContacted: "എന്റെ പ്രശ്നത്തെക്കുറിച്ച് എന്നെ ബന്ധപ്പെടാൻ ഞാൻ ആഗ്രഹിക്കുന്നു",
+            submitButton: "സമർപ്പിക്കുക",
+            whatsNext: "അടുത്തത് എന്ത്?",
+            expertsCreateRoadmap: "ഞങ്ങളുടെ വിദഗ്ദ്ധർ നിങ്ങൾക്കായി ഒരു വ്യക്തിഗത നിക്ഷേപ റോഡ്മാപ്പ് തയ്യാറാക്കട്ടെ.",
+            requestExpertSessionButton: "ഒരു വിദഗ്ദ്ധ സെഷൻ അഭ്യർത്ഥിക്കുക",
+            introSubtitle: "നിങ്ങളുടെ വ്യക്തിഗത സാമ്പത്തിക ആരോഗ്യ പരിശോധന",
+            introTitle: "ജിയോജിത് ഫിൻഹെൽത്ത്",
+            introDescription:
+                "ജിയോജിത് ഫിൻഹെൽത്ത് നിങ്ങളുടെ സാമ്പത്തിക ക്ഷേമവും നിക്ഷേപ സന്നദ്ധതയും ഏതാനും മിനിറ്റുകൾക്കുള്ളിൽ വിലയിരുത്താൻ സഹായിക്കുന്ന ലളിതവും സംവേദനാത്മകവുമായ ഒരു വെബ് ടൂളാണ്.",
+            feature1Text:
+                "നിങ്ങളുടെ നിലവിലെ സമ്പാദ്യം, ഇൻഷുറൻസ്, നിക്ഷേപ ശീലങ്ങൾ എന്നിവ എത്രത്തോളം ആരോഗ്യകരമാണെന്ന് മനസ്സിലാക്കുക.",
+            feature2Text: "നിങ്ങളുടെ വ്യക്തിഗത റിസ്ക് പ്രൊഫൈൽ കണ്ടെത്തുക.",
+            feature3Text: "നിങ്ങളുടെ സാമ്പത്തിക ശക്തികളുടെയും മെച്ചപ്പെടുത്തേണ്ട മേഖലകളുടെയും ഒരു ദ്രുത സംഗ്രഹം നേടുക.",
+            feature4Text: "നിങ്ങളുടെ ലക്ഷ്യങ്ങൾക്കനുസരിച്ച് ജിയോജിത്തിന്റെ വിദഗ്ദ്ധ പിന്തുണയുള്ള ശുപാർശകൾ സ്വീകരിക്കുക.",
+            faqSubtitle: "ചോദ്യങ്ങളുണ്ടോ? ഞങ്ങൾ സഹായിക്കാൻ ഇവിടെയുണ്ട്.",
+            faqTitle: "പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ",
+            faq1Question: "1. എന്താണ് ജിയോജിത് ഫിൻഹെൽത്ത്?",
+            faq1Answer:
+                "ജിയോജിത് ഫിൻഹെൽത്ത് നിങ്ങളുടെ നിലവിലെ സാമ്പത്തിക ആരോഗ്യവും റിസ്ക് താൽപ്പര്യവും വിലയിരുത്താൻ സഹായിക്കുന്ന ഒരു സൗജന്യ, സംവേദനാത്മക വെബ് ടൂളാണ്. ഏതാനും മിനിറ്റുകൾക്കുള്ളിൽ, നിങ്ങളുടെ സമ്പാദ്യം, നിക്ഷേപം, സംരക്ഷണ ശീലങ്ങൾ എന്നിവയുടെ ഒരു സംഗ്രഹം – മെച്ചപ്പെടുത്തുന്നതിനുള്ള വിദഗ്ദ്ധ നുറുങ്ങുകളോടൊപ്പം ഇത് നൽകുന്നു.",
+            faq2Question: "2. ആർക്കൊക്കെ ഈ ഉപകരണം ഉപയോഗിക്കാം?",
+            faq2Answer:
+                "സാമ്പത്തിക ആരോഗ്യം മനസ്സിലാക്കാൻ ആഗ്രഹിക്കുന്ന ആർക്കും ഈ ഉപകരണം ഉപയോഗിക്കാം. ഇത് അവരുടെ സാമ്പത്തിക യാത്രയുടെ എല്ലാ ഘട്ടങ്ങളിലുമുള്ള വ്യക്തികൾക്കായി രൂപകൽപ്പന ചെയ്തതാണ്.",
+            faq3Question: "3. വ്യക്തിഗത സാമ്പത്തിക വിവരങ്ങൾ പങ്കിടേണ്ടതുണ്ടോ?",
+            faq3Answer:
+                "ഇല്ല, നിങ്ങൾക്ക് പ്രത്യേക സാമ്പത്തിക വിവരങ്ങൾ പങ്കിടേണ്ടതില്ല. നിങ്ങളുടെ സാമ്പത്തിക ശീലങ്ങളെയും മുൻഗണനകളെയും കുറിച്ചുള്ള പൊതുവായ വിവരങ്ങളുമായി ഈ ഉപകരണം പ്രവർത്തിക്കുന്നു.",
+            faq4Question: "4. ചെക്കപ്പ് പൂർത്തിയാക്കിയ ശേഷം എന്ത് സംഭവിക്കും?",
+            faq4Answer:
+                "നിങ്ങളുടെ പ്രതികരണങ്ങളെ അടിസ്ഥാനമാക്കി നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യ സ്കോറും മെച്ചപ്പെടുത്തുന്നതിനുള്ള ശുപാർശകളും അടങ്ങിയ ഒരു വ്യക്തിഗത റിപ്പോർട്ട് നിങ്ങൾക്ക് ലഭിക്കും.",
+            faq5Question: "5. ഇത് ശരിക്കും സൗജന്യമാണോ, അതോ മറഞ്ഞിരിക്കുന്ന ചാർജുകളുണ്ടോ?",
+            faq5Answer:
+                "അതെ, ഈ ഉപകരണം പൂർണ്ണമായും സൗജന്യമാണ്, മറഞ്ഞിരിക്കുന്ന ചാർജുകളൊന്നുമില്ല. നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യം നന്നായി മനസ്സിലാക്കാൻ നിങ്ങളെ സഹായിക്കുന്നതിനുള്ള ഞങ്ങളുടെ വഴിയാണിത്.",
+            aboutTitle: "ഞങ്ങളെക്കുറിച്ച്",
+            aboutDescription:
+                "ഗൾഫ് സഹകരണ കൗൺസിൽ രാജ്യങ്ങളിൽ ശക്തമായ സാന്നിധ്യമുള്ള ഒരു പ്രമുഖ ഇന്ത്യൻ നിക്ഷേപ സേവന കമ്പനിയാണ് ഞങ്ങൾ. വ്യവസായത്തിലെ ഒരു പയനിയർ എന്ന നിലയിൽ, ഞങ്ങൾ നവീകരിക്കുകയും വ്യക്തിഗത നിക്ഷേപകർക്ക് വിപണികൾ ലഭ്യമാക്കുകയും ചെയ്യുന്നു.",
+            stat1Text: "വിപണിയിൽ 38 വർഷം",
+            stat2Text: "ഇന്ത്യയിലും ഗൾഫ് സഹകരണ കൗൺസിൽ രാജ്യങ്ങളിലുമായി 508 ശാഖകൾ",
+            stat3Text: "15.51 ലക്ഷം ഉപഭോക്താക്കൾ",
+            stat4Text: "₹ 1,11,252 കോടി ഉപഭോക്തൃ ആസ്തികൾ",
+            aboutDate: "06/08/2025 വരെ",
+            footerRegisteredOffice: "രജിസ്റ്റേർഡ് ഓഫീസ്",
+            footerAddress: "34/659, സിവിൽ ലൈൻ റോഡ്,<br>പാടിവട്ടം, കൊച്ചി-682024,<br>കേരളം, ഇന്ത്യ",
+            footerContact: "ബന്ധപ്പെടുക",
+            footerPhone: "ഫോൺ: +91 484-2901000",
+            footerWebsite: "www.geojit.com",
+            footerInvestorQueries: "നിക്ഷേപകരുടെ ചോദ്യങ്ങൾക്ക്",
+            footerEmail: "customercare@geojit.com",
+            disclaimerTitle: "നിരാകരണം",
+            disclaimerText:
+                "സെക്യൂരിറ്റീസ് മാർക്കറ്റിലെ നിക്ഷേപങ്ങൾ വിപണി അപകടസാധ്യതകൾക്ക് വിധേയമാണ്, നിക്ഷേപിക്കുന്നതിന് മുമ്പ് ബന്ധപ്പെട്ട എല്ലാ രേഖകളും ശ്രദ്ധാപൂർവ്വം വായിക്കുക. ജിയോജിത് ഫിനാൻഷ്യൽ സർവീസസ് ലിമിറ്റഡ് ഇൻഷുറൻസ് ഉൽപ്പന്നങ്ങൾ, പോളിസി സേവനം, ക്ലെയിമുകളുടെ വിധി എന്നിവയെക്കുറിച്ച് യാതൊരു പ്രാതിനിധ്യവും വാറന്റിയും നൽകുന്നില്ല, അതിന് ഉത്തരവാദിയുമല്ല. ഈ മെയിലിൽ ഇൻഷുറൻസ് ഉൽപ്പന്നത്തിന്റെ ഒരു സൂചന മാത്രമേ അടങ്ങിയിട്ടുള്ളൂ. അപകടസാധ്യത ഘടകങ്ങൾ, നിബന്ധനകൾ, വ്യവസ്ഥകൾ, ഒഴിവാക്കലുകൾ എന്നിവയെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾക്ക്, ബന്ധപ്പെട്ട പോളിസി രേഖകൾ വായിക്കുക.<br><br>GFSL, IRDAI നൽകിയ CA0226 ലൈസൻസ് നമ്പർ ഉള്ള ഒരു ലൈസൻസുള്ള കോർപ്പറേറ്റ് ഏജന്റാണ്.",
+            disclosureTitle: "വെളിപ്പെടുത്തൽ",
+            disclosureText:
+                "ഇവ എക്സ്ചേഞ്ച് ട്രേഡ് ചെയ്ത ഉൽപ്പന്നങ്ങളല്ല, അംഗം ഒരു വിതരണക്കാരനായി മാത്രം പ്രവർത്തിക്കുന്നു. വിതരണ പ്രവർത്തനങ്ങളുമായി ബന്ധപ്പെട്ട എല്ലാ തർക്കങ്ങൾക്കും എക്സ്ചേഞ്ച് നിക്ഷേപകരുടെ പരാതി പരിഹാരത്തിനോ ആർബിട്രേഷൻ സംവിധാനത്തിനോ പ്രവേശനമില്ല.",
+            footerLegal: "ജിയോജിത് ഫിനാൻഷ്യൽ സർവീസസ് ലിമിറ്റഡ്, AMFI-രജിസ്റ്റർ ചെയ്ത മ്യൂച്വൽ ഫണ്ട് വിതരണക്കാരൻ, ARN : 0098",
+            footerCredit: "ഡിസൈൻ: നിയോഇന്ററാക്ഷൻ ഡിസൈൻ",
+        }
+    };
 
-// Language variables
-let currentLanguage = 'en';
-let savedLanguage = 'en';
+    // Language variables
+    let currentLanguage = 'en';
+    let savedLanguage = 'en';
 
-// Main language change function
-function changeLanguage(selectedLanguage) {
-   console.log('Changing language to:', selectedLanguage);
-   currentLanguage = selectedLanguage;
-   translatePage();
-   saveLanguagePreference();
-}
+    // Main language change function
+    function changeLanguage(selectedLanguage) {
+        console.log('Changing language to:', selectedLanguage);
+        currentLanguage = selectedLanguage;
+        translatePage();
+        saveLanguagePreference();
+    }
 
-// Translate all elements on the page
-function translatePage() {
-   const titleTranslation = translations[currentLanguage]['appTitle'];
-   if (titleTranslation) {
-       document.title = titleTranslation;
-   }
-   
-   document.documentElement.lang = currentLanguage;
-   
-   const elementsToTranslate = document.querySelectorAll('[data-key]');
-   
-   elementsToTranslate.forEach(element => {
-       const translationKey = element.getAttribute('data-key');
-       const translation = translations[currentLanguage][translationKey];
-       
-       // Only update if translation exists
-       if (translation) {
-           if (element.tagName === 'INPUT') {
-               if (element.type === 'text' || element.type === 'email' || element.type === 'tel') {
-                   element.placeholder = translation;
-               }
-           } else if (element.tagName === 'TEXTAREA') {
-               element.placeholder = translation;
-           } else {
-               element.textContent = translation;
-           }
-       }
-   });
-}
+    // Translate all elements on the page
+    function translatePage() {
+        const titleTranslation = translations[currentLanguage]['appTitle'];
+        if (titleTranslation) {
+            document.title = titleTranslation;
+        }
 
-// Save language preference
-function saveLanguagePreference() {
-   savedLanguage = currentLanguage;
-}
+        document.documentElement.lang = currentLanguage;
 
-// Load saved language preference
-function loadLanguagePreference() {
-   currentLanguage = savedLanguage;
-   const selectElement = document.getElementById('languageSelect');
-   if (selectElement) {
-       selectElement.value = savedLanguage;
-   }
-}
+        const elementsToTranslate = document.querySelectorAll('[data-key]');
 
-// Make functions globally accessible
-window.changeLanguage = changeLanguage;
-window.translatePage = translatePage;
+        elementsToTranslate.forEach(element => {
+            const translationKey = element.getAttribute('data-key');
+            const translation = translations[currentLanguage][translationKey];
 
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-   loadLanguagePreference();
-   translatePage();
-});
+            // Only update if translation exists
+            if (translation) {
+                if (element.tagName === 'INPUT') {
+                    if (element.type === 'text' || element.type === 'email' || element.type === 'tel') {
+                        element.placeholder = translation;
+                    }
+                } else if (element.tagName === 'TEXTAREA') {
+                    element.placeholder = translation;
+                } else {
+                    element.textContent = translation;
+                }
+            }
+        });
+    }
+
+    // Save language preference
+    function saveLanguagePreference() {
+        savedLanguage = currentLanguage;
+    }
+
+    // Load saved language preference
+    function loadLanguagePreference() {
+        currentLanguage = savedLanguage;
+        const selectElement = document.getElementById('languageSelect');
+        if (selectElement) {
+            selectElement.value = savedLanguage;
+        }
+    }
+
+    // Make functions globally accessible
+    window.changeLanguage = changeLanguage;
+    window.translatePage = translatePage;
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        loadLanguagePreference();
+        translatePage();
+    });
 </script>
 
 
