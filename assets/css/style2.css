@@ -50,6 +50,41 @@ body {
   background-color: #ffffff;
 }
 
+.language-switcher {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.language-dropdown {
+  background: #fff;
+  border: 2px solid #017670;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #017670;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.language-dropdown:hover {
+  background: #f0f9ff;
+}
+
+@media (max-width: 768px) {
+  .language-switcher {
+    top: 70px;
+    right: 15px;
+  }
+
+  .language-dropdown {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
 .back-arrow {
   width: 24px;
   height: 24px;
