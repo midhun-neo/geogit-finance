@@ -108,7 +108,7 @@ body {
 }
 
 .logo-2 img {
-  width: 7.5rem;
+  width: 12.5rem;
 }
 
 .logo-text {
@@ -132,7 +132,8 @@ body {
   }
 
   .logo-2 img {
-    width: 5rem;
+    width: 4rem;
+    height: 4rem;
   }
 }
 
@@ -155,7 +156,7 @@ body {
   gap: 1rem;
   flex-wrap: nowrap;
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1;
@@ -740,7 +741,7 @@ body {
   border-radius: 5px;
   text-align: center;
   position: fixed; /* Position relative to the parent .hero-section */
-  top: 5rem; /* Position above the bottom edge of hero-section */
+  bottom: 5rem; /* Position above the bottom edge of hero-section */
   left: 50%;
   transform: translateX(-50%) translateY(100px); /* Start further below to slide up */
   opacity: 0;
@@ -1073,7 +1074,7 @@ body {
     padding-bottom: 0.5rem;
     padding: 2px;
     width: 90%;
-    top: 8rem;
+    top: 10rem;
   }
 
   .progress-card {
@@ -1610,7 +1611,7 @@ img {
     overflow-x: auto;
     padding-bottom: 0.5rem;
     width: 90%;
-    top: 5rem;
+    top: 7.5rem;
     /* display: none; */
     /* position: sticky;
     top: 5rem; */
