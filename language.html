@@ -12,30 +12,41 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 
 </head>
 <!-- Header -->
 <header class="header">
-
     <div class="logo">
         <img src="assets/images/logo.svg" alt="logo" />
     </div>
 
+    <div class="header-right">
 
-    <div class="logo">
+    <div class="logo-2">
         <img src="./assets/images/geojit-finhealth.svg" alt="geojit-finhealth" />
 
+
+</div>
+
+            <div class="language-switcher">
+    <select class="language-dropdown" id="languageSelect" onchange="changeLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="ml">മല</option>
+    </select>
+</div>
+
     </div>
-
-
-
 </header>
 
-<div class="language-switcher">
-    <select class="language-dropdown" id="languageSelect" onchange="changeLanguage(this.value)">
-        <option value="en">🇺🇸 English</option>
-        <option value="ml">🇮🇳 മലയാളം</option>
-    </select>
+
+
+<div class="notification" id="notification">
+    <img src="./assets/images/icon-check-white.svg" alt="check" />
+    <p>Thank you for your feedback! Your feedback has been submitted successfully.</p>
+    <img src="./assets/images/cross.svg" alt="cross" style="cursor: pointer;" onclick="closeNotification()" />
 </div>
 
 <div style="padding: 3rem; background-color: #f6f4f1;"></div>
@@ -563,7 +574,7 @@
         <div class="question-card" id="question-11">
             <h2 class="question-title" data-key="question11Title">Do you invest money specifically for your life goals
                 (like education, home, etc.)?</h2>
-        
+
             <div class="options-grid">
                 <label class="option-label">
                     <input type="radio" name="q5-financial-health" value="Yes" data-score="2">
@@ -1013,150 +1024,158 @@
                     </div>
 
                     <div class="feedback-content">
-                        <!-- New Report Header -->
-                        <div class="report-header">
-                            <div class="report-title-section">
-                                <h2 class="report-title">
-                                    <span class="user-name" id="report-user-name">Mathew's</span> Financial Health
-                                    Report
-                                </h2>
-                            </div>
-                            <div class="report-actions">
-                                <button class="download-btn">Download Report</button>
-                                <button class="share-btn whatsapp">
-                                    <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
-                                </button>
-                                <button class="share-btn general">
-                                    <img src="./assets/images/share.svg" alt="share" />
-                                </button>
-                            </div>
-                        </div>
 
-                        <!-- New Cards Layout -->
-                        <div class="report-cards-container">
-                            <!-- Risk Profile Card -->
-                            <div class="report-card risk-card">
-                                <div class="report-card-left">
-                                    <div class="card-header">
-                                        <img src="./assets/images/risk-profile.svg" alt="risk profile"
-                                            class="card-icon" />
-                                        <h3>Risk Profile</h3>
-                                    </div>
+                        <div id="report-to-download" class="report-download-wrapper">
 
-                                    <div class="gauge-section">
-                                        <div class="gauge-wrapper">
-                                            <canvas id="riskGaugeChart" width="200" height="120"></canvas>
+                            <!-- New Report Header -->
+                            <div class="report-header">
+                                <div class="report-title-section">
+                                    <h2 class="report-title">
+                                        <span class="user-name" id="report-user-name">Mathew's</span> Financial Health
+                                        Report
+                                    </h2>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="download-btn" onclick="downloadReportAsPDF()">Download
+                                        Report</button>
+                                    <button class="share-btn whatsapp">
+                                        <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
+                                    </button>
+                                    <button class="share-btn general">
+                                        <img src="./assets/images/share.svg" alt="share" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- New Cards Layout -->
+                            <div class="report-cards-container">
+                                <!-- Risk Profile Card -->
+                                <div class="report-card risk-card">
+                                    <div class="report-card-left">
+                                        <div class="card-header">
+                                            <img src="./assets/images/risk-profile.svg" alt="risk profile"
+                                                class="card-icon" />
+                                            <h3>Risk Profile</h3>
                                         </div>
 
-                                    </div>
-                                </div>
-                                <div class="report-card-right">
-                                    <div class="gauge-info">
-                                        <div class="risk-badge" id="risk-badge">Moderate Risk</div>
-                                    </div>
-                                    <p class="risk-description" id="risk-description">
-                                        You're open to some risk in exchange for better returns.
-                                        A balanced investment approach can work well for you.
-                                    </p>
-                                    <div class="recommendations-section">
-                                        <div class="recommendations-header">
-                                            <img src="./assets/images/expert-icon.svg" alt="Expert"
-                                                class="expert-icon" />
-                                            <span>Recommendations by Geojit</span>
+                                        <div class="gauge-section">
+                                            <div class="gauge-wrapper">
+                                                <canvas id="riskGaugeChart" width="200" height="120"></canvas>
+                                            </div>
+
                                         </div>
-                                        <ul class="recommendations-list" id="risk-recommendations">
-                                            <li>Balanced Advantage Funds or Hybrid Equity Funds</li>
-                                            <li>Mixing equity with safer investments for stability</li>
-                                        </ul>
+                                    </div>
+                                    <div class="report-card-right">
+                                        <div class="gauge-info">
+                                            <div class="risk-badge" id="risk-badge">Moderate Risk</div>
+                                        </div>
+                                        <p class="risk-description" id="risk-description">
+                                            You're open to some risk in exchange for better returns.
+                                            A balanced investment approach can work well for you.
+                                        </p>
+                                        <div class="recommendations-section">
+                                            <div class="recommendations-header">
+                                                <img src="./assets/images/expert-icon.svg" alt="Expert"
+                                                    class="expert-icon" />
+                                                <span>Recommendations by Geojit</span>
+                                            </div>
+                                            <ul class="recommendations-list" id="risk-recommendations">
+                                                <li>Balanced Advantage Funds or Hybrid Equity Funds</li>
+                                                <li>Mixing equity with safer investments for stability</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Financial Health Card (NOW MATCHING THE STRUCTURE) -->
-                            <div class="report-card health-card">
-                                <div class="report-card-left">
-                                    <div class="card-header">
-                                        <img src="./assets/images/financial-health.svg" alt="financial health"
-                                            class="card-icon" />
-                                        <h3>Financial Health</h3>
-                                    </div>
-
-                                    <div class="gauge-section">
-                                        <div class="gauge-wrapper">
-                                            <canvas id="healthGaugeChart" width="200" height="120"></canvas>
+                                <!-- Financial Health Card (NOW MATCHING THE STRUCTURE) -->
+                                <div class="report-card health-card">
+                                    <div class="report-card-left">
+                                        <div class="card-header">
+                                            <img src="./assets/images/financial-health.svg" alt="financial health"
+                                                class="card-icon" />
+                                            <h3>Financial Health</h3>
                                         </div>
 
-                                    </div>
-                                </div>
-                                <div class="report-card-right">
-                                    <div class="gauge-info">
-                                        <div class="health-badge" id="health-badge">Needs Improvement</div>
-                                    </div>
-                                    <p class="health-description" id="health-description">
-                                        Your financial health needs attention. It looks like you're either
-                                        not saving regularly, lack a safety net or are under insured.
-                                    </p>
-                                    <div class="recommendations-section">
-                                        <div class="recommendations-header">
-                                            <img src="./assets/images/expert-icon.svg" alt="Expert"
-                                                class="expert-icon" />
-                                            <span>Recommendations by Geojit</span>
+                                        <div class="gauge-section">
+                                            <div class="gauge-wrapper">
+                                                <canvas id="healthGaugeChart" width="200" height="120"></canvas>
+                                            </div>
+
                                         </div>
-                                        <ul class="recommendations-list" id="health-recommendations">
-                                            <li>Building an emergency fund</li>
-                                            <li>Creating a habit of tracking income and expenses</li>
-                                            <li>Setting basic life and health insurance in place</li>
-                                        </ul>
+                                    </div>
+                                    <div class="report-card-right">
+                                        <div class="gauge-info">
+                                            <div class="health-badge" id="health-badge">Needs Improvement</div>
+                                        </div>
+                                        <p class="health-description" id="health-description">
+                                            Your financial health needs attention. It looks like you're either
+                                            not saving regularly, lack a safety net or are under insured.
+                                        </p>
+                                        <div class="recommendations-section">
+                                            <div class="recommendations-header">
+                                                <img src="./assets/images/expert-icon.svg" alt="Expert"
+                                                    class="expert-icon" />
+                                                <span>Recommendations by Geojit</span>
+                                            </div>
+                                            <ul class="recommendations-list" id="health-recommendations">
+                                                <li>Building an emergency fund</li>
+                                                <li>Creating a habit of tracking income and expenses</li>
+                                                <li>Setting basic life and health insurance in place</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Financial Health Snapshot -->
-                        <div class="snapshot-section">
-                            <h3>Your Financial Health Snapshot</h3>
-                            <div class="snapshot-cards">
-                                <div class="snapshot-card">
-                                    <div class="snapshot-label">Risk Preference</div>
-                                    <div class="snapshot-value" id="snapshot-risk">Open to some risk</div>
-                                </div>
-                                <div class="snapshot-card">
-                                    <div class="snapshot-label">Weak Area</div>
-                                    <div class="snapshot-value" id="snapshot-weak">Not saving regularly / Lack of safety
-                                        net</div>
-                                </div>
-                                <div class="snapshot-card">
-                                    <div class="snapshot-label">Action Needed</div>
-                                    <div class="snapshot-value" id="snapshot-action">Improve insurance coverage</div>
-                                </div>
-                            </div>
-                            <button class="take-assessment-btn" onclick="resetAssessment()">Take Assessment
-                                Again</button>
-                        </div>
-
-                        <!-- EXISTING: Rating Section -->
-                        <div class="rating-section">
-                            <h3>Rate your experience</h3>
-                            <p>How's your overall experience today?</p>
-                            <div class="rating-stars">
-                                <span class="star" onclick="setRating(1)">★</span>
-                                <span class="star" onclick="setRating(2)">★</span>
-                                <span class="star" onclick="setRating(3)">★</span>
-                                <span class="star" onclick="setRating(4)">★</span>
-                                <span class="star" onclick="setRating(5)">★</span>
-                            </div>
-                            <div class="feedback-input">
-                                <label>Describe your Issue</label>
-                                <textarea placeholder="Tell us about your experience"></textarea>
-                                <div class="feedback-actions">
-                                    <div class="feedback-checkbox">
-                                        <input type="checkbox" id="feedback-contact">
-                                        <label for="feedback-contact">I would like to be contacted about my
-                                            Issue</label>
+                            <!-- Financial Health Snapshot -->
+                            <div class="snapshot-section">
+                                <h3>Your Financial Health Snapshot</h3>
+                                <div class="snapshot-cards">
+                                    <div class="snapshot-card">
+                                        <div class="snapshot-label">Risk Preference</div>
+                                        <div class="snapshot-value" id="snapshot-risk">Open to some risk</div>
                                     </div>
-                                    <button class="submit-feedback">Submit</button>
+                                    <div class="snapshot-card">
+                                        <div class="snapshot-label">Weak Area</div>
+                                        <div class="snapshot-value" id="snapshot-weak">Not saving regularly / Lack of
+                                            safety
+                                            net</div>
+                                    </div>
+                                    <div class="snapshot-card">
+                                        <div class="snapshot-label">Action Needed</div>
+                                        <div class="snapshot-value" id="snapshot-action">Improve insurance coverage
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="take-assessment-btn" onclick="resetAssessment()">Take Assessment
+                                    Again</button>
+                            </div>
+
+                            <!-- EXISTING: Rating Section -->
+                            <div class="rating-section">
+                                <h3>Rate your experience</h3>
+                                <p>How's your overall experience today?</p>
+                                <div class="rating-stars">
+                                    <span class="star" onclick="setRating(1)">★</span>
+                                    <span class="star" onclick="setRating(2)">★</span>
+                                    <span class="star" onclick="setRating(3)">★</span>
+                                    <span class="star" onclick="setRating(4)">★</span>
+                                    <span class="star" onclick="setRating(5)">★</span>
+                                </div>
+                                <div class="feedback-input">
+                                    <label>Describe your Issue</label>
+                                    <textarea placeholder="Tell us about your experience"></textarea>
+                                    <div class="feedback-actions">
+                                        <div class="feedback-checkbox">
+                                            <input type="checkbox" id="feedback-contact">
+                                            <label for="feedback-contact">I would like to be contacted about my
+                                                Issue</label>
+                                        </div>
+                                        <button class="submit-feedback" onclick="showSubmitNotification()">Submit</button>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -1948,7 +1967,7 @@
                 } else if (element.tagName === 'TEXTAREA') {
                     element.placeholder = translation;
                 } else {
-                    element.textContent = translation;
+                    element.innerHTML = translation;
                 }
             }
         });
@@ -2922,6 +2941,8 @@
 
 
 
+
+
     document.addEventListener('DOMContentLoaded', () => {
         // Re-select question cards to include the feedback card
         questionCards = document.querySelectorAll('.question-card');
@@ -2976,6 +2997,108 @@
         document.querySelectorAll('img').forEach(img => {
             imageObserver.observe(img);
         });
+    }
+
+
+    function showSubmitNotification() {
+        const notificationEl = document.getElementById("notification")
+        notificationEl.style.visibility = "visible"
+                notificationEl.style.opacity = "1"
+
+
+        setTimeout(() => {
+                 
+closeNotification()
+
+        }, 3000);
+    }
+    
+    function closeNotification() {
+                const notificationEl = document.getElementById("notification")
+
+   notificationEl.style.visibility = "hidden"
+                                    notificationEl.style.opacity = "0"
+    }
+
+
+
+
+    async function downloadReportAsPDF() {
+        const reportElement = document.getElementById('report-to-download');
+        const userName = document.getElementById('user-name').value || 'User';
+
+        if (!reportElement) {
+            console.error('Report element not found');
+            return;
+        }
+
+        try {
+            // Show loading state
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.textContent = 'Generating PDF...';
+                downloadBtn.disabled = true;
+            }
+
+            // Apply desktop styling
+            reportElement.classList.add('pdf-mode');
+
+            // Wait for any dynamic content to load (charts, etc.)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Configure html2canvas options
+            const canvas = await html2canvas(reportElement, {
+                scale: 2, // Higher quality
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                width: 1200,
+                height: reportElement.scrollHeight,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: 1200,
+                windowHeight: reportElement.scrollHeight
+            });
+
+            // Remove desktop styling
+            reportElement.classList.remove('pdf-mode');
+
+            // Create PDF
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [canvas.width / 2, canvas.height / 2]
+            });
+
+            // Add the image to PDF
+            const imgData = canvas.toDataURL('image/png', 1.0);
+            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width / 2, canvas.height / 2);
+
+            // Download the PDF
+            const fileName = `${userName.replace(/[^a-z0-9]/gi, '_')}_Financial_Health_Report.pdf`;
+            pdf.save(fileName);
+
+            // Reset button state
+            if (downloadBtn) {
+                downloadBtn.textContent = 'Download Report';
+                downloadBtn.disabled = false;
+            }
+
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            alert('Error generating PDF. Please try again.');
+
+            // Reset button state
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.textContent = 'Download Report';
+                downloadBtn.disabled = false;
+            }
+
+            // Remove desktop styling in case of error
+            reportElement.classList.remove('pdf-mode');
+        }
     }
 </script>
 </body>

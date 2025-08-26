@@ -50,21 +50,21 @@ body {
   background-color: #ffffff;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem !important;
+}
 .language-switcher {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  z-index: 1000;
 }
 
 .language-dropdown {
   background: #fff;
-  border: 2px solid #017670;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   padding: 8px 12px;
   font-size: 14px;
   font-weight: 600;
-  color: #017670;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -91,7 +91,8 @@ body {
   color: var(--muted-foreground);
 }
 
-.logo {
+.logo,
+.logo-2 {
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -106,6 +107,10 @@ body {
   height: 2.5rem;
 }
 
+.logo-2 img {
+  width: 7.5rem;
+}
+
 .logo-text {
   font-weight: 600;
   font-size: 18px;
@@ -115,6 +120,20 @@ body {
   color: var(--text-light);
   font-size: 14px;
   margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  .logo img {
+    width: 7.5rem;
+    height: 2rem;
+  }
+
+  .logo-2 img {
+    width: 5rem;
+  }
 }
 
 .sip-badge {
@@ -1087,19 +1106,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .header {
-    /* padding: 0 20px;
-    height: auto;
-    min-height: 80px;
-    flex-direction: column;
-    gap: 16px; */
-  }
-
-  /* .logo {
-    width: 150px;
-    height: 36px;
-  } */
-
   .logo-text {
     font-size: 18px;
   }
@@ -1581,7 +1587,7 @@ img {
   }
 
   .header {
-    padding: 1rem 2rem;
+    padding: 1rem;
   }
 
   .logo img {
@@ -1604,8 +1610,8 @@ img {
     overflow-x: auto;
     padding-bottom: 0.5rem;
     width: 90%;
-    top: 8rem;
-    display: none;
+    top: 5rem;
+    /* display: none; */
     /* position: sticky;
     top: 5rem; */
   }
@@ -1632,6 +1638,30 @@ img {
 
   .progress-card-title {
     font-size: 10px;
+    display: none;
+  }
+
+  .progress-tracker-container {
+    align-items: center;
+  }
+
+  .progress-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+  }
+
+  .progress-card .progress-bar-container {
+    display: none;
+  }
+
+  .progress-card.active .progress-bar-container {
+    display: block;
+  }
+  .progress-card.active .progress-card-title {
+    display: unset;
   }
 
   .progress-card-icon {
@@ -1646,6 +1676,7 @@ img {
 
   .hero-container {
     align-items: flex-start;
+    padding: 0 !important;
   }
   .hero-section {
     padding: 1rem;
@@ -2035,6 +2066,7 @@ img {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  height: 2.5rem;
 }
 
 .share-btn {
@@ -2251,6 +2283,26 @@ img {
   margin: 0 auto;
 }
 
+.notification {
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.5rem 2rem;
+  background-color: #d3f6f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  z-index: 999;
+  font-size: 16px !important;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .report-header {
@@ -2272,6 +2324,21 @@ img {
   .report-actions {
     width: 100%;
     justify-content: flex-start;
+  }
+
+  .feedback-content-wrapper {
+    padding: 1rem !important;
+  }
+
+  .notification {
+    left: 1rem;
+    right: 1rem;
+    transform: unset;
+  }
+
+  .next-steps {
+    position: relative !important;
+    border-radius: 10px;
   }
 }
 
@@ -2871,4 +2938,52 @@ img {
     padding: 1rem !important;
     margin: 0 0.5rem !important;
   }
+}
+
+/* Desktop version override for PDF generation */
+.pdf-mode {
+  width: 1000px !important;
+  max-width: none !important;
+  padding: 40px !important;
+  background: white !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.pdf-mode .report-cards-container {
+  grid-template-columns: 1fr !important;
+  gap: 30px !important;
+}
+
+.pdf-mode .snapshot-cards {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+}
+
+.pdf-mode .report-card {
+  flex-direction: row !important;
+  align-items: flex-start !important;
+}
+
+.pdf-mode .gauge-wrapper {
+  height: 150px !important;
+}
+
+/* Hide elements not needed in PDF */
+.pdf-mode .report-actions,
+.pdf-mode .rating-section,
+.pdf-mode .next-steps {
+  display: none !important;
+}
+
+/* Fix 1: Low Risk badge spacing */
+.pdf-mode .risk-badge,
+.pdf-mode .health-badge {
+  margin: 8px 0 !important;
+  padding: 4px 12px !important;
+}
+
+/* Fix 2: Take Assessment Again button spacing */
+.pdf-mode .take-assessment-btn {
+  display: none !important;
 }
