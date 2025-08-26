@@ -1096,6 +1096,8 @@
                                             <h3>Financial Health</h3>
                                         </div>
 
+                                        <img src="./assets/images/needs-improvement.svg" alt="health" class="chart-img" id="chart-img" />
+
                                         <div class="gauge-section">
                                             <div class="gauge-wrapper">
                                                 <canvas id="healthGaugeChart" width="200" height="120"></canvas>
@@ -1471,7 +1473,7 @@
 
 <!-- Footer -->
 <footer class="footer">
-    <img src="https://api.builder.io/api/v1/image/assets/TEMP/015a168bcab2d4477b9aa0a6413a924456d6bb3f?width=386"
+    <img src="./assets/images/logo.svg"
         alt="Geojit Logo" class="footer-logo">
 
     <div class="footer-content">
@@ -2421,7 +2423,7 @@
                 {
                     label: 'Needs Attention',
                     data: [38.89],
-                    backgroundColor: '#ff6b35',
+                    backgroundColor: '#F7A219',
                     borderWidth: 0,
                     barPercentage: 0.4,
                     barPercentage: 0.25,
@@ -2430,7 +2432,7 @@
                 {
                     label: 'Moderate',
                     data: [27.78],
-                    backgroundColor: '#ffa500',
+                    backgroundColor: '#FECC09',
                     borderWidth: 0,
                     barPercentage: 0.25,
                     categoryPercentage: 0.8
@@ -2438,7 +2440,7 @@
                 {
                     label: 'On Track',
                     data: [33.33],
-                    backgroundColor: '#4ade80',
+                    backgroundColor: '#7DBB42',
                     borderWidth: 0,
                     barPercentage: 0.25,
                     categoryPercentage: 0.8
@@ -2532,7 +2534,7 @@
             labels: ['Low Risk', 'Mid Risk', 'High Risk'],
             datasets: [{
                 data: [41.67, 33.33, 25], // 0-4 (5 scores), 5-8 (4 scores), 9-12 (4 scores)
-                backgroundColor: ['#22d3ee', '#f59e0b', '#ef4444'], // cyan, amber, red
+                backgroundColor: ['#57B272', '#F7A219', '#EB3333'], // cyan, amber, red
                 borderWidth: 6,
                 borderColor: '#fff',
                 cutout: '70%',
@@ -2787,6 +2789,7 @@
 
         if (riskProfileScore >= 9) {
             riskBadge.textContent = 'High Risk';
+            riskBadge.style.backgroundColor = "#EB3333"
             riskDescription.textContent = 'You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.';
             riskRecommendations.innerHTML = `
             <li>SIPs in equity mutual funds aligned with your long-term goals</li>
@@ -2794,6 +2797,7 @@
         `;
         } else if (riskProfileScore >= 5) {
             riskBadge.textContent = 'Moderate Risk';
+            riskBadge.style.backgroundColor = "#F7A219"
             riskDescription.textContent = 'You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.';
             riskRecommendations.innerHTML = `
             <li>Balanced Advantage Funds or Hybrid Equity Funds</li>
@@ -2801,6 +2805,7 @@
         `;
         } else {
             riskBadge.textContent = 'Low Risk';
+            riskBadge.style.backgroundColor = "#57B272"
             riskDescription.textContent = 'You prefer safety and stability in your investments. Conservative approaches suit your risk appetite.';
             riskRecommendations.innerHTML = `
             <li>Low-risk options like debt mutual funds or conservative hybrid funds</li>
@@ -2810,11 +2815,14 @@
 
         // Update Financial Health Content
         const healthBadge = document.getElementById('health-badge');
+        const chartImg = document.getElementById("chart-img")
         const healthDescription = document.getElementById('health-description');
         const healthRecommendations = document.getElementById('health-recommendations');
 
         if (financialHealthScore >= 12) {
             healthBadge.textContent = 'On Track';
+            healthBadge.style.backgroundColor = "#7DBB42"
+            chartImg.src = "./assets/images/on-track.svg"
             healthDescription.textContent = 'Excellent! You\'re doing a great job managing your finances. You have a clear understanding of your money and plan for the future.';
             healthRecommendations.innerHTML = `
             <li>Optimize your existing investments for better returns</li>
@@ -2823,6 +2831,8 @@
         `;
         } else if (financialHealthScore >= 7) {
             healthBadge.textContent = 'Moderate';
+            healthBadge.style.backgroundColor = "#FECC09"
+            chartImg.src = "./assets/images/moderate.svg"
             healthDescription.textContent = 'You\'re on the right path! You\'ve developed some healthy financial habits, but there\'s room for improvement.';
             healthRecommendations.innerHTML = `
             <li>Prioritizing goal-based investments</li>
@@ -2831,6 +2841,8 @@
         `;
         } else {
             healthBadge.textContent = 'Needs Improvement';
+            healthBadge.style.backgroundColor = "#F7A219"
+            chartImg.src = "./assets/images/needs-improvement.svg"
             healthDescription.textContent = 'Your financial health needs attention. It looks like you\'re either not saving regularly, lack a safety net or are under insured.';
             healthRecommendations.innerHTML = `
             <li>Building an emergency fund</li>

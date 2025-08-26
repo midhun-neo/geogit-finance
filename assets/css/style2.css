@@ -2101,6 +2101,11 @@ img {
   flex-wrap: wrap;
 }
 
+.chart-img {
+  margin: 0 auto;
+  width: 6rem;
+}
+
 .report-card-left,
 .report-card-right {
   flex: 1;
