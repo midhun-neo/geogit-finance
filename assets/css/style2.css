@@ -2148,21 +2148,27 @@ img {
 .risk-badge,
 .health-badge {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 12px 4px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;
+  color: #fff !important;
+  font-weight: 600;
+  position: relative;
 }
 
-.risk-badge {
-  background: #fef3c7;
-  color: #d97706;
-}
-
-.health-badge {
-  background: #fee2e2;
-  color: #dc2626;
+.risk-badge::before,
+.health-badge::before {
+  /* content: ""; */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: inherit;
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .risk-description,
@@ -2449,25 +2455,6 @@ img {
   font-size: 16px;
   color: #666;
   font-weight: bold;
-}
-
-.risk-badge,
-.health-badge {
-  text-align: center;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.risk-badge {
-  background-color: #eab93f;
-  color: #856404;
-}
-
-.health-badge {
-  background-color: #ee9a42;
-  color: #721c24;
 }
 
 /* Financial Snapshot */

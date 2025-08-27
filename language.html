@@ -1019,7 +1019,7 @@
                 <div class="feedback-content-wrapper">
 
                     <div class="feedback-header">
-                        <h2 class="feedback-title">Financial Health Report</h2>
+                        <h2 class="feedback-title" data-key="feedbackReportTitle">Financial Health Report</h2>
                         <button class="feedback-back" onclick="goBackToResults()">← Back</button>
                     </div>
 
@@ -1031,12 +1031,12 @@
                             <div class="report-header">
                                 <div class="report-title-section">
                                     <h2 class="report-title">
-                                        <span class="user-name" id="report-user-name">Mathew's</span> Financial Health
-                                        Report
+                                        <span class="user-name" id="report-user-name">Mathew's</span> <span data-key="feedbackReportTitle">Financial Health
+                                        Report</span>
                                     </h2>
                                 </div>
                                 <div class="report-actions">
-                                    <button class="download-btn" onclick="downloadReportAsPDF()">Download
+                                    <button class="download-btn" data-key="downloadReportButton" onclick="downloadReportAsPDF()">Download
                                         Report</button>
                                     <button class="share-btn whatsapp">
                                         <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
@@ -1055,7 +1055,7 @@
                                         <div class="card-header">
                                             <img src="./assets/images/risk-profile.svg" alt="risk profile"
                                                 class="card-icon" />
-                                            <h3>Risk Profile</h3>
+                                            <h3 data-key="riskProfileLabel">Risk Profile</h3>
                                         </div>
 
                                         <div class="gauge-section">
@@ -1093,7 +1093,7 @@
                                         <div class="card-header">
                                             <img src="./assets/images/financial-health.svg" alt="financial health"
                                                 class="card-icon" />
-                                            <h3>Financial Health</h3>
+                                            <h3 data-key="financialHealthLabel">Financial Health</h3>
                                         </div>
 
                                         <img src="./assets/images/needs-improvement.svg" alt="health" class="chart-img" id="chart-img" />
@@ -1131,32 +1131,32 @@
 
                             <!-- Financial Health Snapshot -->
                             <div class="snapshot-section">
-                                <h3>Your Financial Health Snapshot</h3>
+                                <h3 data-key="yourFinancialHealthSnapshot">Your Financial Health Snapshot</h3>
                                 <div class="snapshot-cards">
                                     <div class="snapshot-card">
-                                        <div class="snapshot-label">Risk Preference</div>
+                                        <div class="snapshot-label" data-key="riskPreference">Risk Preference</div>
                                         <div class="snapshot-value" id="snapshot-risk">Open to some risk</div>
                                     </div>
                                     <div class="snapshot-card">
-                                        <div class="snapshot-label">Weak Area</div>
+                                        <div class="snapshot-label" data-key="weakArea">Weak Area</div>
                                         <div class="snapshot-value" id="snapshot-weak">Not saving regularly / Lack of
                                             safety
                                             net</div>
                                     </div>
                                     <div class="snapshot-card">
-                                        <div class="snapshot-label">Action Needed</div>
+                                        <div class="snapshot-label" data-key="actionNeeded">Action Needed</div>
                                         <div class="snapshot-value" id="snapshot-action">Improve insurance coverage
                                         </div>
                                     </div>
                                 </div>
-                                <button class="take-assessment-btn" onclick="resetAssessment()">Take Assessment
+                                <button class="take-assessment-btn" data-key="takeAssessmentAgainButton" onclick="resetAssessment()">Take Assessment
                                     Again</button>
                             </div>
 
                             <!-- EXISTING: Rating Section -->
                             <div class="rating-section">
-                                <h3>Rate your experience</h3>
-                                <p>How's your overall experience today?</p>
+                                <h3 data-key="rateYourExperience">Rate your experience</h3>
+                                <p data-key="howsYourOverallExperience">How's your overall experience today?</p>
                                 <div class="rating-stars">
                                     <span class="star" onclick="setRating(1)">★</span>
                                     <span class="star" onclick="setRating(2)">★</span>
@@ -1165,15 +1165,15 @@
                                     <span class="star" onclick="setRating(5)">★</span>
                                 </div>
                                 <div class="feedback-input">
-                                    <label>Describe your Issue</label>
-                                    <textarea placeholder="Tell us about your experience"></textarea>
+                                    <label data-key="describeYourIssue">Describe your Issue</label>
+                                    <textarea placeholder="Tell us about your experience" data-key="tellUsAboutYourExperience"></textarea>
                                     <div class="feedback-actions">
                                         <div class="feedback-checkbox">
                                             <input type="checkbox" id="feedback-contact">
-                                            <label for="feedback-contact">I would like to be contacted about my
+                                            <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would like to be contacted about my
                                                 Issue</label>
                                         </div>
-                                        <button class="submit-feedback" onclick="showSubmitNotification()">Submit</button>
+                                        <button class="submit-feedback" data-key="submitButton" onclick="showSubmitNotification()">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -2602,41 +2602,10 @@
         });
     }
 
-    // CORRECTED: Color mapping that matches the actual chart segments
-    function getColorFromScore(percentage) {
-        const colors = ['#22d3ee', '#4ade80', '#a3d977', '#f59e0b', '#fb923c', '#ef4444'];
 
-        // Map based on score ranges: 0-6 (38.89%), 7-11 (27.78%), 12-18 (33.33%)
-        if (percentage <= 38.89) { // 0-6 scores (Needs Improvement)
-            return percentage <= 19.44 ? colors[0] : colors[1]; // First 2 segments (cyan/green)
-        } else if (percentage <= 66.67) { // 7-11 scores (Moderate) 
-            return percentage <= 52.78 ? colors[2] : colors[3]; // Middle 2 segments (lime/amber)
-        } else { // 12-18 scores (On Track)
-            return percentage <= 83.33 ? colors[4] : colors[5]; // Last 2 segments (orange/red)
-        }
-    }
-
-    function getTextColorFromScore(percentage) {
-        // Use black text for all colors except red
-        if (percentage >= 83.33) return '#fff'; // white text for red background
-        return '#000'; // black text for all other colors
-    }
-
-    function getRiskColorFromScore(percentage) {
-        const colors = ['#22d3ee', '#f59e0b', '#ef4444']; // cyan, amber, red
-        if (percentage <= 41.67) return colors[0]; // 0-4 scores (Low Risk)
-        if (percentage <= 75) return colors[1]; // 5-8 scores (Moderate Risk)
-        return colors[2]; // 9-12 scores (High Risk)
-    }
-
-    function getRiskTextColorFromScore(percentage) {
-        if (percentage > 75) return '#fff'; // white text for red background
-        return '#000'; // black text for cyan and amber
-    }
 
     function debugChartColors(score, maxScore, label) {
         const percentage = (score / maxScore) * 100;
-        const color = label.includes('Risk') ? getRiskColorFromScore(percentage) : getColorFromScore(percentage);
         const angle = (percentage / 100) * 60 - 30;
 
         let range = '';
@@ -2655,11 +2624,10 @@
             maxScore: maxScore,
             percentage: percentage.toFixed(2) + '%',
             range: range,
-            color: color,
             needleAngle: angle.toFixed(2) + '°'
         });
 
-        return { percentage, color, angle };
+        return { percentage, angle };
     }
 
 
@@ -3044,7 +3012,7 @@ closeNotification()
                 const notificationEl = document.getElementById("notification")
 
    notificationEl.style.visibility = "hidden"
-                                    notificationEl.style.opacity = "0"
+    notificationEl.style.opacity = "0"
     }
 
 
