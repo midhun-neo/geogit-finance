@@ -1998,10 +1998,7 @@
         loadLanguagePreference();
         translatePage();
     });
-</script>
 
-
-<script>
 
 
     let currentQuestionIndex = 0;
@@ -2531,7 +2528,7 @@
         const targetAngle = (riskPercentage / 100) * 60 - 30;
 
         const data = {
-            labels: ['Low Risk', 'Mid Risk', 'High Risk'],
+            labels: [ 'Low Risk', 'Mid Risk', 'High Risk'],
             datasets: [{
                 data: [41.67, 33.33, 25], // 0-4 (5 scores), 5-8 (4 scores), 9-12 (4 scores)
                 backgroundColor: ['#57B272', '#F7A219', '#EB3333'], // cyan, amber, red
@@ -2913,11 +2910,6 @@
 
         console.log('Assessment reset successfully');
     }
-
-
-
-
-
 
 let logo2 = document.querySelector("#logo-2");
 
