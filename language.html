@@ -1680,9 +1680,9 @@
             recommendationListRiskModerate2: "Mixing equity with safer investments for stability",
             recommendationListRiskLow1: "Low-risk options like debt mutual funds or conservative hybrid funds",
             recommendationListRiskLow2: "Ensuring liquidity through short-duration funds",
-            riskprofileSummarylowRisk:"",
-            riskprofileSummaryModerateRisk:"",
-            riskprofileSummaryHighRisk:"",
+            riskprofileSummarylowRisk:"You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.",
+            riskprofileSummaryModerateRisk:"You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.",
+            riskprofileSummaryHighRisk:"You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.",
 
             riskPreference:"Risk Preference",
             weakArea:"Weak Area",
@@ -2814,7 +2814,7 @@
         if (riskProfileScore >= 9) {
             riskBadge.textContent = 'High Risk';
             riskBadge.style.backgroundColor = "#EB3333"
-            riskDescription.textContent = 'You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.';
+            riskDescription.textContent = translations[currentLanguage].riskprofileSummaryHighRisk;
             riskRecommendations.innerHTML = `
             <li>${translations[currentLanguage].recommendationListRiskHigh1}</li>
             <li>${translations[currentLanguage].recommendationListRiskHigh2}</li>
@@ -2822,7 +2822,7 @@
         } else if (riskProfileScore >= 5) {
             riskBadge.textContent = 'Moderate Risk';
             riskBadge.style.backgroundColor = "#F7A219"
-            riskDescription.textContent = 'You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.';
+            riskDescription.textContent = translations[currentLanguage].riskprofileSummaryModerateRisk;
             riskRecommendations.innerHTML = `
             <li>${translations[currentLanguage].recommendationListRiskModerate1}</li>
             <li>${translations[currentLanguage].recommendationListRiskModerate2}</li>
@@ -2830,7 +2830,7 @@
         } else {
             riskBadge.textContent = 'Low Risk';
             riskBadge.style.backgroundColor = "#57B272"
-            riskDescription.textContent = 'You prefer safety and stability in your investments. Conservative approaches suit your risk appetite.';
+            riskDescription.textContent = translations[currentLanguage].riskprofileSummarylowRisk;
             riskRecommendations.innerHTML = `
             <li>${translations[currentLanguage].recommendationListRiskLow1}</li>
             <li>${translations[currentLanguage].recommendationListRiskLow2}</li>
