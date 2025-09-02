@@ -144,6 +144,7 @@
 
 <!-- Hero Section -->
 <section class="hero-section">
+
     <div class="hero-container">
         <div class="custom-alert" id="validation-alert"></div>
         <!-- Questionnaire Cards -->
@@ -215,7 +216,7 @@
 
 
         <div class="question-card" id="question-2">
-            <h2 class="question-title" data-key="question2Title">Let's Begin:</h2>
+            <h2 class="question-title" data-key="question2Title">Let's Begin!</h2>
             <p class="question-subtitle" data-key="question2Subtitle">Before we start this exciting journey together, we
                 need your consent for a few important things.</p>
 
@@ -224,13 +225,13 @@
                 <p style="font-weight: bold; margin-bottom: 1rem; color: black;">Before we begin, please confirm:</p>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="consent-checkbox">
-                    <span data-key="question2Consent1">I understand this survey gives only an indication of my financial
+                    <span data-key="question2Consent1">I understand this test gives only an indication of my financial
                         health and risk profile.</span>
 
                 </label>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="consent-checkbox-2">
-                    <span data-key="question2Consent2">I agree to be contacted by a Geojit expert. My data is safe and
+                    <span data-key="question2Consent2">I agree to be contacted by a Geojit staff. My data is safe and
                         secure.</span>
                 </label>
             </div>
@@ -964,13 +965,12 @@
             <div style="width: 100%; text-align: left; font-size: 18px;">
                 <label class="option-label checkbox">
                     <input type="checkbox" id="community-checkbox">
-                    <span data-key="question21Community">Would you like to join our FundsGenie Community for exclusive
-                        updates and offers?</span>
+                    <span data-key="question21Community">Would you like to join our Geojit Community Community for exclusive
+                        updates?</span>
                 </label>
                 <label class="option-label checkbox">
                     <input type="checkbox" id="newsletter-checkbox">
-                    <span data-key="question21Newsletter">We'll send you a 3-month Geojit Insights subscription and
-                        monthly newsletter. Would you like that?</span>
+                    <span data-key="question21Newsletter">We'll send you a 3-month Geojit Insights digital      monthly newsletter. Would you like that?</span>
 
                 </label>
                 <label class="option-label checkbox">
@@ -1019,7 +1019,7 @@
                 <div class="feedback-content-wrapper">
 
                     <div class="feedback-header">
-                        <h2 class="feedback-title" data-key="feedbackReportTitle">Financial Health Report</h2>
+                        <!-- <h2 class="feedback-title" data-key="feedbackReportTitle">Financial Health Report</h2> -->
                         <button class="feedback-back" onclick="goBackToResults()">← Back</button>
                     </div>
 
@@ -1048,6 +1048,11 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <p class="report-card-note"> This report provides an 
+indication of your financial health. Please speak to our expert to 
+understand the details and to create a suitable financial road map. 
+</p>
 
                             <!-- New Cards Layout -->
                             <div class="report-cards-container">
@@ -1160,7 +1165,7 @@
                             <!-- EXISTING: Rating Section -->
                             <div class="rating-section">
                                 <h3 data-key="rateYourExperience">Rate your experience</h3>
-                                <p data-key="howsYourOverallExperience">How's your overall experience today?</p>
+                                <p data-key="howsYourOverallExperience">How's your overall experience?</p>
                                 <div class="rating-stars">
                                     <span class="star" onclick="setRating(1)">★</span>
                                     <span class="star" onclick="setRating(2)">★</span>
@@ -1169,9 +1174,9 @@
                                     <span class="star" onclick="setRating(5)">★</span>
                                 </div>
                                 <div class="feedback-input">
-                                    <label data-key="describeYourIssue">Describe your Issue</label>
+                                    <label data-key="describeYourIssue" id="text-area-experience-label" style="display: none;">Describe your Issue</label>
                                     <textarea placeholder="Tell us about your experience"
-                                        data-key="tellUsAboutYourExperience"></textarea>
+                                        data-key="tellUsAboutYourExperience" id="text-area-experience" style="display: none;"></textarea>
                                     <div class="feedback-actions">
                                         <div class="feedback-checkbox">
                                             <input type="checkbox" id="feedback-contact">
@@ -1480,54 +1485,65 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer">
-    <img src="./assets/images/logo.svg" alt="Geojit Logo" class="footer-logo">
 
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4 data-key="footerRegisteredOffice">Registered Office</h4>
-            <p data-key="footerAddress">34/659, Civil Line Road,<br>Padivattom, Kochi-682024,<br>Kerala, India</p>
+    <div class="footer-geojit">
 
-        </div>
 
-        <div class="footer-section">
-            <h4 data-key="footerContact">Contact</h4>
 
-            <p data-key="footerPhone">Phone: +91 484-2901000</p>
-            <p data-key="footerWebsite">www.geojit.com</p>
-        </div>
+      <div class="investor-alert">
+        <h1>Investor Alert</h1>
+        <p class="para-bold">
+          We would like to bring your attention about several reported instances of fraudulent activities involving the
+          misuse of our name, Geojit / GFSL, by unscrupulous individuals. These fraudsters are deceiving the public by
+          enticing them with false promises of lucrative brokerage and investment schemes in the stock market and Mutual
+          Funds. We have filed complaints with the authorities, to safeguard your finances we also urge you not to fall
+          victim to such schemes. For authentic information about our products and services, please visit our website at
+          www.geojit.com. Additionally, you can contact us at customercare@geojit.com for further details.
+        </p>
+        <div class="line" style="height: 0.5px; background-color: #a7ddda; margin-bottom: 40px"></div>
+        <h3>
+          Disclaimer: Investment in securities market are subject to market risks, read all the related documents
+          carefully before investing
+        </h3>
+        <p class="grey-text-p" style="margin-bottom: 0.5rem">
+          Geojit Financial Services Ltd., Registered Office: 34/659-P, Civil Line Road, Padivattom, Kochi-682024,
+          Kerala, India
+        </p>
+        <p class="grey-text-p">Phone: +91 484-2901000. Website: <span>www.geojit.com</span>.</p>
+        <p class="grey-text-p" style="margin-bottom: 0.5rem">
+          For investor queries: <span>customercare@geojit.com</span>, For grievances:
+          <span>grievances@geojit.com</span>, For DP grievances: <span>dp_grievances@geojit.com</span>
+        </p>
+        <p class="grey-text-p" style="margin-bottom: 0.5rem">
+          Compliance Officer (Stock Broker & PMS): <span class="text-grey-bold">Zacharia KG</span>, Email:
+          compliance@geojit.com, Contact No: 0484-2901000
+        </p>
+        <p class="grey-text-p">
+          Compliance Officer (Depository, Investment Advisor & Research Analyst):
+          <span class="text-grey-bold">Indu K</span>, Email: <span>indu_k@geojit.com</span>, Contact No:
+          <span class="text-grey-bold">0484-2901000</span>
+        </p>
+        <p class="grey-text-p" style="margin-bottom: 0.5rem">
+          Corporate Identity Number: L67120KL1994PLC008403, SEBI Stock Broker Registration No INZ000104737, Research
+          Entity SEBI Reg No: INH200000345, Investment Adviser SEBI Reg No: INA200002817, Portfolio Manager:
+          INP000003203, Depository Participant: IN-DP-325-2017, AMFI Registered Mutual Fund Distributor
+          <span>(ARN - 0098)</span> (Date of Initial Registration: <span>9th May 2002</span> Current Validity: upto
+          <span>8th May 2027</span>) , IRDA Corporate Agent (Composite) No.: CA0226.
+        </p>
+        <p class="grey-text-p">Member: NSE TM ID 13372, BSE TM ID 328, MCX TM ID 55920, NCDEX TM ID 1243.</p>
+        <p class="grey-text-p">
+          Powered by CMOTS Infotech (ISO 9001:2015 Certified)
+          <a class="text-green-d" href="https://www.neointeraction.com" target="_blank"
+            >Design by Neointeraction Design</a
+          >
+        </p>
+        <h3 id="footer-copyright-text" style="text-align: center"></h3>
+        <!-- Update the year dynamically with JavaScript -->
+      <p style="text-align: center; font-weight: bold; font-size: 20px;">2025 @ Geojit. All rights reserved</p>
 
-        <div class="footer-section">
-            <h4 data-key="footerInvestorQueries">For investor queries</h4>
-            <p data-key="footerEmail">customercare@geojit.com</p>
-        </div>
+      </div>
+
     </div>
-
-    <div class="disclaimer-section">
-        <h4 class="disclaimer-title" data-key="disclaimerTitle">Disclaimer</h4>
-        <p class="disclaimer-text" data-key="disclaimerText">Investment in securities market are subject to market
-            risks, read all the related documents carefully before investing. Geojit Financial Services Limited does not
-            make any representations or warranties about the insurance products, servicing of policy and adjudication of
-            claims and cannot be held liable for the same. This mail contains only an indication of the insurance
-            product. For more details on risk factors, terms, conditions and exclusions, please read the respective
-            policy documents.<br><br>GFSL is a licensed corporate agent with License No. CA0226 issued by IRDAI.</p>
-
-    </div>
-
-    <div class="disclaimer-section">
-        <h4 class="disclaimer-title" data-key="disclosureTitle">Disclosure</h4>
-        <p class="disclaimer-text" data-key="disclosureText">These are not Exchange traded products and the Member is
-            just acting as distributor. All disputes with respect to the distribution activity would not have access to
-            Exchange investor redressal or Arbitration mechanism.</p>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p class="footer-legal" data-key="footerLegal">Geojit Financial Services Ltd, AMFI-registered Mutual Fund
-            Distributor, ARN : 0098</p>
-        <p class="footer-credit" data-key="footerCredit">Design by Neointeraction Design</p>
-    </div>
-</footer>
 
 
 
@@ -1553,10 +1569,10 @@
             question1MobilePlaceholder: "Enter Mobile No.",
             question1EmailLabel: "Email ID",
             question1EmailPlaceholder: "Enter Email ID",
-            question2Title: "Let's Begin:",
+            question2Title: "Let's Begin!",
             question2Subtitle: "Before we start this exciting journey together, we need your consent for a few important things.",
-            question2Consent1: "I understand this survey gives only an indication of my financial health and risk profile.",
-            question2Consent2: "I agree to be contacted by a Geojit expert. My data is safe and secure.",
+            question2Consent1: "I understand this test gives only an indication of my financial health and risk profile.",
+            question2Consent2: "I agree to be contacted by a Geojit staff. My data is safe and secure.",
             question3Title: "What’s your age group?",
             ageGroupUnder25: "Under 25",
             ageGroup25_34: "25–34",
@@ -1626,9 +1642,9 @@
             growWealthLongTerm: "To grow wealth long-term",
             protectCapital: "To protect capital",
             generateRegularIncome: "To generate regular income",
-            question21Community: "Would you like to join our FundsGenie Community for exclusive updates and offers?",
+            question21Community: "Would you like to join our Geojit Community Community for exclusive updates?",
             question21Newsletter:
-                "We’ll send you a 3-month Geojit Insights subscription and monthly newsletter. Would you like that?",
+                "We’ll send you a 3-month Geojit Insights digital subscription. Would you like that?",
             question21Masterclass: "Are you interested in attending our upcoming Financial Masterclass sessions?",
             resultsCardTitle: "All Done!",
             resultsCardSubtitle: "Your personalized financial roadmap is ready!",
@@ -1676,7 +1692,7 @@
 
             takeAssessmentAgainButton: "Take Assessment Again",
             rateYourExperience: "Rate your experience",
-            howsYourOverallExperience: "How's your overall experience today?",
+            howsYourOverallExperience: "How's your overall experience?",
             describeYourIssue: "Describe your Issue",
             tellUsAboutYourExperience: "Tell us about your experience",
             iWouldLikeToBeContacted: "I would like to be contacted about my Issue",
@@ -2845,6 +2861,17 @@
                 star.classList.remove('active');
             }
         });
+
+        const textAreaExperience = document.getElementById("text-area-experience")
+        const textAreaExperienceLabel = document.getElementById("text-area-experience-label")
+        if(currentRating < 3) {
+textAreaExperience.style.display = "block"
+textAreaExperienceLabel.style.display = "block"
+        } else {
+            textAreaExperience.style.display = "none"
+                   textAreaExperienceLabel.style.display = "none"
+
+        }
     }
 
     function resetAssessment() {
