@@ -2030,6 +2030,7 @@ img {
   gap: 16px;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 /* New Report Layout Styles */
