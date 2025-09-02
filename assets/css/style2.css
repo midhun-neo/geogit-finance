@@ -1165,6 +1165,7 @@ body {
 
   .about-title {
     font-size: 36px;
+    word-break: break-all;
   }
 
   .about-description {
@@ -2071,7 +2072,7 @@ img {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  height: 2.5rem;
+  min-height: 2.5rem;
 }
 
 .share-btn {
