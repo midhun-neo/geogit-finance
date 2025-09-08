@@ -16,47 +16,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
-    <!-- MoEngage Integration - Replace existing script -->
-<!-- MoEngage Integration - SIMPLIFIED VERSION -->
-<script type="text/javascript">
-(function(i, s, o, g, r, a, m, n) {
-    i.moengage_object = r;
-    t = {};
-    q = function(f) {
-        return function() {
-            (i.moengage_q = i.moengage_q || []).push({
-                f: f,
-                a: arguments
-            });
-        };
-    };
-    f = ['track_event', 'add_user_attribute', 'add_first_name', 'add_last_name', 'add_email', 'add_mobile', 'add_user_name', 'add_gender', 'add_birthday', 'destroy_session', 'add_unique_user_id', 'moe_events', 'call_web_push', 'track', 'location_type_attribute'];
-    for (k in f) {
-        t[f[k]] = q(f[k]);
-    }
-    a = s.createElement(o);
-    m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m);
-    i.moe = i.moe || function() {
-        n = arguments[0];
-        return t;
-    };
-    a.onload = function() {
-        if (n) {
-            i[r] = moe(n);
-        }
-    };
-})(window, document, 'script', 'https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js', 'Moengage', 'moengage', 'me', 'B3VC6A1BDIJWZJDC7W1YFYHZ');
-
-// Initialize after script loads
-window.moe({
-    app_id: "B3VC6A1BDIJWZJDC7W1YFYHZ",
-    debug_logs: 1,
-    cluster: "DC_1"
-});
-</script>
 </head>
 <!-- Header -->
 <header class="header">
@@ -80,8 +39,6 @@ window.moe({
         </div>
 
     </div>
-
-
 </header>
 
 
@@ -1237,10 +1194,7 @@ window.moe({
                                             onclick="showSubmitNotification()">Submit</button>
                                     </div>
 
-                                    <p style="font-weight: bold;" data-key="reportDisclaimer">Disclaimer: This report
-                                        provides only an indicative assessment of your financial health and risk
-                                        profile. It should not be considered as financial advice or a comprehensive
-                                        evaluation.</p>
+                                    <p style="font-weight: bold;" data-key="reportDisclaimer">Disclaimer: This report provides only an indicative assessment of your financial health and risk profile. It should not be considered as financial advice or a comprehensive evaluation.</p>
                                 </div>
                             </div>
 
@@ -2009,7 +1963,7 @@ window.moe({
 
             reportCardNote: "ഈ റിപ്പോർട്ട് നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യത്തെക്കുറിച്ചുള്ള ഒരു സൂചന നൽകുന്നു. വിശദാംശങ്ങൾ മനസ്സിലാക്കാനും അനുയോജ്യമായ സാമ്പത്തിക റോഡ്മാപ്പ് തയ്യാറാക്കാനും ഞങ്ങളുടെ വിദഗ്ധനുമായി സംസാരിക്കുക.",
             reportDisclaimer: "നിരാകരണം: ഈ റിപ്പോർട്ട് നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യത്തെയും റിസ്ക് പ്രൊഫൈലിനെയും കുറിച്ച് ഒരു സൂചനാത്മക വിലയിരുത്തൽ മാത്രമേ നൽകുന്നുള്ളൂ. ഇത് സാമ്പത്തിക ഉപദേശമോ സമഗ്രമായ വിലയിരുത്തലോ ആയി കണക്കാക്കരുത്.",
-
+            
             takeAssessmentAgainButton: "അസസ്മെന്റ് വീണ്ടും എടുക്കുക",
             rateYourExperience: "നിങ്ങളുടെ അനുഭവം വിലയിരുത്തുക",
             howsYourOverallExperience: "ഇന്നത്തെ നിങ്ങളുടെ മൊത്തത്തിലുള്ള അനുഭവം എങ്ങനെയായിരുന്നു?",
@@ -2069,91 +2023,6 @@ window.moe({
             footerCredit: "ഡിസൈൻ: നിയോഇന്ററാക്ഷൻ ഡിസൈൻ",
         }
     };
-
-    // MoEngage Helper Functions with proper timing handling
-function trackMoEngageEvent(eventName, properties = {}) {
-    try {
-        if (window.Moengage && window.Moengage.track_event) {
-            window.Moengage.track_event(eventName, properties);
-            console.log('MoEngage event tracked:', eventName, properties);
-        } else if (window.moengage && window.moengage.track_event) {
-            window.moengage.track_event(eventName, properties);
-            console.log('MoEngage event tracked via moengage:', eventName, properties);
-        } else {
-            console.warn('MoEngage not ready, event not tracked:', eventName);
-        }
-    } catch (error) {
-        console.error('MoEngage tracking error:', error);
-    }
-}
-
-function setMoEngageUserAttributes(attributes) {
-    try {
-        Object.keys(attributes).forEach(key => {
-            if (key === 'email') {
-                if (window.Moengage && window.Moengage.add_email) {
-                    window.Moengage.add_email(attributes[key]);
-                } else if (window.moengage && window.moengage.add_email) {
-                    window.moengage.add_email(attributes[key]);
-                }
-            } else if (key === 'mobile') {
-                if (window.Moengage && window.Moengage.add_mobile) {
-                    window.Moengage.add_mobile(attributes[key]);
-                } else if (window.moengage && window.moengage.add_mobile) {
-                    window.moengage.add_mobile(attributes[key]);
-                }
-            } else if (key === 'name') {
-                if (window.Moengage && window.Moengage.add_user_name) {
-                    window.Moengage.add_user_name(attributes[key]);
-                } else if (window.moengage && window.moengage.add_user_name) {
-                    window.moengage.add_user_name(attributes[key]);
-                }
-            } else {
-                if (window.Moengage && window.Moengage.add_user_attribute) {
-                    window.Moengage.add_user_attribute(key, attributes[key]);
-                } else if (window.moengage && window.moengage.add_user_attribute) {
-                    window.moengage.add_user_attribute(key, attributes[key]);
-                }
-            }
-        });
-        console.log('MoEngage user attributes set:', attributes);
-    } catch (error) {
-        console.error('MoEngage user attribute error:', error);
-    }
-}
-
-// Keep all your existing helper functions unchanged
-function getHealthCategory(score) {
-    if (score >= 12) return 'On_Track';
-    if (score >= 7) return 'Moderate';
-    return 'Needs_Improvement';
-}
-
-function getRiskCategory(score) {
-    if (score >= 9) return 'High_Risk';
-    if (score >= 5) return 'Moderate_Risk';
-    return 'Low_Risk';
-}
-
-function getHealthRecommendations(score) {
-    if (score >= 12) {
-        return ['Optimize existing investments for better returns', 'Diversify further with expert guidance', 'Explore wealth-building and tax-efficiency strategies'];
-    } else if (score >= 7) {
-        return ['Prioritize goal-based investments', 'Review portfolio regularly', 'Enhance insurance and savings buffers'];
-    } else {
-        return ['Build an emergency fund', 'Create habit of tracking income and expenses', 'Set basic life and health insurance in place'];
-    }
-}
-
-function getRiskRecommendations(score) {
-    if (score >= 9) {
-        return ['SIPs in equity mutual funds aligned with long-term goals', 'Stay disciplined during market ups and downs'];
-    } else if (score >= 5) {
-        return ['Balanced Advantage Funds or Hybrid Equity Funds', 'Mix equity with safer investments for stability'];
-    } else {
-        return ['Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
-    }
-}
 
     // Language variables
     let currentLanguage = 'en';
@@ -2219,14 +2088,6 @@ function getRiskRecommendations(score) {
     document.addEventListener('DOMContentLoaded', function () {
         loadLanguagePreference();
         translatePage();
-
-         setTimeout(() => {
-        trackMoEngageEvent('Page_Loaded', {
-            page_type: 'financial_fitness_test',
-            language: currentLanguage
-        });
-    }, 3000);
-
     });
 
 
@@ -2458,8 +2319,8 @@ function getRiskRecommendations(score) {
     }
 
     function nextQuestion() {
+
         if (currentQuestionIndex === 0) {
-            // Screen 1: Name entry
             const userName = document.getElementById('user-name').value.trim();
             if (!userName) {
                 showAlert(translations[currentLanguage].validNameError);
@@ -2469,13 +2330,7 @@ function getRiskRecommendations(score) {
                 showAlert(translations[currentLanguage].validNameLenError);
                 return;
             }
-
-            trackMoEngageEvent('Name_Entered', {
-                name: userName
-            });
-
         } else if (currentQuestionIndex === 1) {
-            // Screen 2: Contact details
             const userEmail = document.getElementById('contact-email').value.trim();
             const userPhone = document.getElementById('contact-phone').value.trim();
 
@@ -2484,31 +2339,21 @@ function getRiskRecommendations(score) {
                 return;
             }
 
+            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(userEmail)) {
                 showAlert(translations[currentLanguage].emailIdError);
                 return;
             }
 
+            // Phone validation (10 digits)
             const phoneRegex = /^\d{10}$/;
             if (!phoneRegex.test(userPhone)) {
                 showAlert(translations[currentLanguage].mobileNumberError);
                 return;
             }
 
-            setMoEngageUserAttributes({
-                email: userEmail,
-                mobile: userPhone,
-                name: document.getElementById('user-name').value.trim()
-            });
-
-            trackMoEngageEvent('Contact_Details_Completed', {
-                email: userEmail,
-                mobile: userPhone
-            });
-
         } else if (currentQuestionIndex === 2) {
-            // Screen 3: Consent
             const consent1 = document.getElementById('consent-checkbox').checked;
             const consent2 = document.getElementById('consent-checkbox-2').checked;
 
@@ -2516,26 +2361,9 @@ function getRiskRecommendations(score) {
                 showAlert(translations[currentLanguage].consentAgreementError);
                 return;
             }
-
-            trackMoEngageEvent('Consent_Given', {
-                test_understanding: consent1,
-                contact_agreement: consent2
-            });
-
-        } else if (currentQuestionIndex === 21) {
-            // Screen 4: Preferences
-            const community = document.getElementById('community-checkbox').checked;
-            const newsletter = document.getElementById('newsletter-checkbox').checked;
-            const masterclass = document.getElementById('masterclass-checkbox').checked;
-
-            trackMoEngageEvent('Preferences_Selected', {
-                wants_community: community,
-                wants_newsletter: newsletter,
-                wants_masterclass: masterclass
-            });
         }
 
-        // Keep existing validation for other questions
+
         else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
             const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
             const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
@@ -2543,39 +2371,18 @@ function getRiskRecommendations(score) {
                 showAlert(translations[currentLanguage].validOptionError);
                 return;
             }
+        } else if (currentQuestionIndex === 21) {
         }
 
         if (currentQuestionIndex < questionCards.length - 1) {
             currentQuestionIndex++;
             if (currentQuestionIndex === questionCards.length - 1) {
                 displayResults();
-
-                // Calculate scores and track completion with detailed data
-                calculateScores();
-
-                const healthCategory = getHealthCategory(financialHealthScore);
-                const riskCategory = getRiskCategory(riskProfileScore);
-                const healthRecommendations = getHealthRecommendations(financialHealthScore);
-                const riskRecommendations = getRiskRecommendations(riskProfileScore);
-
-                trackMoEngageEvent('Test_Completed', {
-                    financial_health_score: financialHealthScore,
-                    financial_health_max_score: 18,
-                    financial_health_percentage: Math.round((financialHealthScore / 18) * 100),
-                    financial_health_category: healthCategory,
-                    risk_profile_score: riskProfileScore,
-                    risk_profile_max_score: 12,
-                    risk_profile_percentage: Math.round((riskProfileScore / 12) * 100),
-                    risk_profile_category: riskCategory,
-                    health_recommendations: healthRecommendations,
-                    risk_recommendations: riskRecommendations,
-                    language: currentLanguage
-                });
-
             } else {
                 showQuestion(currentQuestionIndex);
             }
         }
+
     }
     function prevQuestion() {
         if (currentQuestionIndex > 0) {
@@ -2970,42 +2777,31 @@ function getRiskRecommendations(score) {
         calculateScores();
         updateFeedbackContent();
 
+        // Hide the results card and show the feedback card
         const resultsCard = document.getElementById('results-card');
         const feedbackCard = document.getElementById('feedback-card');
-        const questionContainer = document.querySelector(".question-container");
+        const questionContainer = document.querySelector(".question-container")
+
+
 
         resultsCard.classList.remove('active');
         feedbackCard.classList.add('active');
-        questionContainer.style.display = "none";
+        questionContainer.style.display = "none"
 
+        // Add feedback mode class to body
         document.body.classList.add('feedback-mode');
 
+        // Scroll to top smoothly
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
 
+        // Update current question index to feedback card
         const feedbackCardIndex = Array.from(questionCards).indexOf(feedbackCard);
         currentQuestionIndex = feedbackCardIndex;
-
-        // Track detailed report view
-        const healthCategory = getHealthCategory(financialHealthScore);
-        const riskCategory = getRiskCategory(riskProfileScore);
-        const healthRecommendations = getHealthRecommendations(financialHealthScore);
-        const riskRecommendations = getRiskRecommendations(riskProfileScore);
-
-        trackMoEngageEvent('Report_Viewed', {
-            financial_health_score: financialHealthScore,
-            financial_health_category: healthCategory,
-            financial_health_percentage: Math.round((financialHealthScore / 18) * 100),
-            risk_profile_score: riskProfileScore,
-            risk_profile_category: riskCategory,
-            risk_profile_percentage: Math.round((riskProfileScore / 12) * 100),
-            health_recommendations: healthRecommendations,
-            risk_recommendations: riskRecommendations,
-            user_name: document.getElementById('user-name').value || 'Unknown'
-        });
     }
+
     // Modified goBackToResults function
     function goBackToResults() {
         const resultsCard = document.getElementById('results-card');
@@ -3133,24 +2929,18 @@ function getRiskRecommendations(score) {
             }
         });
 
-        const textAreaExperience = document.getElementById("text-area-experience");
-        const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
+        const textAreaExperience = document.getElementById("text-area-experience")
+        const textAreaExperienceLabel = document.getElementById("text-area-experience-label")
         if (currentRating < 3) {
-            textAreaExperience.style.display = "block";
-            textAreaExperienceLabel.style.display = "block";
+            textAreaExperience.style.display = "block"
+            textAreaExperienceLabel.style.display = "block"
         } else {
-            textAreaExperience.style.display = "none";
-            textAreaExperienceLabel.style.display = "none";
-        }
+            textAreaExperience.style.display = "none"
+            textAreaExperienceLabel.style.display = "none"
 
-        trackMoEngageEvent('Rating_Given', {
-            rating: rating,
-            financial_health_score: financialHealthScore,
-            risk_profile_score: riskProfileScore,
-            financial_health_category: getHealthCategory(financialHealthScore),
-            risk_profile_category: getRiskCategory(riskProfileScore)
-        });
+        }
     }
+
     function resetAssessment() {
         // Reset all variables
         currentQuestionIndex = 0;
@@ -3300,28 +3090,18 @@ function getRiskRecommendations(score) {
 
 
     function showSubmitNotification() {
-        const feedbackText = document.getElementById("text-area-experience").value;
-        const wantsContact = document.getElementById("feedback-contact").checked;
+        const notificationEl = document.getElementById("notification")
+        notificationEl.style.visibility = "visible"
+        notificationEl.style.opacity = "1"
 
-        trackMoEngageEvent('Feedback_Submitted', {
-            rating: currentRating,
-            has_feedback: !!feedbackText,
-            feedback_length: feedbackText ? feedbackText.length : 0,
-            wants_contact: wantsContact,
-            financial_health_score: financialHealthScore,
-            risk_profile_score: riskProfileScore,
-            financial_health_category: getHealthCategory(financialHealthScore),
-            risk_profile_category: getRiskCategory(riskProfileScore)
-        });
-
-        const notificationEl = document.getElementById("notification");
-        notificationEl.style.visibility = "visible";
-        notificationEl.style.opacity = "1";
 
         setTimeout(() => {
-            closeNotification();
+
+            closeNotification()
+
         }, 3000);
     }
+
     function closeNotification() {
         const notificationEl = document.getElementById("notification")
 
