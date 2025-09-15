@@ -2083,64 +2083,68 @@ window.moe({
         }
     };
 
-    // MoEngage Helper Functions with proper timing handling
-    function trackMoEngageEvent(eventName, properties = {}) {
-        try {
-            if (window.Moengage && window.Moengage.track_event) {
-                window.Moengage.track_event(eventName, properties);
-                console.log('MoEngage event tracked:', eventName, properties);
-            } else if (window.moengage && window.moengage.track_event) {
-                window.moengage.track_event(eventName, properties);
-                console.log('MoEngage event tracked via moengage:', eventName, properties);
-            } else {
-                console.warn('MoEngage not ready, event not tracked:', eventName);
+// Fixed MoEngage Helper Functions
+function trackMoEngageEvent(eventName, properties = {}) {
+    try {
+        if (window.Moengage && window.Moengage.track_event) {
+            window.Moengage.track_event(eventName, properties);
+            console.log('MoEngage event tracked:', eventName, properties);
+        } else if (window.moengage && window.moengage.track_event) {
+            window.moengage.track_event(eventName, properties);
+            console.log('MoEngage event tracked via moengage:', eventName, properties);
+        } else {
+            console.warn('MoEngage not ready, event not tracked:', eventName);
+        }
+    } catch (error) {
+        console.error('MoEngage tracking error:', error);
+    }
+}
+
+function setMoEngageUserAttributes(attributes) {
+    try {
+        // First, identify the user with email as unique ID
+        if (attributes.email) {
+            // Identify user first
+            if (window.Moengage && window.Moengage.add_unique_user_id) {
+                window.Moengage.add_unique_user_id(attributes.email);
+            } else if (window.moengage && window.moengage.add_unique_user_id) {
+                window.moengage.add_unique_user_id(attributes.email);
             }
-        } catch (error) {
-            console.error('MoEngage tracking error:', error);
         }
-    }
 
-    function setMoEngageUserAttributes(attributes) {
-        try {
-            Object.keys(attributes).forEach(key => {
-                if (key === 'email') {
-                    if (window.Moengage && window.Moengage.add_email) {
-                        // window.Moengage.identifyUser("email").then(() => {
-                        //     window.Moengage.add_email(attributes[key]);
-                        // });
-                        window.Moengage.add_email(attributes[key]);
-                    } else if (window.moengage && window.moengage.add_email) {
-                        // window.moengage.identifyUser("email").then(() => {
-                        //     window.moengage.add_email(attributes[key]);
-                        // });
-                        window.moengage.add_email(attributes[key]);
-                    }
-                } else if (key === 'mobile') {
-                    if (window.Moengage && window.Moengage.add_mobile) {
-                        window.Moengage.add_mobile(attributes[key]);
-                    } else if (window.moengage && window.moengage.add_mobile) {
-                        window.moengage.add_mobile(attributes[key]);
-                    }
-                } else if (key === 'name') {
-                    if (window.Moengage && window.Moengage.add_user_name) {
-                        window.Moengage.add_user_name(attributes[key]);
-                    } else if (window.moengage && window.moengage.add_user_name) {
-                        window.moengage.add_user_name(attributes[key]);
-                    }
-                } else {
-                    if (window.Moengage && window.Moengage.add_user_attribute) {
-                        window.Moengage.add_user_attribute(key, attributes[key]);
-                    } else if (window.moengage && window.moengage.add_user_attribute) {
-                        window.moengage.add_user_attribute(key, attributes[key]);
-                    }
+        // Then set all attributes
+        Object.keys(attributes).forEach(key => {
+            if (key === 'email') {
+                if (window.Moengage && window.Moengage.add_email) {
+                    window.Moengage.add_email(attributes[key]);
+                } else if (window.moengage && window.moengage.add_email) {
+                    window.moengage.add_email(attributes[key]);
                 }
-            });
-            console.log('MoEngage user attributes set:', attributes);
-        } catch (error) {
-            console.error('MoEngage user attribute error:', error);
-        }
+            } else if (key === 'mobile') {
+                if (window.Moengage && window.Moengage.add_mobile) {
+                    window.Moengage.add_mobile(attributes[key]);
+                } else if (window.moengage && window.moengage.add_mobile) {
+                    window.moengage.add_mobile(attributes[key]);
+                }
+            } else if (key === 'name') {
+                if (window.Moengage && window.Moengage.add_user_name) {
+                    window.Moengage.add_user_name(attributes[key]);
+                } else if (window.moengage && window.moengage.add_user_name) {
+                    window.moengage.add_user_name(attributes[key]);
+                }
+            } else {
+                if (window.Moengage && window.Moengage.add_user_attribute) {
+                    window.Moengage.add_user_attribute(key, attributes[key]);
+                } else if (window.moengage && window.moengage.add_user_attribute) {
+                    window.moengage.add_user_attribute(key, attributes[key]);
+                }
+            }
+        });
+        console.log('MoEngage user attributes set:', attributes);
+    } catch (error) {
+        console.error('MoEngage user attribute error:', error);
     }
-
+}
     // Keep all your existing helper functions unchanged
     function getHealthCategory(score) {
         if (score >= 12) return 'On_Track';
@@ -2173,6 +2177,78 @@ window.moe({
             return ['Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
         }
     }
+
+function getSelectedValue(name) {
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    return selected ? selected.value : null;
+}
+
+function getRiskDescription(category) {
+    switch(category) {
+        case 'High_Risk': 
+            return 'Comfortable with volatility and long-term investments';
+        case 'Moderate_Risk': 
+            return 'Open to some risk in exchange for better returns';
+        case 'Low_Risk': 
+            return 'Prefer safety and stability';
+        default: 
+            return '';
+    }
+}
+
+function getHealthDescription(category) {
+    switch(category) {
+        case 'On_Track': 
+            return 'Great job! Continue with healthy financial habits';
+        case 'Moderate': 
+            return 'On the right path, needs refinement';
+        case 'Needs_Improvement': 
+            return 'Needs attention in saving and planning habits';
+        default: 
+            return '';
+    }
+}
+
+// Profile Event
+function trackProfileEvent() {
+    trackMoEngageEvent('Profile_Event', {
+        name: document.getElementById('user-name').value || '',
+        email: document.getElementById('contact-email').value || '',
+        mobile: document.getElementById('contact-phone').value || '',
+        age_group: getSelectedValue('age-group'),
+        gender: getSelectedValue('gender'),
+        occupation: getSelectedValue('occupation'),
+        marital_status: getSelectedValue('marital-status')
+    });
+}
+
+// Summary Event
+function trackSummaryEvent() {
+    trackMoEngageEvent('Summary_Event', {
+        community_joining_interest: document.getElementById('community-checkbox').checked,
+        newsletter_subscription: document.getElementById('newsletter-checkbox').checked,
+        masterclass_interest: document.getElementById('masterclass-checkbox').checked
+    });
+}
+
+// FFTest Result Event
+function trackFFTestResultEvent() {
+    calculateScores();
+    
+    const healthCategory = getHealthCategory(financialHealthScore);
+    const riskCategory = getRiskCategory(riskProfileScore);
+    const healthRecommendations = getHealthRecommendations(financialHealthScore);
+    const riskRecommendations = getRiskRecommendations(riskProfileScore);
+
+    trackMoEngageEvent('FFTest_Result', {
+        risk_profile: riskCategory,
+        risk_description: getRiskDescription(riskCategory),
+        risk_geojit_recommendations: riskRecommendations,
+        financial_health_description: getHealthDescription(healthCategory),
+        financial_health_recommendations: healthRecommendations,
+        experience_rating: currentRating || null
+    });
+}
 
     // Language variables
     let currentLanguage = 'en';
@@ -2476,126 +2552,154 @@ window.moe({
         }, 1500);
     }
 
-    function nextQuestion() {
-        if (currentQuestionIndex === 0) {
-            // Screen 1: Name entry
-            const userName = document.getElementById('user-name').value.trim();
-            if (!userName) {
-                showAlert(translations[currentLanguage].validNameError);
-                return;
+function nextQuestion() {
+    if (currentQuestionIndex === 0) {
+        // Screen 1: Name entry
+        const userName = document.getElementById('user-name').value.trim();
+        if (!userName) {
+            showAlert(translations[currentLanguage].validNameError);
+            return;
+        }
+        if (userName.length < 2) {
+            showAlert(translations[currentLanguage].validNameLenError);
+            return;
+        }
+
+        trackMoEngageEvent('Name_Entered', {
+            name: userName
+        });
+
+    } else if (currentQuestionIndex === 1) {
+        // Screen 2: Contact details - FIXED VERSION
+        const userEmail = document.getElementById('contact-email').value.trim();
+        const userPhone = document.getElementById('contact-phone').value.trim();
+        const userName = document.getElementById('user-name').value.trim();
+
+        if (!userEmail || !userPhone) {
+            showAlert(translations[currentLanguage].mobileAndEmailError);
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(userEmail)) {
+            showAlert(translations[currentLanguage].emailIdError);
+            return;
+        }
+
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(userPhone)) {
+            showAlert(translations[currentLanguage].mobileNumberError);
+            return;
+        }
+
+        // CRITICAL FIX: First identify the user, then set attributes
+        try {
+            if (window.Moengage && window.Moengage.add_unique_user_id) {
+                window.Moengage.add_unique_user_id(userEmail);
+            } else if (window.moengage && window.moengage.add_unique_user_id) {
+                window.moengage.add_unique_user_id(userEmail);
             }
-            if (userName.length < 2) {
-                showAlert(translations[currentLanguage].validNameLenError);
-                return;
-            }
-
-            trackMoEngageEvent('Name_Entered', {
-                name: userName
-            });
-
-        } else if (currentQuestionIndex === 1) {
-            // Screen 2: Contact details
-            const userEmail = document.getElementById('contact-email').value.trim();
-            const userPhone = document.getElementById('contact-phone').value.trim();
-
-            if (!userEmail || !userPhone) {
-                showAlert(translations[currentLanguage].mobileAndEmailError);
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(userEmail)) {
-                showAlert(translations[currentLanguage].emailIdError);
-                return;
-            }
-
-            const phoneRegex = /^\d{10}$/;
-            if (!phoneRegex.test(userPhone)) {
-                showAlert(translations[currentLanguage].mobileNumberError);
-                return;
-            }
-
+            console.log('User identified with email:', userEmail);
+        } catch (error) {
+            console.error('User identification failed:', error);
+        }
+        
+        // Wait for identification, then set attributes
+        setTimeout(() => {
             setMoEngageUserAttributes({
                 email: userEmail,
                 mobile: userPhone,
-                name: document.getElementById('user-name').value.trim()
+                name: userName
             });
+        }, 500);
 
-            trackMoEngageEvent('Contact_Details_Completed', {
-                email: userEmail,
-                mobile: userPhone
-            });
+        trackMoEngageEvent('Contact_Details_Completed', {
+            email: userEmail,
+            mobile: userPhone,
+            name: userName
+        });
 
-        } else if (currentQuestionIndex === 2) {
-            // Screen 3: Consent
-            const consent1 = document.getElementById('consent-checkbox').checked;
-            const consent2 = document.getElementById('consent-checkbox-2').checked;
+    } else if (currentQuestionIndex === 2) {
+        // Screen 3: Consent
+        const consent1 = document.getElementById('consent-checkbox').checked;
+        const consent2 = document.getElementById('consent-checkbox-2').checked;
 
-            if (!consent1 || !consent2) {
-                showAlert(translations[currentLanguage].consentAgreementError);
-                return;
-            }
-
-            trackMoEngageEvent('Consent_Given', {
-                test_understanding: consent1,
-                contact_agreement: consent2
-            });
-
-        } else if (currentQuestionIndex === 21) {
-            // Screen 4: Preferences
-            const community = document.getElementById('community-checkbox').checked;
-            const newsletter = document.getElementById('newsletter-checkbox').checked;
-            const masterclass = document.getElementById('masterclass-checkbox').checked;
-
-            trackMoEngageEvent('Preferences_Selected', {
-                wants_community: community,
-                wants_newsletter: newsletter,
-                wants_masterclass: masterclass
-            });
+        if (!consent1 || !consent2) {
+            showAlert(translations[currentLanguage].consentAgreementError);
+            return;
         }
 
-        // Keep existing validation for other questions
-        else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
-            const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
-            const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
-            if (!selectedOption) {
-                showAlert(translations[currentLanguage].validOptionError);
-                return;
-            }
-        }
+        trackMoEngageEvent('Consent_Given', {
+            test_understanding: consent1,
+            contact_agreement: consent2
+        });
 
-        if (currentQuestionIndex < questionCards.length - 1) {
-            currentQuestionIndex++;
-            if (currentQuestionIndex === questionCards.length - 1) {
-                displayResults();
+    } else if (currentQuestionIndex === 6) {
+        // Profile Event after marital status question
+        trackProfileEvent();
+        
+    } else if (currentQuestionIndex === 21) {
+        // Screen 4: Preferences
+        const community = document.getElementById('community-checkbox').checked;
+        const newsletter = document.getElementById('newsletter-checkbox').checked;
+        const masterclass = document.getElementById('masterclass-checkbox').checked;
 
-                // Calculate scores and track completion with detailed data
-                calculateScores();
+        trackMoEngageEvent('Preferences_Selected', {
+            wants_community: community,
+            wants_newsletter: newsletter,
+            wants_masterclass: masterclass
+        });
 
-                const healthCategory = getHealthCategory(financialHealthScore);
-                const riskCategory = getRiskCategory(riskProfileScore);
-                const healthRecommendations = getHealthRecommendations(financialHealthScore);
-                const riskRecommendations = getRiskRecommendations(riskProfileScore);
+        // Summary Event
+        trackSummaryEvent();
+    }
 
-                trackMoEngageEvent('Test_Completed', {
-                    financial_health_score: financialHealthScore,
-                    financial_health_max_score: 18,
-                    financial_health_percentage: Math.round((financialHealthScore / 18) * 100),
-                    financial_health_category: healthCategory,
-                    risk_profile_score: riskProfileScore,
-                    risk_profile_max_score: 12,
-                    risk_profile_percentage: Math.round((riskProfileScore / 12) * 100),
-                    risk_profile_category: riskCategory,
-                    health_recommendations: healthRecommendations,
-                    risk_recommendations: riskRecommendations,
-                    language: currentLanguage
-                });
-
-            } else {
-                showQuestion(currentQuestionIndex);
-            }
+    // Validation for other questions
+    else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
+        const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
+        const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
+        if (!selectedOption) {
+            showAlert(translations[currentLanguage].validOptionError);
+            return;
         }
     }
+
+    if (currentQuestionIndex < questionCards.length - 1) {
+        currentQuestionIndex++;
+        if (currentQuestionIndex === questionCards.length - 1) {
+            displayResults();
+
+            // Calculate scores and track completion with detailed data
+            calculateScores();
+
+            const healthCategory = getHealthCategory(financialHealthScore);
+            const riskCategory = getRiskCategory(riskProfileScore);
+            const healthRecommendations = getHealthRecommendations(financialHealthScore);
+            const riskRecommendations = getRiskRecommendations(riskProfileScore);
+
+            // Test_Completed event
+            trackMoEngageEvent('Test_Completed', {
+                financial_health_score: financialHealthScore,
+                financial_health_max_score: 18,
+                financial_health_percentage: Math.round((financialHealthScore / 18) * 100),
+                financial_health_category: healthCategory,
+                risk_profile_score: riskProfileScore,
+                risk_profile_max_score: 12,
+                risk_profile_percentage: Math.round((riskProfileScore / 12) * 100),
+                risk_profile_category: riskCategory,
+                health_recommendations: healthRecommendations,
+                risk_recommendations: riskRecommendations,
+                language: currentLanguage
+            });
+
+            // FFTest Result Event
+            trackFFTestResultEvent();
+
+        } else {
+            showQuestion(currentQuestionIndex);
+        }
+    }
+}
     function prevQuestion() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
