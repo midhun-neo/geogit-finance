@@ -2799,9 +2799,7 @@ img {
   background: var(--Primary);
 }
 .time-slot-container {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ddd;
+  min-width: 15rem;
 }
 
 .time-slot-container label {

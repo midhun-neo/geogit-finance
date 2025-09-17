@@ -1093,17 +1093,10 @@ window.moe({
                                             Report</span>
                                     </h2>
                                 </div>
-                                <div class="report-actions">
-                                    <button class="download-btn" data-key="downloadReportButton"
-                                        onclick="downloadReportAsPDF()">Download
-                                        Report</button>
-                                    <button class="share-btn whatsapp">
-                                        <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
-                                    </button>
-                                    <button class="share-btn general">
-                                        <img src="./assets/images/share.svg" alt="share" />
-                                    </button>
-                                </div>
+                               <div class="report-actions">
+    <button class="download-btn" data-key="downloadReportButton" onclick="downloadReportAsPDF()">Download Report</button>
+    <button class="download-btn" data-key="printReportButton">Print Report</button>
+</div>
                             </div>
 
                             <p class="report-card-note" data-key="reportCardNote"> This report provides an indication of
@@ -1240,37 +1233,27 @@ window.moe({
                                         data-key="tellUsAboutYourExperience" id="text-area-experience"
                                         style="display: none;"></textarea>
 
-                                    <!-- Add this in the next-steps section, before the expert-session-btn -->
-                                    <div class="callback-request-section">
-                                        <label class="callback-checkbox-label">
-                                            <input type="checkbox" id="callback-request-checkbox">
-                                            <span data-key="requestCallbackLabel">Would you like us to call you
-                                                back?</span>
-                                        </label>
-
-                                        <div class="time-slot-container" id="time-slot-container"
-                                            style="display: none;">
-                                            <label for="time-slot-select" data-key="preferredTimeLabel">Preferred
-                                                Time:</label>
-                                            <select id="time-slot-select" class="time-slot-dropdown">
-                                                <option value="" data-key="selectTimeOption">--Select Time--</option>
-                                                <option value="9-11" data-key="timeSlot9to11">9 AM to 11 AM</option>
-                                                <option value="11-1" data-key="timeSlot11to1">11 AM to 1 PM</option>
-                                                <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM</option>
-                                                <option value="3-5" data-key="timeSlot3to5">3 PM to 5 PM</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="feedback-actions">
-                                        <div class="feedback-checkbox">
-                                            <input type="checkbox" id="feedback-contact">
-                                            <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would
-                                                like to be contacted about my
-                                                Issue</label>
-                                        </div>
-                                        <button class="submit-feedback" data-key="submitButton"
-                                            onclick="showSubmitNotification()">Submit</button>
-                                    </div>
+                            
+<div class="feedback-actions">
+    <div class="feedback-checkbox" style="display: flex; align-items: center; gap: 12px;">
+         <div class="feedback-checkbox">
+        <input type="checkbox" id="feedback-contact">
+            <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would like to be contacted about my Issue</label>
+            </div>
+        <div style="flex: 1;">
+            <div class="time-slot-container" id="time-slot-container" style="display: none; margin-top: 8px;">
+                <select id="time-slot-select" class="time-slot-dropdown" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                    <option value="" data-key="selectTimeOption">--Select Time--</option>
+                    <option value="9-11" data-key="timeSlot9to11">9 AM to 11 AM</option>
+                    <option value="11-1" data-key="timeSlot11to1">11 AM to 1 PM</option>
+                    <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM</option>
+                    <option value="3-5" data-key="timeSlot3to5">3 PM to 5 PM</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button class="submit-feedback" data-key="submitButton" onclick="showSubmitNotification()">Submit</button>
+</div>
 
                                     <p style="font-weight: bold;" data-key="reportDisclaimer">Disclaimer: This report
                                         provides only an indicative assessment of your financial health and risk
@@ -1877,6 +1860,8 @@ window.moe({
             timeSlot11to1: "11 AM to 1 PM",
             timeSlot1to3: "1 PM to 3 PM",
             timeSlot3to5: "3 PM to 5 PM",
+            printReportButton: "Print Report",
+
         },
         ml: {
             appTitle: "ജിയോജിത് എസ്ഐപി ക്ലബ് - നിക്ഷേപ പ്ലാറ്റ്ഫോം",
@@ -2117,6 +2102,8 @@ window.moe({
             timeSlot11to1: "രാവിലെ 11 മുതൽ ഉച്ച 1 വരെ",
             timeSlot1to3: "ഉച്ച 1 മുതൽ 3 വരെ",
             timeSlot3to5: "ഉച്ച 3 മുതൽ 5 വരെ",
+            printReportButton: "റിപ്പോർട്ട് പ്രിന്റ് ചെയ്യുക",
+
         }
     };
 
@@ -2563,6 +2550,9 @@ window.moe({
         // Show the results card
         showQuestion(resultsCardIndex);
 
+
+
+
         // // Update the results card content with scores
         // const resultsCard = document.getElementById('results-card');
         // const scoreDisplay = resultsCard.querySelector('.score-display p');
@@ -2737,12 +2727,21 @@ window.moe({
             }
         }
     }
+
+
+    
+
+
+
     function prevQuestion() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
             showQuestion(currentQuestionIndex, 'prev');
         }
     }
+
+
+
 
     function resetQuiz() {
         currentQuestionIndex = 0;
@@ -2761,6 +2760,26 @@ window.moe({
             radio.checked = false;
         });
         showQuestion(currentQuestionIndex);
+    }
+
+
+    // ADD THE NEW CODE HERE - Update the feedback contact checkbox listener
+    const feedbackContactCheckbox = document.getElementById('feedback-contact');
+    const timeSlotContainer = document.getElementById('time-slot-container');
+
+    if (feedbackContactCheckbox && timeSlotContainer) {
+        feedbackContactCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                timeSlotContainer.style.display = 'block';
+            } else {
+                timeSlotContainer.style.display = 'none';
+                // Reset time slot selection when unchecked
+                const timeSlotSelect = document.getElementById('time-slot-select');
+                if (timeSlotSelect) {
+                    timeSlotSelect.value = '';
+                }
+            }
+        });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -3468,7 +3487,6 @@ window.moe({
             has_feedback: !!feedbackText,
             feedback_length: feedbackText ? feedbackText.length : 0,
             wants_contact: wantsContact,
-            wants_callback: wantsCallback,
             callback_time_slot: wantsCallback ? selectedTimeSlot : null,
             financial_health_score: financialHealthScore,
             risk_profile_score: riskProfileScore,
@@ -3572,6 +3590,8 @@ window.moe({
         }
     }
 
+    
+
     // Add event listener for callback checkbox
     document.addEventListener('DOMContentLoaded', function () {
         const callbackCheckbox = document.getElementById('callback-request-checkbox');
@@ -3619,6 +3639,14 @@ window.moe({
         // Your existing logic to handle the request
         console.log('Expert session requested:', requestData);
     }
+
+    
+
+
+    
+
+
+    
 </script>
 </body>
 
