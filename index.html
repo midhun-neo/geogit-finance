@@ -3584,85 +3584,265 @@ window.moe({
 
 
 
-    async function downloadReportAsPDF() {
-        const reportElement = document.getElementById('report-to-download');
-        const userName = document.getElementById('user-name').value || 'User';
-
-        if (!reportElement) {
-            console.error('Report element not found');
-            return;
+async function downloadReportAsPDF() {
+    const userName = document.getElementById('user-name').value || 'User';
+    
+    try {
+        // Show loading state
+        const downloadBtn = document.querySelector('.download-btn');
+        if (downloadBtn) {
+            downloadBtn.textContent = 'Generating PDF...';
+            downloadBtn.disabled = true;
         }
 
-        try {
-            // Show loading state
-            const downloadBtn = document.querySelector('.download-btn');
-            if (downloadBtn) {
-                downloadBtn.textContent = 'Generating PDF...';
-                downloadBtn.disabled = true;
-            }
+        // Create a hidden iframe to load the report template
+        const iframe = document.createElement('iframe');
+        iframe.style.position = 'absolute';
+        iframe.style.left = '-9999px';
+        iframe.style.width = '800px';
+        iframe.style.height = '1200px';
+        iframe.src = 'report-template.html';
+        document.body.appendChild(iframe);
 
-            // Apply desktop styling
-            reportElement.classList.add('pdf-mode');
+        // Wait for iframe to load completely
+        await new Promise((resolve, reject) => {
+            iframe.onload = () => {
+                // Wait a bit more for all resources to load
+                setTimeout(resolve, 1000);
+            };
+            iframe.onerror = reject;
+            
+            // Timeout fallback
+            setTimeout(() => resolve(), 3000);
+        });
 
-            // Wait for any dynamic content to load (charts, etc.)
-            await new Promise(resolve => setTimeout(resolve, 1000));
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const iframeWindow = iframe.contentWindow;
+        
+        // Populate the template with current data
+        populateReportTemplate(iframeDoc, iframeWindow, userName);
+        
+        // Wait for charts to render
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Generate PDF from the iframe content
+        const canvas = await html2canvas(iframeDoc.body, {
+            scale: 1.5,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            width: 800,
+            height: iframeDoc.body.scrollHeight,
+            logging: false
+        });
 
-            // Configure html2canvas options
-            const canvas = await html2canvas(reportElement, {
-                scale: 2, // Higher quality
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                width: 1200,
-                height: reportElement.scrollHeight,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: 1200,
-                windowHeight: reportElement.scrollHeight
-            });
+        // Create PDF
+        const { jsPDF } = window.jspdf;
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 295; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
 
-            // Remove desktop styling
-            reportElement.classList.remove('pdf-mode');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        let position = 0;
 
-            // Create PDF
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'px',
-                format: [canvas.width / 2, canvas.height / 2]
-            });
+        const imgData = canvas.toDataURL('image/png', 0.8);
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
 
-            // Add the image to PDF
-            const imgData = canvas.toDataURL('image/png', 1.0);
-            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width / 2, canvas.height / 2);
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
 
-            // Download the PDF
-            const fileName = `${userName.replace(/[^a-z0-9]/gi, '_')}_Financial_Health_Report.pdf`;
-            pdf.save(fileName);
+        // Download the PDF
+        const fileName = `${userName.replace(/[^a-z0-9]/gi, '_')}_Financial_Health_Report.pdf`;
+        pdf.save(fileName);
 
-            // Reset button state
-            if (downloadBtn) {
-                downloadBtn.textContent = 'Download Report';
-                downloadBtn.disabled = false;
-            }
+        // Cleanup
+        document.body.removeChild(iframe);
 
-        } catch (error) {
-            console.error('Error generating PDF:', error);
-            alert('Error generating PDF. Please try again.');
+        // Reset button state
+        if (downloadBtn) {
+            downloadBtn.textContent = 'Download Report';
+            downloadBtn.disabled = false;
+        }
 
-            // Reset button state
-            const downloadBtn = document.querySelector('.download-btn');
-            if (downloadBtn) {
-                downloadBtn.textContent = 'Download Report';
-                downloadBtn.disabled = false;
-            }
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('Error generating PDF. Please try again.');
+        
+        // Cleanup iframe if it exists
+        const existingIframe = document.querySelector('iframe[src="report-template.html"]');
+        if (existingIframe) {
+            document.body.removeChild(existingIframe);
+        }
+        
+        // Reset button state
+        const downloadBtn = document.querySelector('.download-btn');
+        if (downloadBtn) {
+            downloadBtn.textContent = 'Download Report';
+            downloadBtn.disabled = false;
+        }
+    }
+}
 
-            // Remove desktop styling in case of error
-            reportElement.classList.remove('pdf-mode');
+function populateReportTemplate(doc, win, userName) {
+    try {
+        // Set user name
+        const userNameElement = doc.getElementById('report-user-name');
+        if (userNameElement) {
+            userNameElement.textContent = userName + "'s";
+        }
+
+        // Pass data to iframe window so it can access the variables
+        win.financialHealthScore = financialHealthScore;
+        win.riskProfileScore = riskProfileScore;
+        win.translations = translations;
+        win.currentLanguage = currentLanguage;
+
+        // Update content same as your existing updateFeedbackContent function
+        updateReportContent(doc, win);
+        
+        // Create charts
+        setTimeout(() => {
+            win.updateRiskGauge(riskProfileScore, translations, currentLanguage);
+            win.updateHealthGauge(financialHealthScore, translations, currentLanguage);
+        }, 500);
+
+    } catch (error) {
+        console.error('Error populating template:', error);
+    }
+}
+
+function updateReportContent(doc, win) {
+    // Update Risk Profile Content (copy from your existing function)
+    const riskBadge = doc.getElementById('risk-badge');
+    const riskDescription = doc.getElementById('risk-description');
+    const riskRecommendations = doc.getElementById('risk-recommendations');
+
+    if (riskProfileScore >= 9) {
+        if (riskBadge) {
+            riskBadge.textContent = translations[currentLanguage].riskHigh;
+            riskBadge.style.backgroundColor = "#EB3333";
+        }
+        if (riskDescription) {
+            riskDescription.textContent = translations[currentLanguage].riskprofileSummaryHighRisk;
+        }
+        if (riskRecommendations) {
+            riskRecommendations.innerHTML = `
+                <li>${translations[currentLanguage].recommendationListRiskHigh1}</li>
+                <li>${translations[currentLanguage].recommendationListRiskHigh2}</li>
+            `;
+        }
+    } else if (riskProfileScore >= 5) {
+        if (riskBadge) {
+            riskBadge.textContent = translations[currentLanguage].riskBadgeModerate;
+            riskBadge.style.backgroundColor = "#F7A219";
+        }
+        if (riskDescription) {
+            riskDescription.textContent = translations[currentLanguage].riskprofileSummaryModerateRisk;
+        }
+        if (riskRecommendations) {
+            riskRecommendations.innerHTML = `
+                <li>${translations[currentLanguage].recommendationListRiskModerate1}</li>
+                <li>${translations[currentLanguage].recommendationListRiskModerate2}</li>
+            `;
+        }
+    } else {
+        if (riskBadge) {
+            riskBadge.textContent = translations[currentLanguage].riskLow;
+            riskBadge.style.backgroundColor = "#57B272";
+        }
+        if (riskDescription) {
+            riskDescription.textContent = translations[currentLanguage].riskprofileSummarylowRisk;
+        }
+        if (riskRecommendations) {
+            riskRecommendations.innerHTML = `
+                <li>${translations[currentLanguage].recommendationListRiskLow1}</li>
+                <li>${translations[currentLanguage].recommendationListRiskLow2}</li>
+            `;
         }
     }
 
+    // Update Financial Health Content (copy from your existing function)
+    const healthBadge = doc.getElementById('health-badge');
+    const chartImg = doc.getElementById("chart-img");
+    const healthDescription = doc.getElementById('health-description');
+    const healthRecommendations = doc.getElementById('health-recommendations');
 
+    if (financialHealthScore >= 12) {
+        if (healthBadge) {
+            healthBadge.textContent = translations[currentLanguage].healthBadgeOnTrack;
+            healthBadge.style.backgroundColor = "#7DBB42";
+        }
+        if (chartImg) chartImg.src = "./assets/images/on-track.svg";
+        if (healthDescription) {
+            healthDescription.textContent = translations[currentLanguage].recommendationSummaryOnTrack;
+        }
+        if (healthRecommendations) {
+            healthRecommendations.innerHTML = `
+                <li>${translations[currentLanguage].recommendationListOnTrack1}</li>
+                <li>${translations[currentLanguage].recommendationListOnTrack2}</li>
+                <li>${translations[currentLanguage].recommendationListOnTrack3}</li>
+            `;
+        }
+    } else if (financialHealthScore >= 7) {
+        if (healthBadge) {
+            healthBadge.textContent = translations[currentLanguage].healthBadgeModerate;
+            healthBadge.style.backgroundColor = "#FECC09";
+        }
+        if (chartImg) chartImg.src = "./assets/images/moderate.svg";
+        if (healthDescription) {
+            healthDescription.textContent = translations[currentLanguage].recommendationSummaryModerate;
+        }
+        if (healthRecommendations) {
+            healthRecommendations.innerHTML = `
+                <li>${translations[currentLanguage].recommendationListModerate1}</li>
+                <li>${translations[currentLanguage].recommendationListModerate2}</li>
+                <li>${translations[currentLanguage].recommendationListModerate3}</li>
+            `;
+        }
+    } else {
+        if (healthBadge) {
+            healthBadge.textContent = translations[currentLanguage].healthBadgeNeedsImprovement;
+            healthBadge.style.backgroundColor = "#F7A219";
+        }
+        if (chartImg) chartImg.src = "./assets/images/needs-improvement.svg";
+        if (healthDescription) {
+            healthDescription.textContent = translations[currentLanguage].recommendationSummaryNeedsImprovement;
+        }
+        if (healthRecommendations) {
+            healthRecommendations.innerHTML = `
+                <li>${translations[currentLanguage].recommendationListNeedsImprovement1}</li>
+                <li>${translations[currentLanguage].recommendationListNeedsImprovement2}</li>
+                <li>${translations[currentLanguage].recommendationListNeedsImprovement3}</li>
+            `;
+        }
+    }
+
+    // Update snapshot values
+    const snapshotRisk = doc.getElementById('snapshot-risk');
+    const snapshotWeak = doc.getElementById('snapshot-weak');
+    const snapshotAction = doc.getElementById('snapshot-action');
+
+    if (snapshotRisk) {
+        snapshotRisk.textContent = riskProfileScore >= 9 ? translations[currentLanguage].riskPreference1 :
+            riskProfileScore >= 5 ? translations[currentLanguage].riskPreference2 : translations[currentLanguage].riskPreference3;
+    }
+
+    if (snapshotWeak) {
+        snapshotWeak.textContent = financialHealthScore < 7 ? translations[currentLanguage].weakArea1 :
+            financialHealthScore < 12 ? translations[currentLanguage].weakArea2 : translations[currentLanguage].weakArea3;
+    }
+
+    if (snapshotAction) {
+        snapshotAction.textContent = financialHealthScore < 7 ? translations[currentLanguage].ActionNeeded1 :
+            financialHealthScore < 12 ? translations[currentLanguage].ActionNeeded2 : translations[currentLanguage].ActionNeeded3;
+    }
+}
 
     // Add event listener for callback checkbox
     document.addEventListener('DOMContentLoaded', function () {

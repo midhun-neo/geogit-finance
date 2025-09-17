@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Health Report</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Overpass:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        background: white;
+        margin: 0;
+        padding: 20px;
+      }
+      .report-logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .report-logo img {
+        height: 80px;
+      }
+      /* Hide timer for PDF */
+      .timer-display {
+        display: none !important;
+      }
+      .report-actions {
+        display: none !important;
+      }
+      .feedback-back {
+        display: none !important;
+      }
+      .rating-section {
+        display: none !important;
+      }
+      .next-steps {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add Logo at top -->
+    <div class="report-logo">
+      <img src="./assets/images/logo.svg" alt="Geojit Logo" />
+    </div>
+
+    <!-- Copy exact structure from your feedback card -->
+    <div class="feedback-container">
+      <div class="feedback-content-wrapper">
+        <div class="feedback-content">
+          <div id="report-to-download" class="report-download-wrapper">
+            <!-- New Report Header -->
+            <div class="report-header">
+              <div class="report-title-section">
+                <h2 class="report-title">
+                  <span class="user-name" id="report-user-name">Your</span>
+                  <span data-key="feedbackReportTitle">Financial Health Report</span>
+                </h2>
+              </div>
+            </div>
+
+            <p class="report-card-note" data-key="reportCardNote">
+              This report provides an indication of your financial health. Please speak to our expert to understand the
+              details and to create a suitable financial road map.
+            </p>
+
+            <!-- New Cards Layout -->
+            <div class="report-cards-container">
+              <!-- Risk Profile Card -->
+              <div class="report-card risk-card">
+                <div class="report-card-left">
+                  <div class="card-header">
+                    <img src="./assets/images/risk-profile.svg" alt="risk profile" class="card-icon" />
+                    <h3 data-key="riskProfileLabel">Risk Profile</h3>
+                  </div>
+
+                  <div class="gauge-section">
+                    <div class="gauge-wrapper">
+                      <canvas id="riskGaugeChart" width="200" height="120"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="report-card-right">
+                  <div class="gauge-info">
+                    <div class="risk-badge" id="risk-badge">Moderate Risk</div>
+                  </div>
+                  <p class="risk-description" id="risk-description">
+                    You're open to some risk in exchange for better returns. A balanced investment approach can work
+                    well for you.
+                  </p>
+                  <div class="recommendations-section">
+                    <div class="recommendations-header">
+                      <img src="./assets/images/expert-icon.svg" alt="Expert" class="expert-icon" />
+                      <span data-key="recommendationsByGeojit">Recommendations by Geojit</span>
+                    </div>
+                    <ul class="recommendations-list" id="risk-recommendations">
+                      <li>Balanced Advantage Funds or Hybrid Equity Funds</li>
+                      <li>Mixing equity with safer investments for stability</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Financial Health Card -->
+              <div class="report-card health-card">
+                <div class="report-card-left">
+                  <div class="card-header">
+                    <img src="./assets/images/financial-health.svg" alt="financial health" class="card-icon" />
+                    <h3 data-key="financialHealthLabel">Financial Health</h3>
+                  </div>
+
+                  <img src="./assets/images/needs-improvement.svg" alt="health" class="chart-img" id="chart-img" />
+
+                  <div class="gauge-section">
+                    <div class="gauge-wrapper">
+                      <canvas id="healthGaugeChart" width="200" height="120"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="report-card-right">
+                  <div class="gauge-info">
+                    <div class="health-badge" id="health-badge">Needs Improvement</div>
+                  </div>
+                  <p class="health-description" id="health-description">
+                    Your financial health needs attention. It looks like you're either not saving regularly, lack a
+                    safety net or are under insured.
+                  </p>
+                  <div class="recommendations-section">
+                    <div class="recommendations-header">
+                      <img src="./assets/images/expert-icon.svg" alt="Expert" class="expert-icon" />
+                      <span data-key="recommendationsByGeojit">Recommendations by Geojit</span>
+                    </div>
+                    <ul class="recommendations-list" id="health-recommendations">
+                      <li>Building an emergency fund</li>
+                      <li>Creating a habit of tracking income and expenses</li>
+                      <li>Setting basic life and health insurance in place</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Financial Health Snapshot -->
+            <div class="snapshot-section">
+              <h3 data-key="yourFinancialHealthSnapshot">Your Financial Health Snapshot</h3>
+              <div class="snapshot-cards">
+                <div class="snapshot-card">
+                  <div class="snapshot-label" data-key="riskPreference">Risk Preference</div>
+                  <div class="snapshot-value" id="snapshot-risk">Open to some risk</div>
+                </div>
+                <div class="snapshot-card">
+                  <div class="snapshot-label" data-key="weakArea">Improvement Zone</div>
+                  <div class="snapshot-value" id="snapshot-weak">Not saving regularly / Lack of safety net</div>
+                </div>
+                <div class="snapshot-card">
+                  <div class="snapshot-label" data-key="actionNeeded">Action Needed</div>
+                  <div class="snapshot-value" id="snapshot-action">Improve insurance coverage</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div style="margin-top: 40px">
+              <p style="font-weight: bold" data-key="reportDisclaimer">
+                Disclaimer: This report provides only an indicative assessment of your financial health and risk
+                profile. It should not be considered as financial advice or a comprehensive evaluation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Copy your chart functions here
+      let riskChart = null;
+      let healthChart = null;
+
+      function updateRiskGauge(riskProfileScore, translations, currentLanguage) {
+        const ctx = document.getElementById("riskGaugeChart");
+        if (!ctx) return;
+
+        if (riskChart) {
+          riskChart.destroy();
+        }
+
+        const riskPercentage = (riskProfileScore / 12) * 100;
+        const targetAngle = (riskPercentage / 100) * 60 - 30;
+
+        const data = {
+          labels: [
+            translations[currentLanguage].riskLow,
+            translations[currentLanguage].riskBadgeModerate,
+            translations[currentLanguage].riskHigh,
+          ],
+          datasets: [
+            {
+              data: [41.67, 33.33, 25],
+              backgroundColor: ["#57B272", "#F7A219", "#EB3333"],
+              borderWidth: 6,
+              borderColor: "#fff",
+              cutout: "70%",
+              circumference: 180,
+              rotation: 270,
+            },
+          ],
+        };
+
+        riskChart = new Chart(ctx, {
+          type: "doughnut",
+          data: data,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 0 },
+            plugins: {
+              legend: {
+                display: true,
+                position: "bottom",
+                labels: {
+                  usePointStyle: true,
+                  pointStyle: "circle",
+                  font: { size: 11 },
+                  color: "#666",
+                  padding: 12,
+                },
+              },
+              tooltip: { enabled: false },
+            },
+          },
+          plugins: [
+            {
+              id: "needle",
+              afterDatasetDraw(chart, args, options) {
+                const {
+                  ctx,
+                  chartArea: { width, height },
+                } = chart;
+                ctx.save();
+
+                const angle = (270 + targetAngle) * (Math.PI / 180);
+                const cx = width / 2;
+                const cy = height * 0.78;
+                const needleLength = height * 0.45;
+
+                const needleX = cx + Math.cos(angle) * needleLength;
+                const needleY = cy + Math.sin(angle) * needleLength;
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(needleX, needleY);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = "#000";
+                ctx.lineCap = "round";
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+                ctx.fillStyle = "#000";
+                ctx.fill();
+
+                ctx.restore();
+              },
+            },
+          ],
+        });
+      }
+
+      function updateHealthGauge(financialHealthScore, translations, currentLanguage) {
+        const ctx = document.getElementById("healthGaugeChart");
+        if (!ctx) return;
+
+        if (healthChart) {
+          healthChart.destroy();
+        }
+
+        const healthPercentage = (financialHealthScore / 18) * 100;
+
+        const data = {
+          labels: ["Financial Health"],
+          datasets: [
+            {
+              label: translations[currentLanguage].healthBadgeNeedsImprovement,
+              data: [38.89],
+              backgroundColor: "#F7A219",
+              borderWidth: 0,
+              barPercentage: 0.25,
+              categoryPercentage: 0.8,
+            },
+            {
+              label: translations[currentLanguage].healthBadgeModerate,
+              data: [27.78],
+              backgroundColor: "#FECC09",
+              borderWidth: 0,
+              barPercentage: 0.25,
+              categoryPercentage: 0.8,
+            },
+            {
+              label: translations[currentLanguage].healthBadgeOnTrack,
+              data: [33.33],
+              backgroundColor: "#7DBB42",
+              borderWidth: 0,
+              barPercentage: 0.25,
+              categoryPercentage: 0.8,
+            },
+          ],
+        };
+
+        healthChart = new Chart(ctx, {
+          type: "bar",
+          data: data,
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 0 },
+            scales: {
+              x: {
+                stacked: true,
+                display: false,
+                max: 100,
+                beginAtZero: true,
+              },
+              y: {
+                stacked: true,
+                display: false,
+              },
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: "bottom",
+                labels: {
+                  usePointStyle: true,
+                  pointStyle: "circle",
+                  font: { size: 11 },
+                  boxWidth: 10,
+                  boxHeight: 10,
+                  color: "#666",
+                  padding: 12,
+                },
+              },
+              tooltip: { enabled: false },
+            },
+            layout: {
+              padding: {
+                left: 5,
+                right: 5,
+                bottom: 5,
+                top: 5,
+              },
+            },
+          },
+          plugins: [
+            {
+              id: "needle",
+              afterDatasetsDraw(chart) {
+                const {
+                  ctx,
+                  chartArea: { left, right, top, bottom },
+                } = chart;
+
+                const needleX = left + (healthPercentage / 100) * (right - left);
+                const barCenter = (top + bottom) / 2;
+
+                ctx.save();
+                ctx.fillStyle = "#000";
+                ctx.beginPath();
+                ctx.moveTo(needleX, barCenter - 8);
+                ctx.lineTo(needleX - 6, barCenter - 15);
+                ctx.lineTo(needleX + 6, barCenter - 15);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+              },
+            },
+          ],
+        });
+      }
+    </script>
+  </body>
+</html>

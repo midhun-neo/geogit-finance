@@ -1095,14 +1095,12 @@ window.moe({
                                 </div>
                                 <div class="report-actions">
                                     <button class="download-btn" data-key="downloadReportButton"
-                                        onclick="downloadReportAsPDF()">Download
-                                        Report</button>
-                                    <button class="share-btn whatsapp">
-                                        <img src="./assets/images/whatsapp.svg" alt="whatsapp" />
-                                    </button>
-                                    <button class="share-btn general">
-                                        <img src="./assets/images/share.svg" alt="share" />
-                                    </button>
+                                        onclick="downloadReportAsPDF()">Download Report</button>
+                                    <button class="download-btn" data-key="printReportButton">Print Report</button>
+                                    <button class="download-btn reset-btn" onclick="resetAssessment()"
+                                        data-key="resetReportButton">Reset Report</button>
+                                    <div class="timer-display" id="timer-display" ><span data-key="reportWillReset">Report will
+                                        be reset in:</span> <span id="timer-countdown">1:00</span></div>
                                 </div>
                             </div>
 
@@ -1206,7 +1204,7 @@ window.moe({
                                         <div class="snapshot-value" id="snapshot-risk">Open to some risk</div>
                                     </div>
                                     <div class="snapshot-card">
-                                        <div class="snapshot-label" data-key="weakArea">Weak Area</div>
+                                        <div class="snapshot-label" data-key="weakArea">Improvement Zone</div>
                                         <div class="snapshot-value" id="snapshot-weak">Not saving regularly / Lack of
                                             safety
                                             net</div>
@@ -1239,12 +1237,34 @@ window.moe({
                                     <textarea placeholder="Tell us about your experience"
                                         data-key="tellUsAboutYourExperience" id="text-area-experience"
                                         style="display: none;"></textarea>
+
+
                                     <div class="feedback-actions">
-                                        <div class="feedback-checkbox">
-                                            <input type="checkbox" id="feedback-contact">
-                                            <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would
-                                                like to be contacted about my
-                                                Issue</label>
+                                        <div class="feedback-checkbox"
+                                            style="display: flex; align-items: center; gap: 12px;">
+                                            <div class="feedback-checkbox">
+                                                <input type="checkbox" id="feedback-contact">
+                                                <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would
+                                                    like to be contacted about my Issue</label>
+                                            </div>
+                                            <div style="flex: 1;">
+                                                <div class="time-slot-container" id="time-slot-container"
+                                                    style="display: none; margin-top: 8px;">
+                                                    <select id="time-slot-select" class="time-slot-dropdown"
+                                                        style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                                                        <option value="" data-key="selectTimeOption">--Select Time--
+                                                        </option>
+                                                        <option value="9-11" data-key="timeSlot9to11">9 AM to 11 AM
+                                                        </option>
+                                                        <option value="11-1" data-key="timeSlot11to1">11 AM to 1 PM
+                                                        </option>
+                                                        <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM
+                                                        </option>
+                                                        <option value="3-5" data-key="timeSlot3to5">3 PM to 5 PM
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <button class="submit-feedback" data-key="submitButton"
                                             onclick="showSubmitNotification()">Submit</button>
@@ -1255,6 +1275,8 @@ window.moe({
                                         profile. It should not be considered as financial advice or a comprehensive
                                         evaluation.</p>
                                 </div>
+
+
                             </div>
 
                         </div>
@@ -1620,6 +1642,47 @@ window.moe({
 
 
 <script>
+
+    // Timer variables
+    let reportTimer = null;
+    let timeRemaining = 60; // 60 seconds = 1 minute
+
+
+    function startReportTimer() {
+        timeRemaining = 60; // Reset to 1 minute
+        updateTimerDisplay();
+
+        reportTimer = setInterval(() => {
+            timeRemaining--;
+            updateTimerDisplay();
+
+            if (timeRemaining <= 0) {
+                clearInterval(reportTimer);
+                reportTimer = null;
+                resetAssessment();
+            }
+        }, 1000); // Update every second
+    }
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        const timerCountdown = document.getElementById('timer-countdown');
+        if (timerCountdown) {
+            timerCountdown.textContent = formattedTime;
+        }
+    }
+
+    function stopReportTimer() {
+        if (reportTimer) {
+            clearInterval(reportTimer);
+            reportTimer = null;
+        }
+    }
+
+
     // Define translations directly
     const translations = {
         en: {
@@ -1743,7 +1806,6 @@ window.moe({
             yourFinancialHealthSnapshot: "Your Financial Health Snapshot",
             riskPreference: "Risk Preference:",
             riskTextOpenToSomeRisk: "Open to some risk",
-            weakArea: "Weak Area:",
             weakAreaNotSaving: "Not saving regularly / Lack emergency fund",
             actionNeeded: "Action Needed:",
             actionNeededImproveInsurance: "Improve insurance coverage",
@@ -1771,7 +1833,7 @@ window.moe({
             riskprofileSummaryHighRisk: "You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.",
 
             riskPreference: "Risk Preference",
-            weakArea: "Weak Area",
+            weakArea: "Improvement Zone",
             ActionNeeded: "Action Needed",
 
             riskPreference1: "Comfortable with volatility",
@@ -1847,6 +1909,17 @@ window.moe({
                 "These are not Exchange traded products and the Member is just acting as distributor. All disputes with respect to the distribution activity would not have access to Exchange investor redressal or Arbitration mechanism.",
             footerLegal: "Geojit Financial Services Ltd, AMFI-registered Mutual Fund Distributor, ARN : 0098",
             footerCredit: "Design by Neointeraction Design",
+            requestCallbackLabel: "Would you like us to call you back?",
+            preferredTimeLabel: "Preferred Time:",
+            selectTimeOption: "--Select Time--",
+            timeSlot9to11: "9 AM to 11 AM",
+            timeSlot11to1: "11 AM to 1 PM",
+            timeSlot1to3: "1 PM to 3 PM",
+            timeSlot3to5: "3 PM to 5 PM",
+            printReportButton: "Print Report",
+            resetReportButton: "Reset Report",
+            reportWillReset: "Report will be reset in:",
+
         },
         ml: {
             appTitle: "ജിയോജിത് എസ്ഐപി ക്ലബ് - നിക്ഷേപ പ്ലാറ്റ്ഫോം",
@@ -1975,7 +2048,7 @@ window.moe({
             yourFinancialHealthSnapshot: "നിങ്ങളുടെ സാമ്പത്തിക ആരോഗ്യ ലഘുചിത്രം",
             riskPreference: "റിസ്ക് മുൻഗണന:",
             riskTextOpenToSomeRisk: "ചില റിസ്കുകൾക്ക് തയ്യാറാണ്",
-            weakArea: "ദുർബലമായ മേഖല:",
+            weakArea: "മെച്ചപ്പെടുത്താനുള്ള ഇടങ്ങൾ",
             weakAreaNotSaving: "പതിവായി സമ്പാദിക്കുന്നില്ല / അടിയന്തിര ഫണ്ട് ഇല്ല",
             actionNeeded: "ആവശ്യമായ നടപടി:",
             actionNeededImproveInsurance: "ഇൻഷുറൻസ് കവറേജ് മെച്ചപ്പെടുത്തുക",
@@ -2080,10 +2153,21 @@ window.moe({
                 "ഇവ എക്സ്ചേഞ്ച് ട്രേഡ് ചെയ്ത ഉൽപ്പന്നങ്ങളല്ല, അംഗം ഒരു വിതരണക്കാരനായി മാത്രം പ്രവർത്തിക്കുന്നു. വിതരണ പ്രവർത്തനങ്ങളുമായി ബന്ധപ്പെട്ട എല്ലാ തർക്കങ്ങൾക്കും എക്സ്ചേഞ്ച് നിക്ഷേപകരുടെ പരാതി പരിഹാരത്തിനോ ആർബിട്രേഷൻ സംവിധാനത്തിനോ പ്രവേശനമില്ല.",
             footerLegal: "ജിയോജിത് ഫിനാൻഷ്യൽ സർവീസസ് ലിമിറ്റഡ്, AMFI-രജിസ്റ്റർ ചെയ്ത മ്യൂച്വൽ ഫണ്ട് വിതരണക്കാരൻ, ARN : 0098",
             footerCredit: "ഡിസൈൻ: നിയോഇന്ററാക്ഷൻ ഡിസൈൻ",
+            requestCallbackLabel: "ഞങ്ങൾ നിങ്ങളെ തിരികെ വിളിക്കണമെന്ന് നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?",
+            preferredTimeLabel: "ഇഷ്ടപ്പെടുന്ന സമയം:",
+            selectTimeOption: "--സമയം തിരഞ്ഞെടുക്കുക--",
+            timeSlot9to11: "രാവിലെ 9 മുതൽ 11 വരെ",
+            timeSlot11to1: "രാവിലെ 11 മുതൽ ഉച്ച 1 വരെ",
+            timeSlot1to3: "ഉച്ച 1 മുതൽ 3 വരെ",
+            timeSlot3to5: "ഉച്ച 3 മുതൽ 5 വരെ",
+            printReportButton: "റിപ്പോർട്ട് പ്രിന്റ് ചെയ്യുക",
+            resetReportButton: "റിപ്പോർട്ട് റീസെറ്റ് ചെയ്യുക",
+            reportWillReset: "റിപ്പോർട്ട് റീസെറ്റ് ചെയ്യപ്പെടും:",
+
         }
     };
 
-    // MoEngage Helper Functions with proper timing handling
+    // Fixed MoEngage Helper Functions
     function trackMoEngageEvent(eventName, properties = {}) {
         try {
             if (window.Moengage && window.Moengage.track_event) {
@@ -2102,17 +2186,22 @@ window.moe({
 
     function setMoEngageUserAttributes(attributes) {
         try {
+            // First, identify the user with email as unique ID
+            if (attributes.email) {
+                // Identify user first
+                if (window.Moengage && window.Moengage.add_unique_user_id) {
+                    window.Moengage.add_unique_user_id(attributes.email);
+                } else if (window.moengage && window.moengage.add_unique_user_id) {
+                    window.moengage.add_unique_user_id(attributes.email);
+                }
+            }
+
+            // Then set all attributes
             Object.keys(attributes).forEach(key => {
                 if (key === 'email') {
                     if (window.Moengage && window.Moengage.add_email) {
-                        // window.Moengage.identifyUser("email").then(() => {
-                        //     window.Moengage.add_email(attributes[key]);
-                        // });
                         window.Moengage.add_email(attributes[key]);
                     } else if (window.moengage && window.moengage.add_email) {
-                        // window.moengage.identifyUser("email").then(() => {
-                        //     window.moengage.add_email(attributes[key]);
-                        // });
                         window.moengage.add_email(attributes[key]);
                     }
                 } else if (key === 'mobile') {
@@ -2140,7 +2229,6 @@ window.moe({
             console.error('MoEngage user attribute error:', error);
         }
     }
-
     // Keep all your existing helper functions unchanged
     function getHealthCategory(score) {
         if (score >= 12) return 'On_Track';
@@ -2172,6 +2260,78 @@ window.moe({
         } else {
             return ['Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
         }
+    }
+
+    function getSelectedValue(name) {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        return selected ? selected.value : null;
+    }
+
+    function getRiskDescription(category) {
+        switch (category) {
+            case 'High_Risk':
+                return 'Comfortable with volatility and long-term investments';
+            case 'Moderate_Risk':
+                return 'Open to some risk in exchange for better returns';
+            case 'Low_Risk':
+                return 'Prefer safety and stability';
+            default:
+                return '';
+        }
+    }
+
+    function getHealthDescription(category) {
+        switch (category) {
+            case 'On_Track':
+                return 'Great job! Continue with healthy financial habits';
+            case 'Moderate':
+                return 'On the right path, needs refinement';
+            case 'Needs_Improvement':
+                return 'Needs attention in saving and planning habits';
+            default:
+                return '';
+        }
+    }
+
+    // Profile Event
+    function trackProfileEvent() {
+        trackMoEngageEvent('Profile_Event', {
+            name: document.getElementById('user-name').value || '',
+            email: document.getElementById('contact-email').value || '',
+            mobile: document.getElementById('contact-phone').value || '',
+            age_group: getSelectedValue('age-group'),
+            gender: getSelectedValue('gender'),
+            occupation: getSelectedValue('occupation'),
+            marital_status: getSelectedValue('marital-status')
+        });
+    }
+
+    // Summary Event
+    function trackSummaryEvent() {
+        trackMoEngageEvent('Summary_Event', {
+            community_joining_interest: document.getElementById('community-checkbox').checked,
+            newsletter_subscription: document.getElementById('newsletter-checkbox').checked,
+            masterclass_interest: document.getElementById('masterclass-checkbox').checked
+        });
+    }
+
+    // FFTest Result Event
+    function trackFFTestResultEvent() {
+        calculateScores();
+
+        const healthCategory = getHealthCategory(financialHealthScore);
+        const riskCategory = getRiskCategory(riskProfileScore);
+        const healthRecommendations = getHealthRecommendations(financialHealthScore);
+        const riskRecommendations = getRiskRecommendations(riskProfileScore);
+
+        trackMoEngageEvent('FFTest_Result', {
+            risk_profile: riskCategory,
+            risk_description: getRiskDescription(riskCategory),
+            risk_geojit_recommendations: riskRecommendations,
+            financial_health_description: getHealthDescription(healthCategory),
+            financial_health_recommendations: healthRecommendations,
+            experience_rating: currentRating || null
+        });
     }
 
     // Language variables
@@ -2450,6 +2610,9 @@ window.moe({
         // Show the results card
         showQuestion(resultsCardIndex);
 
+
+
+
         // // Update the results card content with scores
         // const resultsCard = document.getElementById('results-card');
         // const scoreDisplay = resultsCard.querySelector('.score-display p');
@@ -2494,9 +2657,10 @@ window.moe({
             });
 
         } else if (currentQuestionIndex === 1) {
-            // Screen 2: Contact details
+            // Screen 2: Contact details - FIXED VERSION
             const userEmail = document.getElementById('contact-email').value.trim();
             const userPhone = document.getElementById('contact-phone').value.trim();
+            const userName = document.getElementById('user-name').value.trim();
 
             if (!userEmail || !userPhone) {
                 showAlert(translations[currentLanguage].mobileAndEmailError);
@@ -2515,15 +2679,31 @@ window.moe({
                 return;
             }
 
-            setMoEngageUserAttributes({
-                email: userEmail,
-                mobile: userPhone,
-                name: document.getElementById('user-name').value.trim()
-            });
+            // CRITICAL FIX: First identify the user, then set attributes
+            try {
+                if (window.Moengage && window.Moengage.add_unique_user_id) {
+                    window.Moengage.add_unique_user_id(userEmail);
+                } else if (window.moengage && window.moengage.add_unique_user_id) {
+                    window.moengage.add_unique_user_id(userEmail);
+                }
+                console.log('User identified with email:', userEmail);
+            } catch (error) {
+                console.error('User identification failed:', error);
+            }
+
+            // Wait for identification, then set attributes
+            setTimeout(() => {
+                setMoEngageUserAttributes({
+                    email: userEmail,
+                    mobile: userPhone,
+                    name: userName
+                });
+            }, 500);
 
             trackMoEngageEvent('Contact_Details_Completed', {
                 email: userEmail,
-                mobile: userPhone
+                mobile: userPhone,
+                name: userName
             });
 
         } else if (currentQuestionIndex === 2) {
@@ -2541,6 +2721,10 @@ window.moe({
                 contact_agreement: consent2
             });
 
+        } else if (currentQuestionIndex === 6) {
+            // Profile Event after marital status question
+            trackProfileEvent();
+
         } else if (currentQuestionIndex === 21) {
             // Screen 4: Preferences
             const community = document.getElementById('community-checkbox').checked;
@@ -2552,9 +2736,12 @@ window.moe({
                 wants_newsletter: newsletter,
                 wants_masterclass: masterclass
             });
+
+            // Summary Event
+            trackSummaryEvent();
         }
 
-        // Keep existing validation for other questions
+        // Validation for other questions
         else if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
             const currentQuestionCard = document.getElementById(`question-${currentQuestionIndex}`);
             const selectedOption = currentQuestionCard.querySelector('input[type="radio"]:checked');
@@ -2577,6 +2764,7 @@ window.moe({
                 const healthRecommendations = getHealthRecommendations(financialHealthScore);
                 const riskRecommendations = getRiskRecommendations(riskProfileScore);
 
+                // Test_Completed event
                 trackMoEngageEvent('Test_Completed', {
                     financial_health_score: financialHealthScore,
                     financial_health_max_score: 18,
@@ -2591,17 +2779,29 @@ window.moe({
                     language: currentLanguage
                 });
 
+                // FFTest Result Event
+                trackFFTestResultEvent();
+
             } else {
                 showQuestion(currentQuestionIndex);
             }
         }
     }
+
+
+
+
+
+
     function prevQuestion() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
             showQuestion(currentQuestionIndex, 'prev');
         }
     }
+
+
+
 
     function resetQuiz() {
         currentQuestionIndex = 0;
@@ -2620,6 +2820,26 @@ window.moe({
             radio.checked = false;
         });
         showQuestion(currentQuestionIndex);
+    }
+
+
+    // ADD THE NEW CODE HERE - Update the feedback contact checkbox listener
+    const feedbackContactCheckbox = document.getElementById('feedback-contact');
+    const timeSlotContainer = document.getElementById('time-slot-container');
+
+    if (feedbackContactCheckbox && timeSlotContainer) {
+        feedbackContactCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                timeSlotContainer.style.display = 'block';
+            } else {
+                timeSlotContainer.style.display = 'none';
+                // Reset time slot selection when unchecked
+                const timeSlotSelect = document.getElementById('time-slot-select');
+                if (timeSlotSelect) {
+                    timeSlotSelect.value = '';
+                }
+            }
+        });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -3024,9 +3244,16 @@ window.moe({
             risk_recommendations: riskRecommendations,
             user_name: document.getElementById('user-name').value || 'Unknown'
         });
+
+        // START THE TIMER - ADD THIS LINE
+        startReportTimer();
     }
     // Modified goBackToResults function
     function goBackToResults() {
+
+        // STOP THE TIMER - ADD THIS LINE
+        stopReportTimer();
+
         const resultsCard = document.getElementById('results-card');
         const feedbackCard = document.getElementById('feedback-card');
         const questionContainer = document.querySelector(".question-container")
@@ -3171,6 +3398,11 @@ window.moe({
         });
     }
     function resetAssessment() {
+
+        // STOP THE TIMER - ADD THIS LINE
+        stopReportTimer();
+
+
         // Reset all variables
         currentQuestionIndex = 0;
         financialHealthScore = 0;
@@ -3327,6 +3559,7 @@ window.moe({
             has_feedback: !!feedbackText,
             feedback_length: feedbackText ? feedbackText.length : 0,
             wants_contact: wantsContact,
+            callback_time_slot: wantsCallback ? selectedTimeSlot : null,
             financial_health_score: financialHealthScore,
             risk_profile_score: riskProfileScore,
             financial_health_category: getHealthCategory(financialHealthScore),
@@ -3428,6 +3661,57 @@ window.moe({
             reportElement.classList.remove('pdf-mode');
         }
     }
+
+
+
+    // Add event listener for callback checkbox
+    document.addEventListener('DOMContentLoaded', function () {
+        const callbackCheckbox = document.getElementById('callback-request-checkbox');
+        const timeSlotContainer = document.getElementById('time-slot-container');
+
+        if (callbackCheckbox && timeSlotContainer) {
+            callbackCheckbox.addEventListener('change', function () {
+                if (this.checked) {
+                    timeSlotContainer.style.display = 'block';
+                } else {
+                    timeSlotContainer.style.display = 'none';
+                    // Reset time slot selection when unchecked
+                    document.getElementById('time-slot-select').value = '';
+                }
+            });
+        }
+    });
+
+    // Modify your existing expert session request function
+    function requestExpertSession() {
+        const wantsCallback = document.getElementById('callback-request-checkbox').checked;
+        const selectedTimeSlot = document.getElementById('time-slot-select').value;
+
+        // Prepare the data to send
+        const requestData = {
+            user_name: document.getElementById('user-name').value,
+            email: document.getElementById('contact-email').value,
+            mobile: document.getElementById('contact-phone').value,
+            wants_callback: wantsCallback,
+            preferred_time_slot: wantsCallback ? selectedTimeSlot : null,
+            financial_health_score: financialHealthScore,
+            risk_profile_score: riskProfileScore,
+            // Add other relevant data
+        };
+
+        // Validate if callback is requested but no time slot selected
+        if (wantsCallback && !selectedTimeSlot) {
+            alert('Please select a preferred time slot for the callback.');
+            return;
+        }
+
+        // Track the event
+        trackMoEngageEvent('Expert_Session_Requested', requestData);
+
+        // Your existing logic to handle the request
+        console.log('Expert session requested:', requestData);
+    }
+
 </script>
 </body>
 
