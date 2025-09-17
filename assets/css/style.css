@@ -2062,6 +2062,7 @@ img {
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .download-btn {
@@ -2807,6 +2808,33 @@ img {
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #333;
+}
+
+.report-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.timer-display {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .report-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .timer-display {
+    text-align: center;
+    order: 3;
+  }
 }
 
 /* Enhanced dropdown styling */
