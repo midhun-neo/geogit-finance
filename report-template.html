@@ -14,37 +14,212 @@
       body {
         background: white;
         margin: 0;
-        padding: 20px;
+        padding: 10px;
+        font-family: "Nunito", sans-serif;
+        width: 800px;
+        min-height: auto;
+        max-width: none;
+        overflow: hidden;
       }
-      .report-logo {
-        text-align: center;
-        margin-bottom: 30px;
+
+      /* Header with both logos */
+      .report-header-logos {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e5e5e5;
       }
+
       .report-logo img {
+        height: 40px;
+      }
+
+      .report-logo-right img {
+        height: 40px;
+      }
+
+      /* Compact spacing for single page fit */
+      .report-header {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+      }
+
+      .report-title {
+        font-size: 22px;
+        margin: 0;
+      }
+
+      .report-card-note {
+        margin-bottom: 15px;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .report-cards-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .report-card {
+        padding: 15px;
+        margin-bottom: 0;
+      }
+
+      .card-header {
+        margin-bottom: 10px;
+      }
+
+      .card-header h3 {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .gauge-section {
+        margin-bottom: 10px;
+      }
+
+      .gauge-wrapper {
         height: 80px;
+        margin-bottom: 8px;
       }
-      /* Hide timer for PDF */
-      .timer-display {
+
+      .chart-img {
+        width: 4rem;
+        margin: 0 auto 8px;
+      }
+
+      .risk-badge,
+      .health-badge {
+        padding: 6px 12px;
+        font-size: 11px;
+        margin-bottom: 8px;
+        border-radius: 20px;
+        color: #fff !important;
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        min-width: 80px;
+        line-height: 1.2;
+      }
+
+      .risk-description,
+      .health-description {
+        font-size: 12px;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .recommendations-section {
+        padding: 10px;
+        margin-bottom: 0;
+      }
+
+      .recommendations-header {
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+
+      .recommendations-list {
+        margin: 0;
+      }
+
+      .recommendations-list li {
+        font-size: 11px;
+        margin-bottom: 4px;
+        line-height: 1.3;
+      }
+
+      .snapshot-section {
+        margin-bottom: 15px;
+      }
+
+      .snapshot-section h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .snapshot-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .snapshot-card {
+        padding: 12px;
+        background: white;
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+      }
+
+      .snapshot-label {
+        font-size: 10px;
+        margin-bottom: 2px;
+      }
+
+      .snapshot-value {
+        font-size: 11px;
+        line-height: 1.2;
+      }
+
+      /* Footer styles */
+      .report-footer {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #e1f6f5;
+        font-size: 10px;
+        color: #666;
+        line-height: 1.4;
+        text-align: center;
+        border-radius: 8px;
+      }
+
+      .report-footer p {
+        margin: 0;
+        padding: 2px 0;
+      }
+
+      /* Hide elements not needed in PDF */
+      .timer-display,
+      .report-actions,
+      .feedback-back,
+      .rating-section,
+      .next-steps,
+      .take-assessment-btn {
         display: none !important;
       }
-      .report-actions {
-        display: none !important;
-      }
-      .feedback-back {
-        display: none !important;
-      }
-      .rating-section {
-        display: none !important;
-      }
-      .next-steps {
-        display: none !important;
+
+      /* Force desktop layout regardless of device */
+      @media screen and (max-width: 768px) {
+        body {
+          width: 800px !important;
+          padding: 10px !important;
+        }
+
+        .report-cards-container {
+          grid-template-columns: 1fr !important;
+        }
+
+        .snapshot-cards {
+          grid-template-columns: repeat(3, 1fr) !important;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Add Logo at top -->
-    <div class="report-logo">
-      <img src="./assets/images/logo.svg" alt="Geojit Logo" />
+    <!-- Header with both logos -->
+    <div class="report-header-logos">
+      <div class="report-logo">
+        <img src="./assets/images/logo.svg" alt="Geojit Logo" />
+      </div>
+      <div class="report-logo-right">
+        <img src="./assets/images/FFT-1.svg" alt="Geojit Financial Fitness Test" />
+      </div>
     </div>
 
     <!-- Copy exact structure from your feedback card -->
@@ -52,7 +227,7 @@
       <div class="feedback-content-wrapper">
         <div class="feedback-content">
           <div id="report-to-download" class="report-download-wrapper">
-            <!-- New Report Header -->
+            <!-- Report Header -->
             <div class="report-header">
               <div class="report-title-section">
                 <h2 class="report-title">
@@ -67,7 +242,7 @@
               details and to create a suitable financial road map.
             </p>
 
-            <!-- New Cards Layout -->
+            <!-- Report Cards Layout -->
             <div class="report-cards-container">
               <!-- Risk Profile Card -->
               <div class="report-card risk-card">
@@ -79,7 +254,7 @@
 
                   <div class="gauge-section">
                     <div class="gauge-wrapper">
-                      <canvas id="riskGaugeChart" width="200" height="120"></canvas>
+                      <canvas id="riskGaugeChart" width="200" height="80"></canvas>
                     </div>
                   </div>
                 </div>
@@ -116,7 +291,7 @@
 
                   <div class="gauge-section">
                     <div class="gauge-wrapper">
-                      <canvas id="healthGaugeChart" width="200" height="120"></canvas>
+                      <canvas id="healthGaugeChart" width="200" height="80"></canvas>
                     </div>
                   </div>
                 </div>
@@ -163,8 +338,8 @@
             </div>
 
             <!-- Disclaimer -->
-            <div style="margin-top: 40px">
-              <p style="font-weight: bold" data-key="reportDisclaimer">
+            <div style="margin-top: 15px; margin-bottom: 15px">
+              <p style="font-weight: bold; font-size: 12px" data-key="reportDisclaimer">
                 Disclaimer: This report provides only an indicative assessment of your financial health and risk
                 profile. It should not be considered as financial advice or a comprehensive evaluation.
               </p>
@@ -172,6 +347,15 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="report-footer">
+      <p>
+        Geojit Financial Services Ltd., Registered Office: 34/659-P, Civil Line Road, Padivattom, Kochi-682024, Kerala,
+        India.
+      </p>
+      <p>Phone: +91 484-2901000. Website: www.geojit.com</p>
     </div>
 
     <script>
@@ -200,7 +384,7 @@
             {
               data: [41.67, 33.33, 25],
               backgroundColor: ["#57B272", "#F7A219", "#EB3333"],
-              borderWidth: 6,
+              borderWidth: 4,
               borderColor: "#fff",
               cutout: "70%",
               circumference: 180,
@@ -223,9 +407,9 @@
                 labels: {
                   usePointStyle: true,
                   pointStyle: "circle",
-                  font: { size: 11 },
+                  font: { size: 9 },
                   color: "#666",
-                  padding: 12,
+                  padding: 8,
                 },
               },
               tooltip: { enabled: false },
@@ -252,13 +436,13 @@
                 ctx.beginPath();
                 ctx.moveTo(cx, cy);
                 ctx.lineTo(needleX, needleY);
-                ctx.lineWidth = 4;
+                ctx.lineWidth = 3;
                 ctx.strokeStyle = "#000";
                 ctx.lineCap = "round";
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+                ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
                 ctx.fillStyle = "#000";
                 ctx.fill();
 
@@ -336,21 +520,21 @@
                 labels: {
                   usePointStyle: true,
                   pointStyle: "circle",
-                  font: { size: 11 },
-                  boxWidth: 10,
-                  boxHeight: 10,
+                  font: { size: 9 },
+                  boxWidth: 8,
+                  boxHeight: 8,
                   color: "#666",
-                  padding: 12,
+                  padding: 8,
                 },
               },
               tooltip: { enabled: false },
             },
             layout: {
               padding: {
-                left: 5,
-                right: 5,
-                bottom: 5,
-                top: 5,
+                left: 3,
+                right: 3,
+                bottom: 3,
+                top: 3,
               },
             },
           },
@@ -369,9 +553,9 @@
                 ctx.save();
                 ctx.fillStyle = "#000";
                 ctx.beginPath();
-                ctx.moveTo(needleX, barCenter - 8);
-                ctx.lineTo(needleX - 6, barCenter - 15);
-                ctx.lineTo(needleX + 6, barCenter - 15);
+                ctx.moveTo(needleX, barCenter - 6);
+                ctx.lineTo(needleX - 4, barCenter - 12);
+                ctx.lineTo(needleX + 4, barCenter - 12);
                 ctx.closePath();
                 ctx.fill();
                 ctx.restore();
