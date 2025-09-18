@@ -3277,3 +3277,57 @@ img {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #017670;
+  color: #017670;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  min-width: fit-content;
+}
+
+.btn-outline:hover {
+  background: #017670;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(1, 118, 112, 0.2);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(1, 118, 112, 0.2);
+}
+
+.btn-outline:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(1, 118, 112, 0.1);
+}
+
+/* Size variations */
+.btn-outline.btn-sm {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-outline.btn-lg {
+  padding: 16px 32px;
+  font-size: 18px;
+}
+
+/* Disabled state */
+.btn-outline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: transparent;
+  color: #017670;
+  transform: none;
+  box-shadow: none;
+}
