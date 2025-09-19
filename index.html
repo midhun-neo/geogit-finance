@@ -105,6 +105,12 @@ window.moe({
     <img src="./assets/images/cross.svg" alt="cross" style="cursor: pointer;" onclick="closeNotification()" />
 </div>
 
+<div class="notification" id="session-notification">
+    <img src="./assets/images/icon-check-white.svg" alt="check" />
+    <p>Thank you for reaching out. A member of the Geojit team will be in contact with you shortly.</p>
+    <img src="./assets/images/cross.svg" alt="cross" style="cursor: pointer;" onclick="closeSessionNotification()" />
+</div>
+
 <div style="padding: 5rem; background-color: #f6f4f1;"></div>
 
 
@@ -1266,7 +1272,7 @@ window.moe({
                                             </div> -->
                                         </div>
                                         <button class="submit-feedback" data-key="submitButton"
-                                            onclick="showSubmitNotification()">Submit</button>
+                                            onclick="showSubmitNotification('')">Submit</button>
                                     </div>
 
                                     <p style="font-weight: bold;" data-key="reportDisclaimer">Disclaimer: This report
@@ -2444,7 +2450,7 @@ window.moe({
 
 
 
-    let currentQuestionIndex = 0 
+    let currentQuestionIndex = 0;
     const questionCards = document.querySelectorAll('.question-card');
     const progressCards = document.querySelectorAll('.progress-card');
     let financialHealthScore = 0;
@@ -3600,7 +3606,10 @@ window.moe({
             risk_profile_category: getRiskCategory(riskProfileScore)
         });
 
-        const notificationEl = document.getElementById("notification");
+        let notificationEl = document.getElementById("session-notification");
+        if(timeSlot == "") {
+            notificationEl = document.getElementById("notification")
+        }
         notificationEl.style.visibility = "visible";
         notificationEl.style.opacity = "1";
         timeSlotContainer.style.display = 'none';
@@ -3610,6 +3619,13 @@ window.moe({
     }
     function closeNotification() {
         const notificationEl = document.getElementById("notification")
+
+        notificationEl.style.visibility = "hidden"
+        notificationEl.style.opacity = "0"
+    }
+
+    function closeSessionNotification() {
+        const notificationEl = document.getElementById("session-notification")
 
         notificationEl.style.visibility = "hidden"
         notificationEl.style.opacity = "0"
