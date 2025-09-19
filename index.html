@@ -1288,10 +1288,9 @@ window.moe({
                         <h3>What's Next?</h3>
                         <p>Let our experts create a personalized investment roadmap just for you.</p>
                     </div>
-                    <div style="flex: 1;">
-                        <div class="time-slot-container" id="time-slot-container"
-                            style=" margin-top: 8px;">
-                            <select id="time-slot-select" class="time-slot-dropdown"
+                        <div class="time-slot-container feature-card expert-session-popup" id="time-slot-container"
+                            style="display:none; margin-top: 8px;border-radius: 6px;">
+                            <!-- <select id="time-slot-select" class="time-slot-dropdown"
                                 style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
                                 <option value="" data-key="selectTimeOption">--Select Time--
                                 </option>
@@ -1301,10 +1300,33 @@ window.moe({
                                 </option>
                                 <option value="3-7" data-key="timeSlot3to7">3 PM to 7 PM
                                 </option>
-                            </select>
+                            </select> -->
+                          <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <button  class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;" onclick="showSubmitNotification('9 AM to 12 PM')">
+                                <p data-key="timeSlot9to12" style="margin-right: 3rem;">9 AM to 12 PM</p>  
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;" onclick="showSubmitNotification('1 PM to 3 PM')">
+                                <p data-key="timeSlot1to3" style="margin-right: 3rem;">1 PM to 3 PM</p>  
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;" onclick="showSubmitNotification('3 PM to 7 PM')">
+                                <p data-key="timeSlot3to7" style="margin-right: 3rem;">3 PM to 7 PM</p>  
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                                
+                            </button>
+                          </div>
                         </div>
-                    </div>
-                    <button class="expert-session-btn">Request an Expert Session</button>
+                        <button class="expert-session-btn" id="request-expert-session-btn">Request an Expert Session</button>
                 </div>
             </div>
         </div>
@@ -2256,21 +2278,21 @@ window.moe({
 
     function getHealthRecommendations(score) {
         if (score >= 12) {
-            return ['Optimize existing investments for better returns', 'Diversify further with expert guidance', 'Explore wealth-building and tax-efficiency strategies'];
+            return ['Excellent! You\'re doing a great job managing your finances. You have a clear understanding of your money, plan for the future, and protect what you\'ve built.','Optimize existing investments for better returns', 'Diversify further with expert guidance', 'Explore wealth-building and tax-efficiency strategies'];
         } else if (score >= 7) {
-            return ['Prioritize goal-based investments', 'Review portfolio regularly', 'Enhance insurance and savings buffers'];
+            return ['You\'re on the right path! You\'ve developed some healthy financial habits, but there\'s room for improvement in planning, protection, or investment consistency.','Prioritize goal-based investments', 'Review portfolio regularly', 'Enhance insurance and savings buffers'];
         } else {
-            return ['Build an emergency fund', 'Create habit of tracking income and expenses', 'Set basic life and health insurance in place'];
+            return ['Your financial health needs attention. It looks like you\'re either not saving regularly, lack a safety net, or are underinsured. Don\'t worry – it\'s never too late to start building healthy money habits.','Build an emergency fund', 'Create habit of tracking income and expenses', 'Set basic life and health insurance in place'];
         }
     }
 
     function getRiskRecommendations(score) {
         if (score >= 9) {
-            return ['SIPs in equity mutual funds aligned with long-term goals', 'Stay disciplined during market ups and downs'];
+            return ['You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.','SIPs in equity mutual funds aligned with long-term goals', 'Stay disciplined during market ups and downs'];
         } else if (score >= 5) {
-            return ['Balanced Advantage Funds or Hybrid Equity Funds', 'Mix equity with safer investments for stability'];
+            return ['You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.','Balanced Advantage Funds or Hybrid Equity Funds', 'Mix equity with safer investments for stability'];
         } else {
-            return ['Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
+            return ['You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.','Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
         }
     }
 
@@ -2422,7 +2444,7 @@ window.moe({
 
 
 
-    let currentQuestionIndex = 0;
+    let currentQuestionIndex = 0 
     const questionCards = document.querySelectorAll('.question-card');
     const progressCards = document.querySelectorAll('.progress-card');
     let financialHealthScore = 0;
@@ -2839,20 +2861,20 @@ window.moe({
     const feedbackContactCheckbox = document.getElementById('feedback-contact');
     const timeSlotContainer = document.getElementById('time-slot-container');
 
-    if (feedbackContactCheckbox && timeSlotContainer) {
-        feedbackContactCheckbox.addEventListener('change', function () {
-            if (this.checked) {
-                timeSlotContainer.style.display = 'block';
-            } else {
-                timeSlotContainer.style.display = 'none';
-                // Reset time slot selection when unchecked
-                const timeSlotSelect = document.getElementById('time-slot-select');
-                if (timeSlotSelect) {
-                    timeSlotSelect.value = '';
-                }
-            }
-        });
-    }
+    // if (feedbackContactCheckbox && timeSlotContainer) {
+    //     feedbackContactCheckbox.addEventListener('change', function () {
+    //         if (this.checked) {
+    //             timeSlotContainer.style.display = 'block';
+    //         } else {
+    //             timeSlotContainer.style.display = 'none';
+    //             // Reset time slot selection when unchecked
+    //             const timeSlotSelect = document.getElementById('time-slot-select');
+    //             if (timeSlotSelect) {
+    //                 timeSlotSelect.value = '';
+    //             }
+    //         }
+    //     });
+    // }
 
     document.addEventListener('DOMContentLoaded', () => {
         showQuestion(currentQuestionIndex);
@@ -3562,16 +3584,16 @@ window.moe({
     }
 
 
-    function showSubmitNotification() {
+    function showSubmitNotification(timeSlot) {
         const feedbackText = document.getElementById("text-area-experience").value;
         const wantsContact = document.getElementById("feedback-contact").checked;
 
         trackMoEngageEvent('Feedback_Submitted', {
-            rating: currentRating,
+            rating: currentRating,  
             has_feedback: !!feedbackText,
             feedback_length: feedbackText ? feedbackText.length : 0,
             wants_contact: wantsContact,
-            callback_time_slot: wantsCallback ? selectedTimeSlot : null,
+            callback_time_slot: timeSlot,
             financial_health_score: financialHealthScore,
             risk_profile_score: riskProfileScore,
             financial_health_category: getHealthCategory(financialHealthScore),
@@ -3581,7 +3603,7 @@ window.moe({
         const notificationEl = document.getElementById("notification");
         notificationEl.style.visibility = "visible";
         notificationEl.style.opacity = "1";
-
+        timeSlotContainer.style.display = 'none';
         setTimeout(() => {
             closeNotification();
         }, 3000);
@@ -3905,9 +3927,17 @@ function updateReportContent(doc, win) {
     }
 
 
+    const requestExpertSessionButton= document.getElementById('request-expert-session-btn')
 
+    requestExpertSessionButton.addEventListener('click', () => {
+        if(timeSlotContainer.style.display !== 'block') {
+            timeSlotContainer.style.display = 'block';
+        }else {
+            timeSlotContainer.style.display = 'none';
+        }
+    })
 
-
+    
 
 
 

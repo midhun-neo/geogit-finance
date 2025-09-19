@@ -3331,3 +3331,17 @@ img {
   transform: none;
   box-shadow: none;
 }
+
+
+.expert-session-popup {
+  position: absolute;
+  bottom: 76px;
+  right: 20px;
+  height: 200px;
+}
+
+@media (max-width: 480px) {
+  .expert-session-popup {
+    right: 0px;
+  }
+ }
