@@ -1058,6 +1058,7 @@ window.moe({
         </div>
 
         <!-- Results Card -->
+
         <div class="question-card" id="results-card">
             <img src="./assets/images/summary-check.svg" alt="summary check" style="margin-bottom: 1rem;" />
             <h2 class="question-title" data-key="resultsCardTitle" style="margin-bottom: 1rem;">All Done!</h2>
@@ -1247,24 +1248,22 @@ window.moe({
                                                 <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would
                                                     like to be contacted about my Issue</label>
                                             </div>
-                                            <div style="flex: 1;">
+                                            <!-- <div style="flex: 1;">
                                                 <div class="time-slot-container" id="time-slot-container"
                                                     style="display: none; margin-top: 8px;">
                                                     <select id="time-slot-select" class="time-slot-dropdown"
                                                         style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
                                                         <option value="" data-key="selectTimeOption">--Select Time--
                                                         </option>
-                                                        <option value="9-11" data-key="timeSlot9to11">9 AM to 11 AM
-                                                        </option>
-                                                        <option value="11-1" data-key="timeSlot11to1">11 AM to 1 PM
+                                                        <option value="9-12" data-key="timeSlot9to12">9 AM to 12 PM
                                                         </option>
                                                         <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM
                                                         </option>
-                                                        <option value="3-5" data-key="timeSlot3to5">3 PM to 5 PM
+                                                        <option value="3-7" data-key="timeSlot3to7">3 PM to 7 PM
                                                         </option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <button class="submit-feedback" data-key="submitButton"
                                             onclick="showSubmitNotification()">Submit</button>
@@ -1288,6 +1287,22 @@ window.moe({
                     <div class="next-steps-text">
                         <h3>What's Next?</h3>
                         <p>Let our experts create a personalized investment roadmap just for you.</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="time-slot-container" id="time-slot-container"
+                            style=" margin-top: 8px;">
+                            <select id="time-slot-select" class="time-slot-dropdown"
+                                style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option value="" data-key="selectTimeOption">--Select Time--
+                                </option>
+                                <option value="9-12" data-key="timeSlot9to12">9 AM to 12 PM
+                                </option>
+                                <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM
+                                </option>
+                                <option value="3-7" data-key="timeSlot3to7">3 PM to 7 PM
+                                </option>
+                            </select>
+                        </div>
                     </div>
                     <button class="expert-session-btn">Request an Expert Session</button>
                 </div>
@@ -1912,10 +1927,9 @@ window.moe({
             requestCallbackLabel: "Would you like us to call you back?",
             preferredTimeLabel: "Preferred Time:",
             selectTimeOption: "--Select Time--",
-            timeSlot9to11: "9 AM to 11 AM",
-            timeSlot11to1: "11 AM to 1 PM",
-            timeSlot1to3: "1 PM to 3 PM",
-            timeSlot3to5: "3 PM to 5 PM",
+            timeSlot9to12: "9 AM to 12 PM",
+            timeSlot12to3: "12 PM to 3 PM",
+            timeSlot3to7: "3 PM to 7 PM",
             printReportButton: "Print Report",
             resetReportButton: "Reset Report",
             reportWillReset: "Report will be reset in:",
@@ -2156,14 +2170,12 @@ window.moe({
             requestCallbackLabel: "ഞങ്ങൾ നിങ്ങളെ തിരികെ വിളിക്കണമെന്ന് നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?",
             preferredTimeLabel: "ഇഷ്ടപ്പെടുന്ന സമയം:",
             selectTimeOption: "--സമയം തിരഞ്ഞെടുക്കുക--",
-            timeSlot9to11: "രാവിലെ 9 മുതൽ 11 വരെ",
-            timeSlot11to1: "രാവിലെ 11 മുതൽ ഉച്ച 1 വരെ",
-            timeSlot1to3: "ഉച്ച 1 മുതൽ 3 വരെ",
-            timeSlot3to5: "ഉച്ച 3 മുതൽ 5 വരെ",
+            timeSlot9to12: "രാവിലെ 9 മുതൽ 12 വരെ",
+            timeSlot12to3: "ഉച്ച 12 മുതൽ 3 വരെ",
+            timeSlot3to7: "ഉച്ച 3 മുതൽ 7 വരെ",
             printReportButton: "റിപ്പോർട്ട് പ്രിന്റ് ചെയ്യുക",
             resetReportButton: "റിപ്പോർട്ട് റീസെറ്റ് ചെയ്യുക",
             reportWillReset: "റിപ്പോർട്ട് റീസെറ്റ് ചെയ്യപ്പെടും:",
-
         }
     };
 
