@@ -3332,7 +3332,6 @@ img {
   box-shadow: none;
 }
 
-
 .expert-session-popup {
   position: absolute;
   bottom: 76px;
@@ -3351,4 +3350,31 @@ img {
   .expert-session-popup {
     right: 0px;
   }
- }
+}
+
+.rating-submitted .feedback-input textarea,
+.rating-submitted .feedback-input label,
+.rating-submitted .feedback-checkbox,
+.rating-submitted .submit-feedback {
+  display: none !important;
+}
+
+.rating-submitted .rating-section {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.rating-submitted .rating-section::after {
+  content: "Thank you for your feedback!";
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #017670;
+  margin-top: 1rem;
+}
+
+/* Keep stars visible but indicate they're disabled */
+.rating-submitted .star {
+  cursor: default !important;
+  opacity: 0.7;
+}

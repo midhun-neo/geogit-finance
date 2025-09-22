@@ -3466,36 +3466,50 @@ function trackFFTestResultEvent() {
             financialHealthScore < 12 ? translations[currentLanguage].ActionNeeded2 : translations[currentLanguage].ActionNeeded3;
     }
     // Star rating functionality
-    function setRating(rating) {
-        currentRating = rating;
-        const stars = document.querySelectorAll('.star');
-        stars.forEach((star, index) => {
-            if (index < rating) {
-                star.classList.add('active');
-            } else {
-                star.classList.remove('active');
-            }
-        });
-
-        const textAreaExperience = document.getElementById("text-area-experience");
-        const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
-        if (currentRating < 3) {
-            textAreaExperience.style.display = "block";
-            textAreaExperienceLabel.style.display = "block";
-        } else {
-            textAreaExperience.style.display = "none";
-            textAreaExperienceLabel.style.display = "none";
-        }
-
-        trackMoEngageEvent('Rating_Given', {
-            rating: rating,
-            financial_health_score: financialHealthScore,
-            risk_profile_score: riskProfileScore,
-            financial_health_category: getHealthCategory(financialHealthScore),
-            risk_profile_category: getRiskCategory(riskProfileScore)
-        });
+function setRating(rating) {
+    // Check if rating has already been submitted
+    const ratingSection = document.querySelector('.rating-section');
+    if (ratingSection && ratingSection.classList.contains('rating-submitted')) {
+        return; // Don't allow rating changes after submission
     }
-    function resetAssessment() {
+
+    currentRating = rating;
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+
+    const textAreaExperience = document.getElementById("text-area-experience");
+    const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
+    const feedbackCheckbox = document.querySelector('.feedback-checkbox');
+    const submitButton = document.querySelector('.submit-feedback');
+    
+    if (currentRating <= 2) { // Show textarea and checkbox for ≤2 stars
+        if (textAreaExperience) textAreaExperience.style.display = "block";
+        if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "block";
+        if (feedbackCheckbox) feedbackCheckbox.style.display = "flex";
+        if (submitButton) submitButton.style.display = "block";
+    } else {
+        if (textAreaExperience) textAreaExperience.style.display = "none";
+        if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "none";
+        if (feedbackCheckbox) feedbackCheckbox.style.display = "none";
+        if (submitButton) submitButton.style.display = "block"; // Still show submit button for ratings >2
+    }
+
+    trackMoEngageEvent('Rating_Given', {
+        rating: rating,
+        financial_health_score: financialHealthScore,
+        risk_profile_score: riskProfileScore,
+        financial_health_category: getHealthCategory(financialHealthScore),
+        risk_profile_category: getRiskCategory(riskProfileScore)
+    });
+}
+
+function resetAssessment() {
 
         // STOP THE TIMER - ADD THIS LINE
         stopReportTimer();
@@ -3535,7 +3549,6 @@ function trackFFTestResultEvent() {
         }
 
         // Reset feedback checkbox
-        const feedbackContactCheckbox = document.getElementById('feedback-contact');
         if (feedbackContactCheckbox) {
             feedbackContactCheckbox.checked = false;
         }
@@ -3568,6 +3581,38 @@ function trackFFTestResultEvent() {
             top: 0,
             behavior: 'smooth'
         });
+
+// Reset rating interface (add this section)
+    const ratingSection = document.querySelector('.rating-section');
+    if (ratingSection) {
+        ratingSection.classList.remove('rating-submitted');
+    }
+
+    // Re-enable star clicking and restore normal cursor
+    document.querySelectorAll('.star').forEach(star => {
+        star.style.pointerEvents = 'auto';
+        star.style.cursor = 'pointer';
+    });
+
+    // Hide all feedback elements by default
+    const textAreaExperience = document.getElementById("text-area-experience");
+    const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
+    const feedbackCheckbox = document.querySelector('.feedback-checkbox');
+    const submitButton = document.querySelector('.submit-feedback');
+    
+    if (textAreaExperience) {
+        textAreaExperience.style.display = "none";
+        textAreaExperience.value = ""; // Clear the textarea content
+    }
+    if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "none";
+    if (feedbackCheckbox) feedbackCheckbox.style.display = "none";
+    if (submitButton) submitButton.style.display = "none";
+
+    // Reset feedback contact checkbox
+    const feedbackContactCheckbox = document.getElementById('feedback-contact');
+    if (feedbackContactCheckbox) {
+        feedbackContactCheckbox.checked = false;
+    }
 
         console.log('Assessment reset successfully');
     }
@@ -3664,14 +3709,26 @@ function showSubmitNotification(timeSlot) {
     trackMoEngageEvent('Feedback_Submitted', {
         rating: currentRating,  
         has_feedback: !!feedbackText,
-        feedback_text: feedbackText, // Add this line
+        feedback_text: feedbackText,
         feedback_length: feedbackText ? feedbackText.length : 0,
         wants_contact: wantsContact,
-        callback_time_slot: callbackTimeSlot, // This should now capture the data
+        callback_time_slot: callbackTimeSlot,
         financial_health_score: financialHealthScore,
         risk_profile_score: riskProfileScore,
         financial_health_category: getHealthCategory(financialHealthScore),
         risk_profile_category: getRiskCategory(riskProfileScore)
+    });
+
+    // Hide rating interface elements after submission (but keep stars visible)
+    const ratingSection = document.querySelector('.rating-section');
+    if (ratingSection) {
+        ratingSection.classList.add('rating-submitted');
+    }
+
+    // Disable star clicking but keep them visible
+    document.querySelectorAll('.star').forEach(star => {
+        star.style.pointerEvents = 'none';
+        star.style.cursor = 'default';
     });
 
     let notificationEl = document.getElementById("session-notification");
@@ -3688,8 +3745,8 @@ function showSubmitNotification(timeSlot) {
         closeNotification();
     }, 3000);
 }
-   
-    function closeNotification() {
+
+function closeNotification() {
         const notificationEl = document.getElementById("notification")
 
         notificationEl.style.visibility = "hidden"
