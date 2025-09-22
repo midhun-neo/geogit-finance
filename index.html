@@ -2357,24 +2357,81 @@ window.moe({
     }
 
     // FFTest Result Event
-    function trackFFTestResultEvent() {
-        calculateScores();
+function trackFFTestResultEvent() {
+    calculateScores();
 
-        const healthCategory = getHealthCategory(financialHealthScore);
-        const riskCategory = getRiskCategory(riskProfileScore);
-        const healthRecommendations = getHealthRecommendations(financialHealthScore);
-        const riskRecommendations = getRiskRecommendations(riskProfileScore);
+    const healthCategory = getHealthCategory(financialHealthScore);
+    const riskCategory = getRiskCategory(riskProfileScore);
+    const healthRecommendations = getHealthRecommendations(financialHealthScore);
+    const riskRecommendations = getRiskRecommendations(riskProfileScore);
 
-        trackMoEngageEvent('FFTest_Result', {
-            risk_profile: riskCategory,
-            risk_description: getRiskDescription(riskCategory),
-            risk_geojit_recommendations: riskRecommendations,
-            financial_health_description: getHealthDescription(healthCategory),
-            financial_health_recommendations: healthRecommendations,
-            experience_rating: currentRating || null
-        });
+    // Get detailed recommendation text based on scores
+    let healthDescription = '';
+    let riskDescription = '';
+    let healthRecommendationText = [];
+    let riskRecommendationText = [];
+
+    // Health descriptions and recommendations
+    if (financialHealthScore >= 12) {
+        healthDescription = translations[currentLanguage].recommendationSummaryOnTrack;
+        healthRecommendationText = [
+            translations[currentLanguage].recommendationListOnTrack1,
+            translations[currentLanguage].recommendationListOnTrack2,
+            translations[currentLanguage].recommendationListOnTrack3
+        ];
+    } else if (financialHealthScore >= 7) {
+        healthDescription = translations[currentLanguage].recommendationSummaryModerate;
+        healthRecommendationText = [
+            translations[currentLanguage].recommendationListModerate1,
+            translations[currentLanguage].recommendationListModerate2,
+            translations[currentLanguage].recommendationListModerate3
+        ];
+    } else {
+        healthDescription = translations[currentLanguage].recommendationSummaryNeedsImprovement;
+        healthRecommendationText = [
+            translations[currentLanguage].recommendationListNeedsImprovement1,
+            translations[currentLanguage].recommendationListNeedsImprovement2,
+            translations[currentLanguage].recommendationListNeedsImprovement3
+        ];
     }
 
+    // Risk descriptions and recommendations
+    if (riskProfileScore >= 9) {
+        riskDescription = translations[currentLanguage].riskprofileSummaryHighRisk;
+        riskRecommendationText = [
+            translations[currentLanguage].recommendationListRiskHigh1,
+            translations[currentLanguage].recommendationListRiskHigh2
+        ];
+    } else if (riskProfileScore >= 5) {
+        riskDescription = translations[currentLanguage].riskprofileSummaryModerateRisk;
+        riskRecommendationText = [
+            translations[currentLanguage].recommendationListRiskModerate1,
+            translations[currentLanguage].recommendationListRiskModerate2
+        ];
+    } else {
+        riskDescription = translations[currentLanguage].riskprofileSummarylowRisk;
+        riskRecommendationText = [
+            translations[currentLanguage].recommendationListRiskLow1,
+            translations[currentLanguage].recommendationListRiskLow2
+        ];
+    }
+
+    trackMoEngageEvent('FFTest_Result', {
+        risk_profile: riskCategory,
+        risk_description: riskDescription, // Detailed text description
+        risk_geojit_recommendations: riskRecommendationText, // Array of recommendation texts
+        financial_health_description: healthDescription, // Detailed text description
+        financial_health_recommendations: healthRecommendationText, // Array of recommendation texts
+        experience_rating: currentRating || null,
+        // Additional detailed data
+        financial_health_score: financialHealthScore,
+        financial_health_max_score: 18,
+        financial_health_category: healthCategory,
+        risk_profile_score: riskProfileScore,
+        risk_profile_max_score: 12,
+        language: currentLanguage
+    });
+}
     // Language variables
     let currentLanguage = 'en';
     let savedLanguage = 'en';
@@ -3591,33 +3648,47 @@ window.moe({
     }
 
 
-    function showSubmitNotification(timeSlot) {
-        const feedbackText = document.getElementById("text-area-experience").value;
-        const wantsContact = document.getElementById("feedback-contact").checked;
-
-        trackMoEngageEvent('Feedback_Submitted', {
-            rating: currentRating,  
-            has_feedback: !!feedbackText,
-            feedback_length: feedbackText ? feedbackText.length : 0,
-            wants_contact: wantsContact,
-            callback_time_slot: timeSlot,
-            financial_health_score: financialHealthScore,
-            risk_profile_score: riskProfileScore,
-            financial_health_category: getHealthCategory(financialHealthScore),
-            risk_profile_category: getRiskCategory(riskProfileScore)
-        });
-
-        let notificationEl = document.getElementById("session-notification");
-        if(timeSlot == "") {
-            notificationEl = document.getElementById("notification")
-        }
-        notificationEl.style.visibility = "visible";
-        notificationEl.style.opacity = "1";
-        timeSlotContainer.style.display = 'none';
-        setTimeout(() => {
-            closeNotification();
-        }, 3000);
+function showSubmitNotification(timeSlot) {
+    const feedbackText = document.getElementById("text-area-experience").value;
+    const wantsContact = document.getElementById("feedback-contact").checked;
+    
+    // Get the callback time slot from the feedback contact checkbox area
+    let callbackTimeSlot = timeSlot || '';
+    
+    // If no timeSlot passed and user wants contact, try to get from time slot select
+    if (!callbackTimeSlot && wantsContact) {
+        const timeSlotSelect = document.getElementById('time-slot-select');
+        callbackTimeSlot = timeSlotSelect ? timeSlotSelect.value : '';
     }
+
+    trackMoEngageEvent('Feedback_Submitted', {
+        rating: currentRating,  
+        has_feedback: !!feedbackText,
+        feedback_text: feedbackText, // Add this line
+        feedback_length: feedbackText ? feedbackText.length : 0,
+        wants_contact: wantsContact,
+        callback_time_slot: callbackTimeSlot, // This should now capture the data
+        financial_health_score: financialHealthScore,
+        risk_profile_score: riskProfileScore,
+        financial_health_category: getHealthCategory(financialHealthScore),
+        risk_profile_category: getRiskCategory(riskProfileScore)
+    });
+
+    let notificationEl = document.getElementById("session-notification");
+    if(timeSlot == "") {
+        notificationEl = document.getElementById("notification")
+    }
+    notificationEl.style.visibility = "visible";
+    notificationEl.style.opacity = "1";
+    const timeSlotContainer = document.getElementById('time-slot-container');
+    if(timeSlotContainer) {
+        timeSlotContainer.style.display = 'none';
+    }
+    setTimeout(() => {
+        closeNotification();
+    }, 3000);
+}
+   
     function closeNotification() {
         const notificationEl = document.getElementById("notification")
 
