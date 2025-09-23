@@ -16,48 +16,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
-    <!-- MoEngage Integration - Replace existing script -->
-    <!-- MoEngage Integration - SIMPLIFIED VERSION -->
-    <!-- <script type="text/javascript">
-(function(i, s, o, g, r, a, m, n) {
-    i.moengage_object = r;
-    t = {};
-    q = function(f) {
-        return function() {
-            (i.moengage_q = i.moengage_q || []).push({
-                f: f,
-                a: arguments
-            });
-        };
-    };
-    f = ['track_event', 'add_user_attribute', 'add_first_name', 'add_last_name', 'add_email', 'add_mobile', 'add_user_name', 'add_gender', 'add_birthday', 'destroy_session', 'add_unique_user_id', 'moe_events', 'call_web_push', 'track', 'location_type_attribute'];
-    for (k in f) {
-        t[f[k]] = q(f[k]);
-    }
-    a = s.createElement(o);
-    m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m);
-    i.moe = i.moe || function() {
-        n = arguments[0];
-        return t;
-    };
-    a.onload = function() {
-        if (n) {
-            i[r] = moe(n);
-        }
-    };
-})(window, document, 'script', 'https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js', 'Moengage', 'moengage', 'me', 'B3VC6A1BDIJWZJDC7W1YFYHZ');
-
-// Initialize after script loads
-window.moe({
-    app_id: "B3VC6A1BDIJWZJDC7W1YFYHZ",
-    debug_logs: 1,
-    cluster: "DC_1"
-});
-</script> -->
-
     <script type="text/javascript">
         var moeDataCenter = "dc_3"; // Replace "DC" with the actual Data center value from the above table
         var moeAppID = "B3VC6A1BDIJWZJDC7W1YFYHZ"; // Replace "WorkspaceID" available in the settings page of MoEngage Dashboard.
@@ -121,15 +79,7 @@ window.moe({
             <p class="progress-card-title" data-key="progressProfileTitle">Profile</p>
 
             <div class="progress-card-icon">
-                <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M48.6313 46.7211C48.8358 47.8578 47.9111 48.8376 46.7562 48.8376H13.7339C12.579 48.8376 11.6542 47.8578 11.8588 46.7211C13.4318 37.9799 21.0865 31.3203 30.245 31.3203C39.4035 31.3203 47.0583 37.9799 48.6313 46.7211Z"
-                        fill="#017670" />
-                    <path
-                        d="M38.7512 19.3444C38.7512 24.0991 34.8724 27.8528 30.2428 27.8528C25.4881 27.8528 21.7344 24.0991 21.7344 19.3444C21.7344 14.5897 25.6132 10.8359 30.2428 10.8359C34.9975 10.8359 38.7512 14.5897 38.7512 19.3444Z"
-                        fill="#017670" />
-                </svg> -->
+
                 <img class="step-icon" src="./assets/images/profile-active.svg" alt="profile">
                 <div class="completion-icon">
                     <img src="./assets/images/icon-check-white.svg" style="transform: scale(1.25);" />
@@ -143,12 +93,7 @@ window.moe({
             <p class="progress-card-title" data-key="progressFinancialTitle">Financial Health</p>
 
             <div class="progress-card-icon">
-                <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M22.4196 49C19.4175 49 16.8574 47.941 14.7394 45.8231C12.6215 43.7051 11.5625 41.145 11.5625 38.1429C11.5625 36.868 11.7784 35.6342 12.2102 34.4416C12.642 33.2489 13.2692 32.1591 14.0917 31.1721L22.7281 20.8084L17.8547 11H43.2703L38.3969 20.8084L47.0333 31.1721C47.8558 32.1591 48.483 33.2489 48.9148 34.4416C49.3466 35.6342 49.5625 36.868 49.5625 38.1429C49.5625 41.145 48.5035 43.7051 46.3856 45.8231C44.2676 47.941 41.7075 49 38.7054 49H22.4196ZM30.5625 38.2045C29.5344 38.2045 28.6604 37.8447 27.9407 37.125C27.221 36.4053 26.8612 35.5314 26.8612 34.5032C26.8612 33.4751 27.221 32.6012 27.9407 31.8815C28.6604 31.1618 29.5344 30.8019 30.5625 30.8019C31.5906 30.8019 32.4646 31.1618 33.1843 31.8815C33.9039 32.6012 34.2638 33.4751 34.2638 34.5032C34.2638 35.5314 33.9039 36.4053 33.1843 37.125C32.4646 37.8447 31.5906 38.2045 30.5625 38.2045ZM24.332 20.0682H36.8547L40.4943 12.7273H20.6307L24.332 20.0682ZM22.4196 47.2727H38.7054C41.2551 47.2727 43.4142 46.3782 45.1826 44.5893C46.951 42.8003 47.8352 40.6515 47.8352 38.1429C47.8352 37.0736 47.6604 36.0352 47.3109 35.0276C46.9613 34.02 46.437 33.105 45.7378 32.2825L36.9781 21.7955H24.2086L15.4489 32.2825C14.7497 33.105 14.2151 34.02 13.845 35.0276C13.4748 36.0352 13.2898 37.0736 13.2898 38.1429C13.2898 40.6515 14.1843 42.8003 15.9732 44.5893C17.7622 46.3782 19.911 47.2727 22.4196 47.2727Z"
-                        fill="#757575" />
-                </svg> -->
+
                 <img class="step-icon" src="./assets/images/financial-health.svg" alt="financial">
 
                 <div class="completion-icon">
@@ -164,12 +109,7 @@ window.moe({
             <p class="progress-card-title" data-key="progressRiskTitle">Risk Profile</p>
 
             <div class="progress-card-icon">
-                <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M34.1964 26.1666L28.4835 31.8539L26.1471 29.526C25.7827 29.1705 25.1994 29.1705 24.8349 29.526C24.4652 29.8869 24.4592 30.4777 24.8215 30.8458L27.8208 33.8335C27.9966 34.0087 28.235 34.107 28.4836 34.107C28.7322 34.107 28.9706 34.0087 29.1464 33.8335L35.5355 27.4729C35.8978 27.1048 35.8919 26.5138 35.5221 26.1531C35.1523 25.7924 34.5589 25.7983 34.1964 26.1666ZM45.6208 14.6066C45.5147 14.1019 45.0178 13.7783 44.5109 13.8838C39.881 14.8571 35.0532 13.8742 31.179 11.1695C30.856 10.9435 30.4252 10.9435 30.1023 11.1695C26.2281 13.8744 21.4002 14.8574 16.7704 13.8838C16.7074 13.8707 16.6434 13.8641 16.579 13.8641C16.0611 13.8638 15.641 14.2814 15.6406 14.7971V29.7648C15.6437 35.2457 18.2942 40.3908 22.7634 43.5915L30.095 48.825C30.2539 48.9389 30.4448 49.0002 30.6406 49C30.8364 49.0002 31.0273 48.939 31.1863 48.8251L38.5178 43.5915C42.9871 40.3908 45.6375 35.2457 45.6406 29.7648V14.7971C45.6406 14.7331 45.634 14.6693 45.6208 14.6066ZM43.7656 29.7648C43.7636 34.6442 41.4047 39.2249 37.4265 42.0748L30.6406 46.9183L23.8547 42.0748C19.8765 39.2247 17.5177 34.6442 17.5156 29.7648V15.9127C22.0939 16.5935 26.7641 15.5785 30.6406 13.0599C34.5175 15.5779 39.1874 16.5929 43.7656 15.9127V29.7648Z"
-                        fill="#757575" />
-                </svg> -->
+
                 <img class="step-icon" src="./assets/images/risk-profile.svg" alt="risk">
 
                 <div class="completion-icon"> <img src="./assets/images/icon-check-white.svg"
@@ -184,12 +124,7 @@ window.moe({
             <p class="progress-card-title" data-key="progressSummaryTitle">Summary</p>
 
             <div class="progress-card-icon">
-                <!-- <svg class="step-icon" width="61" height="60" viewBox="0 0 61 60" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M16.8774 49C15.9675 49 15.194 48.6815 14.557 48.0445C13.92 47.4076 13.6016 46.6341 13.6016 45.7241V18.6437C13.6016 17.7337 13.92 16.9602 14.557 16.3233C15.194 15.6863 15.9675 15.3678 16.8774 15.3678H27.4694C27.069 14.3123 27.1782 13.3204 27.797 12.3922C28.4157 11.4641 29.2893 11 30.4177 11C31.5824 11 32.4742 11.4641 33.0929 12.3922C33.7117 13.3204 33.8027 14.3123 33.3659 15.3678H43.9579C44.8678 15.3678 45.6413 15.6863 46.2783 16.3233C46.9153 16.9602 47.2337 17.7337 47.2337 18.6437V45.7241C47.2337 46.6341 46.9153 47.4076 46.2783 48.0445C45.6413 48.6815 44.8678 49 43.9579 49H16.8774ZM16.8774 47.4713H43.9579C44.3947 47.4713 44.795 47.2893 45.159 46.9253C45.523 46.5613 45.705 46.1609 45.705 45.7241V18.6437C45.705 18.2069 45.523 17.8065 45.159 17.4425C44.795 17.0785 44.3947 16.8966 43.9579 16.8966H16.8774C16.4406 16.8966 16.0403 17.0785 15.6763 17.4425C15.3123 17.8065 15.1303 18.2069 15.1303 18.6437V45.7241C15.1303 46.1609 15.3123 46.5613 15.6763 46.9253C16.0403 47.2893 16.4406 47.4713 16.8774 47.4713ZM20.9177 41.0287H33.3659V39.5H20.9177V41.0287ZM20.9177 32.9483H39.9177V31.4195H20.9177V32.9483ZM20.9177 24.8678H39.9177V23.3391H20.9177V24.8678ZM30.4177 15.8046C30.8908 15.8046 31.2821 15.6499 31.5915 15.3405C31.9009 15.0311 32.0556 14.6398 32.0556 14.1667C32.0556 13.6935 31.9009 13.3022 31.5915 12.9928C31.2821 12.6834 30.8908 12.5287 30.4177 12.5287C29.9445 12.5287 29.5532 12.6834 29.2438 12.9928C28.9344 13.3022 28.7797 13.6935 28.7797 14.1667C28.7797 14.6398 28.9344 15.0311 29.2438 15.3405C29.5532 15.6499 29.9445 15.8046 30.4177 15.8046Z"
-                        fill="#757575" />
-                </svg> -->
+
                 <img class="step-icon" src="./assets/images/summary.svg" alt="summary">
 
                 <div class="completion-icon">
@@ -1022,8 +957,7 @@ window.moe({
 
         <!-- Combined Community, Newsletter, Masterclass -->
         <div class="question-card" id="question-21">
-            <!-- <h2 class="question-title">Stay Connected with Geojit!</h2>
-            <p class="question-subtitle">Select the options you're interested in:</p> -->
+
             <div style="width: 100%; text-align: left; font-size: 18px;">
                 <label class="option-label checkbox">
                     <input type="checkbox" id="community-checkbox">
@@ -1083,7 +1017,6 @@ window.moe({
                 <div class="feedback-content-wrapper">
 
                     <div class="feedback-header">
-                        <!-- <h2 class="feedback-title" data-key="feedbackReportTitle">Financial Health Report</h2> -->
                         <button class="feedback-back" onclick="goBackToResults()">← Back</button>
                     </div>
 
@@ -1103,11 +1036,13 @@ window.moe({
                                 <div class="report-actions">
                                     <button class="download-btn" data-key="downloadReportButton"
                                         onclick="downloadReportAsPDF()">Download Report</button>
-                                    <button class="download-btn btn-outline" data-key="printReportButton">Print Report</button>
+                                    <button class="download-btn btn-outline" data-key="printReportButton">Print
+                                        Report</button>
                                     <button class="download-btn reset-btn btn-outline" onclick="resetAssessment()"
                                         data-key="resetReportButton">Reset Report</button>
-                                    <div class="timer-display" id="timer-display" ><span data-key="reportWillReset">Report will
-                                        be reset in:</span> <span id="timer-countdown">1:00</span></div>
+                                    <div class="timer-display" id="timer-display"><span
+                                            data-key="reportWillReset">Report will
+                                            be reset in:</span> <span id="timer-countdown">1:00</span></div>
                                 </div>
                             </div>
 
@@ -1254,22 +1189,7 @@ window.moe({
                                                 <label for="feedback-contact" data-key="iWouldLikeToBeContacted">I would
                                                     like to be contacted about my Issue</label>
                                             </div>
-                                            <!-- <div style="flex: 1;">
-                                                <div class="time-slot-container" id="time-slot-container"
-                                                    style="display: none; margin-top: 8px;">
-                                                    <select id="time-slot-select" class="time-slot-dropdown"
-                                                        style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-                                                        <option value="" data-key="selectTimeOption">--Select Time--
-                                                        </option>
-                                                        <option value="9-12" data-key="timeSlot9to12">9 AM to 12 PM
-                                                        </option>
-                                                        <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM
-                                                        </option>
-                                                        <option value="3-7" data-key="timeSlot3to7">3 PM to 7 PM
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
+
                                         </div>
                                         <button class="submit-feedback" data-key="submitButton"
                                             onclick="showSubmitNotification('')">Submit</button>
@@ -1294,46 +1214,40 @@ window.moe({
                         <h3>What's Next?</h3>
                         <p>Let our experts create a personalized investment roadmap just for you.</p>
                     </div>
-                        <div class="time-slot-container feature-card expert-session-popup" id="time-slot-container"
-                            style="display:none; margin-top: 8px;border-radius: 6px;">
-                            <!-- <select id="time-slot-select" class="time-slot-dropdown"
-                                style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-                                <option value="" data-key="selectTimeOption">--Select Time--
-                                </option>
-                                <option value="9-12" data-key="timeSlot9to12">9 AM to 12 PM
-                                </option>
-                                <option value="1-3" data-key="timeSlot1to3">1 PM to 3 PM
-                                </option>
-                                <option value="3-7" data-key="timeSlot3to7">3 PM to 7 PM
-                                </option>
-                            </select> -->
-                          <div style="display: flex; flex-direction: column; gap: 6px;">
-                            <h3 >Preferred time to contact</h3>
-                            <button  class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;" onclick="showSubmitNotification('9 AM to 12 PM')">
-                                <p data-key="timeSlot9to12" style="margin-right: 3rem;">9 AM to 12 PM</p>  
+                    <div class="time-slot-container feature-card expert-session-popup" id="time-slot-container"
+                        style="display:none; margin-top: 8px;border-radius: 6px;">
+
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <h3>Preferred time to contact</h3>
+                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;"
+                                onclick="showSubmitNotification('9 AM to 12 PM')">
+                                <p data-key="timeSlot9to12" style="margin-right: 3rem;">9 AM to 12 PM</p>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                                    <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;" onclick="showSubmitNotification('1 PM to 3 PM')">
-                                <p data-key="timeSlot1to3" style="margin-right: 3rem;">1 PM to 3 PM</p>  
+                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;"
+                                onclick="showSubmitNotification('1 PM to 3 PM')">
+                                <p data-key="timeSlot1to3" style="margin-right: 3rem;">1 PM to 3 PM</p>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                                    <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;" onclick="showSubmitNotification('3 PM to 7 PM')">
-                                <p data-key="timeSlot3to7" style="margin-right: 3rem;">3 PM to 7 PM</p>  
+                            <button class="nav-btn next" style="min-width: auto;font-size: 14px;width: auto;"
+                                onclick="showSubmitNotification('3 PM to 7 PM')">
+                                <p data-key="timeSlot3to7" style="margin-right: 3rem;">3 PM to 7 PM</p>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                                    <path d="M6 4 L10 8 L6 12" stroke="#017670" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
-                                
+
                             </button>
-                          </div>
                         </div>
-                        <button class="expert-session-btn" id="request-expert-session-btn">Request an Expert Session</button>
+                    </div>
+                    <button class="expert-session-btn" id="request-expert-session-btn">Request an Expert
+                        Session</button>
                 </div>
             </div>
         </div>
@@ -2285,21 +2199,21 @@ window.moe({
 
     function getHealthRecommendations(score) {
         if (score >= 12) {
-            return ['Excellent! You\'re doing a great job managing your finances. You have a clear understanding of your money, plan for the future, and protect what you\'ve built.','Optimize existing investments for better returns', 'Diversify further with expert guidance', 'Explore wealth-building and tax-efficiency strategies'];
+            return ['Excellent! You\'re doing a great job managing your finances. You have a clear understanding of your money, plan for the future, and protect what you\'ve built.', 'Optimize existing investments for better returns', 'Diversify further with expert guidance', 'Explore wealth-building and tax-efficiency strategies'];
         } else if (score >= 7) {
-            return ['You\'re on the right path! You\'ve developed some healthy financial habits, but there\'s room for improvement in planning, protection, or investment consistency.','Prioritize goal-based investments', 'Review portfolio regularly', 'Enhance insurance and savings buffers'];
+            return ['You\'re on the right path! You\'ve developed some healthy financial habits, but there\'s room for improvement in planning, protection, or investment consistency.', 'Prioritize goal-based investments', 'Review portfolio regularly', 'Enhance insurance and savings buffers'];
         } else {
-            return ['Your financial health needs attention. It looks like you\'re either not saving regularly, lack a safety net, or are underinsured. Don\'t worry – it\'s never too late to start building healthy money habits.','Build an emergency fund', 'Create habit of tracking income and expenses', 'Set basic life and health insurance in place'];
+            return ['Your financial health needs attention. It looks like you\'re either not saving regularly, lack a safety net, or are underinsured. Don\'t worry – it\'s never too late to start building healthy money habits.', 'Build an emergency fund', 'Create habit of tracking income and expenses', 'Set basic life and health insurance in place'];
         }
     }
 
     function getRiskRecommendations(score) {
         if (score >= 9) {
-            return ['You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.','SIPs in equity mutual funds aligned with long-term goals', 'Stay disciplined during market ups and downs'];
+            return ['You\'re comfortable with volatility and long-term investments. You can handle market fluctuations for potentially higher returns.', 'SIPs in equity mutual funds aligned with long-term goals', 'Stay disciplined during market ups and downs'];
         } else if (score >= 5) {
-            return ['You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.','Balanced Advantage Funds or Hybrid Equity Funds', 'Mix equity with safer investments for stability'];
+            return ['You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.', 'Balanced Advantage Funds or Hybrid Equity Funds', 'Mix equity with safer investments for stability'];
         } else {
-            return ['You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.','Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
+            return ['You\'re open to some risk in exchange for better returns. A balanced investment approach can work well for you.', 'Low-risk options like debt mutual funds or conservative hybrid funds', 'Ensure liquidity through short-duration funds'];
         }
     }
 
@@ -2357,81 +2271,81 @@ window.moe({
     }
 
     // FFTest Result Event
-function trackFFTestResultEvent() {
-    calculateScores();
+    function trackFFTestResultEvent() {
+        calculateScores();
 
-    const healthCategory = getHealthCategory(financialHealthScore);
-    const riskCategory = getRiskCategory(riskProfileScore);
-    const healthRecommendations = getHealthRecommendations(financialHealthScore);
-    const riskRecommendations = getRiskRecommendations(riskProfileScore);
+        const healthCategory = getHealthCategory(financialHealthScore);
+        const riskCategory = getRiskCategory(riskProfileScore);
+        const healthRecommendations = getHealthRecommendations(financialHealthScore);
+        const riskRecommendations = getRiskRecommendations(riskProfileScore);
 
-    // Get detailed recommendation text based on scores
-    let healthDescription = '';
-    let riskDescription = '';
-    let healthRecommendationText = [];
-    let riskRecommendationText = [];
+        // Get detailed recommendation text based on scores
+        let healthDescription = '';
+        let riskDescription = '';
+        let healthRecommendationText = [];
+        let riskRecommendationText = [];
 
-    // Health descriptions and recommendations
-    if (financialHealthScore >= 12) {
-        healthDescription = translations[currentLanguage].recommendationSummaryOnTrack;
-        healthRecommendationText = [
-            translations[currentLanguage].recommendationListOnTrack1,
-            translations[currentLanguage].recommendationListOnTrack2,
-            translations[currentLanguage].recommendationListOnTrack3
-        ];
-    } else if (financialHealthScore >= 7) {
-        healthDescription = translations[currentLanguage].recommendationSummaryModerate;
-        healthRecommendationText = [
-            translations[currentLanguage].recommendationListModerate1,
-            translations[currentLanguage].recommendationListModerate2,
-            translations[currentLanguage].recommendationListModerate3
-        ];
-    } else {
-        healthDescription = translations[currentLanguage].recommendationSummaryNeedsImprovement;
-        healthRecommendationText = [
-            translations[currentLanguage].recommendationListNeedsImprovement1,
-            translations[currentLanguage].recommendationListNeedsImprovement2,
-            translations[currentLanguage].recommendationListNeedsImprovement3
-        ];
+        // Health descriptions and recommendations
+        if (financialHealthScore >= 12) {
+            healthDescription = translations[currentLanguage].recommendationSummaryOnTrack;
+            healthRecommendationText = [
+                translations[currentLanguage].recommendationListOnTrack1,
+                translations[currentLanguage].recommendationListOnTrack2,
+                translations[currentLanguage].recommendationListOnTrack3
+            ];
+        } else if (financialHealthScore >= 7) {
+            healthDescription = translations[currentLanguage].recommendationSummaryModerate;
+            healthRecommendationText = [
+                translations[currentLanguage].recommendationListModerate1,
+                translations[currentLanguage].recommendationListModerate2,
+                translations[currentLanguage].recommendationListModerate3
+            ];
+        } else {
+            healthDescription = translations[currentLanguage].recommendationSummaryNeedsImprovement;
+            healthRecommendationText = [
+                translations[currentLanguage].recommendationListNeedsImprovement1,
+                translations[currentLanguage].recommendationListNeedsImprovement2,
+                translations[currentLanguage].recommendationListNeedsImprovement3
+            ];
+        }
+
+        // Risk descriptions and recommendations
+        if (riskProfileScore >= 9) {
+            riskDescription = translations[currentLanguage].riskprofileSummaryHighRisk;
+            riskRecommendationText = [
+                translations[currentLanguage].recommendationListRiskHigh1,
+                translations[currentLanguage].recommendationListRiskHigh2
+            ];
+        } else if (riskProfileScore >= 5) {
+            riskDescription = translations[currentLanguage].riskprofileSummaryModerateRisk;
+            riskRecommendationText = [
+                translations[currentLanguage].recommendationListRiskModerate1,
+                translations[currentLanguage].recommendationListRiskModerate2
+            ];
+        } else {
+            riskDescription = translations[currentLanguage].riskprofileSummarylowRisk;
+            riskRecommendationText = [
+                translations[currentLanguage].recommendationListRiskLow1,
+                translations[currentLanguage].recommendationListRiskLow2
+            ];
+        }
+
+        trackMoEngageEvent('FFTest_Result', {
+            risk_profile: riskCategory,
+            risk_description: riskDescription, // Detailed text description
+            risk_geojit_recommendations: riskRecommendationText, // Array of recommendation texts
+            financial_health_description: healthDescription, // Detailed text description
+            financial_health_recommendations: healthRecommendationText, // Array of recommendation texts
+            experience_rating: currentRating || null,
+            // Additional detailed data
+            financial_health_score: financialHealthScore,
+            financial_health_max_score: 18,
+            financial_health_category: healthCategory,
+            risk_profile_score: riskProfileScore,
+            risk_profile_max_score: 12,
+            language: currentLanguage
+        });
     }
-
-    // Risk descriptions and recommendations
-    if (riskProfileScore >= 9) {
-        riskDescription = translations[currentLanguage].riskprofileSummaryHighRisk;
-        riskRecommendationText = [
-            translations[currentLanguage].recommendationListRiskHigh1,
-            translations[currentLanguage].recommendationListRiskHigh2
-        ];
-    } else if (riskProfileScore >= 5) {
-        riskDescription = translations[currentLanguage].riskprofileSummaryModerateRisk;
-        riskRecommendationText = [
-            translations[currentLanguage].recommendationListRiskModerate1,
-            translations[currentLanguage].recommendationListRiskModerate2
-        ];
-    } else {
-        riskDescription = translations[currentLanguage].riskprofileSummarylowRisk;
-        riskRecommendationText = [
-            translations[currentLanguage].recommendationListRiskLow1,
-            translations[currentLanguage].recommendationListRiskLow2
-        ];
-    }
-
-    trackMoEngageEvent('FFTest_Result', {
-        risk_profile: riskCategory,
-        risk_description: riskDescription, // Detailed text description
-        risk_geojit_recommendations: riskRecommendationText, // Array of recommendation texts
-        financial_health_description: healthDescription, // Detailed text description
-        financial_health_recommendations: healthRecommendationText, // Array of recommendation texts
-        experience_rating: currentRating || null,
-        // Additional detailed data
-        financial_health_score: financialHealthScore,
-        financial_health_max_score: 18,
-        financial_health_category: healthCategory,
-        risk_profile_score: riskProfileScore,
-        risk_profile_max_score: 12,
-        language: currentLanguage
-    });
-}
     // Language variables
     let currentLanguage = 'en';
     let savedLanguage = 'en';
@@ -2711,18 +2625,6 @@ function trackFFTestResultEvent() {
 
 
 
-        // // Update the results card content with scores
-        // const resultsCard = document.getElementById('results-card');
-        // const scoreDisplay = resultsCard.querySelector('.score-display p');
-
-        // if (scoreDisplay) {
-        //     scoreDisplay.innerHTML = `
-        //         <strong>Financial Health Score: ${financialHealthScore}/18</strong><br>
-        //         <span style="color: #666; font-size: 14px;">${getFinancialHealthInterpretation(financialHealthScore)}</span><br><br>
-        //         <strong>Risk Profile Score: ${riskProfileScore}/12</strong><br>
-        //         <span style="color: #666; font-size: 14px;">${getRiskProfileInterpretation(riskProfileScore)}</span>
-        //     `;
-        // }
     }
 
     function showAlert(message) {
@@ -2887,10 +2789,6 @@ function trackFFTestResultEvent() {
     }
 
 
-
-
-
-
     function prevQuestion() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--;
@@ -2901,44 +2799,11 @@ function trackFFTestResultEvent() {
 
 
 
-    function resetQuiz() {
-        currentQuestionIndex = 0;
-        financialHealthScore = 0;
-        riskProfileScore = 0;
-        document.getElementById('user-name').value = '';
-        document.getElementById('contact-email').value = '';
-        document.getElementById('contact-phone').value = '';
-        document.getElementById('consent-checkbox').checked = false;
-        document.getElementById('join-community').checked = false;
-        document.getElementById('newsletter-subscription').checked = false;
-        document.getElementById('masterclass-interest').checked = false;
-
-
-        document.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.checked = false;
-        });
-        showQuestion(currentQuestionIndex);
-    }
-
-
     // ADD THE NEW CODE HERE - Update the feedback contact checkbox listener
     const feedbackContactCheckbox = document.getElementById('feedback-contact');
     const timeSlotContainer = document.getElementById('time-slot-container');
 
-    // if (feedbackContactCheckbox && timeSlotContainer) {
-    //     feedbackContactCheckbox.addEventListener('change', function () {
-    //         if (this.checked) {
-    //             timeSlotContainer.style.display = 'block';
-    //         } else {
-    //             timeSlotContainer.style.display = 'none';
-    //             // Reset time slot selection when unchecked
-    //             const timeSlotSelect = document.getElementById('time-slot-select');
-    //             if (timeSlotSelect) {
-    //                 timeSlotSelect.value = '';
-    //             }
-    //         }
-    //     });
-    // }
+
 
     document.addEventListener('DOMContentLoaded', () => {
         showQuestion(currentQuestionIndex);
@@ -2959,7 +2824,6 @@ function trackFFTestResultEvent() {
         });
     });
 
-    // Other JS
 
     // Prevent zoom on input focus for iOS
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
@@ -3221,31 +3085,6 @@ function trackFFTestResultEvent() {
 
 
 
-    function debugChartColors(score, maxScore, label) {
-        const percentage = (score / maxScore) * 100;
-        const angle = (percentage / 100) * 60 - 30;
-
-        let range = '';
-        if (label.includes('Risk')) {
-            if (score <= 4) range = 'Low Risk (0-4)';
-            else if (score <= 8) range = 'Moderate Risk (5-8)';
-            else range = 'High Risk (9-12)';
-        } else {
-            if (score <= 6) range = 'Needs Improvement (0-6)';
-            else if (score <= 11) range = 'Moderate (7-11)';
-            else range = 'On Track (12-18)';
-        }
-
-        console.log(`${label}:`, {
-            score: score,
-            maxScore: maxScore,
-            percentage: percentage.toFixed(2) + '%',
-            range: range,
-            needleAngle: angle.toFixed(2) + '°'
-        });
-
-        return { percentage, angle };
-    }
 
 
     function updateRecommendations() {
@@ -3466,54 +3305,52 @@ function trackFFTestResultEvent() {
             financialHealthScore < 12 ? translations[currentLanguage].ActionNeeded2 : translations[currentLanguage].ActionNeeded3;
     }
     // Star rating functionality
-function setRating(rating) {
-    // Check if rating has already been submitted
-    const ratingSection = document.querySelector('.rating-section');
-    if (ratingSection && ratingSection.classList.contains('rating-submitted')) {
-        return; // Don't allow rating changes after submission
-    }
-
-    currentRating = rating;
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
-        if (index < rating) {
-            star.classList.add('active');
-        } else {
-            star.classList.remove('active');
+    function setRating(rating) {
+        // Check if rating has already been submitted
+        const ratingSection = document.querySelector('.rating-section');
+        if (ratingSection && ratingSection.classList.contains('rating-submitted')) {
+            return; // Don't allow rating changes after submission
         }
-    });
 
-    const textAreaExperience = document.getElementById("text-area-experience");
-    const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
-    const feedbackCheckbox = document.querySelector('.feedback-checkbox');
-    const submitButton = document.querySelector('.submit-feedback');
-    
-    if (currentRating <= 2) { // Show textarea and checkbox for ≤2 stars
-        if (textAreaExperience) textAreaExperience.style.display = "block";
-        if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "block";
-        if (feedbackCheckbox) feedbackCheckbox.style.display = "flex";
-        if (submitButton) submitButton.style.display = "block";
-    } else {
-        if (textAreaExperience) textAreaExperience.style.display = "none";
-        if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "none";
-        if (feedbackCheckbox) feedbackCheckbox.style.display = "none";
-        if (submitButton) submitButton.style.display = "block"; // Still show submit button for ratings >2
+        currentRating = rating;
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+
+        const textAreaExperience = document.getElementById("text-area-experience");
+        const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
+        const feedbackCheckbox = document.querySelector('.feedback-checkbox');
+        const submitButton = document.querySelector('.submit-feedback');
+
+        if (currentRating <= 2) { // Show textarea and checkbox for ≤2 stars
+            if (textAreaExperience) textAreaExperience.style.display = "block";
+            if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "block";
+            if (feedbackCheckbox) feedbackCheckbox.style.display = "flex";
+            if (submitButton) submitButton.style.display = "block";
+        } else {
+            if (textAreaExperience) textAreaExperience.style.display = "none";
+            if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "none";
+            if (feedbackCheckbox) feedbackCheckbox.style.display = "none";
+            if (submitButton) submitButton.style.display = "block"; // Still show submit button for ratings >2
+        }
+
+        trackMoEngageEvent('Rating_Given', {
+            rating: rating,
+            financial_health_score: financialHealthScore,
+            risk_profile_score: riskProfileScore,
+            financial_health_category: getHealthCategory(financialHealthScore),
+            risk_profile_category: getRiskCategory(riskProfileScore)
+        });
     }
 
-    trackMoEngageEvent('Rating_Given', {
-        rating: rating,
-        financial_health_score: financialHealthScore,
-        risk_profile_score: riskProfileScore,
-        financial_health_category: getHealthCategory(financialHealthScore),
-        risk_profile_category: getRiskCategory(riskProfileScore)
-    });
-}
-
-function resetAssessment() {
-
+    function resetAssessment() {
         // STOP THE TIMER - ADD THIS LINE
         stopReportTimer();
-
 
         // Reset all variables
         currentQuestionIndex = 0;
@@ -3582,37 +3419,37 @@ function resetAssessment() {
             behavior: 'smooth'
         });
 
-// Reset rating interface (add this section)
-    const ratingSection = document.querySelector('.rating-section');
-    if (ratingSection) {
-        ratingSection.classList.remove('rating-submitted');
-    }
+        // Reset rating interface (add this section)
+        const ratingSection = document.querySelector('.rating-section');
+        if (ratingSection) {
+            ratingSection.classList.remove('rating-submitted');
+        }
 
-    // Re-enable star clicking and restore normal cursor
-    document.querySelectorAll('.star').forEach(star => {
-        star.style.pointerEvents = 'auto';
-        star.style.cursor = 'pointer';
-    });
+        // Re-enable star clicking and restore normal cursor
+        document.querySelectorAll('.star').forEach(star => {
+            star.style.pointerEvents = 'auto';
+            star.style.cursor = 'pointer';
+        });
 
-    // Hide all feedback elements by default
-    const textAreaExperience = document.getElementById("text-area-experience");
-    const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
-    const feedbackCheckbox = document.querySelector('.feedback-checkbox');
-    const submitButton = document.querySelector('.submit-feedback');
-    
-    if (textAreaExperience) {
-        textAreaExperience.style.display = "none";
-        textAreaExperience.value = ""; // Clear the textarea content
-    }
-    if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "none";
-    if (feedbackCheckbox) feedbackCheckbox.style.display = "none";
-    if (submitButton) submitButton.style.display = "none";
+        // Hide all feedback elements by default
+        const textAreaExperience = document.getElementById("text-area-experience");
+        const textAreaExperienceLabel = document.getElementById("text-area-experience-label");
+        const feedbackCheckbox = document.querySelector('.feedback-checkbox');
+        const submitButton = document.querySelector('.submit-feedback');
 
-    // Reset feedback contact checkbox
-    const feedbackContactCheckbox = document.getElementById('feedback-contact');
-    if (feedbackContactCheckbox) {
-        feedbackContactCheckbox.checked = false;
-    }
+        if (textAreaExperience) {
+            textAreaExperience.style.display = "none";
+            textAreaExperience.value = ""; // Clear the textarea content
+        }
+        if (textAreaExperienceLabel) textAreaExperienceLabel.style.display = "none";
+        if (feedbackCheckbox) feedbackCheckbox.style.display = "none";
+        if (submitButton) submitButton.style.display = "none";
+
+        // Reset feedback contact checkbox
+        const feedbackContactCheckbox = document.getElementById('feedback-contact');
+        if (feedbackContactCheckbox) {
+            feedbackContactCheckbox.checked = false;
+        }
 
         console.log('Assessment reset successfully');
     }
@@ -3630,11 +3467,6 @@ function resetAssessment() {
 
     // window.addEventListener("resize", updateLogo);
     updateLogo(); // run once on load
-
-
-
-
-
 
     document.addEventListener('DOMContentLoaded', () => {
         // Re-select question cards to include the feedback card
@@ -3657,7 +3489,6 @@ function resetAssessment() {
             });
         });
     });
-
 
 
     // Smooth scrolling for anchor links
@@ -3693,60 +3524,60 @@ function resetAssessment() {
     }
 
 
-function showSubmitNotification(timeSlot) {
-    const feedbackText = document.getElementById("text-area-experience").value;
-    const wantsContact = document.getElementById("feedback-contact").checked;
-    
-    // Get the callback time slot from the feedback contact checkbox area
-    let callbackTimeSlot = timeSlot || '';
-    
-    // If no timeSlot passed and user wants contact, try to get from time slot select
-    if (!callbackTimeSlot && wantsContact) {
-        const timeSlotSelect = document.getElementById('time-slot-select');
-        callbackTimeSlot = timeSlotSelect ? timeSlotSelect.value : '';
+    function showSubmitNotification(timeSlot) {
+        const feedbackText = document.getElementById("text-area-experience").value;
+        const wantsContact = document.getElementById("feedback-contact").checked;
+
+        // Get the callback time slot from the feedback contact checkbox area
+        let callbackTimeSlot = timeSlot || '';
+
+        // If no timeSlot passed and user wants contact, try to get from time slot select
+        if (!callbackTimeSlot && wantsContact) {
+            const timeSlotSelect = document.getElementById('time-slot-select');
+            callbackTimeSlot = timeSlotSelect ? timeSlotSelect.value : '';
+        }
+
+        trackMoEngageEvent('Feedback_Submitted', {
+            rating: currentRating,
+            has_feedback: !!feedbackText,
+            feedback_text: feedbackText,
+            feedback_length: feedbackText ? feedbackText.length : 0,
+            wants_contact: wantsContact,
+            callback_time_slot: callbackTimeSlot,
+            financial_health_score: financialHealthScore,
+            risk_profile_score: riskProfileScore,
+            financial_health_category: getHealthCategory(financialHealthScore),
+            risk_profile_category: getRiskCategory(riskProfileScore)
+        });
+
+        // Hide rating interface elements after submission (but keep stars visible)
+        const ratingSection = document.querySelector('.rating-section');
+        if (ratingSection) {
+            ratingSection.classList.add('rating-submitted');
+        }
+
+        // Disable star clicking but keep them visible
+        document.querySelectorAll('.star').forEach(star => {
+            star.style.pointerEvents = 'none';
+            star.style.cursor = 'default';
+        });
+
+        let notificationEl = document.getElementById("session-notification");
+        if (timeSlot == "") {
+            notificationEl = document.getElementById("notification")
+        }
+        notificationEl.style.visibility = "visible";
+        notificationEl.style.opacity = "1";
+        const timeSlotContainer = document.getElementById('time-slot-container');
+        if (timeSlotContainer) {
+            timeSlotContainer.style.display = 'none';
+        }
+        setTimeout(() => {
+            closeNotification();
+        }, 3000);
     }
 
-    trackMoEngageEvent('Feedback_Submitted', {
-        rating: currentRating,  
-        has_feedback: !!feedbackText,
-        feedback_text: feedbackText,
-        feedback_length: feedbackText ? feedbackText.length : 0,
-        wants_contact: wantsContact,
-        callback_time_slot: callbackTimeSlot,
-        financial_health_score: financialHealthScore,
-        risk_profile_score: riskProfileScore,
-        financial_health_category: getHealthCategory(financialHealthScore),
-        risk_profile_category: getRiskCategory(riskProfileScore)
-    });
-
-    // Hide rating interface elements after submission (but keep stars visible)
-    const ratingSection = document.querySelector('.rating-section');
-    if (ratingSection) {
-        ratingSection.classList.add('rating-submitted');
-    }
-
-    // Disable star clicking but keep them visible
-    document.querySelectorAll('.star').forEach(star => {
-        star.style.pointerEvents = 'none';
-        star.style.cursor = 'default';
-    });
-
-    let notificationEl = document.getElementById("session-notification");
-    if(timeSlot == "") {
-        notificationEl = document.getElementById("notification")
-    }
-    notificationEl.style.visibility = "visible";
-    notificationEl.style.opacity = "1";
-    const timeSlotContainer = document.getElementById('time-slot-container');
-    if(timeSlotContainer) {
-        timeSlotContainer.style.display = 'none';
-    }
-    setTimeout(() => {
-        closeNotification();
-    }, 3000);
-}
-
-function closeNotification() {
+    function closeNotification() {
         const notificationEl = document.getElementById("notification")
 
         notificationEl.style.visibility = "hidden"
@@ -3760,268 +3591,265 @@ function closeNotification() {
         notificationEl.style.opacity = "0"
     }
 
+    async function downloadReportAsPDF() {
+        const userName = document.getElementById('user-name').value || 'User';
 
+        try {
+            // Show loading state
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.textContent = 'Generating PDF...';
+                downloadBtn.disabled = true;
+            }
 
+            // Create a hidden iframe to load the report template
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'absolute';
+            iframe.style.left = '-9999px';
+            iframe.style.width = '800px';
+            iframe.style.height = '1200px';
+            iframe.src = 'report-template.html';
+            document.body.appendChild(iframe);
 
-async function downloadReportAsPDF() {
-    const userName = document.getElementById('user-name').value || 'User';
-    
-    try {
-        // Show loading state
-        const downloadBtn = document.querySelector('.download-btn');
-        if (downloadBtn) {
-            downloadBtn.textContent = 'Generating PDF...';
-            downloadBtn.disabled = true;
-        }
+            // Wait for iframe to load completely
+            await new Promise((resolve, reject) => {
+                iframe.onload = () => {
+                    // Wait a bit more for all resources to load
+                    setTimeout(resolve, 1000);
+                };
+                iframe.onerror = reject;
 
-        // Create a hidden iframe to load the report template
-        const iframe = document.createElement('iframe');
-        iframe.style.position = 'absolute';
-        iframe.style.left = '-9999px';
-        iframe.style.width = '800px';
-        iframe.style.height = '1200px';
-        iframe.src = 'report-template.html';
-        document.body.appendChild(iframe);
+                // Timeout fallback
+                setTimeout(() => resolve(), 3000);
+            });
 
-        // Wait for iframe to load completely
-        await new Promise((resolve, reject) => {
-            iframe.onload = () => {
-                // Wait a bit more for all resources to load
-                setTimeout(resolve, 1000);
-            };
-            iframe.onerror = reject;
-            
-            // Timeout fallback
-            setTimeout(() => resolve(), 3000);
-        });
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const iframeWindow = iframe.contentWindow;
 
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        const iframeWindow = iframe.contentWindow;
-        
-        // Populate the template with current data
-        populateReportTemplate(iframeDoc, iframeWindow, userName);
-        
-        // Wait for charts to render
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Generate PDF from the iframe content
-        const canvas = await html2canvas(iframeDoc.body, {
-            scale: 1.5,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff',
-            width: 800,
-            height: iframeDoc.body.scrollHeight,
-            logging: false
-        });
+            // Populate the template with current data
+            populateReportTemplate(iframeDoc, iframeWindow, userName);
 
-        // Create PDF
-        const { jsPDF } = window.jspdf;
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 295; // A4 height in mm
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        let heightLeft = imgHeight;
+            // Wait for charts to render
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        let position = 0;
+            // Generate PDF from the iframe content
+            const canvas = await html2canvas(iframeDoc.body, {
+                scale: 1.5,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                width: 800,
+                height: iframeDoc.body.scrollHeight,
+                logging: false
+            });
 
-        const imgData = canvas.toDataURL('image/png', 0.8);
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+            // Create PDF
+            const { jsPDF } = window.jspdf;
+            const imgWidth = 210; // A4 width in mm
+            const pageHeight = 295; // A4 height in mm
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
 
-        while (heightLeft >= 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            let position = 0;
+
+            const imgData = canvas.toDataURL('image/png', 0.8);
             pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
-        }
 
-        // Download the PDF
-        const fileName = `${userName.replace(/[^a-z0-9]/gi, '_')}_Financial_Health_Report.pdf`;
-        pdf.save(fileName);
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
 
-        // Cleanup
-        document.body.removeChild(iframe);
+            // Download the PDF
+            const fileName = `${userName.replace(/[^a-z0-9]/gi, '_')}_Financial_Health_Report.pdf`;
+            pdf.save(fileName);
 
-        // Reset button state
-        if (downloadBtn) {
-            downloadBtn.textContent = 'Download Report';
-            downloadBtn.disabled = false;
-        }
+            // Cleanup
+            document.body.removeChild(iframe);
 
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-        alert('Error generating PDF. Please try again.');
-        
-        // Cleanup iframe if it exists
-        const existingIframe = document.querySelector('iframe[src="report-template.html"]');
-        if (existingIframe) {
-            document.body.removeChild(existingIframe);
-        }
-        
-        // Reset button state
-        const downloadBtn = document.querySelector('.download-btn');
-        if (downloadBtn) {
-            downloadBtn.textContent = 'Download Report';
-            downloadBtn.disabled = false;
+            // Reset button state
+            if (downloadBtn) {
+                downloadBtn.textContent = 'Download Report';
+                downloadBtn.disabled = false;
+            }
+
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            alert('Error generating PDF. Please try again.');
+
+            // Cleanup iframe if it exists
+            const existingIframe = document.querySelector('iframe[src="report-template.html"]');
+            if (existingIframe) {
+                document.body.removeChild(existingIframe);
+            }
+
+            // Reset button state
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.textContent = 'Download Report';
+                downloadBtn.disabled = false;
+            }
         }
     }
-}
 
-function populateReportTemplate(doc, win, userName) {
-    try {
-        // Set user name
-        const userNameElement = doc.getElementById('report-user-name');
-        if (userNameElement) {
-            userNameElement.textContent = userName + "'s";
+    function populateReportTemplate(doc, win, userName) {
+        try {
+            // Set user name
+            const userNameElement = doc.getElementById('report-user-name');
+            if (userNameElement) {
+                userNameElement.textContent = userName + "'s";
+            }
+
+            // Pass data to iframe window so it can access the variables
+            win.financialHealthScore = financialHealthScore;
+            win.riskProfileScore = riskProfileScore;
+            win.translations = translations;
+            win.currentLanguage = currentLanguage;
+
+            // Update content same as your existing updateFeedbackContent function
+            updateReportContent(doc, win);
+
+            // Create charts
+            setTimeout(() => {
+                win.updateRiskGauge(riskProfileScore, translations, currentLanguage);
+                win.updateHealthGauge(financialHealthScore, translations, currentLanguage);
+            }, 500);
+
+        } catch (error) {
+            console.error('Error populating template:', error);
         }
-
-        // Pass data to iframe window so it can access the variables
-        win.financialHealthScore = financialHealthScore;
-        win.riskProfileScore = riskProfileScore;
-        win.translations = translations;
-        win.currentLanguage = currentLanguage;
-
-        // Update content same as your existing updateFeedbackContent function
-        updateReportContent(doc, win);
-        
-        // Create charts
-        setTimeout(() => {
-            win.updateRiskGauge(riskProfileScore, translations, currentLanguage);
-            win.updateHealthGauge(financialHealthScore, translations, currentLanguage);
-        }, 500);
-
-    } catch (error) {
-        console.error('Error populating template:', error);
     }
-}
 
-function updateReportContent(doc, win) {
-    // Update Risk Profile Content (copy from your existing function)
-    const riskBadge = doc.getElementById('risk-badge');
-    const riskDescription = doc.getElementById('risk-description');
-    const riskRecommendations = doc.getElementById('risk-recommendations');
+    function updateReportContent(doc, win) {
+        // Update Risk Profile Content (copy from your existing function)
+        const riskBadge = doc.getElementById('risk-badge');
+        const riskDescription = doc.getElementById('risk-description');
+        const riskRecommendations = doc.getElementById('risk-recommendations');
 
-    if (riskProfileScore >= 9) {
-        if (riskBadge) {
-            riskBadge.textContent = translations[currentLanguage].riskHigh;
-            riskBadge.style.backgroundColor = "#EB3333";
-        }
-        if (riskDescription) {
-            riskDescription.textContent = translations[currentLanguage].riskprofileSummaryHighRisk;
-        }
-        if (riskRecommendations) {
-            riskRecommendations.innerHTML = `
+        if (riskProfileScore >= 9) {
+            if (riskBadge) {
+                riskBadge.textContent = translations[currentLanguage].riskHigh;
+                riskBadge.style.backgroundColor = "#EB3333";
+            }
+            if (riskDescription) {
+                riskDescription.textContent = translations[currentLanguage].riskprofileSummaryHighRisk;
+            }
+            if (riskRecommendations) {
+                riskRecommendations.innerHTML = `
                 <li>${translations[currentLanguage].recommendationListRiskHigh1}</li>
                 <li>${translations[currentLanguage].recommendationListRiskHigh2}</li>
             `;
-        }
-    } else if (riskProfileScore >= 5) {
-        if (riskBadge) {
-            riskBadge.textContent = translations[currentLanguage].riskBadgeModerate;
-            riskBadge.style.backgroundColor = "#F7A219";
-        }
-        if (riskDescription) {
-            riskDescription.textContent = translations[currentLanguage].riskprofileSummaryModerateRisk;
-        }
-        if (riskRecommendations) {
-            riskRecommendations.innerHTML = `
+            }
+        } else if (riskProfileScore >= 5) {
+            if (riskBadge) {
+                riskBadge.textContent = translations[currentLanguage].riskBadgeModerate;
+                riskBadge.style.backgroundColor = "#F7A219";
+            }
+            if (riskDescription) {
+                riskDescription.textContent = translations[currentLanguage].riskprofileSummaryModerateRisk;
+            }
+            if (riskRecommendations) {
+                riskRecommendations.innerHTML = `
                 <li>${translations[currentLanguage].recommendationListRiskModerate1}</li>
                 <li>${translations[currentLanguage].recommendationListRiskModerate2}</li>
             `;
-        }
-    } else {
-        if (riskBadge) {
-            riskBadge.textContent = translations[currentLanguage].riskLow;
-            riskBadge.style.backgroundColor = "#57B272";
-        }
-        if (riskDescription) {
-            riskDescription.textContent = translations[currentLanguage].riskprofileSummarylowRisk;
-        }
-        if (riskRecommendations) {
-            riskRecommendations.innerHTML = `
+            }
+        } else {
+            if (riskBadge) {
+                riskBadge.textContent = translations[currentLanguage].riskLow;
+                riskBadge.style.backgroundColor = "#57B272";
+            }
+            if (riskDescription) {
+                riskDescription.textContent = translations[currentLanguage].riskprofileSummarylowRisk;
+            }
+            if (riskRecommendations) {
+                riskRecommendations.innerHTML = `
                 <li>${translations[currentLanguage].recommendationListRiskLow1}</li>
                 <li>${translations[currentLanguage].recommendationListRiskLow2}</li>
             `;
+            }
         }
-    }
 
-    // Update Financial Health Content (copy from your existing function)
-    const healthBadge = doc.getElementById('health-badge');
-    const chartImg = doc.getElementById("chart-img");
-    const healthDescription = doc.getElementById('health-description');
-    const healthRecommendations = doc.getElementById('health-recommendations');
+        // Update Financial Health Content (copy from your existing function)
+        const healthBadge = doc.getElementById('health-badge');
+        const chartImg = doc.getElementById("chart-img");
+        const healthDescription = doc.getElementById('health-description');
+        const healthRecommendations = doc.getElementById('health-recommendations');
 
-    if (financialHealthScore >= 12) {
-        if (healthBadge) {
-            healthBadge.textContent = translations[currentLanguage].healthBadgeOnTrack;
-            healthBadge.style.backgroundColor = "#7DBB42";
-        }
-        if (chartImg) chartImg.src = "./assets/images/on-track.svg";
-        if (healthDescription) {
-            healthDescription.textContent = translations[currentLanguage].recommendationSummaryOnTrack;
-        }
-        if (healthRecommendations) {
-            healthRecommendations.innerHTML = `
+        if (financialHealthScore >= 12) {
+            if (healthBadge) {
+                healthBadge.textContent = translations[currentLanguage].healthBadgeOnTrack;
+                healthBadge.style.backgroundColor = "#7DBB42";
+            }
+            if (chartImg) chartImg.src = "./assets/images/on-track.svg";
+            if (healthDescription) {
+                healthDescription.textContent = translations[currentLanguage].recommendationSummaryOnTrack;
+            }
+            if (healthRecommendations) {
+                healthRecommendations.innerHTML = `
                 <li>${translations[currentLanguage].recommendationListOnTrack1}</li>
                 <li>${translations[currentLanguage].recommendationListOnTrack2}</li>
                 <li>${translations[currentLanguage].recommendationListOnTrack3}</li>
             `;
-        }
-    } else if (financialHealthScore >= 7) {
-        if (healthBadge) {
-            healthBadge.textContent = translations[currentLanguage].healthBadgeModerate;
-            healthBadge.style.backgroundColor = "#FECC09";
-        }
-        if (chartImg) chartImg.src = "./assets/images/moderate.svg";
-        if (healthDescription) {
-            healthDescription.textContent = translations[currentLanguage].recommendationSummaryModerate;
-        }
-        if (healthRecommendations) {
-            healthRecommendations.innerHTML = `
+            }
+        } else if (financialHealthScore >= 7) {
+            if (healthBadge) {
+                healthBadge.textContent = translations[currentLanguage].healthBadgeModerate;
+                healthBadge.style.backgroundColor = "#FECC09";
+            }
+            if (chartImg) chartImg.src = "./assets/images/moderate.svg";
+            if (healthDescription) {
+                healthDescription.textContent = translations[currentLanguage].recommendationSummaryModerate;
+            }
+            if (healthRecommendations) {
+                healthRecommendations.innerHTML = `
                 <li>${translations[currentLanguage].recommendationListModerate1}</li>
                 <li>${translations[currentLanguage].recommendationListModerate2}</li>
                 <li>${translations[currentLanguage].recommendationListModerate3}</li>
             `;
-        }
-    } else {
-        if (healthBadge) {
-            healthBadge.textContent = translations[currentLanguage].healthBadgeNeedsImprovement;
-            healthBadge.style.backgroundColor = "#F7A219";
-        }
-        if (chartImg) chartImg.src = "./assets/images/needs-improvement.svg";
-        if (healthDescription) {
-            healthDescription.textContent = translations[currentLanguage].recommendationSummaryNeedsImprovement;
-        }
-        if (healthRecommendations) {
-            healthRecommendations.innerHTML = `
+            }
+        } else {
+            if (healthBadge) {
+                healthBadge.textContent = translations[currentLanguage].healthBadgeNeedsImprovement;
+                healthBadge.style.backgroundColor = "#F7A219";
+            }
+            if (chartImg) chartImg.src = "./assets/images/needs-improvement.svg";
+            if (healthDescription) {
+                healthDescription.textContent = translations[currentLanguage].recommendationSummaryNeedsImprovement;
+            }
+            if (healthRecommendations) {
+                healthRecommendations.innerHTML = `
                 <li>${translations[currentLanguage].recommendationListNeedsImprovement1}</li>
                 <li>${translations[currentLanguage].recommendationListNeedsImprovement2}</li>
                 <li>${translations[currentLanguage].recommendationListNeedsImprovement3}</li>
             `;
+            }
+        }
+
+        // Update snapshot values
+        const snapshotRisk = doc.getElementById('snapshot-risk');
+        const snapshotWeak = doc.getElementById('snapshot-weak');
+        const snapshotAction = doc.getElementById('snapshot-action');
+
+        if (snapshotRisk) {
+            snapshotRisk.textContent = riskProfileScore >= 9 ? translations[currentLanguage].riskPreference1 :
+                riskProfileScore >= 5 ? translations[currentLanguage].riskPreference2 : translations[currentLanguage].riskPreference3;
+        }
+
+        if (snapshotWeak) {
+            snapshotWeak.textContent = financialHealthScore < 7 ? translations[currentLanguage].weakArea1 :
+                financialHealthScore < 12 ? translations[currentLanguage].weakArea2 : translations[currentLanguage].weakArea3;
+        }
+
+        if (snapshotAction) {
+            snapshotAction.textContent = financialHealthScore < 7 ? translations[currentLanguage].ActionNeeded1 :
+                financialHealthScore < 12 ? translations[currentLanguage].ActionNeeded2 : translations[currentLanguage].ActionNeeded3;
         }
     }
-
-    // Update snapshot values
-    const snapshotRisk = doc.getElementById('snapshot-risk');
-    const snapshotWeak = doc.getElementById('snapshot-weak');
-    const snapshotAction = doc.getElementById('snapshot-action');
-
-    if (snapshotRisk) {
-        snapshotRisk.textContent = riskProfileScore >= 9 ? translations[currentLanguage].riskPreference1 :
-            riskProfileScore >= 5 ? translations[currentLanguage].riskPreference2 : translations[currentLanguage].riskPreference3;
-    }
-
-    if (snapshotWeak) {
-        snapshotWeak.textContent = financialHealthScore < 7 ? translations[currentLanguage].weakArea1 :
-            financialHealthScore < 12 ? translations[currentLanguage].weakArea2 : translations[currentLanguage].weakArea3;
-    }
-
-    if (snapshotAction) {
-        snapshotAction.textContent = financialHealthScore < 7 ? translations[currentLanguage].ActionNeeded1 :
-            financialHealthScore < 12 ? translations[currentLanguage].ActionNeeded2 : translations[currentLanguage].ActionNeeded3;
-    }
-}
 
     // Add event listener for callback checkbox
     document.addEventListener('DOMContentLoaded', function () {
@@ -4041,52 +3869,18 @@ function updateReportContent(doc, win) {
         }
     });
 
-    // Modify your existing expert session request function
-    function requestExpertSession() {
-        const wantsCallback = document.getElementById('callback-request-checkbox').checked;
-        const selectedTimeSlot = document.getElementById('time-slot-select').value;
-
-        // Prepare the data to send
-        const requestData = {
-            user_name: document.getElementById('user-name').value,
-            email: document.getElementById('contact-email').value,
-            mobile: document.getElementById('contact-phone').value,
-            wants_callback: wantsCallback,
-            preferred_time_slot: wantsCallback ? selectedTimeSlot : null,
-            financial_health_score: financialHealthScore,
-            risk_profile_score: riskProfileScore,
-            // Add other relevant data
-        };
-
-        // Validate if callback is requested but no time slot selected
-        if (wantsCallback && !selectedTimeSlot) {
-            alert('Please select a preferred time slot for the callback.');
-            return;
-        }
-
-        // Track the event
-        trackMoEngageEvent('Expert_Session_Requested', requestData);
-
-        // Your existing logic to handle the request
-        console.log('Expert session requested:', requestData);
-    }
 
 
-    const requestExpertSessionButton= document.getElementById('request-expert-session-btn')
+    const requestExpertSessionButton = document.getElementById('request-expert-session-btn')
 
     requestExpertSessionButton.addEventListener('click', () => {
-        if(timeSlotContainer.style.display !== 'block') {
+        if (timeSlotContainer.style.display !== 'block') {
             timeSlotContainer.style.display = 'block';
-        }else {
+        } else {
             timeSlotContainer.style.display = 'none';
         }
     })
 
-    
-
-
-
 </script>
 </body>
-
 </html>

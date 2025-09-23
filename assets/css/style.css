@@ -337,38 +337,6 @@ body {
   min-height: 100vh;
 }
 
-.welcome-card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  margin: 0 auto;
-}
-
-.welcome-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.welcome-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.welcome-name {
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.welcome-subtitle {
-  font-size: 14px;
-  color: var(--muted-foreground);
-  line-height: 1.5;
-}
-
 .form-group {
   margin-bottom: 1rem;
 }
@@ -662,53 +630,6 @@ body {
   color: var(--Primary);
 }
 
-.score-display {
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: var(--success-light);
-  border-radius: 12px;
-  border: 1px solid var(--primary);
-}
-
-.score-display h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--primary);
-}
-
-.score-display p {
-  font-size: 16px;
-  color: var(--foreground);
-  margin-bottom: 0.5rem;
-}
-
-.score-display .interpretation {
-  font-weight: 500;
-  color: var(--muted-foreground);
-}
-
-.confirm-btn {
-  width: 100%;
-  padding: 0.75rem;
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: background 0.2s;
-}
-
-.confirm-btn:hover {
-  background: rgba(134, 239, 172, 0.9);
-}
-
 /* Shiver animation for invalid input */
 @keyframes shiver {
   0% {
@@ -757,39 +678,6 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0); /* Slide up to its final position */
   visibility: visible;
-}
-
-.dreams-section {
-  padding: 3rem 1rem;
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.dreams-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.dreams-header {
-  margin-bottom: 2rem;
-}
-
-.dreams-subtitle {
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.dreams-title {
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.dreams-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
 }
 
 .intro-section {
@@ -1458,30 +1346,6 @@ body {
   background: rgba(20, 184, 166, 0.9);
 }
 
-.benefits-section {
-  padding: 3rem 1rem;
-  background: var(--card);
-}
-
-.benefits-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.benefits-title {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
 @media (min-width: 768px) {
   .benefits-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1505,18 +1369,6 @@ body {
   color: var(--muted-foreground);
   font-size: 14px;
   line-height: 1.5;
-}
-
-.footer-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin: 2rem 0;
 }
 
 @media (min-width: 768px) {
