@@ -543,14 +543,18 @@
           riskChart.destroy();
         }
 
-        // Fix the needle angle calculation
+        // Calculate needle position based on risk score (0-12 scale)
         let targetAngle;
+
         if (riskProfileScore <= 4) {
-          targetAngle = -30 + (riskProfileScore / 4) * 25;
+          // Low Risk: 0-4 points (first segment - GREEN)
+          targetAngle = -90 + (riskProfileScore / 4) * 60;
         } else if (riskProfileScore <= 8) {
-          targetAngle = -5 + ((riskProfileScore - 4) / 4) * 20;
+          // Moderate Risk: 5-8 points (middle segment - ORANGE)
+          targetAngle = -30 + ((riskProfileScore - 4) / 4) * 60;
         } else {
-          targetAngle = 15 + ((riskProfileScore - 8) / 4) * 15;
+          // High Risk: 9-12 points (last segment - RED)
+          targetAngle = 30 + ((riskProfileScore - 8) / 4) * 60;
         }
 
         const data = {
@@ -561,8 +565,8 @@
           ],
           datasets: [
             {
-              data: [41.67, 33.33, 25],
-              backgroundColor: ["#57B272", "#F7A219", "#EB3333"],
+              data: [33.33, 33.33, 33.33], // Equal segments
+              backgroundColor: ["#57B272", "#F7A219", "#EB3333"], // Green, Orange, Red
               borderWidth: 4,
               borderColor: "#fff",
               cutout: "70%",
@@ -604,6 +608,7 @@
                 } = chart;
                 ctx.save();
 
+                // Convert target angle to radians and adjust for chart rotation
                 const angle = (270 + targetAngle) * (Math.PI / 180);
                 const cx = width / 2;
                 const cy = height * 0.78;
@@ -612,6 +617,7 @@
                 const needleX = cx + Math.cos(angle) * needleLength;
                 const needleY = cy + Math.sin(angle) * needleLength;
 
+                // Draw needle line
                 ctx.beginPath();
                 ctx.moveTo(cx, cy);
                 ctx.lineTo(needleX, needleY);
@@ -620,6 +626,7 @@
                 ctx.lineCap = "round";
                 ctx.stroke();
 
+                // Draw needle center circle
                 ctx.beginPath();
                 ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
                 ctx.fillStyle = "#000";

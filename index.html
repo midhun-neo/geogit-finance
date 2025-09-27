@@ -25,7 +25,7 @@
 
         Moengage = moe({
             app_id: moeAppID,
-            debug_logs: 0
+            debug_logs: 1
         });
     </script>
 </head>
@@ -3011,27 +3011,25 @@ function updateRiskGauge() {
         riskChart.destroy();
     }
 
-    // Calculate needle position based on risk score
-    const riskPercentage = (riskProfileScore / 12) * 100;
-    
-    // Fix the needle angle calculation
+    // Calculate needle position based on risk score (0-12 scale)
     let targetAngle;
+    
     if (riskProfileScore <= 4) {
-        // Low Risk: 0-4 points (first 41.67% of semicircle)
-        targetAngle = -30 + (riskProfileScore / 4) * 25; // -30 to -5 degrees
+        // Low Risk: 0-4 points (first segment - GREEN)
+        targetAngle = -90 + (riskProfileScore / 4) * 60;
     } else if (riskProfileScore <= 8) {
-        // Moderate Risk: 5-8 points (middle 33.33% of semicircle)  
-        targetAngle = -5 + ((riskProfileScore - 4) / 4) * 20; // -5 to +15 degrees
+        // Moderate Risk: 5-8 points (middle segment - ORANGE) 
+        targetAngle = -30 + ((riskProfileScore - 4) / 4) * 60;
     } else {
-        // High Risk: 9-12 points (last 25% of semicircle)
-        targetAngle = 15 + ((riskProfileScore - 8) / 4) * 15; // +15 to +30 degrees
+        // High Risk: 9-12 points (last segment - RED)
+        targetAngle = 30 + ((riskProfileScore - 8) / 4) * 60;
     }
 
     const data = {
         labels: [translations[currentLanguage].riskLow, translations[currentLanguage].riskBadgeModerate, translations[currentLanguage].riskHigh],
         datasets: [{
-            data: [41.67, 33.33, 25], // Adjusted percentages for proper segments
-            backgroundColor: ['#57B272', '#F7A219', '#EB3333'],
+            data: [33.33, 33.33, 33.33], // Equal segments
+            backgroundColor: ['#57B272', '#F7A219', '#EB3333'], // Green, Orange, Red
             borderWidth: 6,
             borderColor: '#fff',
             cutout: '70%',
@@ -3097,7 +3095,6 @@ function updateRiskGauge() {
         }]
     });
 }
-
 
 
     function updateRecommendations() {
@@ -4000,6 +3997,7 @@ async function printReport() {
         }
     }
 }
+
 </script>
 </body>
 </html>
