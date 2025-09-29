@@ -3884,6 +3884,7 @@ function resetAssessment() {
     const requestExpertSessionButton = document.getElementById('request-expert-session-btn')
 
     requestExpertSessionButton.addEventListener('click', () => {
+        const timeSlotContainer = document.getElementById('time-slot-container');
         if (timeSlotContainer.style.display !== 'block') {
             timeSlotContainer.style.display = 'block';
         } else {
