@@ -3558,16 +3558,19 @@ function resetAssessment() {
         });
 
         // Hide rating interface elements after submission (but keep stars visible)
-        const ratingSection = document.querySelector('.rating-section');
-        if (ratingSection) {
-            ratingSection.classList.add('rating-submitted');
+        if (timeSlot == "") {
+            const ratingSection = document.querySelector('.rating-section');
+            if (ratingSection) {
+                ratingSection.classList.add('rating-submitted');
+            }
+            // Disable star clicking but keep them visible
+            document.querySelectorAll('.star').forEach(star => {
+                star.style.pointerEvents = 'none';
+                star.style.cursor = 'default';
+            });
         }
 
-        // Disable star clicking but keep them visible
-        document.querySelectorAll('.star').forEach(star => {
-            star.style.pointerEvents = 'none';
-            star.style.cursor = 'default';
-        });
+        
 
         let notificationEl = document.getElementById("session-notification");
         if (timeSlot == "") {
