@@ -2823,7 +2823,7 @@ function startReportTimer() {
                 if (currentQuestionIndex >= 3 && currentQuestionIndex <= 20) {
                     setTimeout(() => {
                         nextQuestion();
-                    }, 1000); // Wait for 1 second
+                    }, 200); // Wait for 1 second
                 }
             });
         });
@@ -3689,7 +3689,7 @@ function resetAssessment() {
 
         } catch (error) {
             console.error('Error generating PDF:', error);
-            alert('Error generating PDF. Please try again.');
+            showAlert('Error generating PDF. Please try again.');
 
             // Cleanup iframe if it exists
             const existingIframe = document.querySelector('iframe[src="report-template.html"]');
@@ -3992,7 +3992,7 @@ async function printReport() {
 
     } catch (error) {
         console.error('Error printing report:', error);
-        alert('Error printing report. Please try again.');
+        showAlert('Error printing report. Please try again.');
         
         // Cleanup on error
         const existingIframe = document.querySelector('iframe[src="report-template.html"]');
