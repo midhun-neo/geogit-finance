@@ -3612,13 +3612,16 @@ function resetAssessment() {
                 downloadBtn.disabled = true;
             }
 
+            const res = await fetch('/report-template.html'); // must be same-origin or have CORS headers set
+            const html = await res.text();
+
             // Create a hidden iframe to load the report template
             const iframe = document.createElement('iframe');
             iframe.style.position = 'absolute';
             iframe.style.left = '-9999px';
             iframe.style.width = '800px';
             iframe.style.height = '1200px';
-            iframe.src = 'report-template.html';
+            // iframe.src = 'report-template.html';
             document.body.appendChild(iframe);
 
             // Wait for iframe to load completely
@@ -3635,6 +3638,10 @@ function resetAssessment() {
 
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             const iframeWindow = iframe.contentWindow;
+
+            iframeDoc.open();
+            iframeDoc.write(html);
+            iframeDoc.close();
 
             // Populate the template with current data
             populateReportTemplate(iframeDoc, iframeWindow, userName);
