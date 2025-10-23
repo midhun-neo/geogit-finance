@@ -1,0 +1,175 @@
+.campaign-header {
+    margin-top: 92px;
+    height: 100%;
+    min-height: 90vh;
+    background-image: url('../images/web_bg.webp');
+    display: flex;
+    justify-content: space-between;
+    padding: 120px;
+    align-items: start;
+    gap: 2em;
+}
+
+.campaign-header .left-content {
+    flex: 1;
+}
+
+.campaign-header .right-content {
+    flex: 1;    
+    justify-items: center;
+}
+
+
+.left-content .label {
+    background-color: #D3F6F5;
+    color: #017670;
+    display: inline;
+    padding: 10px;
+    border-radius: 80px;
+    font-size: 20px;
+}
+
+.left-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 50px;
+    padding:30px 0;
+    max-width: 12em;
+  
+}
+
+.left-content p {
+    color: #757575;
+    font-size: 32px;
+    max-width: 15em;
+    line-height: 40px;
+    font-weight: medium;
+}
+
+.right-content form {
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 10px 10px 20px 2px #757575;
+    border-radius: 16px;
+}
+
+.right-content form h4 {
+  font-size: 24px;
+  color: #161C2D;
+
+}
+
+input::placeholder {
+    color: #E4E4E4; /* any color you like */
+  }
+
+.form-group label{
+    display: flex;
+    font-size: 16px;
+    color: #000308;
+}
+
+.form-group input{
+    display: flex;
+    font-size: 16px;
+    padding: 10px 20px ;
+    font-weight: normal;
+    border-radius: 8px;
+    border: 1px solid #757575;
+    width: 100%;
+    outline: none;
+}
+
+form button {
+    background-color: #017670;
+    padding: 7px 12px;
+    width: fit-content;
+    margin: auto;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+}
+
+
+.intro-description {
+    max-width: 100%;
+}
+
+.faq-section {
+    background: #fff;
+}
+
+
+.separator-section {
+    padding: 60px 120px;
+    background: #fff;
+    div {
+            /* border-top:0.4px solid #757575; */
+        background: #757575;
+        height: 0.4px;
+    }
+}   
+
+.address-block {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.address-block li {
+    flex: 1;
+    max-width: 250px;
+}
+
+.address-block h5{
+    font-size: 24px;
+    /* font-weight: 500; */
+    padding-bottom: 10px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.text-gray {
+    color: #757575;
+    margin: 2em 0;
+}
+
+h6 {
+    font-size: 20px;
+    padding-block: 10px;
+}
+
+.text {
+    font-size: 1rem;
+    padding-bottom: 10px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .campaign-header {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .campaign-header .left-content {
+        flex: 1;
+    }
+    
+    .campaign-header .right-content {
+        flex: 1;
+    }
+}
+
