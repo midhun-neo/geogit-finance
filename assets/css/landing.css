@@ -99,6 +99,7 @@ form button {
     color: white;
     font-family: inherit;
     display: flex;
+    cursor: pointer;
 }
 
 
@@ -179,6 +180,8 @@ h6 {
     border-radius: 4px;
     outline: none;
     border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .button.primary {
@@ -191,7 +194,9 @@ h6 {
     padding:15px;
 }
 
-
+.button.primary:hover {
+    background: #015a56;
+}
 
 .button.secondary {
     border: 1px solid #017670;
@@ -299,6 +304,24 @@ h6 {
     }
     form button {
         font-size: 18px;
+    }
+    .header-right button {
+        display: none;
+    }
+    #otp-form , #logo-form {
+        flex-direction: column;
+    }
+    .login-header .card {
+        width: 100%;
+    }
+    .login-header .card input {
+        width: 100%;
+    }
+    #login-form {
+        flex-direction: column;
+    }
+    #login-form {
+        width: 100%;
     }
 }
 
