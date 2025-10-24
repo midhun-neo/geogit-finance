@@ -378,5 +378,54 @@
         </p>
       </div>
     </div>
+
+    <script>
+      function toggleFaq(element) {
+        const answer = element.nextElementSibling;
+        const iconPaths = element.querySelectorAll('.faq-icon path');
+
+        // Toggle visibility
+        answer.classList.toggle('hidden');
+
+        // Update icon
+        if (answer.classList.contains('hidden')) {
+            // FAQ is collapsed - Show plus (+)
+            if (iconPaths.length === 1) {
+                // Add vertical line to make it a plus
+                iconPaths[0].setAttribute('d', 'M18 12H6'); // horizontal
+                const vertical = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                vertical.setAttribute('d', 'M12 6V18');
+                vertical.setAttribute('stroke', '#000308');
+                vertical.setAttribute('stroke-width', '2');
+                vertical.setAttribute('stroke-linecap', 'round');
+                vertical.setAttribute('stroke-linejoin', 'round');
+                element.querySelector('.faq-icon').appendChild(vertical);
+            } else if (iconPaths.length === 2) {
+                // Already has both lines, just ensure correct positioning
+                iconPaths[0].setAttribute('d', 'M12 6V18'); // vertical
+                iconPaths[1].setAttribute('d', 'M18 12H6'); // horizontal
+            }
+        } else {
+            // FAQ is expanded - Show minus (–)
+            if (iconPaths.length > 1) {
+                iconPaths[0].remove(); // remove vertical line, keep only horizontal
+            }
+            // Ensure the remaining line is horizontal
+            const remainingPath = element.querySelector('.faq-icon path');
+            if (remainingPath) {
+                remainingPath.setAttribute('d', 'M18 12H6'); // horizontal line only
+            }
+        }
+
+        // Smooth scroll into view on mobile
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+    }
+
+
+    </script>
   </body>
 </html>
