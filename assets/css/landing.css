@@ -3,6 +3,7 @@
     height: 100%;
     min-height: 90vh;
     background-image: url('../images/web_bg.webp');
+    background-origin: padding-box ;
     display: flex;
     justify-content: space-between;
     padding: 120px;
@@ -55,7 +56,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 10px 10px 20px 2px #757575;
+    box-shadow: 10px 10px 10px 2px rgba(0,0,0,0.1);
     border-radius: 16px;
 }
 
@@ -181,7 +182,7 @@ h6 {
 }
 
 .button.primary {
-    background-color: #455AD1;
+    background-color: #017670;
     color: white;
 }
 
@@ -190,21 +191,17 @@ h6 {
     padding:15px;
 }
 
-.button.primary:hover {
-    background-color: #2855a2;
-    color: white;
-}
 
 
 .button.secondary {
-    border: 1px solid #455AD1;
-    color: #455AD1;
+    border: 1px solid #017670;
+    color: #017670;
     background-color: white;
 }
 
 .button.secondary:hover {
-    border: 1px solid #455AD1;
-    background-color: #455AD1;
+    border: 1px solid #017670;
+    background-color: #017670;
     color: white;
 }
 
