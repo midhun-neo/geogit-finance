@@ -162,6 +162,93 @@ h6 {
 }
 
 
+/* otplogin */
+
+.login-header {
+    margin-top: 92px;
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+}
+
+.button.primary {
+    background-color: #455AD1;
+    color: white;
+}
+
+.button.primary.lg {
+    font-size: 20px;
+    padding:15px;
+}
+
+.button.primary:hover {
+    background-color: #2855a2;
+    color: white;
+}
+
+
+.button.secondary {
+    border: 1px solid #455AD1;
+    color: #455AD1;
+    background-color: white;
+}
+
+.button.secondary:hover {
+    border: 1px solid #455AD1;
+    background-color: #455AD1;
+    color: white;
+}
+
+.login-header .card {
+    width: 800px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,.1);
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    align-items: center;
+}
+
+#login-form {
+    display: flex;
+    gap: 20px;
+}
+
+#otp-form {
+    display: flex;
+    gap: 3em;
+    display: none;
+}
+
+#otp-form .form-group {
+    display: flex;
+    gap: 2em;
+}
+
+#otp-form .form-group input {
+    width: 50px;
+}
+
+.login-header .card .form-group {
+    margin: 0;
+}
+
+.login-header .card input {
+    width: 500px;
+    padding: 15px;
+}
+
+
 
 
 
@@ -216,4 +303,13 @@ h6 {
     form button {
         font-size: 18px;
     }
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
